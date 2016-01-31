@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "HomeTableViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():HomeTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "HomeTableViewController.(viewDidLoad(HomeTableViewController) -&gt; () -&gt; ()).(closure #1):HomeTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "simpleNewsPostItems">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeTableViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:HomeTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "doc">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewsDetailsViewController.viewDidAppear(Bool) -&gt; ():NewsDetailsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frameHtml">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

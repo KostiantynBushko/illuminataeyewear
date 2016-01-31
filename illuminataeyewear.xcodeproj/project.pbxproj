@@ -7,14 +7,51 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8406318D1C5BD2BE00B4AEFC /* XmlOrderParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406318C1C5BD2BE00B4AEFC /* XmlOrderParser.swift */; };
+		8409ACE21C5B86C600E78C5A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409ACE11C5B86C600E78C5A /* Order.swift */; };
+		840A688D1C45F69D0072FC42 /* ItemsBrandTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A688C1C45F69D0072FC42 /* ItemsBrandTableViewController.swift */; };
+		840A688F1C45F8A10072FC42 /* BrandItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A688E1C45F8A10072FC42 /* BrandItemViewCell.swift */; };
+		840A68911C45FA4D0072FC42 /* BrandItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A68901C45FA4D0072FC42 /* BrandItem.swift */; };
+		842F8BD11C535BF80048BE73 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F8BD01C535BF80048BE73 /* Constant.swift */; };
+		842FA3441C54129E0052E0E6 /* XmlNewsPostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FA3431C54129E0052E0E6 /* XmlNewsPostParser.swift */; };
+		842FA3461C5413A60052E0E6 /* NewsPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FA3451C5413A60052E0E6 /* NewsPost.swift */; };
+		842FC5421C57B5A9008DA664 /* RoundRectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FC5411C57B5A9008DA664 /* RoundRectButton.swift */; };
+		84303FB41C56B2AE0093AA25 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84303FB31C56B2AE0093AA25 /* Helper.swift */; };
+		84303FB61C56C21B0093AA25 /* XmlNewsTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84303FB51C56C21B0093AA25 /* XmlNewsTextParser.swift */; };
+		84303FB81C56D1220093AA25 /* SimpleNewsPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84303FB71C56D1220093AA25 /* SimpleNewsPost.swift */; };
+		8430F44B1C523F4F00586940 /* data.db in Resources */ = {isa = PBXBuildFile; fileRef = 8430F44A1C523F4F00586940 /* data.db */; };
+		84313D381C521FC80060B52D /* SQLiteDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84313D361C521FC80060B52D /* SQLiteDB.swift */; };
+		84313D391C521FC80060B52D /* String-Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84313D371C521FC80060B52D /* String-Extras.swift */; };
+		84313D3B1C521FEB0060B52D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 84313D3A1C521FEB0060B52D /* libsqlite3.0.tbd */; };
+		84313D3E1C5223A90060B52D /* DBWishProductTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84313D3D1C5223A90060B52D /* DBWishProductTable.swift */; };
+		84313D401C5224900060B52D /* WishItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84313D3F1C5224900060B52D /* WishItem.swift */; };
 		8431B4F81C44661A00398526 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B4F71C44661A00398526 /* AppDelegate.swift */; };
-		8431B4FA1C44661A00398526 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B4F91C44661A00398526 /* FirstViewController.swift */; };
-		8431B4FC1C44661A00398526 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B4FB1C44661A00398526 /* SecondViewController.swift */; };
 		8431B4FF1C44661A00398526 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8431B4FD1C44661A00398526 /* Main.storyboard */; };
 		8431B5011C44661A00398526 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8431B5001C44661A00398526 /* Assets.xcassets */; };
 		8431B5041C44661A00398526 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8431B5021C44661A00398526 /* LaunchScreen.storyboard */; };
 		8431B50F1C44661A00398526 /* illuminataeyewearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B50E1C44661A00398526 /* illuminataeyewearTests.swift */; };
 		8431B51A1C44661A00398526 /* illuminataeyewearUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B5191C44661A00398526 /* illuminataeyewearUITests.swift */; };
+		8432A9091C5177D3009FADAC /* IlluminCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8432A9071C5177D3009FADAC /* IlluminCoreData.xcdatamodeld */; };
+		8432A90C1C517820009FADAC /* WishProduct+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432A90A1C517820009FADAC /* WishProduct+CoreDataProperties.swift */; };
+		8432A90D1C517820009FADAC /* WishProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432A90B1C517820009FADAC /* WishProduct.swift */; };
+		843366E51C52A91B001E917E /* WishItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843366E41C52A91B001E917E /* WishItemViewCell.swift */; };
+		843366E71C52B04A001E917E /* XmlBrandtParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843366E61C52B04A001E917E /* XmlBrandtParser.swift */; };
+		843372781C525DCD0017F2A1 /* WishListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843372771C525DCD0017F2A1 /* WishListTableViewController.swift */; };
+		8433A1C91C563B5E009EFCE6 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433A1C81C563B5E009EFCE6 /* HomeTableViewController.swift */; };
+		8433A1CB1C565435009EFCE6 /* NewsPostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433A1CA1C565435009EFCE6 /* NewsPostViewCell.swift */; };
+		8435256D1C4DC2DA0072B16B /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435256C1C4DC2DA0072B16B /* ItemDetailViewController.swift */; };
+		843525711C4E264A0072B16B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843525701C4E264A0072B16B /* Extension.swift */; };
+		843525751C4E30A30072B16B /* PriceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843525741C4E30A30072B16B /* PriceItem.swift */; };
+		843525781C4E3A750072B16B /* XmlPriceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843525771C4E3A750072B16B /* XmlPriceParser.swift */; };
+		849506CC1C57F0E200B81E4E /* Kanna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849506CB1C57F0E200B81E4E /* Kanna.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		849506CE1C580F4800B81E4E /* NewsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849506CD1C580F4800B81E4E /* NewsDetailsViewController.swift */; };
+		849618161C5C3363009CBD0D /* ShopingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849618151C5C3363009CBD0D /* ShopingCartViewController.swift */; };
+		849618181C5C3550009CBD0D /* OrderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849618171C5C3550009CBD0D /* OrderViewCell.swift */; };
+		849CCA241C45B1F000B04589 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CCA231C45B1F000B04589 /* Brand.swift */; };
+		849CCA271C45B3B900B04589 /* BrandViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CCA261C45B3B900B04589 /* BrandViewCell.swift */; };
+		849CCA291C45B3FB00B04589 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CCA281C45B3FB00B04589 /* LoginViewController.swift */; };
+		849CCA2B1C45C4C500B04589 /* BrandTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CCA2A1C45C4C500B04589 /* BrandTableViewController.swift */; };
+		94A19776719DFC689F074050 /* Pods_illuminataeyewear.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53C7E8282D1DB32BD8719EA /* Pods_illuminataeyewear.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,20 +72,65 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8431B4F41C44661A00398526 /* illuminataeyewear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = illuminataeyewear.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E869747157E8CA1D9F787F0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		25710B0A3F71DF54BD23B581 /* Pods-illuminataeyewear.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-illuminataeyewear.release.xcconfig"; path = "Pods/Target Support Files/Pods-illuminataeyewear/Pods-illuminataeyewear.release.xcconfig"; sourceTree = "<group>"; };
+		3ADEBFEB91003F9C990B09F1 /* Pods-illuminataeyewear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-illuminataeyewear.debug.xcconfig"; path = "Pods/Target Support Files/Pods-illuminataeyewear/Pods-illuminataeyewear.debug.xcconfig"; sourceTree = "<group>"; };
+		8406318C1C5BD2BE00B4AEFC /* XmlOrderParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlOrderParser.swift; path = XMLDataParsers/XmlOrderParser.swift; sourceTree = "<group>"; };
+		8409ACE11C5B86C600E78C5A /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Order.swift; path = Model/Order.swift; sourceTree = "<group>"; };
+		840A688C1C45F69D0072FC42 /* ItemsBrandTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsBrandTableViewController.swift; path = View/ViewController/ItemsBrandTableViewController.swift; sourceTree = "<group>"; };
+		840A688E1C45F8A10072FC42 /* BrandItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrandItemViewCell.swift; path = View/ViewCell/BrandItemViewCell.swift; sourceTree = "<group>"; };
+		840A68901C45FA4D0072FC42 /* BrandItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrandItem.swift; path = Model/BrandItem.swift; sourceTree = "<group>"; };
+		842F8BD01C535BF80048BE73 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = common/Constant.swift; sourceTree = "<group>"; };
+		842FA3431C54129E0052E0E6 /* XmlNewsPostParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlNewsPostParser.swift; path = XMLDataParsers/XmlNewsPostParser.swift; sourceTree = "<group>"; };
+		842FA3451C5413A60052E0E6 /* NewsPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsPost.swift; path = Model/NewsPost.swift; sourceTree = "<group>"; };
+		842FC5411C57B5A9008DA664 /* RoundRectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundRectButton.swift; path = CustomUI/RoundRectButton.swift; sourceTree = "<group>"; };
+		84303FB31C56B2AE0093AA25 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helper.swift; path = common/Helper.swift; sourceTree = "<group>"; };
+		84303FB51C56C21B0093AA25 /* XmlNewsTextParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlNewsTextParser.swift; path = XMLDataParsers/XmlNewsTextParser.swift; sourceTree = "<group>"; };
+		84303FB71C56D1220093AA25 /* SimpleNewsPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleNewsPost.swift; path = Model/SimpleNewsPost.swift; sourceTree = "<group>"; };
+		8430F44A1C523F4F00586940 /* data.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = data.db; sourceTree = "<group>"; };
+		84313D361C521FC80060B52D /* SQLiteDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SQLiteDB.swift; path = DBHelper/SQLiteDB.swift; sourceTree = "<group>"; };
+		84313D371C521FC80060B52D /* String-Extras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String-Extras.swift"; path = "DBHelper/String-Extras.swift"; sourceTree = "<group>"; };
+		84313D3A1C521FEB0060B52D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		84313D3C1C5222C60060B52D /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "DBHelper/Bridging-Header.h"; sourceTree = "<group>"; };
+		84313D3D1C5223A90060B52D /* DBWishProductTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBWishProductTable.swift; path = DBHelper/DBWishProductTable.swift; sourceTree = "<group>"; };
+		84313D3F1C5224900060B52D /* WishItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WishItem.swift; path = Model/WishItem.swift; sourceTree = "<group>"; };
 		8431B4F71C44661A00398526 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8431B4F91C44661A00398526 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		8431B4FB1C44661A00398526 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		8431B4FE1C44661A00398526 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8431B5001C44661A00398526 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8431B5031C44661A00398526 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8431B5051C44661A00398526 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8431B50A1C44661A00398526 /* illuminataeyewearTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = illuminataeyewearTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8431B50E1C44661A00398526 /* illuminataeyewearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = illuminataeyewearTests.swift; sourceTree = "<group>"; };
 		8431B5101C44661A00398526 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8431B5151C44661A00398526 /* illuminataeyewearUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = illuminataeyewearUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8431B5191C44661A00398526 /* illuminataeyewearUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = illuminataeyewearUITests.swift; sourceTree = "<group>"; };
 		8431B51B1C44661A00398526 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8431B53C1C44A42700398526 /* illuminataeyewear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = illuminataeyewear.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8432A9081C5177D3009FADAC /* IlluminCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IlluminCoreData.xcdatamodel; sourceTree = "<group>"; };
+		8432A90A1C517820009FADAC /* WishProduct+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WishProduct+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8432A90B1C517820009FADAC /* WishProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishProduct.swift; sourceTree = "<group>"; };
+		843366E41C52A91B001E917E /* WishItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WishItemViewCell.swift; path = View/ViewCell/WishItemViewCell.swift; sourceTree = "<group>"; };
+		843366E61C52B04A001E917E /* XmlBrandtParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlBrandtParser.swift; path = XMLDataParsers/XmlBrandtParser.swift; sourceTree = "<group>"; };
+		843372771C525DCD0017F2A1 /* WishListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WishListTableViewController.swift; path = View/ViewController/WishListTableViewController.swift; sourceTree = "<group>"; };
+		8433A1C81C563B5E009EFCE6 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeTableViewController.swift; path = View/ViewController/HomeTableViewController.swift; sourceTree = "<group>"; };
+		8433A1CA1C565435009EFCE6 /* NewsPostViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsPostViewCell.swift; path = View/ViewCell/NewsPostViewCell.swift; sourceTree = "<group>"; };
+		8435256C1C4DC2DA0072B16B /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemDetailViewController.swift; path = View/ViewController/ItemDetailViewController.swift; sourceTree = "<group>"; };
+		843525701C4E264A0072B16B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = common/Extension.swift; sourceTree = "<group>"; };
+		843525741C4E30A30072B16B /* PriceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PriceItem.swift; path = Model/PriceItem.swift; sourceTree = "<group>"; };
+		843525771C4E3A750072B16B /* XmlPriceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlPriceParser.swift; path = XMLDataParsers/XmlPriceParser.swift; sourceTree = "<group>"; };
+		849506C31C57E64000B81E4E /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = "Pods/../build/Release-iphoneos/Kanna.framework"; sourceTree = "<group>"; };
+		849506C51C57EE7800B81E4E /* YouTubePlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YouTubePlayer.framework; path = "Pods/../build/Debug-iphoneos/YouTubePlayer.framework"; sourceTree = "<group>"; };
+		849506C71C57EEB900B81E4E /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = "Pods/../build/Debug-iphoneos/Kanna.framework"; sourceTree = "<group>"; };
+		849506C91C57EF7400B81E4E /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = "Pods/../build/Debug-iphoneos/Kanna.framework"; sourceTree = "<group>"; };
+		849506CB1C57F0E200B81E4E /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = "Pods/../build/Debug-iphoneos/Kanna.framework"; sourceTree = "<group>"; };
+		849506CD1C580F4800B81E4E /* NewsDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsDetailsViewController.swift; path = View/ViewController/NewsDetailsViewController.swift; sourceTree = "<group>"; };
+		849618151C5C3363009CBD0D /* ShopingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShopingCartViewController.swift; path = View/ViewController/ShopingCartViewController.swift; sourceTree = "<group>"; };
+		849618171C5C3550009CBD0D /* OrderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderViewCell.swift; path = View/ViewCell/OrderViewCell.swift; sourceTree = "<group>"; };
+		849CCA1D1C45911F00B04589 /* illuminataeyewearTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = illuminataeyewearTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		849CCA1E1C45911F00B04589 /* illuminataeyewearUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = illuminataeyewearUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		849CCA231C45B1F000B04589 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Brand.swift; path = Model/Brand.swift; sourceTree = "<group>"; };
+		849CCA261C45B3B900B04589 /* BrandViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrandViewCell.swift; path = View/ViewCell/BrandViewCell.swift; sourceTree = "<group>"; };
+		849CCA281C45B3FB00B04589 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = View/ViewController/LoginViewController.swift; sourceTree = "<group>"; };
+		849CCA2A1C45C4C500B04589 /* BrandTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrandTableViewController.swift; path = View/ViewController/BrandTableViewController.swift; sourceTree = "<group>"; };
+		C53C7E8282D1DB32BD8719EA /* Pods_illuminataeyewear.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_illuminataeyewear.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +138,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849506CC1C57F0E200B81E4E /* Kanna.framework in Frameworks */,
+				84313D3B1C521FEB0060B52D /* libsqlite3.0.tbd in Frameworks */,
+				94A19776719DFC689F074050 /* Pods_illuminataeyewear.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,32 +161,76 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		261A5951C4188D7BFD34AC71 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				849506CB1C57F0E200B81E4E /* Kanna.framework */,
+				849506C91C57EF7400B81E4E /* Kanna.framework */,
+				849506C71C57EEB900B81E4E /* Kanna.framework */,
+				849506C51C57EE7800B81E4E /* YouTubePlayer.framework */,
+				849506C31C57E64000B81E4E /* Kanna.framework */,
+				0E869747157E8CA1D9F787F0 /* Pods.framework */,
+				C53C7E8282D1DB32BD8719EA /* Pods_illuminataeyewear.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		273E960FB789156344CCD070 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3ADEBFEB91003F9C990B09F1 /* Pods-illuminataeyewear.debug.xcconfig */,
+				25710B0A3F71DF54BD23B581 /* Pods-illuminataeyewear.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		842FC5401C57B555008DA664 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				842FC5411C57B5A9008DA664 /* RoundRectButton.swift */,
+			);
+			name = CustomUI;
+			sourceTree = "<group>";
+		};
+		84313D2F1C520FE70060B52D /* DBHelper */ = {
+			isa = PBXGroup;
+			children = (
+				84313D3C1C5222C60060B52D /* Bridging-Header.h */,
+				84313D361C521FC80060B52D /* SQLiteDB.swift */,
+				84313D371C521FC80060B52D /* String-Extras.swift */,
+				84313D3D1C5223A90060B52D /* DBWishProductTable.swift */,
+			);
+			name = DBHelper;
+			sourceTree = "<group>";
+		};
 		8431B4EB1C44661A00398526 = {
 			isa = PBXGroup;
 			children = (
+				8430F44A1C523F4F00586940 /* data.db */,
+				84313D3A1C521FEB0060B52D /* libsqlite3.0.tbd */,
 				8431B4F61C44661A00398526 /* illuminataeyewear */,
 				8431B50D1C44661A00398526 /* illuminataeyewearTests */,
 				8431B5181C44661A00398526 /* illuminataeyewearUITests */,
-				8431B4F51C44661A00398526 /* Products */,
+				8431B53C1C44A42700398526 /* illuminataeyewear.app */,
+				849CCA1D1C45911F00B04589 /* illuminataeyewearTests.xctest */,
+				849CCA1E1C45911F00B04589 /* illuminataeyewearUITests.xctest */,
+				261A5951C4188D7BFD34AC71 /* Frameworks */,
+				273E960FB789156344CCD070 /* Pods */,
 			);
-			sourceTree = "<group>";
-		};
-		8431B4F51C44661A00398526 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8431B4F41C44661A00398526 /* illuminataeyewear.app */,
-				8431B50A1C44661A00398526 /* illuminataeyewearTests.xctest */,
-				8431B5151C44661A00398526 /* illuminataeyewearUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		8431B4F61C44661A00398526 /* illuminataeyewear */ = {
 			isa = PBXGroup;
 			children = (
+				842FC5401C57B555008DA664 /* CustomUI */,
+				84313D2F1C520FE70060B52D /* DBHelper */,
+				8432A8F81C517428009FADAC /* CoreDataModel */,
+				843525761C4E3A480072B16B /* XMLDataParsers */,
+				8450DEE41C47558000929E7D /* common */,
+				849CCA251C45B29200B04589 /* View */,
+				849CCA221C45B1C500B04589 /* Model */,
+				8431B5291C44676B00398526 /* Resources */,
 				8431B4F71C44661A00398526 /* AppDelegate.swift */,
-				8431B4F91C44661A00398526 /* FirstViewController.swift */,
-				8431B4FB1C44661A00398526 /* SecondViewController.swift */,
 				8431B4FD1C44661A00398526 /* Main.storyboard */,
 				8431B5001C44661A00398526 /* Assets.xcassets */,
 				8431B5021C44661A00398526 /* LaunchScreen.storyboard */,
@@ -128,6 +257,95 @@
 			path = illuminataeyewearUITests;
 			sourceTree = "<group>";
 		};
+		8431B5291C44676B00398526 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		8431B52C1C44974600398526 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				849CCA281C45B3FB00B04589 /* LoginViewController.swift */,
+				849CCA2A1C45C4C500B04589 /* BrandTableViewController.swift */,
+				840A688C1C45F69D0072FC42 /* ItemsBrandTableViewController.swift */,
+				8435256C1C4DC2DA0072B16B /* ItemDetailViewController.swift */,
+				843372771C525DCD0017F2A1 /* WishListTableViewController.swift */,
+				8433A1C81C563B5E009EFCE6 /* HomeTableViewController.swift */,
+				849506CD1C580F4800B81E4E /* NewsDetailsViewController.swift */,
+				849618151C5C3363009CBD0D /* ShopingCartViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		8432A8F81C517428009FADAC /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				8432A90A1C517820009FADAC /* WishProduct+CoreDataProperties.swift */,
+				8432A90B1C517820009FADAC /* WishProduct.swift */,
+				8432A9071C5177D3009FADAC /* IlluminCoreData.xcdatamodeld */,
+			);
+			name = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		843525761C4E3A480072B16B /* XMLDataParsers */ = {
+			isa = PBXGroup;
+			children = (
+				843525771C4E3A750072B16B /* XmlPriceParser.swift */,
+				843366E61C52B04A001E917E /* XmlBrandtParser.swift */,
+				842FA3431C54129E0052E0E6 /* XmlNewsPostParser.swift */,
+				84303FB51C56C21B0093AA25 /* XmlNewsTextParser.swift */,
+				8406318C1C5BD2BE00B4AEFC /* XmlOrderParser.swift */,
+			);
+			name = XMLDataParsers;
+			sourceTree = "<group>";
+		};
+		8450DEE41C47558000929E7D /* common */ = {
+			isa = PBXGroup;
+			children = (
+				843525701C4E264A0072B16B /* Extension.swift */,
+				842F8BD01C535BF80048BE73 /* Constant.swift */,
+				84303FB31C56B2AE0093AA25 /* Helper.swift */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		849CCA211C45A18A00B04589 /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				849CCA261C45B3B900B04589 /* BrandViewCell.swift */,
+				840A688E1C45F8A10072FC42 /* BrandItemViewCell.swift */,
+				843366E41C52A91B001E917E /* WishItemViewCell.swift */,
+				8433A1CA1C565435009EFCE6 /* NewsPostViewCell.swift */,
+				849618171C5C3550009CBD0D /* OrderViewCell.swift */,
+			);
+			name = ViewCell;
+			sourceTree = "<group>";
+		};
+		849CCA221C45B1C500B04589 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				849CCA231C45B1F000B04589 /* Brand.swift */,
+				840A68901C45FA4D0072FC42 /* BrandItem.swift */,
+				843525741C4E30A30072B16B /* PriceItem.swift */,
+				84313D3F1C5224900060B52D /* WishItem.swift */,
+				842FA3451C5413A60052E0E6 /* NewsPost.swift */,
+				84303FB71C56D1220093AA25 /* SimpleNewsPost.swift */,
+				8409ACE11C5B86C600E78C5A /* Order.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		849CCA251C45B29200B04589 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8431B52C1C44974600398526 /* ViewController */,
+				849CCA211C45A18A00B04589 /* ViewCell */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +353,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8431B51E1C44661A00398526 /* Build configuration list for PBXNativeTarget "illuminataeyewear" */;
 			buildPhases = (
+				19EF1E701445B46A5462A897 /* Check Pods Manifest.lock */,
 				8431B4F01C44661A00398526 /* Sources */,
 				8431B4F11C44661A00398526 /* Frameworks */,
 				8431B4F21C44661A00398526 /* Resources */,
+				9D7A0117ACB18ED2743C3FAF /* Embed Pods Frameworks */,
+				DAE6C4E9A935B3F6E9363E2E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -145,7 +366,7 @@
 			);
 			name = illuminataeyewear;
 			productName = illuminataeyewear;
-			productReference = 8431B4F41C44661A00398526 /* illuminataeyewear.app */;
+			productReference = 8431B53C1C44A42700398526 /* illuminataeyewear.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8431B5091C44661A00398526 /* illuminataeyewearTests */ = {
@@ -163,7 +384,7 @@
 			);
 			name = illuminataeyewearTests;
 			productName = illuminataeyewearTests;
-			productReference = 8431B50A1C44661A00398526 /* illuminataeyewearTests.xctest */;
+			productReference = 849CCA1D1C45911F00B04589 /* illuminataeyewearTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		8431B5141C44661A00398526 /* illuminataeyewearUITests */ = {
@@ -181,7 +402,7 @@
 			);
 			name = illuminataeyewearUITests;
 			productName = illuminataeyewearUITests;
-			productReference = 8431B5151C44661A00398526 /* illuminataeyewearUITests.xctest */;
+			productReference = 849CCA1E1C45911F00B04589 /* illuminataeyewearUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -196,6 +417,7 @@
 				TargetAttributes = {
 					8431B4F31C44661A00398526 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = P78S67YH83;
 					};
 					8431B5091C44661A00398526 = {
 						CreatedOnToolsVersion = 7.2;
@@ -216,7 +438,7 @@
 				Base,
 			);
 			mainGroup = 8431B4EB1C44661A00398526;
-			productRefGroup = 8431B4F51C44661A00398526 /* Products */;
+			productRefGroup = 8431B4EB1C44661A00398526;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -233,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8431B5041C44661A00398526 /* LaunchScreen.storyboard in Resources */,
+				8430F44B1C523F4F00586940 /* data.db in Resources */,
 				8431B5011C44661A00398526 /* Assets.xcassets in Resources */,
 				8431B4FF1C44661A00398526 /* Main.storyboard in Resources */,
 			);
@@ -254,14 +477,95 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		19EF1E701445B46A5462A897 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9D7A0117ACB18ED2743C3FAF /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-illuminataeyewear/Pods-illuminataeyewear-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAE6C4E9A935B3F6E9363E2E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-illuminataeyewear/Pods-illuminataeyewear-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8431B4F01C44661A00398526 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8431B4FC1C44661A00398526 /* SecondViewController.swift in Sources */,
+				843525751C4E30A30072B16B /* PriceItem.swift in Sources */,
+				8435256D1C4DC2DA0072B16B /* ItemDetailViewController.swift in Sources */,
+				842FC5421C57B5A9008DA664 /* RoundRectButton.swift in Sources */,
+				84313D3E1C5223A90060B52D /* DBWishProductTable.swift in Sources */,
+				840A68911C45FA4D0072FC42 /* BrandItem.swift in Sources */,
+				8432A90D1C517820009FADAC /* WishProduct.swift in Sources */,
+				8409ACE21C5B86C600E78C5A /* Order.swift in Sources */,
+				84303FB81C56D1220093AA25 /* SimpleNewsPost.swift in Sources */,
+				84313D381C521FC80060B52D /* SQLiteDB.swift in Sources */,
+				84303FB61C56C21B0093AA25 /* XmlNewsTextParser.swift in Sources */,
+				8432A9091C5177D3009FADAC /* IlluminCoreData.xcdatamodeld in Sources */,
+				849CCA291C45B3FB00B04589 /* LoginViewController.swift in Sources */,
+				843366E51C52A91B001E917E /* WishItemViewCell.swift in Sources */,
+				8432A90C1C517820009FADAC /* WishProduct+CoreDataProperties.swift in Sources */,
+				8406318D1C5BD2BE00B4AEFC /* XmlOrderParser.swift in Sources */,
+				849CCA241C45B1F000B04589 /* Brand.swift in Sources */,
+				842F8BD11C535BF80048BE73 /* Constant.swift in Sources */,
+				842FA3441C54129E0052E0E6 /* XmlNewsPostParser.swift in Sources */,
+				843366E71C52B04A001E917E /* XmlBrandtParser.swift in Sources */,
+				843525711C4E264A0072B16B /* Extension.swift in Sources */,
+				849618161C5C3363009CBD0D /* ShopingCartViewController.swift in Sources */,
+				849506CE1C580F4800B81E4E /* NewsDetailsViewController.swift in Sources */,
+				8433A1CB1C565435009EFCE6 /* NewsPostViewCell.swift in Sources */,
+				840A688F1C45F8A10072FC42 /* BrandItemViewCell.swift in Sources */,
+				842FA3461C5413A60052E0E6 /* NewsPost.swift in Sources */,
+				849CCA2B1C45C4C500B04589 /* BrandTableViewController.swift in Sources */,
+				849CCA271C45B3B900B04589 /* BrandViewCell.swift in Sources */,
+				84313D391C521FC80060B52D /* String-Extras.swift in Sources */,
+				843372781C525DCD0017F2A1 /* WishListTableViewController.swift in Sources */,
 				8431B4F81C44661A00398526 /* AppDelegate.swift in Sources */,
-				8431B4FA1C44661A00398526 /* FirstViewController.swift in Sources */,
+				840A688D1C45F69D0072FC42 /* ItemsBrandTableViewController.swift in Sources */,
+				843525781C4E3A750072B16B /* XmlPriceParser.swift in Sources */,
+				8433A1C91C563B5E009EFCE6 /* HomeTableViewController.swift in Sources */,
+				849618181C5C3550009CBD0D /* OrderViewCell.swift in Sources */,
+				84303FB41C56B2AE0093AA25 /* Helper.swift in Sources */,
+				84313D401C5224900060B52D /* WishItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,23 +705,45 @@
 		};
 		8431B51F1C44661A00398526 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3ADEBFEB91003F9C990B09F1 /* Pods-illuminataeyewear.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = illuminataeyewear/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.illuminataeyewear.illuminataeyewear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "illuminataeyewear/DBHelper/Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		8431B5201C44661A00398526 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25710B0A3F71DF54BD23B581 /* Pods-illuminataeyewear.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = illuminataeyewear/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.illuminataeyewear.illuminataeyewear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "illuminataeyewear/DBHelper/Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -488,6 +814,7 @@
 				8431B5201C44661A00398526 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8431B5211C44661A00398526 /* Build configuration list for PBXNativeTarget "illuminataeyewearTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +823,7 @@
 				8431B5231C44661A00398526 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8431B5241C44661A00398526 /* Build configuration list for PBXNativeTarget "illuminataeyewearUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,8 +832,23 @@
 				8431B5261C44661A00398526 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8432A9071C5177D3009FADAC /* IlluminCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8432A9081C5177D3009FADAC /* IlluminCoreData.xcdatamodel */,
+			);
+			currentVersion = 8432A9081C5177D3009FADAC /* IlluminCoreData.xcdatamodel */;
+			name = IlluminCoreData.xcdatamodeld;
+			path = CoreDataModel/IlluminCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8431B4EC1C44661A00398526 /* Project object */;
 }

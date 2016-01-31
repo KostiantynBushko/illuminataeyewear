@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "WishListTableViewController.(viewDidAppear(WishListTableViewController) -&gt; (Bool) -&gt; ()).(closure #1):WishListTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "wishList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemsBrandTableViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():ItemsBrandTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "brand">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemPriceParser.ParceItem(NSData, completeHandler : (itemPrice : ItemPrice) -&gt; ()) -&gt; ():ItemPriceParser.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "handler">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemPriceParser.parser(NSXMLParser, didEndElement : String, namespaceURI : String?, qualifiedName : String?) -&gt; ():ItemPriceParser.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "handler">
+            </PersistentString>
+            <PersistentString
+               value = "itemPrice">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemsBrandTableViewController.(tableView(ItemsBrandTableViewController) -&gt; (UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell).(closure #1):ItemsBrandTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemsBrandTableViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:ItemsBrandTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "brandItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BrandTableViewController.parser(NSXMLParser, foundCharacters : String) -&gt; ():BrandTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "element">
+            </PersistentString>
+            <PersistentString
+               value = "currentBrand">
+            </PersistentString>
+            <PersistentString
+               value = "isEnabled">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "XmlNewsTextParser.ParseItem(NSData, callbackHandler : (simpleNewsPost : SimpleNewsPost) -&gt; ()) -&gt; ():XmlNewsTextParser.swift">
+      </ContextState>
+      <ContextState
+         contextName = "XmlNewsTextParser.parser(NSXMLParser, didStartElement : String, namespaceURI : String?, qualifiedName : String?, attributes : [String : String]) -&gt; ():XmlNewsTextParser.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "attributes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemsBrandTableViewController.parser(NSXMLParser, didEndElement : String, namespaceURI : String?, qualifiedName : String?) -&gt; ():ItemsBrandTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "ID">
+            </PersistentString>
+            <PersistentString
+               value = "longDescription">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemPriceParser.parser(NSXMLParser, foundCharacters : String) -&gt; ():ItemPriceParser.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "element">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static ItemPrice.(getPriceBySKU(ItemPrice.Type) -&gt; (String, completeHandler : (itemPrice : ItemPrice) -&gt; ()) -&gt; ()).(closure #1).(closure #1):ItemPrice.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ItemDetailViewController.viewDidLoad() -&gt; ():ItemDetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "manufacturer">
+            </PersistentString>
+            <PersistentString
+               value = "brandItem">
+            </PersistentString>
+            <PersistentString
+               value = "manufacturerLabel">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "WishListTableViewController.viewDidAppear(Bool) -&gt; ():WishListTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "wishList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemsBrandTableViewController.(parser(ItemsBrandTableViewController) -&gt; (NSXMLParser, didEndElement : String, namespaceURI : String?, qualifiedName : String?) -&gt; ()).(closure #1):ItemsBrandTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "brandItems">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BrandTableViewController.parser(NSXMLParser, didEndElement : String, namespaceURI : String?, qualifiedName : String?) -&gt; ():BrandTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "brands">
+            </PersistentString>
+            <PersistentString
+               value = "isEnabled">
+            </PersistentString>
+            <PersistentString
+               value = "currentBrand">
+            </PersistentString>
+            <PersistentString
+               value = "parentNodeID">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

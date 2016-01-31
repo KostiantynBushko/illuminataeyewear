@@ -1,0 +1,6 @@
+framework module Pods_illuminataeyewear {
+  umbrella header "Pods-illuminataeyewear-umbrella.h"
+
+  export *
+  module * { export * }
+}
