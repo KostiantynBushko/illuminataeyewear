@@ -27,8 +27,7 @@ class XmlOrderParser: NSObject, NSXMLParserDelegate {
     
     var handler: ((ordersList: Array<Order>) -> Void)?
     
-    func ParseOrder(data: NSData, completeHandler: (ordersList: Array<Order>) -> Void) {
-        handler = completeHandler
+    func ParseOrder(data: NSData, completeHandler: (ordersList: Array<Order>?) -> Void) {
         handler = completeHandler
         xmlParser = NSXMLParser(data: data)
         xmlParser.delegate = self
@@ -65,7 +64,7 @@ class XmlOrderParser: NSObject, NSXMLParserDelegate {
             } else if element.isEqualToString("dateCompleted") {
                 currentOrder.dateCompleted = string
             } else if element.isEqualToString("totalAmount") {
-                currentOrder.totalAmount = Int(string)!
+                currentOrder.totalAmount = Float32(string)!
             } else if element.isEqualToString("capturedAmount") {
                 currentOrder.capturedAmount = Int(string)!
             } else if element.isEqualToString("isMultiAddress") {
@@ -88,6 +87,18 @@ class XmlOrderParser: NSObject, NSXMLParserDelegate {
                 currentOrder.User_lastName = string
             } else if element.isEqualToString("User_companyName") {
                 currentOrder.User_companyName = string
+            }
+            
+            else if element.isEqualToString("ShippingAddress_stateID") {
+                currentOrder.shippingAddressID = Int64(string)!
+            } else if element.isEqualToString("ShippingAddress_phone") {
+                currentOrder.ShippingAddress_phone = string
+            } else if element.isEqualToString("ShippingAddress_firstName") {
+                currentOrder.ShippingAddress_firstName = string
+            } else if element.isEqualToString("ShippingAddress_lastName") {
+                currentOrder.ShippingAddress_lastName = string
+            } else if element.isEqualToString("ShippingAddress_companyName") {
+                currentOrder.ShippingAddress_companyName = string
             } else if element.isEqualToString("ShippingAddress_address1") {
                 currentOrder.ShippingAddress_address1 = string
             } else if element.isEqualToString("ShippingAddress_address2") {
@@ -106,7 +117,10 @@ class XmlOrderParser: NSObject, NSXMLParserDelegate {
                 currentOrder.ShippingAddress_fullName = string
             } else if element.isEqualToString("ShippingAddress_compact") {
                 currentOrder.ShippingAddress_compact = string
-            } else if element.isEqualToString("BillingAddress_stateID") {
+            }
+            
+            
+            else if element.isEqualToString("BillingAddress_stateID") {
                 currentOrder.BillingAddress_stateID = Int64(string)!
             } else if element.isEqualToString("BillingAddress_phone") {
                 currentOrder.BillingAddress_phone = string
@@ -141,7 +155,11 @@ class XmlOrderParser: NSObject, NSXMLParserDelegate {
                 currentProduct.sku = string
             } else if element.isEqualToString("name") {
                 currentProduct.name = string
-            } else if element.isEqualToString("customerOrderID") {
+            } else if element.isEqualToString("ID") {
+                currentProduct.ID = Int64(string)!
+            } else if element.isEqualToString("productID") {
+                currentProduct.productID = Int64(string)!
+            }else if element.isEqualToString("customerOrderID") {
                 currentProduct.customerOrderID = Int64(string)!
             } else if element.isEqualToString("shipmentID") {
                 currentProduct.shipmentID = Int64(string)!

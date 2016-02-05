@@ -45,14 +45,14 @@ class ItemDetailViewController: UIViewController {
         pricePanel.layer.cornerRadius = 8
         pricePanel.layer.masksToBounds = true
         
-        productName.text = brandItem?.name
+        productName.text = brandItem?.getName()
         
         let theAttributedString = try! NSAttributedString(data: brandItem!.longDescription.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
             options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         longDescription.attributedText = theAttributedString
         
-        self.productPrice.text = "CAD $ " + brandItem!.priceItem.definePrices
+        self.productPrice.text = "CAD $ " + brandItem!.getPrice().definePrices
         self.productPhoto.image = self.productPhotoImage!
         self.manufacturerLabel.text = self.manufacturer!
     }

@@ -11,9 +11,9 @@ import Foundation
 class WishItem {
     static let PRODUCT_ID: String = "ID"
     
-    var productID: String?
+    var productID = Int64()
     
-    init?(productID: String) {
+    init?(productID: Int64) {
         self.productID = productID
     }
 }

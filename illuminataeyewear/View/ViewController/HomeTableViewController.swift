@@ -41,6 +41,8 @@ class HomeTableViewController: UITableViewController {
             }
             self.RefreshTable()
         })
+        
+        //self.tabBarController?.tabBar.items![2].badgeValue = String(OrderController.sharedInstance().getCurrentOrder()!.productItems.count)
     }
     
     

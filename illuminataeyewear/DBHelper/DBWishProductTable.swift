@@ -21,7 +21,7 @@ class DBWishProductTable {
         
         for row in result {
             print(String(row["id"]!) + ":" + String(row["productId"]!))
-            let wishItem = WishItem(productID: row["productId"]! as! String)
+            let wishItem = WishItem(productID: Int64(row["productId"]! as! String)!)
             wishArray.append(wishItem!)
         }
         
@@ -30,8 +30,7 @@ class DBWishProductTable {
     
     static func AddItemToWishList(wishItem: WishItem) -> Bool {
         let db = SQLiteDB.sharedInstance()
-        //let ret = db.query("insert into tb_wish_item('productId') values('12349')")
-        let ret = db.query("insert into " + DB_WISH_LIST_TABLE + "('productId')" + " values('" + wishItem.productID! + "')")
+        let ret = db.query("insert into " + DB_WISH_LIST_TABLE + "('productId')" + " values('" + String(wishItem.productID) + "')")
         print(ret)
         return true
     }

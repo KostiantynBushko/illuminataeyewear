@@ -45,17 +45,18 @@ class ItemsBrandTableViewController: UITableViewController, NSXMLParserDelegate 
         
         let brandItem = brandItems[indexPath.row]
         
-        cell.name.text = brandItem.name
+        cell.name.text = brandItem.getName()
         cell.number.text = String(indexPath.row)
-        cell.price.text = "CAD $ " + brandItem.priceItem.definePrices
+        cell.price.text = "CAD $ " + brandItem.getPrice().definePrices
         cell.brandItem = brandItem
+        (cell.BuyNowButton as ExButton).id = indexPath.row
         
-        if(brandItem.priceItem.definePrices == "") {
+        if(brandItem.getPrice().definePrices == "") {
             let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
             dispatch_async(dispatch_get_global_queue(priority, 0)) {
                 // do some task
-                PriceItem.getPriceBySKU((brandItem.sku), completeHandler: {(priceItem) in
-                    self.brandItems[indexPath.row].priceItem = priceItem
+                PriceItem.getPriceBySKU((brandItem.getSKU()), completeHandler: {(priceItem) in
+                    self.brandItems[indexPath.row].setPrice(priceItem)
                     dispatch_async(dispatch_get_main_queue()) {
                         // update some UI
                         if self.isRunning {
@@ -94,16 +95,66 @@ class ItemsBrandTableViewController: UITableViewController, NSXMLParserDelegate 
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "showItemDetaisViewController") {
+    @IBAction func addProductToCart(sender: AnyObject) {
+        let index = (sender as! ExButton).id
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            BrandItem.getBrandItemByParentNode(self.brandItems[index].ID, completeHandler: {(brandItems) in
+                for item in brandItems {
+                    item.parentBrandItem = self.brandItems[index]
+                    //self.brandItems.append(item)
+                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    let index = (sender as! ExButton).id
+                    let itemPageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ItemPageViewController") as? ItemPageViewController
+                    self.navigationController?.pushViewController(itemPageViewController!, animated: true)
+                    itemPageViewController!.brandItems = brandItems
+                    itemPageViewController!.parentBrandItem = self.brandItems[index]
+                    return
+                })
+            })
+        }
+    }
+    
+    /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        /*if(segue.identifier == "showItemDetaisViewController") {
             let itemDetailViewController = segue.destinationViewController as! ItemDetailViewController
             if let indexPath : NSIndexPath = self.tableView.indexPathForSelectedRow! {
                 itemDetailViewController.brandItem = brandItems[indexPath.row]
                 itemDetailViewController.productPhotoImage = imageCache[brandItems[indexPath.row].defaultImageName]
                 itemDetailViewController.manufacturer = self.brand?.brandName
             }
+        } else*/
+            
+        if (segue.identifier == "BuyNow1") {
+            let index = (sender as! ExButton).id
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                // do your task
+                BrandItem.getBrandItemByParentNode(self.brandItems[index].ID, completeHandler: {(brandItems) in
+                    /*for item in brandItems {
+                        if item.parentID > 0 {
+                            self.count += 1
+                        }
+                    }*/
+                    
+                    for item in brandItems {
+                        item.parentBrandItem = self.brandItems[index]
+                        //self.brandItems.append(item)
+                    }
+                    dispatch_async(dispatch_get_main_queue(), {
+                        let index = (sender as! ExButton).id
+                        let itemPageViewController = segue.destinationViewController as! ItemPageViewController
+                        itemPageViewController.brandItems = brandItems
+                        itemPageViewController.parentBrandItem = brandItems[index]
+                        return
+                    })
+                })
+            }
+            /*let index = (sender as! ExButton).id
+            let itemPageViewController = segue.destinationViewController as! ItemPageViewController
+            //itemPageViewController.brandItems.append(brandItems[index])
+            itemPageViewController.parentBrandItem = brandItems[index]*/
         }
-    }
+    }*/
     
     
     /***********************************************************************************************************/

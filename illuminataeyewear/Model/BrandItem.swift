@@ -12,16 +12,16 @@ class BrandItem {
     
     // MARK: Properties
     
-    var ID = Int()
+    var ID = Int64()
     var categoryID = String()
     var manufacturerID = String()
     var defaultImageID = String()
-    var parentID = String()
+    var parentID = Int64()
     var shippingClassID = String()
     var taxClassID = String()
     var isEnabled = String()
-    var sku = String()
-    var name = String()
+    private var sku = String()
+    private var name = String()
     var shortDescription = String()
     var longDescription = String()
     var keywords = String()
@@ -59,7 +59,57 @@ class BrandItem {
     var image: UIImage?
     var defaultImageName: String!
     
-    var priceItem = PriceItem()
+    var parentBrandItem: BrandItem?
+    private var priceItem = PriceItem()
+    
+    var parentNodeInitHandler: ((brandItem: BrandItem) -> Void)!
+    
+    func initParentNodeBrandItem(completeHandler: (brandItem: BrandItem) -> Void) {
+        if parentID > 0 {
+            parentNodeInitHandler = completeHandler
+            BrandItem.getBrandItemByID(self.parentID, completeHandler: {(items) in
+                self.parentBrandItem = items[0]
+                self.parentNodeInitHandler(brandItem: self.parentBrandItem!)
+            })
+        }
+    }
+    
+    // Geters
+    func getName() -> String {
+        if !(parentBrandItem == nil) {
+            if name.isEmpty && !parentBrandItem!.getName().isEmpty{
+                name = parentBrandItem!.getName()
+            }
+        }
+        return name
+    }
+    func getSKU() -> String {
+        if (parentBrandItem != nil) {
+            self.sku = parentBrandItem!.getSKU()
+        }
+        return self.sku
+    }
+    
+    func getPrice() -> PriceItem {
+        if (parentBrandItem != nil) {
+            self.priceItem = parentBrandItem!.getPrice()
+        }
+        return self.priceItem
+    }
+    
+    // Setter
+    func setName(name: String) {
+        self.name = name.htmlDecoded()
+    }
+    
+    func setSKU(sku: String) {
+        self.sku = sku.htmlDecoded()
+    }
+    
+    func setPrice(priceItem: PriceItem) {
+        parentBrandItem?.setPrice(priceItem)
+        self.priceItem = priceItem
+    }
     
     static func getBrandItems(categoryID: String, completeHandler: (Array<BrandItem>) -> Void){
         let paramString = "xml=<product><list limit=50><categoryID>" + (categoryID) + "</categoryID></list></product>"
@@ -82,8 +132,29 @@ class BrandItem {
         task.resume()
     }
     
-    static func getBrandItemByID(ID: String, completeHandler: (Array<BrandItem>) -> Void){
-        let paramString = "xml=<product><list><ID>" + ID + "</ID></list></product>"
+    static func getBrandItemByParentNode(parentID: Int64, completeHandler: (Array<BrandItem>) -> Void) {
+        let paramString = "xml=<product><list><parentID>" +  String(parentID) + "</parentID></list></product>"
+        let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSMutableURLRequest(URL:url)
+        request.HTTPMethod = "POST"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request){ (let data, let response, let error) in
+            guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
+                return
+            }
+            XmlBrandParser().ParseItems(data!, completeHandler: {(brandItems) in
+                completeHandler(brandItems)
+            })
+        }
+        task.resume()
+    }
+    
+    static func getBrandItemByID(ID: Int64, completeHandler: (Array<BrandItem>) -> Void){
+        let paramString = "xml=<product><list><ID>" + String(ID) + "</ID></list></product>"
         let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
         let session = NSURLSession.sharedSession()
         

@@ -24,7 +24,9 @@ class OrderViewCell: UITableViewCell {
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+        photo.layer.masksToBounds = true
+        photo.layer.borderColor = UIColor.lightGrayColor().CGColor
+        photo.layer.borderWidth = 0.3
         // Configure the view for the selected state
     }
 }

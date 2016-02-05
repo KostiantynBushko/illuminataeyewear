@@ -8,9 +8,7 @@
 
 import UIKit
 
-class RoundRectButton: UIButton {
-    
-    var id: Int = 0
+class RoundRectButton: ExButton {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

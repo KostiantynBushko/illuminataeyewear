@@ -19,7 +19,7 @@ class Order {
     var checkoutStep = Int()
     var dateCreated = String()
     var dateCompleted = String()
-    var totalAmount = Int()
+    var totalAmount = Float32()
     var capturedAmount = Int()
     var isMultiAddress: Bool = false
     var isFinalized: Bool = false
@@ -65,9 +65,9 @@ class Order {
     var BillingAddress_compact = String()
     
     var productItems = [OrderProductItem]()
-    
-    static func getOrder(userID: Int64, completeHandler: (ordersList: Array<Order>) -> Void) {
-        let paramString = "xml=<order><user_cart><userID>" + String(userID) + "</userID></user_cart></order>"
+
+    static func getOrder(userID: Int64, completeHandler: (ordersList: Array<Order>?) -> Void) {
+        let paramString = "xml=<order><list><userID>" + String(userID) + "</userID><isFinalized>0</isFinalized></list></order>"
         let url = NSURL(string: Constant.URL_BASE_API)!
         let session = NSURLSession.sharedSession()
         
@@ -89,11 +89,36 @@ class Order {
         task.resume()
     }
     
+    func addProductToCart(productId: Int64, completeHandler: () -> Void) {
+        let paramString = "xml=<ordered_item><add_to_cart><customerOrderID>"
+            + String(ID) + "</customerOrderID><productID>"
+            + String(productId) + "</productID><count>1</count></add_to_cart></ordered_item>"
+        let url = NSURL(string: Constant.URL_BASE_API)!
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request){ (let data, let response, let error) in
+            guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
+                return
+            }
+            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            print(dataString)
+            completeHandler()
+        }
+        task.resume()
+    }
+    
 }
 
 class OrderProductItem {
     var sku = String()
     var name = String()
+    var ID = Int64()
+    var productID = Int64()
     var customerOrderID = Int64()
     var shipmentID = Int64()
     var price = String()

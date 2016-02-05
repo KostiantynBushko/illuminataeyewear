@@ -23,7 +23,7 @@ class WishListTableViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             for i in 0...self.wishList.count - 1 {
-                BrandItem.getBrandItemByID(self.wishList[i].productID!, completeHandler: {(items) in
+                BrandItem.getBrandItemByID(self.wishList[i].productID, completeHandler: {(items) in
                     self.wishProductsList.append(items[0])
                     dispatch_async(dispatch_get_main_queue()) {
                         self.RefreshTable()
@@ -50,7 +50,7 @@ class WishListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! WishListViewCell
         let brandItem = wishProductsList[indexPath.row]
         
-        cell.name.text = brandItem.name
+        cell.name.text = brandItem.getName()
         
         if let img = imageCache[brandItem.defaultImageName] {
             cell.photo.image = img

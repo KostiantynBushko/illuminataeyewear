@@ -19,6 +19,10 @@ class XmlBrandParser: NSObject, NSXMLParserDelegate {
     
     var currentBrandItem = BrandItem()
     var brandItems = [BrandItem]()
+
+    //
+    var name = String()
+    var sku = String()
     
     var handler: ((brandItems: Array<BrandItem>) -> Void)?
     
@@ -41,12 +45,11 @@ class XmlBrandParser: NSObject, NSXMLParserDelegate {
             currentBrandItem.categoryID.htmlDecoded()
             currentBrandItem.manufacturerID.htmlDecoded()
             currentBrandItem.defaultImageID.htmlDecoded()
-            currentBrandItem.parentID.htmlDecoded()
             currentBrandItem.shippingClassID.htmlDecoded()
             currentBrandItem.taxClassID.htmlDecoded()
             currentBrandItem.isEnabled.htmlDecoded()
-            currentBrandItem.sku.htmlDecoded()
-            currentBrandItem.name.htmlDecoded()
+            currentBrandItem.setSKU(sku.htmlDecoded())
+            currentBrandItem.setName(name.htmlDecoded())
             currentBrandItem.shortDescription.htmlDecoded()
             currentBrandItem.longDescription.htmlDecoded()
             currentBrandItem.keywords.htmlDecoded()
@@ -80,15 +83,18 @@ class XmlBrandParser: NSObject, NSXMLParserDelegate {
             currentBrandItem.Manufacturer_name.htmlDecoded()
             currentBrandItem.Category_name.htmlDecoded()
             
-            currentBrandItem.defaultImageName = String(currentBrandItem.ID) + "-" + (currentBrandItem.defaultImageID as String) + "-2.jpg"
+            currentBrandItem.defaultImageName = String(currentBrandItem.ID) + "-" + (currentBrandItem.defaultImageID as String) + "-3.jpg"
             brandItems.append(currentBrandItem)
             currentBrandItem = BrandItem()
+            
+            name = String()
+            sku = String()
         }
     }
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
         if element.isEqualToString("ID") {
-            currentBrandItem.ID = Int(string)!
+            currentBrandItem.ID = Int64(string)!
         } else if element.isEqualToString("categoryID") {
             currentBrandItem.categoryID.appendContentsOf(string)
         } else if element.isEqualToString("manufacturerID") {
@@ -96,7 +102,7 @@ class XmlBrandParser: NSObject, NSXMLParserDelegate {
         } else if element.isEqualToString("defaultImageID") {
             currentBrandItem.defaultImageID.appendContentsOf(string)
         } else if element.isEqualToString("parentID") {
-            currentBrandItem.parentID.appendContentsOf(string)
+            currentBrandItem.parentID = Int64(string)!
         } else if element.isEqualToString("shippingClassID") {
             currentBrandItem.shippingClassID.appendContentsOf(string)
         } else if element.isEqualToString("taxClassID") {
@@ -104,9 +110,10 @@ class XmlBrandParser: NSObject, NSXMLParserDelegate {
         } else if element.isEqualToString("isEnabled") {
             currentBrandItem.isEnabled.appendContentsOf(string)
         } else if element.isEqualToString("sku") {
-            currentBrandItem.sku.appendContentsOf(string)
+            sku.appendContentsOf(string)
         } else if element.isEqualToString("name") {
-            currentBrandItem.name.appendContentsOf(string)
+            name.appendContentsOf(string)
+            //currentBrandItem.setName(string)
         } else if element.isEqualToString("shortDescription") {
             currentBrandItem.shortDescription.appendContentsOf(string)
         } else if element.isEqualToString("longDescription") {

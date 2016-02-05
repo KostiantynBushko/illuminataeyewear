@@ -19,6 +19,7 @@ class BrandItemViewCell: UITableViewCell {
     @IBOutlet weak var number: UILabel!
     
     
+    @IBOutlet weak var BuyNowButton: ExButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -33,12 +34,12 @@ class BrandItemViewCell: UITableViewCell {
     func getDataModelObject() -> BrandItem {
         brandItem = BrandItem()
         brandItem?.image = self.photo.image
-        brandItem?.name = self.name.text!
+        brandItem?.setName(self.name.text!)
         return brandItem!
     }
     
     @IBAction func addItemToWishList(sender: UIButton) {
-        let wishItem = WishItem(productID: String((brandItem?.ID)!))
+        let wishItem = WishItem(productID: (brandItem?.ID)!)
         DBWishProductTable.AddItemToWishList(wishItem!)
     }
 }
