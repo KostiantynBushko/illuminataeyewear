@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		20620D9AA80096DF6BD0BA8FC41F877D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
 		2436E7F303F4C4512E4060B6B30F173F /* Pods-illuminataeyewear-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F384BD360235327E949035E1A96DDC26 /* Pods-illuminataeyewear-dummy.m */; };
-		2BD30577E7D147524479E43C0F5721E2 /* CSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA023138BB522BFADA2756CDEE3360E /* CSS.swift */; };
-		33AFFE0825E74D085585A5444E3A05EC /* Kanna-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4EC3E88883886D61F89F317FD41AF7 /* Kanna-dummy.m */; };
-		395EB90F99C1B4455D5473D35CC5BD5E /* Kanna-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FC7526EF43F63486B56C1B8DB183494D /* Kanna-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BD30577E7D147524479E43C0F5721E2 /* CSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE084C274655870C956CD06D271D364 /* CSS.swift */; };
+		33AFFE0825E74D085585A5444E3A05EC /* Kanna-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C7B857EBCAF13770C959046D8DA28 /* Kanna-dummy.m */; };
+		395EB90F99C1B4455D5473D35CC5BD5E /* Kanna-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A6E54BE33194EDB5BE7F20B672F573D /* Kanna-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49704E013BB645536D81224227C9BFDC /* Pods-illuminataeyewear-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 423116A581F040A7AD1ED006930829F2 /* Pods-illuminataeyewear-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5705D790F72EB6F75990B3326D375EDD /* Kanna.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954CEF6BE9DB2AA703BDED02B77A9A77 /* Kanna.swift */; };
-		64F4546C4CD18BB14FA0098B55FECA50 /* libxmlHTMLDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA8647C8A4531515D0D9DEA1A5AC1D /* libxmlHTMLDocument.swift */; };
-		8D70044694BD80CAE717B97F512ED800 /* libxmlHTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB84073EF16B68FDFE6337DD3D34AB /* libxmlHTMLNode.swift */; };
-		9B6713274378B30AEDB42E37B58BD088 /* libxmlParserOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497B25DF429A42B03BB1A696558E3FBA /* libxmlParserOption.swift */; };
+		5705D790F72EB6F75990B3326D375EDD /* Kanna.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352DB6A4F3CC8AB43750B78CC2600A7D /* Kanna.swift */; };
+		64F4546C4CD18BB14FA0098B55FECA50 /* libxmlHTMLDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB9FAC8A135D8EF16D4A03938A2177 /* libxmlHTMLDocument.swift */; };
+		8D70044694BD80CAE717B97F512ED800 /* libxmlHTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EC09B1A13146E60A2D104450F5C722 /* libxmlHTMLNode.swift */; };
+		9B6713274378B30AEDB42E37B58BD088 /* libxmlParserOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D45A6849CDB6712585DFFE1417119 /* libxmlParserOption.swift */; };
 		D30DE04588D3003AFF5DF9E5D392F005 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,31 +31,50 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09EA8647C8A4531515D0D9DEA1A5AC1D /* libxmlHTMLDocument.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlHTMLDocument.swift; path = Source/libxml/libxmlHTMLDocument.swift; sourceTree = "<group>"; };
-		0AA023138BB522BFADA2756CDEE3360E /* CSS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CSS.swift; path = Source/CSS.swift; sourceTree = "<group>"; };
-		0D14CA91625A09836AC0FA58E994E031 /* Kanna.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Kanna.xcconfig; sourceTree = "<group>"; };
-		2F31D104CF852F578B5831EB06A59D0F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A8C7B857EBCAF13770C959046D8DA28 /* Kanna-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Kanna-dummy.m"; sourceTree = "<group>"; };
+		0C2857BF3AD13DD5C509C822D1CF9839 /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalPaymentViewController.h; path = PayPalMobile/PayPalPaymentViewController.h; sourceTree = "<group>"; };
+		0D274D13A11DC4626C208605B257F276 /* CardIOPaymentViewControllerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewControllerDelegate.h; path = CardIO/CardIOPaymentViewControllerDelegate.h; sourceTree = "<group>"; };
+		116E3BC8510F2BD8A5C112BC5D282705 /* libopencv_imgproc.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = CardIO/libopencv_imgproc.a; sourceTree = "<group>"; };
+		2612BE0CC4683186B4F735E0F98F97FB /* Kanna-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kanna-prefix.pch"; sourceTree = "<group>"; };
+		2A6E54BE33194EDB5BE7F20B672F573D /* Kanna-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kanna-umbrella.h"; sourceTree = "<group>"; };
+		2BFFE6D613B47453DEB8A90D96095C16 /* PayPalConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalConfiguration.h; path = PayPalMobile/PayPalConfiguration.h; sourceTree = "<group>"; };
 		2FFC6F2ED917CBABB4F5A5F440CB51CE /* Pods-illuminataeyewear-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-illuminataeyewear-acknowledgements.plist"; sourceTree = "<group>"; };
+		352DB6A4F3CC8AB43750B78CC2600A7D /* Kanna.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Kanna.swift; path = Source/Kanna.swift; sourceTree = "<group>"; };
 		359A093BC7223E6A206AECD7D18A9289 /* Pods-illuminataeyewear.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-illuminataeyewear.release.xcconfig"; sourceTree = "<group>"; };
+		38AB9FAC8A135D8EF16D4A03938A2177 /* libxmlHTMLDocument.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlHTMLDocument.swift; path = Source/libxml/libxmlHTMLDocument.swift; sourceTree = "<group>"; };
 		3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3AE084C274655870C956CD06D271D364 /* CSS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CSS.swift; path = Source/CSS.swift; sourceTree = "<group>"; };
+		3B041C0A5100D7D3AC44F12B0FD44A5C /* Kanna.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Kanna.xcconfig; sourceTree = "<group>"; };
 		423116A581F040A7AD1ED006930829F2 /* Pods-illuminataeyewear-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-illuminataeyewear-umbrella.h"; sourceTree = "<group>"; };
-		497B25DF429A42B03BB1A696558E3FBA /* libxmlParserOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlParserOption.swift; path = Source/libxml/libxmlParserOption.swift; sourceTree = "<group>"; };
-		628A0CE5B9A8017D25A1B0F113817E65 /* Kanna-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kanna-prefix.pch"; sourceTree = "<group>"; };
+		490D45A6849CDB6712585DFFE1417119 /* libxmlParserOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlParserOption.swift; path = Source/libxml/libxmlParserOption.swift; sourceTree = "<group>"; };
+		4B07C91C554795348564F3024317863F /* CardIOPaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewController.h; path = CardIO/CardIOPaymentViewController.h; sourceTree = "<group>"; };
+		4B538168CE3D62F21F1FC6405E7BFCA7 /* CardIO.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIO.h; path = CardIO/CardIO.h; sourceTree = "<group>"; };
+		4D2223048A964E288FE42118292D78AC /* CardIOViewDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOViewDelegate.h; path = CardIO/CardIOViewDelegate.h; sourceTree = "<group>"; };
+		60B798F209AA7A924B5B4BEFC410A890 /* CardIODetectionMode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIODetectionMode.h; path = CardIO/CardIODetectionMode.h; sourceTree = "<group>"; };
+		69C32C5ACCE9894E21285E4D3D41752D /* CardIOUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOUtilities.h; path = CardIO/CardIOUtilities.h; sourceTree = "<group>"; };
+		6FDC389387499D4E04B85026ADD2828A /* libopencv_core.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libopencv_core.a; path = CardIO/libopencv_core.a; sourceTree = "<group>"; };
 		72ADB2BFBC1D1A4288B54EDD47E1A9E5 /* Pods-illuminataeyewear-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-illuminataeyewear-frameworks.sh"; sourceTree = "<group>"; };
+		792BD2338BF26D7D939ECAE9D2922F6C /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalFuturePaymentViewController.h; path = PayPalMobile/PayPalFuturePaymentViewController.h; sourceTree = "<group>"; };
 		7A233F161639852966245E6E31BD7F02 /* Kanna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kanna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B0984F9FA2734049F13C0504AFDD7AD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B2440B0A541A77DA51CF41E8738DE7F /* CardIOView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOView.h; path = CardIO/CardIOView.h; sourceTree = "<group>"; };
 		8F67D20FC7D3376EFD7DB0C767923524 /* Pods-illuminataeyewear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-illuminataeyewear.debug.xcconfig"; sourceTree = "<group>"; };
-		954CEF6BE9DB2AA703BDED02B77A9A77 /* Kanna.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Kanna.swift; path = Source/Kanna.swift; sourceTree = "<group>"; };
+		94A83D93676622346A061ED162D81E04 /* PayPalPayment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalPayment.h; path = PayPalMobile/PayPalPayment.h; sourceTree = "<group>"; };
 		9920E06EED70383D934414F905B7F3AD /* Pods-illuminataeyewear-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-illuminataeyewear-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9C49178D70D24B2568F8EB0130D075BE /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOCreditCardInfo.h; path = CardIO/CardIOCreditCardInfo.h; sourceTree = "<group>"; };
+		A4EC09B1A13146E60A2D104450F5C722 /* libxmlHTMLNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlHTMLNode.swift; path = Source/libxml/libxmlHTMLNode.swift; sourceTree = "<group>"; };
+		A912A0BA0EC7B06A8679F898EEC40991 /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalProfileSharingViewController.h; path = PayPalMobile/PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BB70067D361F1B6E6AC6B256081E2092 /* Pods-illuminataeyewear.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-illuminataeyewear.modulemap"; sourceTree = "<group>"; };
 		C7BC57A9FEBCCE0DC008DCD10DE1A673 /* Pods_illuminataeyewear.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_illuminataeyewear.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA4EC3E88883886D61F89F317FD41AF7 /* Kanna-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Kanna-dummy.m"; sourceTree = "<group>"; };
-		E53CAFEB753889AA5FFE56EB092574CA /* Kanna.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Kanna.modulemap; sourceTree = "<group>"; };
+		CD0D69744C7C32953471BE13E130028B /* PayPalOAuthScopes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalOAuthScopes.h; path = PayPalMobile/PayPalOAuthScopes.h; sourceTree = "<group>"; };
+		CF5578EC44B33299381206A408D80AF0 /* PayPalMobile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalMobile.h; path = PayPalMobile/PayPalMobile.h; sourceTree = "<group>"; };
+		DB246B60E2A29BEFC5EF51249E91636C /* Kanna.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Kanna.modulemap; sourceTree = "<group>"; };
 		E778D70E50D111B5E04BDD6CE1082B3E /* Pods-illuminataeyewear-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-illuminataeyewear-resources.sh"; sourceTree = "<group>"; };
 		EC8BF0330848D88A564F6951EB650FED /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EEDB84073EF16B68FDFE6337DD3D34AB /* libxmlHTMLNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlHTMLNode.swift; path = Source/libxml/libxmlHTMLNode.swift; sourceTree = "<group>"; };
+		ED88A45DF03DDAF650FE7D68A83BB32D /* libCardIO.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libCardIO.a; path = CardIO/libCardIO.a; sourceTree = "<group>"; };
 		F384BD360235327E949035E1A96DDC26 /* Pods-illuminataeyewear-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-illuminataeyewear-dummy.m"; sourceTree = "<group>"; };
-		FC7526EF43F63486B56C1B8DB183494D /* Kanna-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kanna-umbrella.h"; sourceTree = "<group>"; };
+		FFCA94535FF0556F03E1908CB1746887 /* libPayPalMobile.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libPayPalMobile.a; path = PayPalMobile/libPayPalMobile.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A5E99BE47F54ED0B448A58F5CEC2555 /* PayPal-iOS-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				29FAED4322F1F1029BCFBBA49B6BE6E8 /* Core */,
+			);
+			path = "PayPal-iOS-SDK";
+			sourceTree = "<group>";
+		};
 		112C7921E3A497328D11F4930CBBC9CA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,25 +113,33 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		27539D2683B38C9181A1C088A4365341 /* Pods */ = {
+		29FAED4322F1F1029BCFBBA49B6BE6E8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5F54B34CEF307301877C2894AA008D07 /* Kanna */,
+				2BFFE6D613B47453DEB8A90D96095C16 /* PayPalConfiguration.h */,
+				792BD2338BF26D7D939ECAE9D2922F6C /* PayPalFuturePaymentViewController.h */,
+				CF5578EC44B33299381206A408D80AF0 /* PayPalMobile.h */,
+				CD0D69744C7C32953471BE13E130028B /* PayPalOAuthScopes.h */,
+				94A83D93676622346A061ED162D81E04 /* PayPalPayment.h */,
+				0C2857BF3AD13DD5C509C822D1CF9839 /* PayPalPaymentViewController.h */,
+				A912A0BA0EC7B06A8679F898EEC40991 /* PayPalProfileSharingViewController.h */,
+				CF3BA035350D6C51F6C4BF2A954EFD8A /* Frameworks */,
 			);
-			name = Pods;
+			name = Core;
 			sourceTree = "<group>";
 		};
-		5F54B34CEF307301877C2894AA008D07 /* Kanna */ = {
+		2F087B3B0EA1510CC5ADEB42D422C439 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				0AA023138BB522BFADA2756CDEE3360E /* CSS.swift */,
-				954CEF6BE9DB2AA703BDED02B77A9A77 /* Kanna.swift */,
-				09EA8647C8A4531515D0D9DEA1A5AC1D /* libxmlHTMLDocument.swift */,
-				EEDB84073EF16B68FDFE6337DD3D34AB /* libxmlHTMLNode.swift */,
-				497B25DF429A42B03BB1A696558E3FBA /* libxmlParserOption.swift */,
-				D95C10C4E92EE4BE55722955488E4E40 /* Support Files */,
+				7B0984F9FA2734049F13C0504AFDD7AD /* Info.plist */,
+				DB246B60E2A29BEFC5EF51249E91636C /* Kanna.modulemap */,
+				3B041C0A5100D7D3AC44F12B0FD44A5C /* Kanna.xcconfig */,
+				0A8C7B857EBCAF13770C959046D8DA28 /* Kanna-dummy.m */,
+				2612BE0CC4683186B4F735E0F98F97FB /* Kanna-prefix.pch */,
+				2A6E54BE33194EDB5BE7F20B672F573D /* Kanna-umbrella.h */,
 			);
-			path = Kanna;
+			name = "Support Files";
+			path = "../Target Support Files/Kanna";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -112,10 +147,23 @@
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				27539D2683B38C9181A1C088A4365341 /* Pods */,
+				EFB8580F3207F6372F7BA9D7D89867BB /* Pods */,
 				A9DF87ADEBE7BBD370536BF324019FE7 /* Products */,
 				9E530AFDF70803F18BBA7E5CD795F115 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		90A4B3D33824D3588EBD021F192CC660 /* Kanna */ = {
+			isa = PBXGroup;
+			children = (
+				3AE084C274655870C956CD06D271D364 /* CSS.swift */,
+				352DB6A4F3CC8AB43750B78CC2600A7D /* Kanna.swift */,
+				38AB9FAC8A135D8EF16D4A03938A2177 /* libxmlHTMLDocument.swift */,
+				A4EC09B1A13146E60A2D104450F5C722 /* libxmlHTMLNode.swift */,
+				490D45A6849CDB6712585DFFE1417119 /* libxmlParserOption.swift */,
+				2F087B3B0EA1510CC5ADEB42D422C439 /* Support Files */,
+			);
+			path = Kanna;
 			sourceTree = "<group>";
 		};
 		91A049D003B8B47660CDD79F842162D8 /* Pods-illuminataeyewear */ = {
@@ -136,12 +184,38 @@
 			path = "Target Support Files/Pods-illuminataeyewear";
 			sourceTree = "<group>";
 		};
+		9A22BBE9F1388A25DF2247FCE9371657 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED88A45DF03DDAF650FE7D68A83BB32D /* libCardIO.a */,
+				6FDC389387499D4E04B85026ADD2828A /* libopencv_core.a */,
+				116E3BC8510F2BD8A5C112BC5D282705 /* libopencv_imgproc.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9E530AFDF70803F18BBA7E5CD795F115 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
 				91A049D003B8B47660CDD79F842162D8 /* Pods-illuminataeyewear */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		9F269A1E2DEB960E205904947CD8A83E /* CardIO */ = {
+			isa = PBXGroup;
+			children = (
+				4B538168CE3D62F21F1FC6405E7BFCA7 /* CardIO.h */,
+				9C49178D70D24B2568F8EB0130D075BE /* CardIOCreditCardInfo.h */,
+				60B798F209AA7A924B5B4BEFC410A890 /* CardIODetectionMode.h */,
+				4B07C91C554795348564F3024317863F /* CardIOPaymentViewController.h */,
+				0D274D13A11DC4626C208605B257F276 /* CardIOPaymentViewControllerDelegate.h */,
+				69C32C5ACCE9894E21285E4D3D41752D /* CardIOUtilities.h */,
+				8B2440B0A541A77DA51CF41E8738DE7F /* CardIOView.h */,
+				4D2223048A964E288FE42118292D78AC /* CardIOViewDelegate.h */,
+				9A22BBE9F1388A25DF2247FCE9371657 /* Frameworks */,
+			);
+			path = CardIO;
 			sourceTree = "<group>";
 		};
 		A9DF87ADEBE7BBD370536BF324019FE7 /* Products */ = {
@@ -161,18 +235,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D95C10C4E92EE4BE55722955488E4E40 /* Support Files */ = {
+		CF3BA035350D6C51F6C4BF2A954EFD8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2F31D104CF852F578B5831EB06A59D0F /* Info.plist */,
-				E53CAFEB753889AA5FFE56EB092574CA /* Kanna.modulemap */,
-				0D14CA91625A09836AC0FA58E994E031 /* Kanna.xcconfig */,
-				CA4EC3E88883886D61F89F317FD41AF7 /* Kanna-dummy.m */,
-				628A0CE5B9A8017D25A1B0F113817E65 /* Kanna-prefix.pch */,
-				FC7526EF43F63486B56C1B8DB183494D /* Kanna-umbrella.h */,
+				FFCA94535FF0556F03E1908CB1746887 /* libPayPalMobile.a */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/Kanna";
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EFB8580F3207F6372F7BA9D7D89867BB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9F269A1E2DEB960E205904947CD8A83E /* CardIO */,
+				90A4B3D33824D3588EBD021F192CC660 /* Kanna */,
+				0A5E99BE47F54ED0B448A58F5CEC2555 /* PayPal-iOS-SDK */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,7 +477,7 @@
 		};
 		ADF0F62DEA88DEDE28D6B457ED481B6E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D14CA91625A09836AC0FA58E994E031 /* Kanna.xcconfig */;
+			baseConfigurationReference = 3B041C0A5100D7D3AC44F12B0FD44A5C /* Kanna.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -428,7 +506,7 @@
 		};
 		BDCC9486BE3C2468B67A63294291DC9F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D14CA91625A09836AC0FA58E994E031 /* Kanna.xcconfig */;
+			baseConfigurationReference = 3B041C0A5100D7D3AC44F12B0FD44A5C /* Kanna.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;

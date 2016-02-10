@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ItemsBrandTableViewController: UITableViewController, NSXMLParserDelegate {
     
@@ -114,48 +115,6 @@ class ItemsBrandTableViewController: UITableViewController, NSXMLParserDelegate 
             })
         }
     }
-    
-    /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        /*if(segue.identifier == "showItemDetaisViewController") {
-            let itemDetailViewController = segue.destinationViewController as! ItemDetailViewController
-            if let indexPath : NSIndexPath = self.tableView.indexPathForSelectedRow! {
-                itemDetailViewController.brandItem = brandItems[indexPath.row]
-                itemDetailViewController.productPhotoImage = imageCache[brandItems[indexPath.row].defaultImageName]
-                itemDetailViewController.manufacturer = self.brand?.brandName
-            }
-        } else*/
-            
-        if (segue.identifier == "BuyNow1") {
-            let index = (sender as! ExButton).id
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                // do your task
-                BrandItem.getBrandItemByParentNode(self.brandItems[index].ID, completeHandler: {(brandItems) in
-                    /*for item in brandItems {
-                        if item.parentID > 0 {
-                            self.count += 1
-                        }
-                    }*/
-                    
-                    for item in brandItems {
-                        item.parentBrandItem = self.brandItems[index]
-                        //self.brandItems.append(item)
-                    }
-                    dispatch_async(dispatch_get_main_queue(), {
-                        let index = (sender as! ExButton).id
-                        let itemPageViewController = segue.destinationViewController as! ItemPageViewController
-                        itemPageViewController.brandItems = brandItems
-                        itemPageViewController.parentBrandItem = brandItems[index]
-                        return
-                    })
-                })
-            }
-            /*let index = (sender as! ExButton).id
-            let itemPageViewController = segue.destinationViewController as! ItemPageViewController
-            //itemPageViewController.brandItems.append(brandItems[index])
-            itemPageViewController.parentBrandItem = brandItems[index]*/
-        }
-    }*/
-    
     
     /***********************************************************************************************************/
      // Make http request to get brand list

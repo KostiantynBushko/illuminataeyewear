@@ -90,7 +90,7 @@ class XmlOrderParser: NSObject, NSXMLParserDelegate {
             }
             
             else if element.isEqualToString("ShippingAddress_stateID") {
-                currentOrder.shippingAddressID = Int64(string)!
+                currentOrder.ShippingAddress_stateID = Int64(string)!
             } else if element.isEqualToString("ShippingAddress_phone") {
                 currentOrder.ShippingAddress_phone = string
             } else if element.isEqualToString("ShippingAddress_firstName") {
@@ -164,7 +164,7 @@ class XmlOrderParser: NSObject, NSXMLParserDelegate {
             } else if element.isEqualToString("shipmentID") {
                 currentProduct.shipmentID = Int64(string)!
             } else if element.isEqualToString("price") {
-                currentProduct.price = string
+                currentProduct.price = Float32(string)!
             } else if element.isEqualToString("count") {
                 currentProduct.count = Int(string)!
             } else if element.isEqualToString("reservedProductCount") {

@@ -14,6 +14,11 @@ class WishListViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var price: UILabel!
     
+    @IBOutlet weak var addToCartButton: RoundRectButton!
+    @IBOutlet weak var removeFromWish: RoundRectButton!
+    
+    var itemProduct: BrandItem?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,8 +26,6 @@ class WishListViewCell: UITableViewCell {
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
 }

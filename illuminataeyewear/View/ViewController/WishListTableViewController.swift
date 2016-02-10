@@ -17,18 +17,22 @@ class WishListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        wishList = DBWishProductTable.SelectWish()
     }
     
     override func viewDidAppear(animated: Bool) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            for i in 0...self.wishList.count - 1 {
-                BrandItem.getBrandItemByID(self.wishList[i].productID, completeHandler: {(items) in
-                    self.wishProductsList.append(items[0])
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.RefreshTable()
-                    }
-                })
+        wishList = DBWishProductTable.SelectWish()
+        if wishList.count > wishProductsList.count {
+            wishProductsList = [BrandItem]()
+            RefreshTable()
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                for i in 0...self.wishList.count - 1 {
+                    BrandItem.getBrandItemByID(self.wishList[i].productID, completeHandler: {(items) in
+                        self.wishProductsList.append(items[0])
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.RefreshTable()
+                        }
+                    })
+                }
             }
         }
     }
@@ -51,6 +55,11 @@ class WishListTableViewController: UITableViewController {
         let brandItem = wishProductsList[indexPath.row]
         
         cell.name.text = brandItem.getName()
+        cell.itemProduct = brandItem
+        cell.addToCartButton.tag = indexPath.row
+        cell.addToCartButton.addTarget(self, action: "addToCartDialog:", forControlEvents: UIControlEvents.TouchUpInside)
+        cell.removeFromWish.tag = indexPath.row
+        cell.removeFromWish.addTarget(self, action: "removeFromWishListAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
         if let img = imageCache[brandItem.defaultImageName] {
             cell.photo.image = img
@@ -77,6 +86,41 @@ class WishListTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    var index = 0
+    func addToCartDialog(sender: UIButton) {
+        
+        let actionSheetController: UIAlertController = UIAlertController(title: "Add to cart", message: "Do you want add this product to your cart", preferredStyle: .Alert)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in}
+        actionSheetController.view.tag = sender.tag
+        actionSheetController.addAction(cancelAction)
+        
+        //Create and an option action
+        let yesAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
+            OrderController.sharedInstance().getCurrentOrder()?.addProductToCart(self.wishProductsList[actionSheetController.view.tag].ID, completeHandler: {() in
+                OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser().ID, completeHandler: {(successInit) in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.removeFromWish(actionSheetController.view.tag)
+                        self.RefreshTable()
+                        self.tabBarController!.tabBar.items![2].badgeValue = String(OrderController.sharedInstance().getCurrentOrder()!.productItems.count)
+                    }
+                })
+            })
+        }
+        actionSheetController.addAction(yesAction)
+        self.presentViewController(actionSheetController, animated: true, completion: nil)
+    }
+    
+    func removeFromWishListAction(sender: UIButton) {
+        removeFromWish(sender.tag)
+        RefreshTable()
+    }
+    
+    func removeFromWish(index: Int) {
+        DBWishProductTable.RemoveItemFromWishList(wishList[index])
+        wishList.removeAtIndex(index)
+        wishProductsList.removeAtIndex(index)
     }
     
     func RefreshTable() {

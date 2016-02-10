@@ -7,4 +7,5 @@
 //
 
 #import "sqlite3.h"
+#import "PayPalMobile.h"
 #import <time.h>

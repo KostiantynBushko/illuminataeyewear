@@ -27,7 +27,7 @@ class OrderController {
     
     func UpdateUserOrder(userID: Int64, completeHandler:(succesInit: Bool) -> Void) {
         self.successCompleteHandler = completeHandler
-        Order.getOrder(userID, completeHandler: {(listOrders) in
+        Order.GetOrdersList(userID, completeHandler: {(listOrders) in
             if listOrders != nil {
                 self.orders = [Order]()
                 self.orders = listOrders!

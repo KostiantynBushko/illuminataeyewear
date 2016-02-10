@@ -14,6 +14,7 @@ class ItemPageContentViewController: UIViewController {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var property: UILabel!
     @IBOutlet weak var addToCartButton: UIButton!
     
     var brandItem: BrandItem?
@@ -55,6 +56,13 @@ class ItemPageContentViewController: UIViewController {
                 })
             }
         }
+        ProductVariationValue.GetProductVariationByProductID((brandItem?.ID)!, completeHandler: {(let productVariationValue) in
+            ProductVariation.GetProductVariationByID(productVariationValue.getVariationID(), completeHandler: {(let productVariation) in
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.property.text = productVariation.getName()
+                }
+            })
+        })
     }
     
     @IBAction func addProductToCart(sender: AnyObject) {
@@ -77,11 +85,6 @@ class ItemPageContentViewController: UIViewController {
             })
         }
         actionSheetController.addAction(yesAction)
-    
-        /*actionSheetController.addTextFieldWithConfigurationHandler { textField -> Void in
-            //TextField configuration
-            textField.textColor = UIColor.blueColor()
-        }*/
         self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
 

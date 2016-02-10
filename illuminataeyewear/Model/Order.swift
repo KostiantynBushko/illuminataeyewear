@@ -65,8 +65,12 @@ class Order {
     var BillingAddress_compact = String()
     
     var productItems = [OrderProductItem]()
+    
+    var userShippingAddress = UserAddress()
+    var userBillingAddress = UserAddress()
 
-    static func getOrder(userID: Int64, completeHandler: (ordersList: Array<Order>?) -> Void) {
+
+    static func GetOrdersList(userID: Int64, completeHandler: (ordersList: Array<Order>?) -> Void) {
         let paramString = "xml=<order><list><userID>" + String(userID) + "</userID><isFinalized>0</isFinalized></list></order>"
         let url = NSURL(string: Constant.URL_BASE_API)!
         let session = NSURLSession.sharedSession()
@@ -84,9 +88,23 @@ class Order {
             print(dataString)
             XmlOrderParser().ParseOrder(data!, completeHandler: {(ordersList) in
                 completeHandler(ordersList: ordersList)
+                if ordersList != nil && ordersList?.count > 0 {
+                    for order in ordersList! {
+                        order.InitUserAddress()
+                    }
+                }
             })
         }
         task.resume()
+    }
+    
+    func InitUserAddress() {
+        UserAddress.GetAddressByID(self.shippingAddressID, completeHandler: {(userAddress) in
+            self.userShippingAddress = userAddress
+        })
+        UserAddress.GetAddressByID(self.billingAddressID, completeHandler: {(userAddress) in
+            self.userBillingAddress = userAddress
+        })
     }
     
     func addProductToCart(productId: Int64, completeHandler: () -> Void) {
@@ -121,7 +139,7 @@ class OrderProductItem {
     var productID = Int64()
     var customerOrderID = Int64()
     var shipmentID = Int64()
-    var price = String()
+    var price = Float32()
     var count = Int()
     var reservedProductCount = Int()
     var dateAdded = String()

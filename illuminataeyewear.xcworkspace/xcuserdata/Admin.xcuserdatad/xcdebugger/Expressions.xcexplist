@@ -3,7 +3,26 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "HomeTableViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():HomeTableViewController.swift">
+         contextName = "HomeTableViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:HomeTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "doc">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ShippingAddressViewController.((initStateForCurrentShippingCountry in _AA5FC06F950B62482CF625BBC80FA654)(ShippingAddressViewController) -&gt; (String) -&gt; ()).(closure #1):ShippingAddressViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.shippingStateList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ShippingAddressViewController.viewDidLoad() -&gt; ():ShippingAddressViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ShippingAddressViewController.pickerView(UIPickerView, didSelectRow : Int, inComponent : Int) -&gt; ():ShippingAddressViewController.swift">
       </ContextState>
       <ContextState
          contextName = "HomeTableViewController.(viewDidLoad(HomeTableViewController) -&gt; () -&gt; ()).(closure #1):HomeTableViewController.swift">
@@ -14,12 +33,27 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "HomeTableViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:HomeTableViewController.swift">
+         contextName = "ShippingAddressViewController.((initStateForCurrentBillingCountry in _AA5FC06F950B62482CF625BBC80FA654)(ShippingAddressViewController) -&gt; (String) -&gt; ()).(closure #1):ShippingAddressViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ItemsBrandTableViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:ItemsBrandTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ShippingAddressViewController.pickerView(UIPickerView, titleForRow : Int, forComponent : Int) -&gt; String?:ShippingAddressViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "doc">
+               value = "states">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemsBrandTableViewController.(tableView(ItemsBrandTableViewController) -&gt; (UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell).(closure #2):ItemsBrandTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "static Country.(GetCountryList(Country.Type) -&gt; (([Country]) -&gt; ()) -&gt; ()).(closure #1).(closure #1):Country.swift">
+      </ContextState>
+      <ContextState
+         contextName = "HomeTableViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():HomeTableViewController.swift">
       </ContextState>
       <ContextState
          contextName = "NewsDetailsViewController.viewDidAppear(Bool) -&gt; ():NewsDetailsViewController.swift">

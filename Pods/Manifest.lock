@@ -1,12 +1,22 @@
 PODS:
+  - CardIO (5.3.1)
   - Kanna (1.0.4)
+  - PayPal-iOS-SDK (2.13.1):
+    - PayPal-iOS-SDK/CardIO (= 2.13.1)
+    - PayPal-iOS-SDK/Core (= 2.13.1)
+  - PayPal-iOS-SDK/CardIO (2.13.1):
+    - CardIO (~> 5.3.1)
+  - PayPal-iOS-SDK/Core (2.13.1)
 
 DEPENDENCIES:
   - Kanna
+  - PayPal-iOS-SDK
 
 SPEC CHECKSUMS:
+  CardIO: a299efcd0348c3b256a1da53f22951319c3855a2
   Kanna: 537762df5e2203714769f8351340b3c724adb2bd
+  PayPal-iOS-SDK: fc36f26c818d31b014044ec0b22c0861b2fe733f
 
-PODFILE CHECKSUM: 2e446d1b2ad208fd976852812f167361597f7540
+PODFILE CHECKSUM: af8572c66d914929ce210d87eda655acf97a89ab
 
 COCOAPODS: 1.0.0.beta.2

@@ -21,6 +21,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
         pageController.currentPageIndicatorTintColor = UIColor.redColor()
         pageController.backgroundColor = UIColor.whiteColor()
+        
+        
+        // Initialise PayPall with client ID's 
+        PayPalMobile.initializeWithClientIdsForEnvironments(
+            [PayPalEnvironmentProduction: "AaRilcxXSxAxxn4kSV-FB1yMUPJMG55rwzkasOem6Kbpm3J69CketY7jv-6cuyA1N1nWFdEq-jdTRpSq",
+                PayPalEnvironmentSandbox: "AWrBaasCeN1PzPGGxsuXlue5LVcZm98at3Cc8PuZqx7RZhZExtEzLZOfNebcSo-LBmvYNrhv-tGtf5mR"]
+        )
+        
+        // Init Live Cart Controller
+        LiveCartController.sharedInstance()
         return true
     }
 

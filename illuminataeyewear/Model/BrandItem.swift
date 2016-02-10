@@ -74,6 +74,24 @@ class BrandItem {
         }
     }
     
+    func getDefaultImage(completeHandker:(success: Bool) -> Void) {
+        let url:NSURL =  NSURL(string: Constant.URL_IMAGE + self.defaultImageName)!
+        let session = NSURLSession.sharedSession()
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        
+        let task = session.dataTaskWithRequest(request) { (let data, let response, let error) in
+            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+                completeHandker(success: false)
+                return
+            }
+            self.image = UIImage(data: data!)
+            completeHandker(success: true)
+        }
+        task.resume()
+    }
+    
     // Geters
     func getName() -> String {
         if !(parentBrandItem == nil) {

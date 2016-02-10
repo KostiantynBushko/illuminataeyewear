@@ -34,4 +34,10 @@ class DBWishProductTable {
         print(ret)
         return true
     }
+    
+    static func RemoveItemFromWishList(wishItem: WishItem) -> Bool{
+        let db = SQLiteDB.sharedInstance()
+        let _ = db.query("delete from " + DB_WISH_LIST_TABLE + " where productId = " + String(wishItem.productID))
+        return true
+    }
 }
