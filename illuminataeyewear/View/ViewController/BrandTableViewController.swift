@@ -109,7 +109,6 @@ class BrandTableViewController: UITableViewController, NSXMLParserDelegate {
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         element = elementName
         if (elementName as NSString).isEqualToString("category") {
-            print("found category \(i)")
             i += 1
         }
     }

@@ -12,10 +12,13 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var checkoutButton: UIBarButtonItem!
+    @IBOutlet weak var emptyCart: UIScrollView!
     var isRunning: Bool = false
     var brandItems = [BrandItem]()
     var orderProductItems = [OrderProductItem]()
-    var imageCache = [String:UIImage]()
     
     let cellIdentifier = "OrderViewCell"
     
@@ -24,36 +27,50 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         isRunning = true
+        tableView.hidden = true
+        checkoutButton.enabled = false
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         let order = OrderController.sharedInstance().getCurrentOrder()
         
-        if order?.productItems.count > orderProductItems.count {
+        if order?.productItems.count == 0 {
+            
+            emptyCart.hidden = false
+            checkoutButton.enabled = false
+            activityIndicator.stopAnimating()
+            
+        } else if order?.productItems.count > orderProductItems.count {
+            checkoutButton.enabled = false
+            tableView.hidden = true
+            emptyCart.hidden = true
+            activityIndicator.startAnimating()
+            
             orderProductItems = [OrderProductItem]()
             brandItems = [BrandItem]()
-            self.RefreshTable();
+            //self.RefreshTable();
             if order?.productItems.count > 0 {
                 orderProductItems = (order?.productItems)!
                 for itemProduct in (order?.productItems)! {
                     BrandItem.getBrandItemByID(itemProduct.productID, completeHandler: {(items) in
-                        if items.count > 0 {
-                            if items[0].parentID > 0 {
-                                items[0].initParentNodeBrandItem({(brandItem) in
-                                    self.brandItems.append(items[0])
-                                    self.RefreshTable()
-                                })
-                            } else {
-                                self.brandItems.append(items[0])
-                                self.RefreshTable()
+                        items[0].fullInitProduct({(brandItem) in
+                            self.brandItems.append(brandItem)
+                            self.activityIndicator.stopAnimating()
+                            if self.brandItems.count == self.orderProductItems.count {
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    self.checkoutButton.enabled = true
+                                }
                             }
-                        }
+                            self.RefreshTable()
+                        })
                     })
                 }
             }
         }
+        
     }
+    
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(false)
@@ -76,60 +93,29 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! OrderViewCell
         
         let brandItem = brandItems[indexPath.row]
+        let orderProductItem = self.orderProductItems[indexPath.row]
+        let price = Float(brandItem.getPrice().definePrices)
         
-        cell.name.text = brandItems[indexPath.row].getName()
-        cell.price.text = brandItems[indexPath.row].getPrice().definePrices
-        cell.quantity.text = String(orderProductItems[indexPath.row].count)
-        
-        if(brandItem.getPrice().definePrices == "") {
-            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-            dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                // do some task
-                PriceItem.getPriceBySKU((brandItem.getSKU()), completeHandler: {(priceItem) in
-                    self.brandItems[indexPath.row].setPrice(priceItem)
-                    dispatch_async(dispatch_get_main_queue()) {
-                        if self.isRunning {
-                            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
-                        }
-                    }
-                })
-            }
-        } else {
-            let cost = Float32(brandItems[indexPath.row].getPrice().definePrices)! * Float32(orderProductItems[indexPath.row].count)
-            cell.cost.text = String(cost)
-        }
-        
-        // Product photo
-        if let img = imageCache[brandItem.defaultImageName] {
-            cell.photo.image = img
-        } else {
-            let url:NSURL =  NSURL(string: Constant.URL_IMAGE + brandItem.defaultImageName)!
-            let session = NSURLSession.sharedSession()
-            let request = NSMutableURLRequest(URL: url)
-            request.HTTPMethod = "GET"
-            request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
-            
-            let task = session.dataTaskWithRequest(request) { (let data, let response, let error) in
-                guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
-                    return
-                }
-                let image = UIImage(data: data!)
-                self.imageCache[brandItem.defaultImageName] = image
-                dispatch_async(dispatch_get_main_queue(), {
-                    let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! OrderViewCell
-                    cell.photo.image = image
-                    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
-                })
-            }
-            task.resume()
-        }
-        
+        cell.name.text = brandItem.getName()
+        cell.price.text = String(orderProductItems[indexPath.row].count) + String(" x ") + brandItem.getPrice().definePrices
+        cell.photo.image = brandItem.image
+        //cell.quantity.text = String(orderProductItems[indexPath.row].count)
+        cell.property.text = brandItem.getProductVariation().getName()
+        cell.cost.text = OrderController.sharedInstance().getCurrentOrderCurrency() + " " + String(Float(orderProductItem.count) * price!)
         
         return cell
     }
     
+    @IBAction func checkoutAction(sender: AnyObject) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let checkoutNavigationController = storyboard.instantiateViewControllerWithIdentifier("CheckoutNavigationController") as! UINavigationController
+        self.presentViewController(checkoutNavigationController, animated: true, completion: nil)
+    }
+    
+    
     func RefreshTable() {
         dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.hidden = false
             self.tableView.reloadData()
             return
         })

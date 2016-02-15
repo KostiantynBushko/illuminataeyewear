@@ -8,8 +8,9 @@
 
 import UIKit
 
-class WishListTableViewController: UITableViewController {
+class WishListTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
     var wishList = [WishItem]()
     var wishProductsList = [BrandItem]()
     var imageCache = [String:UIImage]()
@@ -17,20 +18,30 @@ class WishListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.hidden = true
     }
     
     override func viewDidAppear(animated: Bool) {
         wishList = DBWishProductTable.SelectWish()
+        if wishList.count == 0 {
+            tableView.hidden = true
+        }
+        
         if wishList.count > wishProductsList.count {
             wishProductsList = [BrandItem]()
             RefreshTable()
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                 for i in 0...self.wishList.count - 1 {
                     BrandItem.getBrandItemByID(self.wishList[i].productID, completeHandler: {(items) in
-                        self.wishProductsList.append(items[0])
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.RefreshTable()
-                        }
+                        items[0].fullInitProduct({(brandItem) in
+                            self.wishProductsList.append(brandItem)
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.RefreshTable()
+                                self.tableView.hidden = false
+                            }
+                        })
                     })
                 }
             }
@@ -42,48 +53,28 @@ class WishListTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return wishProductsList.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! WishListViewCell
         let brandItem = wishProductsList[indexPath.row]
         
         cell.name.text = brandItem.getName()
         cell.itemProduct = brandItem
         cell.addToCartButton.tag = indexPath.row
+        cell.photo.image = brandItem.image
+        cell.property.text = brandItem.getProductVariation().getName()
+        cell.price.text = OrderController.sharedInstance().getCurrentOrderCurrency() + " " + String(brandItem.getPrice().definePrices)
+        
         cell.addToCartButton.addTarget(self, action: "addToCartDialog:", forControlEvents: UIControlEvents.TouchUpInside)
         cell.removeFromWish.tag = indexPath.row
         cell.removeFromWish.addTarget(self, action: "removeFromWishListAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        if let img = imageCache[brandItem.defaultImageName] {
-            cell.photo.image = img
-        } else {
-            let url:NSURL =  NSURL(string: Constant.URL_IMAGE + brandItem.defaultImageName)!
-            let session = NSURLSession.sharedSession()
-            let request = NSMutableURLRequest(URL: url)
-            request.HTTPMethod = "GET"
-            request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
-            
-            let task = session.dataTaskWithRequest(request) { (let data, let response, let error) in
-                guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
-                    return
-                }
-                let image = UIImage(data: data!)
-                self.imageCache[brandItem.defaultImageName] = image
-                dispatch_async(dispatch_get_main_queue(), {
-                    let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! WishListViewCell
-                    cell.photo.image = image
-                    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
-                })
-            }
-            task.resume()
-        }
         
         return cell
     }
@@ -99,7 +90,7 @@ class WishListTableViewController: UITableViewController {
         //Create and an option action
         let yesAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
             OrderController.sharedInstance().getCurrentOrder()?.addProductToCart(self.wishProductsList[actionSheetController.view.tag].ID, completeHandler: {() in
-                OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser().ID, completeHandler: {(successInit) in
+                OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
                     dispatch_async(dispatch_get_main_queue()) {
                         self.removeFromWish(actionSheetController.view.tag)
                         self.RefreshTable()
@@ -121,6 +112,9 @@ class WishListTableViewController: UITableViewController {
         DBWishProductTable.RemoveItemFromWishList(wishList[index])
         wishList.removeAtIndex(index)
         wishProductsList.removeAtIndex(index)
+        if wishList.count == 0 {
+            self.tableView.hidden = true
+        }
     }
     
     func RefreshTable() {

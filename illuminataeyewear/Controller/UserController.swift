@@ -10,6 +10,8 @@ import Foundation
 
 class UserController {
     
+    private var isAnonim = Bool(true)
+    
     private static let _instance = UserController()
     
     private init(){}
@@ -19,14 +21,21 @@ class UserController {
     }
     
     
-    private var user = User()
+    private var user: User?
     
+    func isAnonimous() -> Bool {
+        return isAnonim
+    }
     
     func setUser(user: User) {
+        isAnonim = false
         self.user = user
     }
     
-    func getUser() -> User {
-        return self.user
+    func getUser() -> User? {
+        if self.user == nil {
+            return nil
+        }
+        return self.user!
     }
 }

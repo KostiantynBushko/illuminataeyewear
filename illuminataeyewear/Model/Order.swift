@@ -124,7 +124,7 @@ class Order {
                 return
             }
             let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print(dataString)
+            print("AddProductToCart : " + String(dataString))
             completeHandler()
         }
         task.resume()
@@ -140,7 +140,7 @@ class OrderProductItem {
     var customerOrderID = Int64()
     var shipmentID = Int64()
     var price = Float32()
-    var count = Int()
+    var count = Int(1)
     var reservedProductCount = Int()
     var dateAdded = String()
     var isSavedForLater = Bool()

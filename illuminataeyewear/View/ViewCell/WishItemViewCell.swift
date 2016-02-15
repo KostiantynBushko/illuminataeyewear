@@ -13,6 +13,7 @@ class WishListViewCell: UITableViewCell {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var property: UILabel!
     
     @IBOutlet weak var addToCartButton: RoundRectButton!
     @IBOutlet weak var removeFromWish: RoundRectButton!

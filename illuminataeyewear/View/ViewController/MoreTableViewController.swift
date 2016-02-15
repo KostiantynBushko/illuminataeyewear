@@ -34,4 +34,23 @@ class MoreTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 0 {
+            if UserController.sharedInstance().isAnonimous() {
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let viewController = storyBoard.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
+                self.presentViewController(viewController, animated: true, completion: nil)
+            } else {
+                let accountViewController = self.storyboard?.instantiateViewControllerWithIdentifier("UserAccountViewController") as! UserAccountViewController
+                self.navigationController?.pushViewController(accountViewController, animated: true)
+            }
+            
+        } else if indexPath.row == 1 {
+            let contactViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContactsViewController") as! ContactsViewController
+            self.navigationController?.pushViewController(contactViewController, animated: true)
+        } else if indexPath.row == 2 {
+        
+        }
+    }
+    
 }

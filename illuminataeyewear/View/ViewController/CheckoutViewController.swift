@@ -8,33 +8,95 @@
 
 import UIKit
 
-class CheckoutViewController: UITableViewController {
+class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
     
+    var isRunning: Bool = false
+    private var products = [BrandItem]()
+    private var orderProductItems = [OrderProductItem]()
+    private var address = [SimpleAddress]()
+    private var orderTotalList = [OrderTotal]()
+    //private var productsProperty = [String]()
+    private var placeMethod = [String]()
+    private var currency = String()
+    
+    private var isSuccessInitProduct = false
+    private var isSuccesInitProductProperty = false
     
     // PayPal SDK Integration
     var payPalConfig = PayPalConfiguration()
-    
-    var environment:String = PayPalEnvironmentNoNetwork {
+    var environment:String = /*PayPalEnvironmentSandbox*/ PayPalEnvironmentNoNetwork {
         willSet(newEnvironment) {
             if (newEnvironment != environment) {
                 PayPalMobile.preconnectWithEnvironment(newEnvironment)
             }
         }
     }
+    var acceptCreditCards: Bool = true {
+        didSet {
+            payPalConfig.acceptCreditCards = acceptCreditCards
+        }
+    }
     
+    // PayPal Payment delegate
+    func payPalPaymentDidCancel(paymentViewController: PayPalPaymentViewController) {
+        print("PayPal Payment Cancelled")
+        paymentViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
     
-    var isRunning: Bool = false
-    private var products = [BrandItem]()
-    private var address = [SimpleAddress]()
-    private var orderTotalList = [OrderTotal]()
-    private var productProperty = [String]()
-    private var placeMethod = [String]()
+    func payPalPaymentViewController(paymentViewController: PayPalPaymentViewController, didCompletePayment completedPayment: PayPalPayment) {
+        print("PayPal Payment success")
+        paymentViewController.dismissViewControllerAnimated(true, completion: { () -> Void in
+            print("Here is your proof of payment : \(completedPayment.confirmation)")
+            //completedPayment.confirmation
+            self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
+        })
+    }
     
-    private var currency = String()
+    private func PreparePayPalOrder() {
+        var payPalItems = [PayPalItem]()
+        for var i = 0; i < products.count; i++ {
+            let orderProductItem = orderProductItems[i]
+            let property = products[i].getProductVariation().getName()
+            let name = String(orderProductItems[i].name) + " " + String(property)
+            let count = orderProductItem.count
+            let price = String(orderProductItem.price)
+            let sku = orderProductItem.sku
+            let paypalItem = PayPalItem(name: name, withQuantity: UInt(count), withPrice: NSDecimalNumber(string: price), withCurrency: currency, withSku: sku)
+            payPalItems.append(paypalItem)
+        }
+        let subTotal = PayPalItem.totalPriceForItems(payPalItems)
+        
+        let shipping = NSDecimalNumber(string: "0.00")
+        let tax = NSDecimalNumber(string: "0.00")
+        
+        let paymentDetail = PayPalPaymentDetails(subtotal: subTotal, withShipping: shipping, withTax: tax)
+        let total = subTotal.decimalNumberByAdding(shipping).decimalNumberByAdding(tax)
+        
+        let payment = PayPalPayment(amount: total, currencyCode: "CAD", shortDescription: "illuminataeyewear", intent: .Sale)
+        payment.items = payPalItems
+        payment.paymentDetails = paymentDetail
+        
+        if(payment.processable) {
+            let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: self)
+            presentViewController(paymentViewController!, animated: true, completion: nil    )
+        } else {
+            print("Payment not processable \(payment)")
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         isRunning = true
+        
+        // PayPal SDK integration
+        payPalConfig.acceptCreditCards = acceptCreditCards
+        payPalConfig.merchantName = "illuminataeyewear"
+        payPalConfig.languageOrLocale = NSLocale.preferredLanguages()[0] 
+        payPalConfig.payPalShippingAddressOption = .PayPal
+        
+        PayPalMobile.preconnectWithEnvironment(environment)
+        
         
         let order = OrderController.sharedInstance().getCurrentOrder()
         currency = (order?.currencyID)!
@@ -50,27 +112,17 @@ class CheckoutViewController: UITableViewController {
         
         let orderTota = OrderTotal()
         for productItem in (order?.productItems)! {
+            orderProductItems.append(productItem)
             orderTota.subTotalBeforeTax += productItem.price
-            BrandItem.getBrandItemByID(productItem.productID, completeHandler: {(item) in
-                if item[0].parentID > 0 {
-                    item[0].initParentNodeBrandItem({(brandItem) in
-                        self.products.append(item[0])
-                        self.RefreshTable()
-                    })
-                    item[0].getDefaultImage({(success) in
-                        self.RefreshTable()
-                    })
-                }
-                ProductVariationValue.GetProductVariationByProductID((item[0].ID), completeHandler: {(let productVariationValue) in
-                    ProductVariation.GetProductVariationByID(productVariationValue.getVariationID(), completeHandler: {(let productVariation) in
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.productProperty.append(productVariation.getName())
-                            self.RefreshTable()
-                        }
-                    })
+            BrandItem.getBrandItemByID(productItem.productID, completeHandler: {(let brandItems) in
+                brandItems[0].fullInitProduct({(brandItem) in
+                    self.products.append(brandItem)
+                    self.RefreshTable()
                 })
             })
         }
+        
+        
         orderTota.HST = 0 //(order?.totalAmount)! - orderTota.subTotalBeforeTax
         orderTota.orderTotal = orderTota.subTotalBeforeTax //(order?.totalAmount)!
         orderTotalList.append(orderTota)
@@ -108,35 +160,16 @@ class CheckoutViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("ProductItemViewCell", forIndexPath: indexPath) as! ProductItemViewCell
+            let brandItem = products[indexPath.row]
+            
             cell.name.text = products[indexPath.row].getName()
-            cell.price.text = currency + " " + products[indexPath.row].getPrice().definePrices
-            if productProperty.count > indexPath.row {
-                cell.property.text = productProperty[indexPath.row]
-            }
+            cell.price.text = currency + " " + brandItem.getPrice().definePrices
+            cell.property.text = brandItem.getProductVariation().getName()
+            cell.photo.image = brandItem.image
             
-            if products[indexPath.row].image != nil {
-                cell.photo.image = products[indexPath.row].image
-            }
-            
-            if(products[indexPath.row].getPrice().definePrices == "") {
-                let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-                dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                    // do some task
-                    PriceItem.getPriceBySKU((self.products[indexPath.row].getSKU()), completeHandler: {(priceItem) in
-                        self.products[indexPath.row].setPrice(priceItem)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            // update some UI
-                            if self.isRunning {
-                                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
-                            }
-                        }
-                    })
-                }
-            }
             return cell
             
         } else if indexPath.section == 1 {
-            
             let cell = tableView.dequeueReusableCellWithIdentifier("OrderTotalViewCell", forIndexPath: indexPath) as! OrderTotalViewCell
             cell.subTotalBeforeTax.text = currency + " " + String(orderTotalList[indexPath.row].subTotalBeforeTax)
             cell.HST.text = currency + " " + String(orderTotalList[indexPath.row].HST)
@@ -157,9 +190,6 @@ class CheckoutViewController: UITableViewController {
         } else if indexPath.section == 3{
             let cell = tableView.dequeueReusableCellWithIdentifier("PlaceOrderCellView", forIndexPath: indexPath) as! PlaceOrderCellView
             cell.placeOrderButton.tag = indexPath.row
-            //cell.placeOrderButton.setTitle(placeMethod[indexPath.row], forState: .Normal)
-            //cell.placeOrderButton.titleLabel?.text = placeMethod[indexPath.row]
-            //cell.placeOrderButton.setBackgroundImage(UIImage(named: "pay_pall_button"), forState: .Normal)
             cell.placeOrderButton.setImage(UIImage(named: placeMethod[indexPath.row]), forState: .Normal)
             return cell
         } else {
@@ -196,6 +226,11 @@ class CheckoutViewController: UITableViewController {
     }
 
     @IBAction func placeOrderAction(sender: AnyObject) {
+        print(String((sender as! UIButton).tag) + " Plase order" )
+        let tag = (sender as! UIButton).tag
+        if tag == 0 {
+            PreparePayPalOrder()
+        }
     }
     
     func RefreshTable() {

@@ -64,12 +64,6 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
     
     var busyAlertController: BusyAlert?
     
-    /*lazy var busyAlertController: BusyAlert = {
-        let busyAlert = BusyAlert(title: "", message: "", presentingViewController: self)
-        busyAlert.delegate = self
-        return busyAlert
-    }()*/
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -130,12 +124,6 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
         super.viewDidAppear(animated)
         busyAlertController = BusyAlert(title: "", message: "", presentingViewController: self)
         busyAlertController?.delegate = self
-            
-            /*= BusyAlert = {
-            let busyAlert = BusyAlert(title: "", message: "", presentingViewController: self)
-            busyAlert.delegate = self
-            return busyAlert
-        }()*/
     }
     
     func keyboardWillShow(notification: NSNotification) {
@@ -499,6 +487,9 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
         }
     }
     
+    @IBAction func cencelAction(sender: AnyObject) {
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
     func didCancelBusyAlert() {
         print("cancel")
         self.startCheckoutViewController()

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8406318D1C5BD2BE00B4AEFC /* XmlOrderParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406318C1C5BD2BE00B4AEFC /* XmlOrderParser.swift */; };
+		84087E0D1C6D46A60060B13B /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84087E0C1C6D46A60060B13B /* ContactsViewController.swift */; };
+		84087E0F1C6D66EF0060B13B /* ContactUsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84087E0E1C6D66EF0060B13B /* ContactUsViewCell.swift */; };
 		84098BD81C67875E00000689 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84098BD71C67875E00000689 /* BaseModel.swift */; };
 		84098BDA1C68326C00000689 /* BusyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84098BD91C68326C00000689 /* BusyAlert.swift */; };
 		84098BDC1C6838B300000689 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84098BDB1C6838B300000689 /* ActivityIndicator.swift */; };
@@ -23,10 +25,10 @@
 		841474691C61B2F300C262FA /* ExtTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841474681C61B2F300C262FA /* ExtTabBarController.swift */; };
 		8424E4E01C61D4C3007FA999 /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424E4DF1C61D4C3007FA999 /* MoreTableViewController.swift */; };
 		8424E4E21C61D5C6007FA999 /* MoreViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424E4E11C61D5C6007FA999 /* MoreViewCell.swift */; };
-		8424E4E41C61DE22007FA999 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424E4E31C61DE22007FA999 /* ContactViewController.swift */; };
 		842F8BD11C535BF80048BE73 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F8BD01C535BF80048BE73 /* Constant.swift */; };
 		842FA3441C54129E0052E0E6 /* XmlNewsPostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FA3431C54129E0052E0E6 /* XmlNewsPostParser.swift */; };
 		842FA3461C5413A60052E0E6 /* NewsPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FA3451C5413A60052E0E6 /* NewsPost.swift */; };
+		842FACA31C6E42D200B5DFB3 /* UserAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FACA21C6E42D200B5DFB3 /* UserAccountViewController.swift */; };
 		842FC5421C57B5A9008DA664 /* RoundRectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FC5411C57B5A9008DA664 /* RoundRectButton.swift */; };
 		84303FB41C56B2AE0093AA25 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84303FB31C56B2AE0093AA25 /* Helper.swift */; };
 		84303FB61C56C21B0093AA25 /* XmlNewsTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84303FB51C56C21B0093AA25 /* XmlNewsTextParser.swift */; };
@@ -73,9 +75,13 @@
 		849CCA271C45B3B900B04589 /* BrandViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CCA261C45B3B900B04589 /* BrandViewCell.swift */; };
 		849CCA291C45B3FB00B04589 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CCA281C45B3FB00B04589 /* LoginViewController.swift */; };
 		849CCA2B1C45C4C500B04589 /* BrandTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CCA2A1C45C4C500B04589 /* BrandTableViewController.swift */; };
+		84BF46A91C710387003ABA67 /* PayPal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF46A81C710387003ABA67 /* PayPal.swift */; };
+		84BF46AB1C71199A003ABA67 /* RoundRectLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF46AA1C71199A003ABA67 /* RoundRectLabel.swift */; };
 		84C84BAA1C65E8EA00B14E70 /* LiveCartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C84BA91C65E8EA00B14E70 /* LiveCartController.swift */; };
 		84C84BAC1C65EA1400B14E70 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C84BAB1C65EA1400B14E70 /* Country.swift */; };
 		84C84BAE1C65EB0300B14E70 /* XmlCountryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C84BAD1C65EB0300B14E70 /* XmlCountryParser.swift */; };
+		84D340C51C701F2300AF216A /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D340C41C701F2300AF216A /* Transaction.swift */; };
+		84D340C71C70240B00AF216A /* XmlTransactionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D340C61C70240B00AF216A /* XmlTransactionParser.swift */; };
 		84D883011C6A217800A873A2 /* ProductVariation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D883001C6A217800A873A2 /* ProductVariation.swift */; };
 		84DFDEE71C642ED30032D746 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFDEE61C642ED30032D746 /* CheckoutViewController.swift */; };
 		84DFDEE91C6430110032D746 /* ProductItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFDEE81C6430110032D746 /* ProductItemViewCell.swift */; };
@@ -118,6 +124,8 @@
 		25710B0A3F71DF54BD23B581 /* Pods-illuminataeyewear.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-illuminataeyewear.release.xcconfig"; path = "Pods/Target Support Files/Pods-illuminataeyewear/Pods-illuminataeyewear.release.xcconfig"; sourceTree = "<group>"; };
 		3ADEBFEB91003F9C990B09F1 /* Pods-illuminataeyewear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-illuminataeyewear.debug.xcconfig"; path = "Pods/Target Support Files/Pods-illuminataeyewear/Pods-illuminataeyewear.debug.xcconfig"; sourceTree = "<group>"; };
 		8406318C1C5BD2BE00B4AEFC /* XmlOrderParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlOrderParser.swift; path = XMLDataParsers/XmlOrderParser.swift; sourceTree = "<group>"; };
+		84087E0C1C6D46A60060B13B /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsViewController.swift; path = View/ViewController/ContactsViewController.swift; sourceTree = "<group>"; };
+		84087E0E1C6D66EF0060B13B /* ContactUsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactUsViewCell.swift; path = View/ViewCell/ContactUsViewCell.swift; sourceTree = "<group>"; };
 		84098BD71C67875E00000689 /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseModel.swift; path = Model/BaseModel.swift; sourceTree = "<group>"; };
 		84098BD91C68326C00000689 /* BusyAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BusyAlert.swift; path = CustomUI/BusyAlert.swift; sourceTree = "<group>"; };
 		84098BDB1C6838B300000689 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = CustomUI/ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -133,10 +141,10 @@
 		841474681C61B2F300C262FA /* ExtTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtTabBarController.swift; path = View/ViewController/ExtTabBarController.swift; sourceTree = "<group>"; };
 		8424E4DF1C61D4C3007FA999 /* MoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreTableViewController.swift; path = View/ViewController/MoreTableViewController.swift; sourceTree = "<group>"; };
 		8424E4E11C61D5C6007FA999 /* MoreViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreViewCell.swift; path = View/ViewCell/MoreViewCell.swift; sourceTree = "<group>"; };
-		8424E4E31C61DE22007FA999 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewController.swift; path = View/ViewController/ContactViewController.swift; sourceTree = "<group>"; };
 		842F8BD01C535BF80048BE73 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = common/Constant.swift; sourceTree = "<group>"; };
 		842FA3431C54129E0052E0E6 /* XmlNewsPostParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlNewsPostParser.swift; path = XMLDataParsers/XmlNewsPostParser.swift; sourceTree = "<group>"; };
 		842FA3451C5413A60052E0E6 /* NewsPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsPost.swift; path = Model/NewsPost.swift; sourceTree = "<group>"; };
+		842FACA21C6E42D200B5DFB3 /* UserAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountViewController.swift; path = View/ViewController/UserAccountViewController.swift; sourceTree = "<group>"; };
 		842FC5411C57B5A9008DA664 /* RoundRectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundRectButton.swift; path = CustomUI/RoundRectButton.swift; sourceTree = "<group>"; };
 		84303FB31C56B2AE0093AA25 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helper.swift; path = common/Helper.swift; sourceTree = "<group>"; };
 		84303FB51C56C21B0093AA25 /* XmlNewsTextParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlNewsTextParser.swift; path = XMLDataParsers/XmlNewsTextParser.swift; sourceTree = "<group>"; };
@@ -194,9 +202,13 @@
 		849CCA261C45B3B900B04589 /* BrandViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrandViewCell.swift; path = View/ViewCell/BrandViewCell.swift; sourceTree = "<group>"; };
 		849CCA281C45B3FB00B04589 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = View/ViewController/LoginViewController.swift; sourceTree = "<group>"; };
 		849CCA2A1C45C4C500B04589 /* BrandTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrandTableViewController.swift; path = View/ViewController/BrandTableViewController.swift; sourceTree = "<group>"; };
+		84BF46A81C710387003ABA67 /* PayPal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PayPal.swift; path = Model/PayPal.swift; sourceTree = "<group>"; };
+		84BF46AA1C71199A003ABA67 /* RoundRectLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundRectLabel.swift; path = CustomUI/RoundRectLabel.swift; sourceTree = "<group>"; };
 		84C84BA91C65E8EA00B14E70 /* LiveCartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LiveCartController.swift; path = Controller/LiveCartController.swift; sourceTree = "<group>"; };
 		84C84BAB1C65EA1400B14E70 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Country.swift; path = Model/Country.swift; sourceTree = "<group>"; };
 		84C84BAD1C65EB0300B14E70 /* XmlCountryParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlCountryParser.swift; path = XMLDataParsers/XmlCountryParser.swift; sourceTree = "<group>"; };
+		84D340C41C701F2300AF216A /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Model/Transaction.swift; sourceTree = "<group>"; };
+		84D340C61C70240B00AF216A /* XmlTransactionParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlTransactionParser.swift; path = XMLDataParsers/XmlTransactionParser.swift; sourceTree = "<group>"; };
 		84D883001C6A217800A873A2 /* ProductVariation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductVariation.swift; path = Model/ProductVariation.swift; sourceTree = "<group>"; };
 		84DFDEE61C642ED30032D746 /* CheckoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CheckoutViewController.swift; path = View/ViewController/CheckoutViewController.swift; sourceTree = "<group>"; };
 		84DFDEE81C6430110032D746 /* ProductItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductItemViewCell.swift; path = View/ViewCell/ProductItemViewCell.swift; sourceTree = "<group>"; };
@@ -223,12 +235,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E6633D1C653FFA00785A80 /* MessageUI.framework in Frameworks */,
 				84E663381C653FFA00785A80 /* Accelerate.framework in Frameworks */,
 				84E663391C653FFA00785A80 /* AudioToolbox.framework in Frameworks */,
 				84E6633A1C653FFA00785A80 /* AVFoundation.framework in Frameworks */,
 				84E6633B1C653FFA00785A80 /* CoreLocation.framework in Frameworks */,
 				84E6633C1C653FFA00785A80 /* CoreMedia.framework in Frameworks */,
-				84E6633D1C653FFA00785A80 /* MessageUI.framework in Frameworks */,
 				84E6633E1C653FFA00785A80 /* MobileCoreServices.framework in Frameworks */,
 				84E6633F1C653FFA00785A80 /* SafariServices.framework in Frameworks */,
 				84E663401C653FFA00785A80 /* SystemConfiguration.framework in Frameworks */,
@@ -295,6 +307,7 @@
 				840C24C71C6048B60048B006 /* PageViewController.swift */,
 				84098BD91C68326C00000689 /* BusyAlert.swift */,
 				84098BDB1C6838B300000689 /* ActivityIndicator.swift */,
+				84BF46AA1C71199A003ABA67 /* RoundRectLabel.swift */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -389,9 +402,10 @@
 				840C24C31C6007950048B006 /* ItemPageViewController.swift */,
 				841474681C61B2F300C262FA /* ExtTabBarController.swift */,
 				8424E4DF1C61D4C3007FA999 /* MoreTableViewController.swift */,
-				8424E4E31C61DE22007FA999 /* ContactViewController.swift */,
 				84FF032D1C62E49E003134E0 /* ShippingAddressViewController.swift */,
 				84DFDEE61C642ED30032D746 /* CheckoutViewController.swift */,
+				84087E0C1C6D46A60060B13B /* ContactsViewController.swift */,
+				842FACA21C6E42D200B5DFB3 /* UserAccountViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -420,6 +434,7 @@
 				8431CE001C669C080042B41A /* XmlUserAdddressParser.swift */,
 				843CA3C01C6A3A7E005E6923 /* XmlProductVariationParser.swift */,
 				843CA3C41C6A438D005E6923 /* XmlProductVariationValueParser.swift */,
+				84D340C61C70240B00AF216A /* XmlTransactionParser.swift */,
 			);
 			name = XMLDataParsers;
 			sourceTree = "<group>";
@@ -457,6 +472,7 @@
 				84DFDEEA1C64396C0032D746 /* CustomerAddressCellView.swift */,
 				84E663271C64F1CB00785A80 /* OrderTotalViewCell.swift */,
 				84E663291C65253B00785A80 /* PlaceOrderCellView.swift */,
+				84087E0E1C6D66EF0060B13B /* ContactUsViewCell.swift */,
 			);
 			name = ViewCell;
 			sourceTree = "<group>";
@@ -478,6 +494,8 @@
 				84098BD71C67875E00000689 /* BaseModel.swift */,
 				84D883001C6A217800A873A2 /* ProductVariation.swift */,
 				843CA3C21C6A419F005E6923 /* ProductVariationValue.swift */,
+				84D340C41C701F2300AF216A /* Transaction.swift */,
+				84BF46A81C710387003ABA67 /* PayPal.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -689,6 +707,7 @@
 				84303FB81C56D1220093AA25 /* SimpleNewsPost.swift in Sources */,
 				84313D381C521FC80060B52D /* SQLiteDB.swift in Sources */,
 				84303FB61C56C21B0093AA25 /* XmlNewsTextParser.swift in Sources */,
+				84BF46AB1C71199A003ABA67 /* RoundRectLabel.swift in Sources */,
 				84C84BAA1C65E8EA00B14E70 /* LiveCartController.swift in Sources */,
 				8432A9091C5177D3009FADAC /* IlluminCoreData.xcdatamodeld in Sources */,
 				843CA3C51C6A438D005E6923 /* XmlProductVariationValueParser.swift in Sources */,
@@ -696,14 +715,15 @@
 				849CCA291C45B3FB00B04589 /* LoginViewController.swift in Sources */,
 				843CA3C11C6A3A7E005E6923 /* XmlProductVariationParser.swift in Sources */,
 				843366E51C52A91B001E917E /* WishItemViewCell.swift in Sources */,
-				8424E4E41C61DE22007FA999 /* ContactViewController.swift in Sources */,
 				8432A90C1C517820009FADAC /* WishProduct+CoreDataProperties.swift in Sources */,
 				84DFDEEE1C643B550032D746 /* UserAddress.swift in Sources */,
 				8406318D1C5BD2BE00B4AEFC /* XmlOrderParser.swift in Sources */,
 				849CCA241C45B1F000B04589 /* Brand.swift in Sources */,
 				842F8BD11C535BF80048BE73 /* Constant.swift in Sources */,
+				84D340C51C701F2300AF216A /* Transaction.swift in Sources */,
 				849A68711C60D8F000C8B7F9 /* User.swift in Sources */,
 				84FF032E1C62E49E003134E0 /* ShippingAddressViewController.swift in Sources */,
+				84087E0D1C6D46A60060B13B /* ContactsViewController.swift in Sources */,
 				842FA3441C54129E0052E0E6 /* XmlNewsPostParser.swift in Sources */,
 				843366E71C52B04A001E917E /* XmlBrandtParser.swift in Sources */,
 				841474671C61414E00C262FA /* OrderController.swift in Sources */,
@@ -730,20 +750,24 @@
 				8431B4F81C44661A00398526 /* AppDelegate.swift in Sources */,
 				840A688D1C45F69D0072FC42 /* ItemsBrandTableViewController.swift in Sources */,
 				843525781C4E3A750072B16B /* XmlPriceParser.swift in Sources */,
+				84BF46A91C710387003ABA67 /* PayPal.swift in Sources */,
 				8431CE011C669C080042B41A /* XmlUserAdddressParser.swift in Sources */,
 				840C24C61C60124D0048B006 /* ExButton.swift in Sources */,
 				8433A1C91C563B5E009EFCE6 /* HomeTableViewController.swift in Sources */,
 				843CA3C31C6A419F005E6923 /* ProductVariationValue.swift in Sources */,
 				84098BDC1C6838B300000689 /* ActivityIndicator.swift in Sources */,
 				84E663281C64F1CB00785A80 /* OrderTotalViewCell.swift in Sources */,
+				842FACA31C6E42D200B5DFB3 /* UserAccountViewController.swift in Sources */,
 				8424E4E21C61D5C6007FA999 /* MoreViewCell.swift in Sources */,
 				849618181C5C3550009CBD0D /* OrderViewCell.swift in Sources */,
 				843164B21C65961000D57E8A /* XmlStateParser.swift in Sources */,
 				84303FB41C56B2AE0093AA25 /* Helper.swift in Sources */,
 				84313D401C5224900060B52D /* WishItem.swift in Sources */,
 				8424E4E01C61D4C3007FA999 /* MoreTableViewController.swift in Sources */,
+				84D340C71C70240B00AF216A /* XmlTransactionParser.swift in Sources */,
 				84C84BAE1C65EB0300B14E70 /* XmlCountryParser.swift in Sources */,
 				84D883011C6A217800A873A2 /* ProductVariation.swift in Sources */,
+				84087E0F1C6D66EF0060B13B /* ContactUsViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

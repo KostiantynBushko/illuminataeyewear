@@ -33,13 +33,8 @@ class BrandItemViewCell: UITableViewCell {
     
     func getDataModelObject() -> BrandItem {
         brandItem = BrandItem()
-        brandItem?.image = self.photo.image
+        brandItem?.image = self.photo.image!
         brandItem?.setName(self.name.text!)
         return brandItem!
-    }
-    
-    @IBAction func addItemToWishList(sender: UIButton) {
-        let wishItem = WishItem(productID: (brandItem?.ID)!)
-        DBWishProductTable.AddItemToWishList(wishItem!)
     }
 }

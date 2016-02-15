@@ -13,12 +13,14 @@ class LoginViewController : UIViewController {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         email.hidden = true
         password.hidden = true
         logInButton.hidden = true
+        
         
         if getUserFromCurrentSession() {
             startSession()
@@ -27,11 +29,37 @@ class LoginViewController : UIViewController {
             password.hidden = false
             logInButton.hidden = false
         }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    var isShowKeyboard = false
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if isShowKeyboard == false {
+                scrollView.frame.size.height -= keyboardSize.height
+                isShowKeyboard = true
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            scrollView.frame.size.height += keyboardSize.height
+            isShowKeyboard = false
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     
     @IBAction func Login(sender: UIButton) {
         User.UserLogIn(email.text!, password: password.text!, completeHandler: {(user) in
@@ -59,7 +87,7 @@ class LoginViewController : UIViewController {
     }
     
     private func startSession() {
-        OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser().ID, completeHandler: {(successInit) in
+        OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
             dispatch_async(dispatch_get_main_queue()) {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabBarController = storyboard.instantiateViewControllerWithIdentifier("MainTabBarController") as! UITabBarController

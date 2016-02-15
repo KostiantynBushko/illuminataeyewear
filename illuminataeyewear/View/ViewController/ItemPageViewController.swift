@@ -8,13 +8,15 @@
 
 import UIKit
 
-class ItemPageViewController: UIPageViewController,UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class ItemPageViewController: UIViewController,UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     @IBOutlet weak var content: UIView!
     var parentBrandItem: BrandItem?
     var brandItems = [BrandItem]()
+    var currentPage = 0
     
     var pageViewController : UIPageViewController!
+
     
     func reset() {
         /* Getting the page View controller */
@@ -23,6 +25,7 @@ class ItemPageViewController: UIPageViewController,UIPageViewControllerDataSourc
         pageViewController.view.backgroundColor = UIColor.whiteColor()
         
         self.pageViewController.dataSource = self
+        self.pageViewController.delegate = self
         
         
         let pageContentViewController = self.viewControllerAtIndex(0)
@@ -41,28 +44,14 @@ class ItemPageViewController: UIPageViewController,UIPageViewControllerDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /*dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            // do your task
-            BrandItem.getBrandItemByParentNode((self.parentBrandItem?.ID)!, completeHandler: {(brandItems) in
-                for item in brandItems {
-                    if item.parentID > 0 {
-                        self.count += 1
-                    }
-                }
-                
-                for item in brandItems {
-                    item.parentBrandItem = self.parentBrandItem!
-                    self.brandItems.append(item)
-                }
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.reset()
-                    return
-                })
-            })
-        }*/
-        
+        self.title = parentBrandItem?.getName()
+        self.navigationItem.setRightBarButtonItem((UIBarButtonItem(image:UIImage(named:"wish_black_button"), style: .Plain, target:self, action:"addToWishList:")), animated: false)
         reset()
+    }
+    
+    func addToWishList(sender: AnyObject) {
+        print(currentPage)
+        addToWishListDialog()
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
@@ -90,9 +79,16 @@ class ItemPageViewController: UIPageViewController,UIPageViewControllerDataSourc
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
     }
-
+    
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
+        let pageContentViewController = pageViewController.viewControllers![0] as! ItemPageContentViewController
+        currentPage = pageContentViewController.pageIndex!
+        print(currentPage)
+        
+    }
     
     func viewControllerAtIndex(index : Int) -> UIViewController? {
+        //print("View controllr at index " + String(index))
         if((self.brandItems.count == 0) || (index >= self.brandItems.count)) {
             return nil
         }
@@ -100,6 +96,20 @@ class ItemPageViewController: UIPageViewController,UIPageViewControllerDataSourc
         pageContentViewController.brandItem = brandItems[index]
         pageContentViewController.pageIndex = index
         return pageContentViewController
+    }
+    
+    private func addToWishListDialog() {
+        let actionSheetController: UIAlertController = UIAlertController(title: "Add to wish", message: "Do you want add this product to wish list", preferredStyle: .Alert)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in}
+        
+        actionSheetController.addAction(cancelAction)
+        //Create and an option action
+        let yesAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
+            let wishItem = WishItem(productID: self.brandItems[self.currentPage].ID)
+            DBWishProductTable.AddItemToWishList(wishItem!)
+        }
+        actionSheetController.addAction(yesAction)
+        self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
 
 }

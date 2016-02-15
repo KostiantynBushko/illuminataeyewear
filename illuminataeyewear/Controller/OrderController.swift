@@ -10,6 +10,8 @@ import Foundation
 
 
 class OrderController {
+    private static let DEFAULT_CURRENCY = "CAD"
+    
     private static let _instance = OrderController()
     
     private init(){
@@ -49,6 +51,13 @@ class OrderController {
     }
     func getCurrentOrder() -> Order? {
         return orders[0]
+    }
+    
+    func getCurrentOrderCurrency() -> String {
+        if orders.count > 0 {
+            return orders[0].currencyID
+        }
+        return OrderController.DEFAULT_CURRENCY
     }
     
 }

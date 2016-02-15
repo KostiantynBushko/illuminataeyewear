@@ -63,6 +63,7 @@ class ItemPageContentViewController: UIViewController {
                 }
             })
         })
+        
     }
     
     @IBAction func addProductToCart(sender: AnyObject) {
@@ -77,7 +78,7 @@ class ItemPageContentViewController: UIViewController {
         //Create and an option action
         let yesAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
             OrderController.sharedInstance().getCurrentOrder()?.addProductToCart((self.brandItem?.ID)!, completeHandler: {() in
-                OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser().ID, completeHandler: {(successInit) in
+                OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
                     dispatch_async(dispatch_get_main_queue()) {
                         self.tabBarController!.tabBar.items![2].badgeValue = String(OrderController.sharedInstance().getCurrentOrder()!.productItems.count)
                     }

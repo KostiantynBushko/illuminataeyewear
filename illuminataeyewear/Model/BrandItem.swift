@@ -56,13 +56,54 @@ class BrandItem {
     var Category_name = String()
     
     
-    var image: UIImage?
+    var image = UIImage()
     var defaultImageName: String!
     
     var parentBrandItem: BrandItem?
     private var priceItem = PriceItem()
+    private var productVariation: ProductVariation!
+    private var productVariationValue: ProductVariationValue!
     
     var parentNodeInitHandler: ((brandItem: BrandItem) -> Void)!
+    var productSuccesInit: ((brandItem: BrandItem) -> Void)!
+    
+    // Full initialisation product
+    // Init parent node if exist
+    // Init product price
+    // Init variation value
+    // Init variation
+    func fullInitProduct(completeHandler: (brandItem: BrandItem) -> Void) {
+        productSuccesInit = completeHandler
+        if self.parentID > 0 {
+            initParentNodeBrandItem({(brandItem) in
+                PriceItem.getPriceBySKU(self.getSKU(), completeHandler:{(priceItem) in
+                    self.setPrice(priceItem)
+                    ProductVariationValue.GetProductVariationByProductID(self.ID, completeHandler: {(let productVariationValue) in
+                        self.productVariationValue = productVariationValue
+                        ProductVariation.GetProductVariationByID(productVariationValue.getVariationID(), completeHandler: {(let productVariation) in
+                            self.productVariation = productVariation
+                            self.getDefaultImage({(success) in
+                                self.productSuccesInit(brandItem: self)
+                            })
+                        })
+                    })
+                })
+            })
+        } else {
+            PriceItem.getPriceBySKU(self.getSKU(), completeHandler:{(priceItem) in
+                self.setPrice(priceItem)
+                ProductVariationValue.GetProductVariationByProductID(self.ID, completeHandler: {(let productVariationValue) in
+                    self.productVariationValue = productVariationValue
+                    ProductVariation.GetProductVariationByID(productVariationValue.getVariationID(), completeHandler: {(let productVariation) in
+                        self.productVariation = productVariation
+                        self.getDefaultImage({(success) in
+                            self.productSuccesInit(brandItem: self)
+                        })
+                    })
+                })
+            })
+        }
+    }
     
     func initParentNodeBrandItem(completeHandler: (brandItem: BrandItem) -> Void) {
         if parentID > 0 {
@@ -73,6 +114,15 @@ class BrandItem {
             })
         }
     }
+    
+    /*func intProductProperty(completeHandler: () -> Void ) {
+        ProductVariationValue.GetProductVariationByProductID(self.ID, completeHandler: {(let productVariationValue) in
+            self.productVariationValue = productVariationValue
+            ProductVariation.GetProductVariationByID(productVariationValue.getVariationID(), completeHandler: {(let productVariation) in
+                self.productSuccesInit()
+            })
+        })
+    }*/
     
     func getDefaultImage(completeHandker:(success: Bool) -> Void) {
         let url:NSURL =  NSURL(string: Constant.URL_IMAGE + self.defaultImageName)!
@@ -86,7 +136,7 @@ class BrandItem {
                 completeHandker(success: false)
                 return
             }
-            self.image = UIImage(data: data!)
+            self.image = UIImage(data: data!)!
             completeHandker(success: true)
         }
         task.resume()
@@ -115,6 +165,10 @@ class BrandItem {
         return self.priceItem
     }
     
+    func getProductVariation() -> ProductVariation {
+        return self.productVariation!
+    }
+    
     // Setter
     func setName(name: String) {
         self.name = name.htmlDecoded()
@@ -127,6 +181,10 @@ class BrandItem {
     func setPrice(priceItem: PriceItem) {
         parentBrandItem?.setPrice(priceItem)
         self.priceItem = priceItem
+    }
+    
+    func isProductFullyInitialised() -> Bool {
+        return true
     }
     
     static func getBrandItems(categoryID: String, completeHandler: (Array<BrandItem>) -> Void){
