@@ -22,6 +22,7 @@ class User {
     var dateCreated = String()
     var isEnabled = Bool()
     
+    //var shippingAddress
     
     static func UserLogIn(email: String, password: String, completeHandler: (user: User?) -> Void) {
         let paramString = "xml=<customer><do_login><email>" + email + "</email><password>" + password + "</password></do_login></customer>"

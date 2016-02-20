@@ -112,9 +112,29 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         
+    
         // Fill shipping and billing address field's
-        fillShippingAddressFields()
-        fillBillingAddressFields()
+        var needUpdateOrder = false
+        if OrderController.sharedInstance().getCurrentOrder()?.shippingAddressID == 0 {
+           OrderController.sharedInstance().getCurrentOrder()?.shippingAddressID = (UserController.sharedInstance().getUser()?.defaultShippingAddressID)!
+            needUpdateOrder = true
+        }
+        if OrderController.sharedInstance().getCurrentOrder()?.billingAddressID == 0 {
+            OrderController.sharedInstance().getCurrentOrder()?.billingAddressID = (UserController.sharedInstance().getUser()?.defaultBillingAddressID)!
+            needUpdateOrder = true
+        }
+        
+        if needUpdateOrder {
+            OrderController.sharedInstance().UpdateUserOrder((UserController.sharedInstance().getUser()?.ID)!, completeHandler: {(success) in
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.fillShippingAddressFields()
+                    self.fillBillingAddressFields()
+                }
+            })
+        } else {
+            fillShippingAddressFields()
+            fillBillingAddressFields()
+        }
         
         billingSwitch.setOn(true, animated: false)
         setEnableBillingTexTField(!(billingSwitch.on))
@@ -342,8 +362,8 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
     }
     
     private func startCheckoutViewController() {
-        let checkoutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CheckoutViewController") as! CheckoutViewController
-        self.navigationController?.pushViewController(checkoutViewController, animated: true)
+        let shippingMethodViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ShippingMethodViewController") as! ShippingMethodViewController
+        self.navigationController?.pushViewController(shippingMethodViewController, animated: true)
         
     }
     

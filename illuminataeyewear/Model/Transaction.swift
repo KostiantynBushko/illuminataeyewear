@@ -58,7 +58,42 @@ class Transaction: BaseModel {
             
             let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
             print("Transactions : " + String(dataString))
+            XmlTransactionParser().Parse(data!, completeHandler: {(transactions) in
+                completeHandler(transactions)
+            })
+        })
+        task.resume()
+    }
+    
+    static func MakeTransaction(orderID: Int64, currencyID: String, amount: String, gatewayTransactionID: String, completeHandler: (Array<Transaction>) -> Void) {
+        print(gatewayTransactionID)
+        print(currencyID)
+        print(amount)
+        let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        
+        let parameters = "xml=<transaction><create>"
+            + "<orderID>" + String(orderID) + "</orderID>"
+            + "<currencyID>" + String(currencyID) + "</currencyID>"
+            + "<method>PaypalWebsitePaymentsStandard</method>"
+            + "<amount>" + String(amount) + "</amount>"
+            + "<gatewayTransactionID>" + gatewayTransactionID + "</gatewayTransactionID>"
+            +  "</create></transaction>"
+        
+        request.HTTPBody = parameters.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request, completionHandler: {(let data, let response, let error) in
+            guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
+                return
+            }
             
+            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            print("Make Transactions : " + String(dataString))
+            print("------------------------------------------------------------------------------------")
             XmlTransactionParser().Parse(data!, completeHandler: {(transactions) in
                 completeHandler(transactions)
             })

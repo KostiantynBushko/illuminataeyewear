@@ -24,7 +24,7 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
     
     // PayPal SDK Integration
     var payPalConfig = PayPalConfiguration()
-    var environment:String = /*PayPalEnvironmentSandbox*/ PayPalEnvironmentNoNetwork {
+    var environment:String = PayPalEnvironmentSandbox /*PayPalEnvironmentNoNetwork*/ {
         willSet(newEnvironment) {
             if (newEnvironment != environment) {
                 PayPalMobile.preconnectWithEnvironment(newEnvironment)
@@ -48,7 +48,24 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
         paymentViewController.dismissViewControllerAnimated(true, completion: { () -> Void in
             print("Here is your proof of payment : \(completedPayment.confirmation)")
             //completedPayment.confirmation
-            self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
+            let paymentResultDic = completedPayment.confirmation as NSDictionary
+            let dicResponse: AnyObject? = paymentResultDic.objectForKey("response")
+            let orderID = OrderController.sharedInstance().getCurrentOrder()?.ID
+            let gatewayTransactionID = dicResponse!.objectForKey("id")
+            var amount = Float()  //OrderController.sharedInstance().getCurrentOrder()?.totalAmount
+            for item in (OrderController.sharedInstance().getCurrentOrder()?.productItems)! {
+                amount += item.price
+            }
+            
+            Transaction.MakeTransaction(orderID!, currencyID: self.currency, amount: String(amount), gatewayTransactionID: String(gatewayTransactionID!), completeHandler: {(transaction) in
+                OrderController.sharedInstance().UpdateUserOrder((UserController.sharedInstance().getUser()?.ID)!, completeHandler: {(success)in
+                    print("CheckOut : update order")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        //self.tabBarController!.tabBar.items![2].badgeValue = String(OrderController.sharedInstance().getCurrentOrder()!.productItems.count)
+                        self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                })
+            })
         })
     }
     
@@ -122,9 +139,10 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
             })
         }
         
-        
-        orderTota.HST = 0 //(order?.totalAmount)! - orderTota.subTotalBeforeTax
-        orderTota.orderTotal = orderTota.subTotalBeforeTax //(order?.totalAmount)!
+        if order?.totalAmount > 0 {
+            orderTota.HST = (order?.totalAmount)! - orderTota.subTotalBeforeTax
+        }
+        orderTota.orderTotal = (order?.totalAmount)!
         orderTotalList.append(orderTota)
         
         placeMethod.append("pay_pall_button")

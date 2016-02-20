@@ -36,10 +36,14 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
         let order = OrderController.sharedInstance().getCurrentOrder()
         
         if order?.productItems.count == 0 {
+            orderProductItems = [OrderProductItem]()
+            brandItems = [BrandItem]()
             
+            tableView.hidden = true
             emptyCart.hidden = false
             checkoutButton.enabled = false
             activityIndicator.stopAnimating()
+            self.tabBarController!.tabBar.items![2].badgeValue = nil
             
         } else if order?.productItems.count > orderProductItems.count {
             checkoutButton.enabled = false
@@ -51,9 +55,10 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
             brandItems = [BrandItem]()
             //self.RefreshTable();
             if order?.productItems.count > 0 {
+                self.tabBarController!.tabBar.items![2].badgeValue = String(OrderController.sharedInstance().getCurrentOrder()!.productItems.count)
                 orderProductItems = (order?.productItems)!
                 for itemProduct in (order?.productItems)! {
-                    BrandItem.getBrandItemByID(itemProduct.productID, completeHandler: {(items) in
+                    BrandItem().getBrandItemByID(itemProduct.productID, completeHandler: {(items) in
                         items[0].fullInitProduct({(brandItem) in
                             self.brandItems.append(brandItem)
                             self.activityIndicator.stopAnimating()

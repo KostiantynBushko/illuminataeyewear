@@ -18,13 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Override point for customization after application launch.
-        UINavigationBar.appearance().barTintColor = UIColor(red: 237.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 0.5)
-        //UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        //UINavigationBar.appearance().barTintColor = UIColor(red: 237.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 0.5)
+        UINavigationBar.appearance().tintColor = UIColor(red: 154.0/255.0, green: 30.0/255.0, blue: 236.0/255.0, alpha: 1.0) //UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor(red: 154.0/255.0, green: 30.0/255.0, blue: 236.0/255.0, alpha: 1.0)]
         
-        UITabBar.appearance().barTintColor = UIColor(red: 237.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 0.5)
-        UITabBar.appearance().tintColor = UIColor.blackColor()
-        UITabBar.appearance().barStyle = UIBarStyle.Black
+        //UITabBar.appearance().barTintColor = UIColor(red: 237.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 0.5)
+        //UITabBar.appearance().tintColor = UIColor.blackColor()
+        //UITabBar.appearance().barStyle = UIBarStyle.Black
         
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()

@@ -56,7 +56,7 @@ class XmlOrderParser: NSObject, NSXMLParserDelegate {
             } else if element.isEqualToString("eavObjectID") {
                 currentOrder.eavObjectID = Int64(string)!
             } else if element.isEqualToString("invoiceNumber") {
-                currentOrder.invoiceNumber = Int64(string)!
+                currentOrder.invoiceNumber = string
             } else if element.isEqualToString("checkoutStep") {
                 currentOrder.checkoutStep = Int(string)!
             } else if element.isEqualToString("dateCreated") {
@@ -66,7 +66,7 @@ class XmlOrderParser: NSObject, NSXMLParserDelegate {
             } else if element.isEqualToString("totalAmount") {
                 currentOrder.totalAmount = Float32(string)!
             } else if element.isEqualToString("capturedAmount") {
-                currentOrder.capturedAmount = Int(string)!
+                currentOrder.capturedAmount = Float32(string)!
             } else if element.isEqualToString("isMultiAddress") {
                 currentOrder.isMultiAddress = Int(string) == 1 ? true : false
             } else if element.isEqualToString("isFinalized") {

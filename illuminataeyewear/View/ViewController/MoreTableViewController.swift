@@ -12,8 +12,13 @@ class MoreTableViewController: UITableViewController {
 
     let cellIdentifier = "MoreViewCell"
     
-    var items = ["MY ACOOUNT","CONTACT US","ABOUT US"]
-    var icons = ["person_black_18p","chat_black_18p","info_black_18p"]
+    var items = ["MY ACOOUNT","MY TRANSACTIONS","CONTACT US","ABOUT US"]
+    var icons = ["person_black_18p","receipt_black_18p","chat_black_18p","info_black_18p"]
+    
+    let MY_ACOOUNT = 0
+    let MY_TRANSACTIONS = 1
+    let CONTACT_US = 2
+    let ABOUT_US = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +40,7 @@ class MoreTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0 {
+        if indexPath.row == MY_ACOOUNT {
             if UserController.sharedInstance().isAnonimous() {
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyBoard.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
@@ -45,11 +50,17 @@ class MoreTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(accountViewController, animated: true)
             }
             
-        } else if indexPath.row == 1 {
+        } else if indexPath.row == MY_TRANSACTIONS {
+            let transactionViewController = self.storyboard?.instantiateViewControllerWithIdentifier("UserTransactionTableViewController") as! UserTransactionTableViewController
+            self.navigationController?.pushViewController(transactionViewController, animated: true)
+        
+        } else if indexPath.row == CONTACT_US {
             let contactViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContactsViewController") as! ContactsViewController
             self.navigationController?.pushViewController(contactViewController, animated: true)
-        } else if indexPath.row == 2 {
-        
+            
+        } else if indexPath.row == ABOUT_US {
+            let aboutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AboutViewController") as! AboutViewController
+            self.navigationController?.pushViewController(aboutViewController, animated: true)
         }
     }
     

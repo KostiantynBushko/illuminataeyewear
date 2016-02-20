@@ -14,6 +14,8 @@ class HomeTableViewController: UITableViewController {
     
     var newsPostItems = [NewsPost]()
     var simpleNewsPostItems = [SimpleNewsPost]()
+    var featureProducts = [BrandItem]()
+    
     var imageCache = [String:UIImage]()
     
     let cellIdentifier = "NewsPostViewCell"
@@ -42,7 +44,14 @@ class HomeTableViewController: UITableViewController {
             self.RefreshTable()
         })
         
-        //self.tabBarController?.tabBar.items![2].badgeValue = String(OrderController.sharedInstance().getCurrentOrder()!.productItems.count)
+        BrandItem.GetFeatureProduct(20, completeHandler: {(brandItems) in
+            for item in brandItems {
+                item.fullInitProduct({(brandItem) in
+                    self.featureProducts.append(brandItem)
+                    self.RefreshTable()
+                })
+            }
+        })
     }
     
     
@@ -52,69 +61,91 @@ class HomeTableViewController: UITableViewController {
     
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return simpleNewsPostItems.count
+        if section == 0 {
+            return simpleNewsPostItems.count
+        } else if section == 1 {
+            return featureProducts.count
+        }
+        return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! NewsPostViewCell
-        
-        let newsPost = simpleNewsPostItems[indexPath.row]
-        cell.title.text = newsPost.title
-        cell.shortDescription.text = newsPost.text
-        (cell.readMore as! RoundRectButton).id = indexPath.row
-
-        
-        if !(newsPost.imageLink as NSString).isEqualToString("") {
-
-            if let img = imageCache[newsPost.imageLink] {
-                cell.photo.image = img
-            } else {
-                cell.photo.image = nil
-                if !(newsPost.imageLink as NSString).isEqualToString("") {
-                    let url:NSURL =  NSURL(string: newsPost.imageLink)!
-                    let session = NSURLSession.sharedSession()
-                    let request = NSMutableURLRequest(URL: url)
-                    request.HTTPMethod = "GET"
-                    request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
-                    
-                    let task = session.dataTaskWithRequest(request) { (let data, let response, let error) in
-                        guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
-                            return
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! NewsPostViewCell
+            let newsPost = simpleNewsPostItems[indexPath.row]
+            cell.title.text = newsPost.title
+            cell.shortDescription.text = newsPost.text
+            (cell.readMore as! RoundRectButton).id = indexPath.row
+            
+            
+            if !(newsPost.imageLink as NSString).isEqualToString("") {
+                
+                if let img = imageCache[newsPost.imageLink] {
+                    cell.photo.image = img
+                } else {
+                    cell.photo.image = nil
+                    if !(newsPost.imageLink as NSString).isEqualToString("") {
+                        let url:NSURL =  NSURL(string: newsPost.imageLink)!
+                        let session = NSURLSession.sharedSession()
+                        let request = NSMutableURLRequest(URL: url)
+                        request.HTTPMethod = "GET"
+                        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+                        
+                        let task = session.dataTaskWithRequest(request) { (let data, let response, let error) in
+                            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+                                return
+                            }
+                            let image = UIImage(data: data!)
+                            self.imageCache[newsPost.imageLink] = image
+                            dispatch_async(dispatch_get_main_queue(), {
+                                let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! NewsPostViewCell
+                                cell.photo.image = image
+                                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                            })
                         }
-                        let image = UIImage(data: data!)
-                        self.imageCache[newsPost.imageLink] = image
-                        dispatch_async(dispatch_get_main_queue(), {
-                            let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! NewsPostViewCell
-                            cell.photo.image = image
-                            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
-                        })
+                        task.resume()
                     }
-                    task.resume()
                 }
+                cell.iFrame.hidden = true
+                cell.photo.hidden = false
+            } else if !(newsPost.iframe as NSString).isEqualToString(""){
+                cell.photo.hidden = true
+                cell.iFrame.hidden = false
+                let html = "<iframe src=\"" + newsPost.iframe + "\" width=\"300\" height=\"150\" frameborder=\"0\"></iframe>"
+                cell.iFrame.loadHTMLString(html, baseURL: nil)
+                cell.iFrame.scrollView.scrollEnabled = false
+                cell.iFrame.scrollView.bounces = false
             }
-            cell.iFrame.hidden = true
-            cell.photo.hidden = false
-        } else if !(newsPost.iframe as NSString).isEqualToString(""){
-            cell.photo.hidden = true
-            cell.iFrame.hidden = false
-            let html = "<iframe src=\"" + newsPost.iframe + "\" width=\"300\" height=\"150\" frameborder=\"0\"></iframe>"
-            cell.iFrame.loadHTMLString(html, baseURL: nil)
-            cell.iFrame.scrollView.scrollEnabled = false
-            cell.iFrame.scrollView.bounces = false
+            return cell
+        } else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("FeatureProductViewCell", forIndexPath: indexPath) as! FeatureProductViewCell
+            cell.photo.image = featureProducts[indexPath.row].image
+            cell.name.text = featureProducts[indexPath.row].getName()
+            return cell
+        } else {
+            return UITableViewCell()
         }
-        
-        /*let fixedWidth = cell.shortDescription.frame.size.width
-        cell.shortDescription.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
-        let newSize = cell.shortDescription.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
-        var newFrame = cell.shortDescription.frame
-        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
-        cell.shortDescription.frame = newFrame;*/
-        
-        return cell
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "Featured Products"
+        }
+        return nil
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 366
+        } else if indexPath.section == 1{
+            return 100
+        } else {
+            return 0
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

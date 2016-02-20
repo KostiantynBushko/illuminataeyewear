@@ -15,17 +15,17 @@ class Order {
     var billingAddressID = Int64()
     var currencyID = String()
     var eavObjectID = Int64()
-    var invoiceNumber = Int64()
+    var invoiceNumber = String()
     var checkoutStep = Int()
     var dateCreated = String()
     var dateCompleted = String()
     var totalAmount = Float32()
-    var capturedAmount = Int()
+    var capturedAmount = Float32()
     var isMultiAddress: Bool = false
     var isFinalized: Bool = false
     var isPaid: Bool = false
     var isCancelled: Bool = false
-    var status = Int()
+    var status = Int(-1)
     
     var User_userGroupID = Int()
     var User_email = String()
@@ -69,34 +69,6 @@ class Order {
     var userShippingAddress = UserAddress()
     var userBillingAddress = UserAddress()
 
-
-    static func GetOrdersList(userID: Int64, completeHandler: (ordersList: Array<Order>?) -> Void) {
-        let paramString = "xml=<order><list><userID>" + String(userID) + "</userID><isFinalized>0</isFinalized></list></order>"
-        let url = NSURL(string: Constant.URL_BASE_API)!
-        let session = NSURLSession.sharedSession()
-        
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
-        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        let task = session.dataTaskWithRequest(request){ (let data, let response, let error) in
-            guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
-                return
-            }
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print(dataString)
-            XmlOrderParser().ParseOrder(data!, completeHandler: {(ordersList) in
-                completeHandler(ordersList: ordersList)
-                if ordersList != nil && ordersList?.count > 0 {
-                    for order in ordersList! {
-                        order.InitUserAddress()
-                    }
-                }
-            })
-        }
-        task.resume()
-    }
     
     func InitUserAddress() {
         UserAddress.GetAddressByID(self.shippingAddressID, completeHandler: {(userAddress) in
@@ -126,6 +98,64 @@ class Order {
             let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
             print("AddProductToCart : " + String(dataString))
             completeHandler()
+        }
+        task.resume()
+    }
+    
+    static func GetOrdersList(userID: Int64, isFinalised: Bool, completeHandler: (ordersList: Array<Order>?) -> Void) {
+        let finalized = isFinalised ? "<isFinalized>1</isFinalized>" : "<isFinalized>0</isFinalized>"
+        
+        let paramString = "xml=<order><list><userID>" + String(userID) + "</userID>" + finalized + "</list></order>"
+        let url = NSURL(string: Constant.URL_BASE_API)!
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request){ (let data, let response, let error) in
+            guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
+                return
+            }
+            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            print(dataString)
+            XmlOrderParser().ParseOrder(data!, completeHandler: {(ordersList) in
+                completeHandler(ordersList: ordersList)
+                if ordersList != nil && ordersList?.count > 0 {
+                    for order in ordersList! {
+                        order.InitUserAddress()
+                    }
+                }
+            })
+        }
+        task.resume()
+    }
+    
+    static func CreateNewOrder(userID: Int64, completeHandler: (ordersList: Array<Order>?) -> Void) {
+        let paramString = "xml=<order><create><userID>" + String(userID) + "</userID></create></order>"
+        let url = NSURL(string: Constant.URL_BASE_API)!
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request){ (let data, let response, let error) in
+            guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
+                return
+            }
+            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            print(dataString)
+            XmlOrderParser().ParseOrder(data!, completeHandler: {(ordersList) in
+                completeHandler(ordersList: ordersList)
+                if ordersList != nil && ordersList?.count > 0 {
+                    for order in ordersList! {
+                        order.InitUserAddress()
+                    }
+                }
+            })
         }
         task.resume()
     }

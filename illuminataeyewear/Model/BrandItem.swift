@@ -188,7 +188,7 @@ class BrandItem {
     }
     
     static func getBrandItems(categoryID: String, completeHandler: (Array<BrandItem>) -> Void){
-        let paramString = "xml=<product><list limit=50><categoryID>" + (categoryID) + "</categoryID></list></product>"
+        let paramString = "xml=<product><list><categoryID>" + (categoryID) + "</categoryID></list></product>"
         let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
         let session = NSURLSession.sharedSession()
         
@@ -231,6 +231,48 @@ class BrandItem {
     
     static func getBrandItemByID(ID: Int64, completeHandler: (Array<BrandItem>) -> Void){
         let paramString = "xml=<product><list><ID>" + String(ID) + "</ID></list></product>"
+        let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSMutableURLRequest(URL:url)
+        request.HTTPMethod = "POST"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request){ (let data, let response, let error) in
+            guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
+                return
+            }
+            XmlBrandParser().ParseItems(data!, completeHandler: {(brandItems) in
+                completeHandler(brandItems)
+            })
+        }
+        task.resume()
+    }
+    
+    func getBrandItemByID(ID: Int64, completeHandler: (Array<BrandItem>) -> Void){
+        let paramString = "xml=<product><list><ID>" + String(ID) + "</ID></list></product>"
+        let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSMutableURLRequest(URL:url)
+        request.HTTPMethod = "POST"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request){ (let data, let response, let error) in
+            guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
+                return
+            }
+            XmlBrandParser().ParseItems(data!, completeHandler: {(brandItems) in
+                completeHandler(brandItems)
+            })
+        }
+        task.resume()
+    }
+    
+    static func GetFeatureProduct(limit: Int, completeHandler: (Array<BrandItem>) -> Void) {
+        let paramString = "xml=<product><list limit=" + String(limit) + "><isFeatured>1</isFeatured></list></product>"
         let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
         let session = NSURLSession.sharedSession()
         

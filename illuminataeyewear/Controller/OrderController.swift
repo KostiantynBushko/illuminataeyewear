@@ -29,8 +29,8 @@ class OrderController {
     
     func UpdateUserOrder(userID: Int64, completeHandler:(succesInit: Bool) -> Void) {
         self.successCompleteHandler = completeHandler
-        Order.GetOrdersList(userID, completeHandler: {(listOrders) in
-            if listOrders != nil {
+        Order.GetOrdersList(userID, isFinalised: false, completeHandler: {(listOrders) in
+            if listOrders != nil && listOrders?.count > 0 {
                 self.orders = [Order]()
                 self.orders = listOrders!
                 if self.orders.count > 0 {
@@ -39,6 +39,19 @@ class OrderController {
                 if self.successCompleteHandler != nil {
                     completeHandler(succesInit: true)
                 }
+            } else {
+                // Create new order
+                Order.CreateNewOrder(userID, completeHandler: {(listOrders) in
+                    self.orders = [Order]()
+                    self.orders = listOrders!
+                    if self.orders.count > 0 {
+                        self.orders.sortInPlace { $0.ID > $1.ID }
+                    }
+                    if self.successCompleteHandler != nil {
+                        completeHandler(succesInit: true)
+                    }
+
+                })
             }
         })
     }

@@ -2,4 +2,86 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "illuminataeyewear/Model/Transaction.swift"
+            timestampString = "477352438.385454"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "MakeTransaction(_:currencyID:amount:gatewayTransactionID:completeHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "illuminataeyewear/Controller/OrderController.swift"
+            timestampString = "477377208.227746"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "UpdateUserOrder(_:completeHandler:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "illuminataeyewear.OrderController.(UpdateUserOrder (illuminataeyewear.OrderController) -&gt; (Swift.Int64, completeHandler : (succesInit : Swift.Bool) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "illuminataeyewear"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/XCodeProject/illuminataeyewear/illuminataeyewear/Controller/OrderController.swift"
+                  timestampString = "477620480.836972"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "1536">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "illuminataeyewear.OrderController.(UpdateUserOrder (illuminataeyewear.OrderController) -&gt; (Swift.Int64, completeHandler : (succesInit : Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #2)"
+                  moduleName = "illuminataeyewear"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/XCodeProject/illuminataeyewear/illuminataeyewear/Controller/OrderController.swift"
+                  timestampString = "477620480.837109"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "illuminataeyewear/Controller/OrderController.swift"
+            timestampString = "477377748.862373"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "UpdateUserOrder(_:completeHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
