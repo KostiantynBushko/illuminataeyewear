@@ -42,18 +42,19 @@ class MoreTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == MY_ACOOUNT {
             if UserController.sharedInstance().isAnonimous() {
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let viewController = storyBoard.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
-                self.presentViewController(viewController, animated: true, completion: nil)
+                self.StartLoginView()
             } else {
                 let accountViewController = self.storyboard?.instantiateViewControllerWithIdentifier("UserAccountViewController") as! UserAccountViewController
                 self.navigationController?.pushViewController(accountViewController, animated: true)
             }
             
         } else if indexPath.row == MY_TRANSACTIONS {
-            let transactionViewController = self.storyboard?.instantiateViewControllerWithIdentifier("UserTransactionTableViewController") as! UserTransactionTableViewController
-            self.navigationController?.pushViewController(transactionViewController, animated: true)
-        
+            if UserController.sharedInstance().isAnonimous() {
+                StartLoginView()
+            } else {
+                let transactionViewController = self.storyboard?.instantiateViewControllerWithIdentifier("UserTransactionTableViewController") as! UserTransactionTableViewController
+                self.navigationController?.pushViewController(transactionViewController, animated: true)
+            }
         } else if indexPath.row == CONTACT_US {
             let contactViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContactsViewController") as! ContactsViewController
             self.navigationController?.pushViewController(contactViewController, animated: true)
@@ -62,6 +63,12 @@ class MoreTableViewController: UITableViewController {
             let aboutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AboutViewController") as! AboutViewController
             self.navigationController?.pushViewController(aboutViewController, animated: true)
         }
+    }
+    
+    private func StartLoginView() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyBoard.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
+        self.presentViewController(viewController, animated: true, completion: nil)
     }
     
 }

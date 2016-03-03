@@ -38,8 +38,8 @@ class User {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print(dataString)
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print(dataString)
             XmlUserParser().ParseUser(data!, completeHandler: {(user) in
                 completeHandler(user: user)
             })

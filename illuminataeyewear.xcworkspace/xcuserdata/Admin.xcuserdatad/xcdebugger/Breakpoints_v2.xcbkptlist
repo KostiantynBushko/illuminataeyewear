@@ -9,78 +9,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "illuminataeyewear/Model/Transaction.swift"
-            timestampString = "477352438.385454"
+            filePath = "illuminataeyewear/View/ViewController/UserTransactionTableViewController.swift"
+            timestampString = "478671580.478351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "MakeTransaction(_:currencyID:amount:gatewayTransactionID:completeHandler:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "illuminataeyewear/Controller/OrderController.swift"
-            timestampString = "477377208.227746"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "UpdateUserOrder(_:completeHandler:)"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "illuminataeyewear.OrderController.(UpdateUserOrder (illuminataeyewear.OrderController) -&gt; (Swift.Int64, completeHandler : (succesInit : Swift.Bool) -&gt; ()) -&gt; ()).(closure #1)"
+                  symbolName = "illuminataeyewear.UserTransactionTableViewController.viewDidLoad (illuminataeyewear.UserTransactionTableViewController)() -&gt; ()"
                   moduleName = "illuminataeyewear"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Admin/XCodeProject/illuminataeyewear/illuminataeyewear/Controller/OrderController.swift"
-                  timestampString = "477620480.836972"
+                  urlString = "file:///Users/Admin/XCodeProject/illuminataeyewear/illuminataeyewear/View/ViewController/UserTransactionTableViewController.swift"
+                  timestampString = "478678133.949647"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "1536">
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "428">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "illuminataeyewear.OrderController.(UpdateUserOrder (illuminataeyewear.OrderController) -&gt; (Swift.Int64, completeHandler : (succesInit : Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #2)"
+                  symbolName = "illuminataeyewear.UserTransactionTableViewController.(viewDidLoad (illuminataeyewear.UserTransactionTableViewController) -&gt; () -&gt; ()).(closure #1)"
                   moduleName = "illuminataeyewear"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Admin/XCodeProject/illuminataeyewear/illuminataeyewear/Controller/OrderController.swift"
-                  timestampString = "477620480.837109"
+                  urlString = "file:///Users/Admin/XCodeProject/illuminataeyewear/illuminataeyewear/View/ViewController/UserTransactionTableViewController.swift"
+                  timestampString = "478678133.949856"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "28">
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "illuminataeyewear/Controller/OrderController.swift"
-            timestampString = "477377748.862373"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "UpdateUserOrder(_:completeHandler:)"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

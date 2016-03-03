@@ -77,4 +77,10 @@ class DBUserTable {
         print(ret)
         return true
     }
+    
+    static func removeUser() -> Bool {
+        let db = SQLiteDB.sharedInstance()
+        let _ = db.query("delete from " + DB_USER_TABLE + " where ID = 1")
+        return true
+    }
 }

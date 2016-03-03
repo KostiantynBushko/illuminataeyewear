@@ -70,7 +70,7 @@ class XmlBrandParser: NSObject, NSXMLParserDelegate {
             currentBrandItem.isBackOrderable.htmlDecoded()
             currentBrandItem.isFractionalUnit.htmlDecoded()
             currentBrandItem.isUnlimitedStock.htmlDecoded()
-            currentBrandItem.shippingWeight.htmlDecoded()
+            //currentBrandItem.shippingWeight.htmlDecoded()
             currentBrandItem.stockCount.htmlDecoded()
             currentBrandItem.reservedCount.htmlDecoded()
             currentBrandItem.salesRank.htmlDecoded()
@@ -155,7 +155,7 @@ class XmlBrandParser: NSObject, NSXMLParserDelegate {
         } else if element.isEqualToString("isUnlimitedStock") {
             currentBrandItem.isUnlimitedStock.appendContentsOf(string)
         } else if element.isEqualToString("shippingWeight") {
-            currentBrandItem.shippingWeight.appendContentsOf(string)
+            currentBrandItem.shippingWeight = Float32(string)!
         } else if element.isEqualToString("stockCount") {
             currentBrandItem.stockCount.appendContentsOf(string)
         } else if element.isEqualToString("reservedCount") {

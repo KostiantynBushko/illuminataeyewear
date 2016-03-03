@@ -16,8 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Register for Push Notitications, if running iOS 8
+        if application.respondsToSelector("registerUserNotificationSettings:") {
+            let userNotificationTypes = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            application.registerUserNotificationSettings(userNotificationTypes)
+            application.registerForRemoteNotifications()
+        } else {
+            let types = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            application.registerUserNotificationSettings(types)
+        }
         
-        // Override point for customization after application launch.
+        //Override point for customization after application launch.
         //UINavigationBar.appearance().barTintColor = UIColor(red: 237.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 0.5)
         UINavigationBar.appearance().tintColor = UIColor(red: 154.0/255.0, green: 30.0/255.0, blue: 236.0/255.0, alpha: 1.0) //UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor(red: 154.0/255.0, green: 30.0/255.0, blue: 236.0/255.0, alpha: 1.0)]
@@ -128,5 +137,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    // Push notifications callback
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        //let dataString = NSString(data: deviceToken, encoding: NSUTF8StringEncoding) as! String
+        print("----------------------------------------------------------------")
+        print("Device token " + String(deviceToken))
+        print("----------------------------------------------------------------")
+    }
 }
 

@@ -16,6 +16,8 @@ class ProductItemViewCell: UITableViewCell {
     @IBOutlet weak var productProperty: UILabel!
     @IBOutlet weak var property: UILabel!
     
+    @IBOutlet weak var currency: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

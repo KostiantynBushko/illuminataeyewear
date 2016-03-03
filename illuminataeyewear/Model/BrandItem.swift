@@ -42,7 +42,7 @@ class BrandItem {
     var isBackOrderable = String()
     var isFractionalUnit = String()
     var isUnlimitedStock = String()
-    var shippingWeight = String()
+    var shippingWeight = Float32()
     var stockCount = String()
     var reservedCount = String()
     var salesRank = String()
@@ -174,6 +174,11 @@ class BrandItem {
         self.name = name.htmlDecoded()
     }
     
+    func getProductCodeName() -> String {
+        let name = self.getName()
+        return name.stringByReplacingOccurrencesOfString(self.Category_name, withString: "")
+    }
+    
     func setSKU(sku: String) {
         self.sku = sku.htmlDecoded()
     }
@@ -185,6 +190,13 @@ class BrandItem {
     
     func isProductFullyInitialised() -> Bool {
         return true
+    }
+    
+    func getShippingWeight() -> Float32 {
+        if shippingWeight == 0 && parentBrandItem != nil {
+            return (parentBrandItem?.shippingWeight)!
+        }
+        return shippingWeight
     }
     
     static func getBrandItems(categoryID: String, completeHandler: (Array<BrandItem>) -> Void){

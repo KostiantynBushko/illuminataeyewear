@@ -31,8 +31,8 @@ class ShippingAddress: BaseModel {
                 return
             }
             
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print("ShippingAddress : " + String(dataString))
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("ShippingAddress : " + String(dataString))
             
             XmlShippingAddressParser().Parse(data!, completeHandler: {(addresses) in
                 completeHandler(addresses)

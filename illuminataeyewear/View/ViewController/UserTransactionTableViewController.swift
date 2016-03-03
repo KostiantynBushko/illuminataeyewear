@@ -14,6 +14,7 @@ class UserTransactionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Orders"
         Order.GetOrdersList((UserController.sharedInstance().getUser()?.ID)!, isFinalised: true, completeHandler: {(ordersList) in
             self.orders = ordersList!
             self.RefreshTable()
@@ -57,6 +58,15 @@ class UserTransactionTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "TransactionDetailSegue" {
+            let transactionDetailViewController = segue.destinationViewController as! TransactionDetailViewController
+            if let indexPath : NSIndexPath = self.tableView.indexPathForSelectedRow! {
+                transactionDetailViewController.order = self.orders[indexPath.row]
+            }
+        }
     }
 
     func RefreshTable() {

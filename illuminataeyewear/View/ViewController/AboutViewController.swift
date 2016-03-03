@@ -7,15 +7,30 @@
 //
 
 import UIKit
+import MapKit
+
 
 class AboutViewController: UIViewController {
     
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet var mapKit: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "About"
         
-        webView.loadRequest(NSURLRequest(URL: NSURL(string: Constant.URL_ABOUT_PAGE)!))
+        var coordinateRegion = MKCoordinateRegion()
+        coordinateRegion.center.latitude = 43.615001
+        coordinateRegion.center.longitude = -79.557379
+        coordinateRegion.span.latitudeDelta = 0.01
+        coordinateRegion.span.longitudeDelta = 0.01
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinateRegion.center
+        annotation.title = "Illuminata Eyewear"
+        
+        mapKit.setRegion(coordinateRegion, animated: true)
+        mapKit.addAnnotation(annotation)
+        
     }
     
     override func viewDidAppear(animated: Bool) {

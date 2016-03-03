@@ -14,8 +14,11 @@ class OrderController {
     
     private static let _instance = OrderController()
     
+    private var shippingService: ShippingService?
+    
     private init(){
         successCompleteHandler = nil
+        shippingService = nil
     }
     
     var orders = [Order]()
@@ -36,9 +39,12 @@ class OrderController {
                 if self.orders.count > 0 {
                     self.orders.sortInPlace { $0.ID > $1.ID }
                 }
-                if self.successCompleteHandler != nil {
-                    completeHandler(succesInit: true)
-                }
+                Order.GetOrderByID(self.orders[0].ID, completeHandler: {(order) in
+                    self.orders[0] = order
+                    if self.successCompleteHandler != nil {
+                        completeHandler(succesInit: true)
+                    }
+                })
             } else {
                 // Create new order
                 Order.CreateNewOrder(userID, completeHandler: {(listOrders) in
@@ -71,6 +77,14 @@ class OrderController {
             return orders[0].currencyID
         }
         return OrderController.DEFAULT_CURRENCY
+    }
+    
+    func setShippingService(shippingService: ShippingService) {
+        self.shippingService = shippingService
+    }
+    
+    func getShippingService() -> ShippingService? {
+        return shippingService
     }
     
 }

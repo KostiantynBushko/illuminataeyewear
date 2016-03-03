@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ZnR-X2-KlC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cke-We-q7M">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -54,6 +54,13 @@
                                                     <outlet property="delegate" destination="5ob-P7-9bs" id="FeC-pA-bfl"/>
                                                 </connections>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJF-Ms-AWu">
+                                                <rect key="frame" x="20" y="339" width="280" height="30"/>
+                                                <state key="normal" title="Create new customer"/>
+                                                <connections>
+                                                    <action selector="createNewCustomer:" destination="5ob-P7-9bs" eventType="touchUpInside" id="Jxc-0b-B5f"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -91,6 +98,29 @@
             </objects>
             <point key="canvasLocation" x="-66" y="-714"/>
         </scene>
+        <!--Live Cart View Controller-->
+        <scene sceneID="FTW-xe-Nh9">
+            <objects>
+                <viewController storyboardIdentifier="LiveCartViewController" id="cke-We-q7M" customClass="LiveCartViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BIC-kA-icM"/>
+                        <viewControllerLayoutGuide type="bottom" id="0he-Zv-pl1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k46-9Q-Jjn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="ZmO-eV-9pQ">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.57647058823529407" green="0.23137254901960785" blue="0.38823529411764707" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ahw-od-S2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-904" y="-714"/>
+        </scene>
         <!--Ext Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -118,7 +148,7 @@
         <scene sceneID="jTW-k9-rma">
             <objects>
                 <tableViewController id="e82-yd-SZl" customClass="BrandTableViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="20" sectionFooterHeight="20" id="igh-Ai-yCh">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="20" sectionFooterHeight="20" id="igh-Ai-yCh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -167,7 +197,7 @@
         <scene sceneID="v4v-rV-46a">
             <objects>
                 <tableViewController id="7gt-uV-T5k" customClass="ItemsBrandTableViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="145" sectionHeaderHeight="28" sectionFooterHeight="28" id="hwb-aC-Gke">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="145" sectionHeaderHeight="28" sectionFooterHeight="28" id="hwb-aC-Gke">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -227,7 +257,14 @@
                             <outlet property="delegate" destination="7gt-uV-T5k" id="JJ9-Wx-8DW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="List" id="7iQ-ZM-D8p"/>
+                    <navigationItem key="navigationItem" title="List" id="7iQ-ZM-D8p">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="KfR-d2-Slo">
+                            <color key="tintColor" red="0.7830432665" green="0.40241849489999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="SerchProduct:" destination="7gt-uV-T5k" id="Zdi-iJ-Jl5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                 </tableViewController>
@@ -503,6 +540,36 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
             </objects>
             <point key="canvasLocation" x="792" y="1991"/>
         </scene>
+        <!--Serch-->
+        <scene sceneID="5Ul-0i-z8J">
+            <objects>
+                <tableViewController storyboardIdentifier="SerchViewController" id="RgA-Am-ffE" customClass="SerchViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xQu-PI-KgD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="meP-st-yik">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="meP-st-yik" id="jhr-fl-7Rk">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="RgA-Am-ffE" id="I8H-4r-mOW"/>
+                            <outlet property="delegate" destination="RgA-Am-ffE" id="Lcc-IF-rSF"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Serch" id="0AJ-SF-onk"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AQI-Qq-UfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="XwY-5l-kkA"/>
+            </objects>
+            <point key="canvasLocation" x="1840" y="2105"/>
+        </scene>
         <!--Item Page Content View Controller-->
         <scene sceneID="q7V-CY-FSE">
             <objects>
@@ -718,7 +785,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
         <scene sceneID="R5i-sr-YjX">
             <objects>
                 <tableViewController id="6tC-Kw-MJG" customClass="HomeTableViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="366" sectionHeaderHeight="28" sectionFooterHeight="28" id="99q-U4-cLG">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="366" sectionHeaderHeight="28" sectionFooterHeight="28" id="99q-U4-cLG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -730,7 +797,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="365"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Um-EB-ttf">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Um-EB-ttf">
                                             <rect key="frame" x="8" y="8" width="304" height="21"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -739,7 +806,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cvf-d3-FGp">
                                             <rect key="frame" x="0.0" y="37" width="320" height="178"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nN4-2C-brZ">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nN4-2C-brZ">
                                             <rect key="frame" x="8" y="223" width="304" height="95"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.74236505679999998" green="0.74236505679999998" blue="0.74236505679999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -804,7 +871,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oIf-HQ-R89" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-66" y="1500"/>
+            <point key="canvasLocation" x="-66" y="1550"/>
         </scene>
         <!--More-->
         <scene sceneID="8BO-bs-Jcl">
@@ -857,7 +924,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dO2-0u-Dae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-66" y="2453"/>
+            <point key="canvasLocation" x="-66" y="2385"/>
         </scene>
         <!--Catalog-->
         <scene sceneID="flg-zP-SZo">
@@ -878,7 +945,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
             </objects>
             <point key="canvasLocation" x="352" y="0.0"/>
         </scene>
-        <!--Order-->
+        <!--My Cart-->
         <scene sceneID="AxV-is-j9x">
             <objects>
                 <viewController id="cdy-Jv-EKa" customClass="ShopingCartViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
@@ -926,11 +993,11 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                     <constraint firstAttribute="trailing" secondItem="Qxx-IE-PqO" secondAttribute="trailing" id="xlf-oT-JTK"/>
                                 </constraints>
                             </scrollView>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GTo-vX-Vtb">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GTo-vX-Vtb">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderViewCell" rowHeight="91" id="kxB-Vw-oso" customClass="OrderViewCell" customModule="illuminataeyewear" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderViewCell" rowHeight="91" id="kxB-Vw-oso" customClass="OrderViewCell" customModule="illuminataeyewear" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kxB-Vw-oso" id="RpS-K4-JeO">
@@ -1045,7 +1112,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="Order" id="rFM-CB-6B4">
+                    <navigationItem key="navigationItem" title="My Cart" id="rFM-CB-6B4">
                         <barButtonItem key="rightBarButtonItem" title="Checkout" id="E0m-Gr-i4D">
                             <connections>
                                 <action selector="checkoutAction:" destination="cdy-Jv-EKa" id="Jwn-Ts-iDV"/>
@@ -1550,7 +1617,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Lz-uN-FJx">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Lz-uN-FJx">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1X-oi-Kdl">
@@ -1602,7 +1669,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
         <scene sceneID="vfh-gG-qgr">
             <objects>
                 <tableViewController storyboardIdentifier="CheckoutViewController" id="fU4-py-KYK" customClass="CheckoutViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="21" sectionHeaderHeight="28" sectionFooterHeight="28" id="gBK-0z-kId">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="21" sectionHeaderHeight="28" sectionFooterHeight="28" id="gBK-0z-kId">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1614,8 +1681,8 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6d-cl-e1c">
-                                            <rect key="frame" x="199" y="5" width="113" height="15"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6d-cl-e1c">
+                                            <rect key="frame" x="247" y="5" width="65" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.7830432665" green="0.40241849489999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1635,9 +1702,16 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                             <color key="textColor" red="0.74236505679999998" green="0.74236505679999998" blue="0.74236505679999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uok-OH-ZU2">
+                                            <rect key="frame" x="200" y="5" width="45" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.7830432665" green="0.40241849489999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="currency" destination="uok-OH-ZU2" id="q0s-gp-Xfs"/>
                                     <outlet property="name" destination="ulg-vo-B4M" id="j4L-US-vl2"/>
                                     <outlet property="photo" destination="TSC-Ys-2jM" id="FeA-97-PDn"/>
                                     <outlet property="price" destination="o6d-cl-e1c" id="t2A-yL-eaC"/>
@@ -1652,20 +1726,20 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NQ-01-70x">
-                                            <rect key="frame" x="199" y="2" width="113" height="15"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NQ-01-70x">
+                                            <rect key="frame" x="245" y="2" width="67" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asL-g5-8rB">
-                                            <rect key="frame" x="199" y="19" width="113" height="15"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asL-g5-8rB">
+                                            <rect key="frame" x="245" y="19" width="67" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njZ-VI-eyX">
-                                            <rect key="frame" x="199" y="36" width="113" height="15"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njZ-VI-eyX">
+                                            <rect key="frame" x="245" y="36" width="67" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1694,8 +1768,32 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                             <color key="textColor" red="0.74236505679999998" green="0.74236505679999998" blue="0.74236505679999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrZ-Tw-zo5">
-                                            <rect key="frame" x="199" y="53" width="113" height="15"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrZ-Tw-zo5">
+                                            <rect key="frame" x="245" y="53" width="67" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CAD $" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ds-3n-PUa">
+                                            <rect key="frame" x="199" y="2" width="44" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CAD $" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aU6-hA-pAa">
+                                            <rect key="frame" x="199" y="19" width="44" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CAD $" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6w-ro-Wdy">
+                                            <rect key="frame" x="199" y="36" width="44" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CAD $" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmI-EQ-jIm">
+                                            <rect key="frame" x="199" y="53" width="44" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1704,6 +1802,10 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="HST" destination="njZ-VI-eyX" id="zmN-5a-R16"/>
+                                    <outlet property="currency_1" destination="7ds-3n-PUa" id="q9r-0l-KsI"/>
+                                    <outlet property="currency_2" destination="aU6-hA-pAa" id="dvU-V8-YR2"/>
+                                    <outlet property="currency_3" destination="b6w-ro-Wdy" id="gOh-yr-j7S"/>
+                                    <outlet property="currency_4" destination="vmI-EQ-jIm" id="GhP-7I-cYZ"/>
                                     <outlet property="orderTotal" destination="WrZ-Tw-zo5" id="WF7-LZ-t5I"/>
                                     <outlet property="shippingPickUp" destination="asL-g5-8rB" id="Pt2-sz-IN0"/>
                                     <outlet property="subTotalBeforeTax" destination="1NQ-01-70x" id="Pv4-wt-jTS"/>
@@ -1819,7 +1921,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHz-LP-nuB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-66" y="681"/>
+            <point key="canvasLocation" x="-66" y="786"/>
         </scene>
         <!--Cart-->
         <scene sceneID="Mrq-x1-r5A">
@@ -1840,11 +1942,39 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
             </objects>
             <point key="canvasLocation" x="797" y="0.0"/>
         </scene>
+        <!--Registration View Controller-->
+        <scene sceneID="C6h-Yb-zCJ">
+            <objects>
+                <viewController storyboardIdentifier="RegistrationViewController" id="mXG-vq-v2s" customClass="RegistrationViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qKu-b6-vTz"/>
+                        <viewControllerLayoutGuide type="bottom" id="scv-go-bgU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T0S-Ne-mUv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="noq-f9-4MA">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="due-sO-tbP"/>
+                    <connections>
+                        <outlet property="webView" destination="noq-f9-4MA" id="Dgp-Pr-2wd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Phm-B5-cHU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2296" y="-714"/>
+        </scene>
         <!--More-->
         <scene sceneID="hrs-c8-OfJ">
             <objects>
                 <tableViewController id="xNH-ov-IBR" customClass="MoreTableViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lIm-yc-Zr3">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lIm-yc-Zr3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2001,16 +2131,16 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
         <scene sceneID="F2j-26-y3j">
             <objects>
                 <tableViewController storyboardIdentifier="UserTransactionTableViewController" id="SsM-6R-PIl" customClass="UserTransactionTableViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="114" sectionHeaderHeight="28" sectionFooterHeight="28" id="t8X-4P-VmZ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="114" sectionHeaderHeight="28" sectionFooterHeight="28" id="t8X-4P-VmZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionViewCell" rowHeight="114" id="wTa-06-ewB" customClass="TransactionViewCell" customModule="illuminataeyewear" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TransactionViewCell" rowHeight="114" id="wTa-06-ewB" customClass="TransactionViewCell" customModule="illuminataeyewear" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="114"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wTa-06-ewB" id="XEW-JF-rc3">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="113"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="113"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="it7-0I-XYR">
@@ -2068,6 +2198,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                     <outlet property="recipient" destination="ncZ-2P-yVq" id="g4s-E0-k3e"/>
                                     <outlet property="status" destination="4x4-I3-YEk" id="GC6-KQ-bYh"/>
                                     <outlet property="total" destination="MXL-jQ-25F" id="FQG-LS-Ptv"/>
+                                    <segue destination="y5D-pd-wvF" kind="push" identifier="TransactionDetailSegue" id="RMh-xo-5r0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2076,10 +2207,172 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                             <outlet property="delegate" destination="SsM-6R-PIl" id="N90-hk-jTG"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="eeD-6V-luC"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rph-jx-Mnq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2668" y="3"/>
+            <point key="canvasLocation" x="2657" y="673"/>
+        </scene>
+        <!--Suport View Controller-->
+        <scene sceneID="tn3-FE-x0O">
+            <objects>
+                <viewController storyboardIdentifier="SuportViewController" id="um7-WQ-AgE" customClass="SuportViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gA9-dg-edL"/>
+                        <viewControllerLayoutGuide type="bottom" id="8rS-gI-Lwe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pd4-da-TvH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Pe-OB-HH2">
+                                <rect key="frame" x="0.0" y="521" width="320" height="47"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FBf-nb-TmP">
+                                        <rect key="frame" x="8" y="9" width="247" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPI-gp-lLy" customClass="RoundRectButton" customModule="illuminataeyewear" customModuleProvider="target">
+                                        <rect key="frame" x="263" y="9" width="49" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.81780697599999996" blue="0.2211022956" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mhg-AA-iuV">
+                                <rect key="frame" x="0.0" y="64" width="320" height="449"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2OL-ER-5RN">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2OL-ER-5RN" id="5q9-L8-PKF">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JFE-Gy-BzN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qvi-EJ-6Z6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-598" y="1484"/>
+        </scene>
+        <!--Transaction Detail View Controller-->
+        <scene sceneID="w56-NE-ll5">
+            <objects>
+                <viewController id="y5D-pd-wvF" customClass="TransactionDetailViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zgF-Ye-9xX"/>
+                        <viewControllerLayoutGuide type="bottom" id="qd3-MG-Tt7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tq8-Uk-6GG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="136" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cXk-kq-w0B">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionDetailProductCell" rowHeight="136" id="Ped-pz-BfX" customClass="TransactionDetailProductCell" customModule="illuminataeyewear" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="136"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ped-pz-BfX" id="Nx1-wa-C82">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SKU:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOe-qN-vKd">
+                                                    <rect key="frame" x="8" y="8" width="91" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.74236505679999998" green="0.74236505679999998" blue="0.74236505679999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Product:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oP5-Ei-PFC">
+                                                    <rect key="frame" x="8" y="32" width="91" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.74236505679999998" green="0.74236505679999998" blue="0.74236505679999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EmW-SD-Nl1">
+                                                    <rect key="frame" x="8" y="56" width="91" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.74236505679999998" green="0.74236505679999998" blue="0.74236505679999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quantity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdK-o7-Eh9">
+                                                    <rect key="frame" x="8" y="80" width="91" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.74236505679999998" green="0.74236505679999998" blue="0.74236505679999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subtotal:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlp-dm-7GW">
+                                                    <rect key="frame" x="8" y="104" width="91" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.74236505679999998" green="0.74236505679999998" blue="0.74236505679999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9N-w6-7Nn">
+                                                    <rect key="frame" x="107" y="8" width="205" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lg-xe-95K">
+                                                    <rect key="frame" x="107" y="32" width="205" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRv-pJ-MDy">
+                                                    <rect key="frame" x="107" y="56" width="205" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SGV-S9-8ub">
+                                                    <rect key="frame" x="107" y="80" width="205" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKr-c9-wvZ">
+                                                    <rect key="frame" x="107" y="104" width="205" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="SKU" destination="j9N-w6-7Nn" id="Rdz-aa-MQm"/>
+                                            <outlet property="name" destination="8lg-xe-95K" id="B2g-vS-xCB"/>
+                                            <outlet property="price" destination="hRv-pJ-MDy" id="7td-ws-GWM"/>
+                                            <outlet property="quantity" destination="SGV-S9-8ub" id="EkH-tY-RDm"/>
+                                            <outlet property="subtotal" destination="rKr-c9-wvZ" id="1O0-mp-Hch"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="Tou-f0-8c4"/>
+                    <connections>
+                        <outlet property="tableView" destination="cXk-kq-w0B" id="A1G-am-hDS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aKb-CM-jMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3075" y="672"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="x0A-ev-GbO">
@@ -2093,20 +2386,63 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0fs-5F-eYI">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nwi-eP-9JE">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                            </webView>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gap-Cb-BVG">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1224"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="about" translatesAutoresizingMaskIntoConstraints="NO" id="iZh-JG-Aw2">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="198"/>
+                                            </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="piQ-tj-epv">
+                                                <rect key="frame" x="8" y="206" width="304" height="700"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <string key="text">illuminata Eyewear, is independetly owned, optical boutique that has been proudly serving Toronto, Mississauga and Hamilton customers for over 20 years. illuminata Eyewear, is located at 1750 The Queensway, Etobicoke. The founder of the company and licensed optician, Tenny Tsang is the owner of illuminata Eyewear in Etobicoke. Tenny is a licensed optician by The College of Opticians of Ontario, license number C-2125.
+
+We specialize in designer eyewear and offer over 50 fashion brand names available for purchase on our website and in our store.
+
+Tenny, our owner, carefully hand picks every pair of eyeglasses from each brand collection. Our in-store selection features all newest, most beautiful and unique models from best brands from Europe, North America and Japan. We put a lot of attention in selecting our own stock to satisfy every style and design preference and strive to make you look current, beautiful and young!
+
+Our inhouse brand Horn Eyewear, eyeglasses made out of pure 100% buffalo and sheep horn. Horn has been the first material used for eyeglasses since 13th century. Eyeglasses made out of horn, are timeless in style and durability. The authentic horn shine develops over time of wearing eyeglasses, making them look even better than years before. Horn is also hypoallergenic. We are advocates of humane animal treatment. All animals were raised in traditional manner outside, on Tibetian fields. Horn was harvested after animal was killed for food.
+
+If you have any questions, please visit us in store or call.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hAU-TD-imm">
+                                                <rect key="frame" x="8" y="914" width="304" height="220"/>
+                                            </mapView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="gap-Cb-BVG" firstAttribute="centerY" secondItem="Nwi-eP-9JE" secondAttribute="centerY" constant="338" id="BkO-bl-29z"/>
+                                    <constraint firstAttribute="bottom" secondItem="gap-Cb-BVG" secondAttribute="bottom" constant="20" symbolic="YES" id="FCn-bU-znR"/>
+                                    <constraint firstItem="gap-Cb-BVG" firstAttribute="centerX" secondItem="Nwi-eP-9JE" secondAttribute="centerX" id="Ukg-Gm-sGU"/>
+                                    <constraint firstItem="gap-Cb-BVG" firstAttribute="leading" secondItem="Nwi-eP-9JE" secondAttribute="leading" id="oq8-my-MPN"/>
+                                    <constraint firstItem="gap-Cb-BVG" firstAttribute="top" secondItem="Nwi-eP-9JE" secondAttribute="top" id="rgT-hA-Il4"/>
+                                    <constraint firstAttribute="trailing" secondItem="gap-Cb-BVG" secondAttribute="trailing" id="zXL-jY-c4X"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Nwi-eP-9JE" firstAttribute="leading" secondItem="UXL-KF-e3V" secondAttribute="leading" id="fRj-4K-luC"/>
+                            <constraint firstAttribute="trailing" secondItem="Nwi-eP-9JE" secondAttribute="trailing" id="p8U-Vj-5xT"/>
+                            <constraint firstItem="Nwi-eP-9JE" firstAttribute="top" secondItem="oK9-bC-Vq6" secondAttribute="bottom" id="rcS-xN-lul"/>
+                            <constraint firstItem="Nwi-eP-9JE" firstAttribute="bottom" secondItem="c2D-aO-jpM" secondAttribute="top" id="t40-IV-O7a"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
-                        <outlet property="webView" destination="0fs-5F-eYI" id="315-0u-AGb"/>
+                        <outlet property="mapKit" destination="hAU-TD-imm" id="GGM-60-03p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXz-DX-sd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3023" y="0.0"/>
+            <point key="canvasLocation" x="2657" y="0.0"/>
         </scene>
         <!--User Account View Controller-->
         <scene sceneID="Sey-7t-f42">
@@ -2150,6 +2486,18 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yl7-mq-hXw">
+                                                <rect key="frame" x="8" y="114" width="304" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.55549636989999995" green="0.55549636989999995" blue="0.55549636989999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="emali" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dJ-gS-PvE">
+                                                <rect key="frame" x="8" y="138" width="304" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -2175,6 +2523,11 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="email" destination="7dJ-gS-PvE" id="REb-bF-dKY"/>
+                        <outlet property="firstName" destination="gOe-65-slO" id="ye4-Ou-YPZ"/>
+                        <outlet property="lastName" destination="gaT-jc-cld" id="J2o-pS-qrW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYq-yt-FgC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2254,8 +2607,64 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
             </objects>
             <point key="canvasLocation" x="1213" y="681"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gYI-0i-Oj8">
+            <objects>
+                <navigationController storyboardIdentifier="RegistrationNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="13s-uN-n2b" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="76a-Ma-v0c">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mXG-vq-v2s" kind="relationship" relationship="rootViewController" id="tUX-4C-8jL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kz1-oh-R9T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1890" y="-714"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8d1-Ue-7nu">
+            <objects>
+                <navigationController storyboardIdentifier="SuportNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="dgu-qF-gap" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="lSW-R6-9Ig"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z54-bu-LPb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="um7-WQ-AgE" kind="relationship" relationship="rootViewController" id="N2e-jC-kd3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xsT-hE-Zj6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1028" y="1484"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HLU-Lk-Seb">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="htb-fG-PCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="SerchNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="w0j-5x-49v" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="c4s-bS-04w">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RgA-Am-ffE" kind="relationship" relationship="rootViewController" id="z8c-Ul-0CD"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="1400" y="2105"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="about" width="352" height="190"/>
         <image name="cart_black_button" width="18" height="18"/>
         <image name="catalog_storage" width="24" height="24"/>
         <image name="def_img_size_1" width="60" height="34"/>
@@ -2264,6 +2673,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
         <image name="default_item_image" width="200" height="76"/>
         <image name="home_item_white" width="24" height="24"/>
         <image name="logo" width="250" height="35"/>
+        <image name="logo_white" width="257" height="163"/>
         <image name="more" width="24" height="24"/>
         <image name="shop_cart" width="24" height="24"/>
         <image name="shoping_bag" width="24" height="24"/>

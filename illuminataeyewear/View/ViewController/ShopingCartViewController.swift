@@ -33,47 +33,53 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        let order = OrderController.sharedInstance().getCurrentOrder()
         
-        if order?.productItems.count == 0 {
-            orderProductItems = [OrderProductItem]()
-            brandItems = [BrandItem]()
-            
-            tableView.hidden = true
-            emptyCart.hidden = false
-            checkoutButton.enabled = false
-            activityIndicator.stopAnimating()
-            self.tabBarController!.tabBar.items![2].badgeValue = nil
-            
-        } else if order?.productItems.count > orderProductItems.count {
-            checkoutButton.enabled = false
-            tableView.hidden = true
-            emptyCart.hidden = true
-            activityIndicator.startAnimating()
-            
-            orderProductItems = [OrderProductItem]()
-            brandItems = [BrandItem]()
-            //self.RefreshTable();
-            if order?.productItems.count > 0 {
-                self.tabBarController!.tabBar.items![2].badgeValue = String(OrderController.sharedInstance().getCurrentOrder()!.productItems.count)
-                orderProductItems = (order?.productItems)!
-                for itemProduct in (order?.productItems)! {
-                    BrandItem().getBrandItemByID(itemProduct.productID, completeHandler: {(items) in
-                        items[0].fullInitProduct({(brandItem) in
-                            self.brandItems.append(brandItem)
-                            self.activityIndicator.stopAnimating()
-                            if self.brandItems.count == self.orderProductItems.count {
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    self.checkoutButton.enabled = true
+        if !UserController.sharedInstance().isAnonimous() {
+            let order = OrderController.sharedInstance().getCurrentOrder()
+            if order?.productItems.count == 0 {
+                orderProductItems = [OrderProductItem]()
+                brandItems = [BrandItem]()
+                
+                tableView.hidden = true
+                emptyCart.hidden = false
+                checkoutButton.enabled = false
+                activityIndicator.stopAnimating()
+                LiveCartController.TabBarUpdateBadgeValue(self.tabBarController!);
+                
+            } else if order?.productItems.count > orderProductItems.count {
+                checkoutButton.enabled = false
+                tableView.hidden = true
+                emptyCart.hidden = true
+                activityIndicator.startAnimating()
+                
+                orderProductItems = [OrderProductItem]()
+                brandItems = [BrandItem]()
+                
+                if order?.productItems.count > 0 {
+                    LiveCartController.TabBarUpdateBadgeValue(self.tabBarController!)
+                    orderProductItems = (order?.productItems)!
+                    for itemProduct in (order?.productItems)! {
+                        BrandItem().getBrandItemByID(itemProduct.productID, completeHandler: {(items) in
+                            items[0].fullInitProduct({(brandItem) in
+                                self.brandItems.append(brandItem)
+                                self.activityIndicator.stopAnimating()
+                                if self.brandItems.count == self.orderProductItems.count {
+                                    dispatch_async(dispatch_get_main_queue()) {
+                                        self.checkoutButton.enabled = true
+                                    }
                                 }
-                            }
-                            self.RefreshTable()
+                                self.RefreshTable()
+                            })
                         })
-                    })
+                    }
                 }
+            } else if order?.productItems.count == orderProductItems.count {
+                orderProductItems = (order?.productItems)!
+                self.RefreshTable()
             }
+            
+            self.navigationItem.leftBarButtonItem = editButtonItem()
         }
-        
     }
     
     
@@ -111,6 +117,31 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
         return cell
     }
     
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            let orderID = OrderController.sharedInstance().getCurrentOrder()?.ID
+            Order.deleteItemFormCart(self.orderProductItems[indexPath.row].ID, orderID: orderID!, completeHandler: {() in
+                OrderController.sharedInstance().UpdateUserOrder((UserController.sharedInstance().getUser()?.ID)!, completeHandler: {(success) in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.brandItems.removeAtIndex(indexPath.row)
+                        self.orderProductItems = (OrderController.sharedInstance().getCurrentOrder()?.productItems)!
+                        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                        LiveCartController.TabBarUpdateBadgeValue(self.tabBarController!)
+                    }
+                })
+            })
+        }
+    }
+    
     @IBAction func checkoutAction(sender: AnyObject) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let checkoutNavigationController = storyboard.instantiateViewControllerWithIdentifier("CheckoutNavigationController") as! UINavigationController
@@ -125,5 +156,15 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
             return
         })
     }
-    
 }
+
+
+
+
+
+
+
+
+
+
+

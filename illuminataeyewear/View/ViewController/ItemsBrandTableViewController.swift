@@ -46,7 +46,7 @@ class ItemsBrandTableViewController: UITableViewController, NSXMLParserDelegate 
         
         let brandItem = brandItems[indexPath.row]
         
-        cell.name.text = brandItem.getName()
+        cell.name.text = brandItem.getProductCodeName() //brandItem.getName()
         cell.number.text = String(indexPath.row)
         cell.price.text = "CAD $ " + brandItem.getPrice().definePrices
         cell.brandItem = brandItem
@@ -96,6 +96,11 @@ class ItemsBrandTableViewController: UITableViewController, NSXMLParserDelegate 
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BrandItemViewCell
+        addProductToCart(cell.BuyNowButton)
+    }
+    
     @IBAction func addProductToCart(sender: AnyObject) {
         let index = (sender as! ExButton).id
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
@@ -116,9 +121,14 @@ class ItemsBrandTableViewController: UITableViewController, NSXMLParserDelegate 
         }
     }
     
+    @IBAction func SerchProduct(sender: AnyObject) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyBoard.instantiateViewControllerWithIdentifier("SerchNavigationViewController") as! UINavigationController
+        self.presentViewController(viewController, animated: true, completion: nil)
+    }
     /***********************************************************************************************************/
-     // Make http request to get brand list
-     /***********************************************************************************************************/
+    // Make http request to get brand list
+    /***********************************************************************************************************/
     func getProduct() {
         BrandItem.getBrandItems((brand?.categoryId)!, completeHandler: {(brandItems) in
             self.brandItems = brandItems

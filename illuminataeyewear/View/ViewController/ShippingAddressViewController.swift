@@ -93,8 +93,8 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
         billingStateTextField.inputView = billingStatePicker
         
         // Set default country for billing and shipping address
-        currentShippingCountry = getCountryByName((order?.ShippingAddress_countryName)!, countries: shippingCountry)
-        currentBillingCountry = getCountryByName((order?.BillingAddress_countryName)!, countries: billingCountry)
+        currentShippingCountry = LiveCartController.sharedInstance().getCountryCodeByName((order?.ShippingAddress_countryName)!)
+        currentBillingCountry = LiveCartController.sharedInstance().getCountryCodeByName((order?.BillingAddress_countryName)!)
         
         //currentShippingState = State()
         //currentBillingState = State()
@@ -171,20 +171,15 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
         if sender.tag == TAG_SHIPPING_COUNTRY_PICKER {
             if (shippingStateList[(currentShippingCountry.getCountryID())] == nil) {
                 initStateForCurrentShippingCountry((currentShippingCountry.getCountryID()))
-            } /*else {
-                if var states = shippingStateList[(currentShippingCountry.getCountryID())] {
-                    shippingStateTextField.text = states[0].getName()
-                }
-            }*/
+            }
+            shippingStateTextField.inputView = shippingStatePicker
             shippingCountryTextField.resignFirstResponder()
         } else if sender.tag == TAG_BILLING_COUNTRY_PICKER {
             if (billingStateList[(currentBillingCountry.getCountryID())] == nil) {
                 initStateForCurrentBillingCountry((currentBillingCountry.getCountryID()))
-            } /*else {
-                if var states = billingStateList[(currentBillingCountry.getCountryID())] {
-                    billingStateTextField.text = states[0].getName()
-                }
-            }*/
+            }
+            
+            billingStateTextField.inputView = billingStatePicker
             billingCountryTextField.resignFirstResponder()
         } else if sender.tag == TAG_SHIPPING_STATE_PICKER {
             shippingStateTextField.resignFirstResponder()
@@ -203,9 +198,15 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
         } else if pickerView.tag == TAG_BILLING_COUNTRY_PICKER {
             return billingCountry.count
         } else if pickerView.tag == TAG_SHIPPING_STATE_PICKER {
-            return (shippingStateList[(currentShippingCountry.getCountryID())]!.count)
+            if shippingStateList[(currentShippingCountry.getCountryID())] != nil {
+                return (shippingStateList[(currentShippingCountry.getCountryID())]!.count)
+            }
+            return 0
         } else if pickerView.tag == TAG_BILLING_STATE_PICKER {
-            return (billingStateList[(currentBillingCountry.getCountryID())]!.count)
+            if billingStateList[(currentBillingCountry.getCountryID())] != nil {
+                return (billingStateList[(currentBillingCountry.getCountryID())]!.count)
+            }
+            return 0
         }
         return 0
     }
@@ -265,7 +266,9 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
             if stateList.count > 0 {
                 self.shippingStateList[countryID] = stateList
                 dispatch_async(dispatch_get_main_queue()) {
-                    if ((self.shippingStateTextField.text?.isEmpty) != nil) {
+                    self.shippingStateTextField.text = stateList[0].getName()
+                    self.currentShippingState = stateList[0]
+                    /*if ((self.shippingStateTextField.text?.isEmpty) != nil) {
                         let state = self.getStateByName(self.shippingStateTextField.text!)
                         if state.getID() > 0 {
                             self.currentShippingState = state
@@ -273,8 +276,10 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
                     } else {
                         self.shippingStateTextField.text = stateList[0].getName()
                         self.currentShippingState = stateList[0]
-                    }
+                    }*/
                 }
+            } else {
+                self.shippingStateTextField.inputView = nil
             }
         })
     }
@@ -284,7 +289,9 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
             if stateList.count > 0 {
                 self.billingStateList[countryID] = stateList
                 dispatch_async(dispatch_get_main_queue()) {
-                    if ((self.billingStateTextField.text?.isEmpty) != nil) {
+                    self.billingStateTextField.text = stateList[0].getName()
+                    self.currentBillingState = stateList[0]
+                    /*if ((self.billingStateTextField.text?.isEmpty) != nil) {
                         let state = self.getStateByName(self.billingStateTextField.text!)
                         if state.getID() > 0 {
                             self.currentBillingState = state
@@ -292,29 +299,12 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
                     } else {
                         self.billingStateTextField.text = stateList[0].getName()
                         self.currentBillingState = stateList[0]
-                    }
+                    }*/
                 }
+            } else {
+                self.billingStateTextField.inputView = nil
             }
         })
-    }
-    
-    // Obtain country
-    private func getCountryByName(country_name: String, countries: Array<Country>) -> Country {
-        for country in countries {
-            if (country.getCountry() as NSString).isEqualToString(country_name) {
-                return country
-            }
-        }
-        return Country()
-    }
-    
-    private func getCountryNameByID(countryID: String, countries: Array<Country>) -> String {
-        for country in countries {
-            if (country.getCountryID() as NSString).isEqualToString(countryID) {
-                return country.getCountry()
-            }
-        }
-        return ""
     }
     
     private func getStateByName(stateName: String) -> State {
@@ -339,7 +329,7 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
             self.shippingAddressTextField.text = order?.userShippingAddress.getAddres()
             self.shippingAddressTwoTextField.text = order?.userShippingAddress.getAddressTwo()
             self.shippingCityTextField.text = order?.userShippingAddress.getCity()
-            self.shippingCountryTextField.text = getCountryNameByID((order?.userShippingAddress.getCountryID())!, countries: shippingCountry)
+            self.shippingCountryTextField.text = LiveCartController.sharedInstance().getCountryNameByCode((order?.userShippingAddress.getCountryID())!)
             self.shippingStateTextField.text = order?.userShippingAddress.getStateName()
             self.shippingPostalCodeTextField.text = order?.userShippingAddress.getPostalCode()
         }
@@ -355,7 +345,7 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
             self.billingAddressTextField.text = order?.userBillingAddress.getAddres()
             self.billingAddressTwoTextField.text = order?.userBillingAddress.getAddressTwo()
             self.billingCityTextField.text = order?.userBillingAddress.getCity()
-            self.billingCountryTextField.text = getCountryNameByID((order?.userBillingAddress.getCountryID())!, countries: billingCountry)
+            self.billingCountryTextField.text = LiveCartController.sharedInstance().getCountryNameByCode((order?.userBillingAddress.getCountryID())!)
             self.billingStateTextField.text = order?.userBillingAddress.getStateName()
             self.billingPostalCodeTextField.text = order?.userBillingAddress.getPostalCode()
         }
@@ -372,7 +362,9 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
             if chekcShippingAddressField() {
                 busyAlertController!.display()
                 updateShippingAddress({() in
-                    self.busyAlertController!.finish()
+                    OrderController.sharedInstance().UpdateUserOrder((UserController.sharedInstance().getUser()?.ID)!, completeHandler: {(success) in
+                        self.busyAlertController!.finish()
+                    })
                 })
             } else {
                 print("Please complete all shipping address fileds")
@@ -382,7 +374,9 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
                 busyAlertController!.display()
                 updateShippingAddress({() in
                     self.updateBillingAddress({() in
-                        self.busyAlertController!.finish()
+                        OrderController.sharedInstance().UpdateUserOrder((UserController.sharedInstance().getUser()?.ID)!, completeHandler: {(success) in
+                            self.busyAlertController!.finish()
+                        })
                     })
                 })
             }else {
@@ -441,11 +435,13 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
         order?.userShippingAddress.setStateID(getStateByName(shippingStateTextField.text!).getID())
         order?.userShippingAddress.setPostalCode(shippingPostalCodeTextField.text!)
         
-        /*let params = order?.userShippingAddress.getXML((order?.userShippingAddress.getID())!)
+        let params = order?.userShippingAddress.getXML((order?.userShippingAddress.getID())!)
         order?.userShippingAddress.updateUdress(params!,completeHandler:{(userAddress) in
-            completeHandler()
-        })*/
-        completeHandler()
+            OrderController.sharedInstance().UpdateUserOrder((UserController.sharedInstance().getUser()?.ID)!, completeHandler: {(sucess) in
+                completeHandler()
+            })
+        })
+        //completeHandler()
     }
     
     private func updateBillingAddress(completeHandler: () -> Void) {
@@ -461,11 +457,13 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
         order?.userBillingAddress.setStateID(getStateByName(billingStateTextField.text!).getID())
         order?.userBillingAddress.setPostalCode(billingPostalCodeTextField.text!)
         
-        /*let params = order?.userBillingAddress.getXML((order?.userBillingAddress.getID())!)
+        let params = order?.userBillingAddress.getXML((order?.userBillingAddress.getID())!)
         order?.userBillingAddress.updateUdress(params!,completeHandler: {(userAddress) in
-            completeHandler()
-        })*/
-        completeHandler()
+            OrderController.sharedInstance().UpdateUserOrder((UserController.sharedInstance().getUser()?.ID)!, completeHandler: {(sucess) in
+                completeHandler()
+            })
+        })
+        //completeHandler()
     }
     
     private func setEnableBillingTexTField(enabled: Bool) {

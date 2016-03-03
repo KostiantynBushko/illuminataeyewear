@@ -12,15 +12,62 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
     
     @IBOutlet weak var shippingMethod: UITextField!
     
+    
     let shippingMethodPicker = UIPickerView();
+    var shippingService = [ShippingService]();
+    var deliveryZoneDict = [String:DeliveryZone]()
+    var selectedShippingMethod: ShippingService?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "nextAction:"), animated: true)
+        self.navigationItem.rightBarButtonItem?.enabled = false
         self.title = "Method"
         
         shippingMethod.inputView = shippingMethodPicker
         shippingMethod.inputAccessoryView = toolBarButtonDone(0)
+        shippingMethodPicker.delegate = self
+        
+        print(OrderController.sharedInstance().getCurrentOrder()?.ShippingAddress_countryID)
+        
+        // Obtain delivery zone
+        let countryCoded = OrderController.sharedInstance().getCurrentOrder()?.ShippingAddress_countryID
+        let countryName = OrderController.sharedInstance().getCurrentOrder()?.ShippingAddress_countryName
+        let state = OrderController.sharedInstance().getCurrentOrder()?.ShippingAddress_stateName
+    
+        
+        let deliveryZoneCountry = LiveCartController.sharedInstance().getDeliveryZoneCountryByCode(String(countryCoded!))
+        for zoneCountry in deliveryZoneCountry {
+            let zone = LiveCartController.sharedInstance().getDeliveryZoneByID(zoneCountry.deliveryZoneID)
+            if zone != nil {
+                deliveryZoneDict[(zone?.name)!] = zone
+            }
+        }
+        
+    
+        for zone in LiveCartController.sharedInstance().getDeliveryZoneByName(countryName!) {
+            if (deliveryZoneDict[zone.name] == nil) {
+                deliveryZoneDict[zone.name] = zone
+            }
+        }
+        
+        for zone in LiveCartController.sharedInstance().getDeliveryZoneByName(state!) {
+            if (deliveryZoneDict[zone.name] == nil) {
+                deliveryZoneDict[zone.name] = zone
+            }
+        }
+        
+        
+        for key in deliveryZoneDict {
+            let serviceList = LiveCartController.sharedInstance().getShipmentServiceByDeliveryZoneID(key.1.ID)
+            for service in serviceList {
+                self.shippingService.append(service)
+            }
+        }
+        
+        print(shippingService.count)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,19 +85,32 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 0
+        return shippingService.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return nil
+        return shippingService[row].name
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedShippingMethod = shippingService[row];
+        shippingMethod.text = selectedShippingMethod?.name
+        self.navigationItem.rightBarButtonItem?.enabled = true
         pickerView.resignFirstResponder()
     }
     
     
     func donePicker(sender: UIBarButtonItem) {
+        if selectedShippingMethod != nil {
+            Shipment().SetShipmentService((OrderController.sharedInstance().getCurrentOrder()?.ID)!, shippingMethodID: (selectedShippingMethod?.ID)!, completeHandler: {() in
+                OrderController.sharedInstance().setShippingService(self.selectedShippingMethod!)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.navigationItem.rightBarButtonItem?.enabled = true
+                }
+            })
+        } else {
+            self.navigationItem.rightBarButtonItem?.enabled = false
+        }
         shippingMethod.resignFirstResponder()
     }
     

@@ -69,12 +69,37 @@ class Order {
     var userShippingAddress = UserAddress()
     var userBillingAddress = UserAddress()
 
+    static func GetOrderByID(ID: Int64, completeHandler: (Order) -> Void) {
+        let paramString = "xml=<order><list><ID>" + String(ID) + "</ID><isFinalized>0</isFinalized></list></order>"
+        let url = NSURL(string: Constant.URL_BASE_API)!
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request){ (let data, let response, let error) in
+            guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
+                return
+            }
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print(dataString)
+            XmlOrderParser().ParseOrder(data!, completeHandler: {(ordersList) in
+                if ordersList != nil && ordersList?.count > 0 {
+                    ordersList![0].InitUserAddress()
+                    completeHandler(ordersList![0])
+                }
+            })
+        }
+        task.resume()
+    }
     
     func InitUserAddress() {
-        UserAddress.GetAddressByID(self.shippingAddressID, completeHandler: {(userAddress) in
+        UserAddress().GetAddressByID(self.shippingAddressID, completeHandler: {(userAddress) in
             self.userShippingAddress = userAddress
         })
-        UserAddress.GetAddressByID(self.billingAddressID, completeHandler: {(userAddress) in
+        UserAddress().GetAddressByID(self.billingAddressID, completeHandler: {(userAddress) in
             self.userBillingAddress = userAddress
         })
     }
@@ -95,8 +120,31 @@ class Order {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print("AddProductToCart : " + String(dataString))
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("AddProductToCart : " + String(dataString))
+            completeHandler()
+        }
+        task.resume()
+    }
+    
+    static func deleteItemFormCart(itemID: Int64, orderID: Int64, completeHandler: () -> Void) {
+        let paramString = "xml=<ordered_item><delete_item><ID>"
+            + String(itemID) + "</ID><customerOrderID>"
+            + String(orderID) + "</customerOrderID></delete_item></ordered_item>"
+        let url = NSURL(string: Constant.URL_BASE_API)!
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request){ (let data, let response, let error) in
+            guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
+                return
+            }
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("Delete Item from cart : " + String(dataString))
             completeHandler()
         }
         task.resume()
@@ -118,8 +166,8 @@ class Order {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print(dataString)
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print(dataString)
             XmlOrderParser().ParseOrder(data!, completeHandler: {(ordersList) in
                 completeHandler(ordersList: ordersList)
                 if ordersList != nil && ordersList?.count > 0 {
@@ -146,8 +194,8 @@ class Order {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print(dataString)
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print(dataString)
             XmlOrderParser().ParseOrder(data!, completeHandler: {(ordersList) in
                 completeHandler(ordersList: ordersList)
                 if ordersList != nil && ordersList?.count > 0 {

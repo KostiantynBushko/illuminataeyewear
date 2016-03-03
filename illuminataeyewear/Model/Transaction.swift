@@ -56,8 +56,8 @@ class Transaction: BaseModel {
                 return
             }
             
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print("Transactions : " + String(dataString))
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("Transactions : " + String(dataString))
             XmlTransactionParser().Parse(data!, completeHandler: {(transactions) in
                 completeHandler(transactions)
             })
@@ -91,9 +91,8 @@ class Transaction: BaseModel {
                 return
             }
             
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print("Make Transactions : " + String(dataString))
-            print("------------------------------------------------------------------------------------")
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("Make Transactions : " + String(dataString))
             XmlTransactionParser().Parse(data!, completeHandler: {(transactions) in
                 completeHandler(transactions)
             })

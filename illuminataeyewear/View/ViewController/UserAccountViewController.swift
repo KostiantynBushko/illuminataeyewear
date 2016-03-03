@@ -10,12 +10,41 @@ import UIKit
 
 class UserAccountViewController: UIViewController {
     
+    @IBOutlet weak var firstName: UILabel!
+    @IBOutlet weak var lastName: UILabel!
+    @IBOutlet weak var email: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Account"
+        let user = UserController.sharedInstance().getUser()
+        if user != nil {
+            self.firstName.text = user?.firstName
+            self.lastName.text = user?.lastName
+            self.email.text = user?.email
+        }
+        
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Log out", style: .Plain, target: self, action: "logOut:"), animated: true)
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func logOut(target: AnyObject) {
+        UserController.sharedInstance().UserLogOut({(success) in
+            if success {
+                print("Log out")
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+                
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                let liveCartViewController = storyBoard.instantiateViewControllerWithIdentifier("LiveCartViewController") as! LiveCartViewController
+                appDelegate.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+                appDelegate.window?.rootViewController? = liveCartViewController
+            }
+        })
     }
 
 }

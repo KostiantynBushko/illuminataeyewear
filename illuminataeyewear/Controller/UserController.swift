@@ -27,6 +27,33 @@ class UserController {
         return isAnonim
     }
     
+    func getUserFromCurrentSession() -> Bool {
+        let user = DBUserTable.GetCurrentUser()
+        if (user != nil) {
+            UserController.sharedInstance().setUser(user!)
+            return true
+        }
+        return false
+    }
+    
+    func UserLogin(email: String, password: String, completeHandler: (user: User?) -> Void) {
+        User.UserLogIn(email, password: password, completeHandler: {(user) in
+            if user != nil {
+                DBUserTable.SaveUser(user!)
+                self.setUser(user!)
+            }
+            completeHandler(user: user)
+        })
+    }
+    
+    func UserLogOut(completeHandler: (Bool) -> Void ) {
+        if DBUserTable.removeUser() {
+            self.user = nil
+            self.isAnonim = true
+            completeHandler(true)
+        }
+    }
+    
     func setUser(user: User) {
         isAnonim = false
         self.user = user

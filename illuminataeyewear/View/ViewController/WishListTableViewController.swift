@@ -89,15 +89,21 @@ class WishListTableViewController: UIViewController, UITableViewDataSource, UITa
         
         //Create and an option action
         let yesAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
-            OrderController.sharedInstance().getCurrentOrder()?.addProductToCart(self.wishProductsList[actionSheetController.view.tag].ID, completeHandler: {() in
-                OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.removeFromWish(actionSheetController.view.tag)
-                        self.RefreshTable()
-                        self.tabBarController!.tabBar.items![2].badgeValue = String(OrderController.sharedInstance().getCurrentOrder()!.productItems.count)
-                    }
+            if UserController.sharedInstance().isAnonimous() {
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let viewController = storyBoard.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
+                self.presentViewController(viewController, animated: true, completion: nil)
+            } else {
+                OrderController.sharedInstance().getCurrentOrder()?.addProductToCart(self.wishProductsList[actionSheetController.view.tag].ID, completeHandler: {() in
+                    OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.removeFromWish(actionSheetController.view.tag)
+                            self.RefreshTable()
+                            self.tabBarController!.tabBar.items![2].badgeValue = String(OrderController.sharedInstance().getCurrentOrder()!.productItems.count)
+                        }
+                    })
                 })
-            })
+            }
         }
         actionSheetController.addAction(yesAction)
         self.presentViewController(actionSheetController, animated: true, completion: nil)

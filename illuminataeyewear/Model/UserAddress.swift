@@ -90,7 +90,7 @@ class UserAddress: BaseModel {
         task.resume()
     }
     
-    static func GetAddressByID(ID: Int64, completeHandler: (UserAddress) -> Void) {
+    func GetAddressByID(ID: Int64, completeHandler: (UserAddress) -> Void) {
         let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
         let session = NSURLSession.sharedSession()
         

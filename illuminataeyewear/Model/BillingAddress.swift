@@ -30,8 +30,8 @@ class BillingAddress: BaseModel {
                 return
             }
             
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print("BillingAddress : " + String(dataString))
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("BillingAddress : " + String(dataString))
             
             XmlBillingAddressParser().Parse(data!, completeHandler: {(addresses) in
                 completeHandler(addresses)

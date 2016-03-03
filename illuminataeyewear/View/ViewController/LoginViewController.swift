@@ -17,25 +17,40 @@ class LoginViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        email.hidden = true
-        password.hidden = true
-        logInButton.hidden = true
+        //email.hidden = true
+        //password.hidden = true
+        //logInButton.hidden = true
         
         
-        if getUserFromCurrentSession() {
+        /*if getUserFromCurrentSession() {
             startSession()
         } else {
             email.hidden = false
             password.hidden = false
             logInButton.hidden = false
-        }
+        }*/
+        
+        //startSession()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Close", style: .Plain, target: self, action: "close:"), animated: true)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func close(target: AnyObject) {
+        //self.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func createNewCustomer(sender: AnyObject) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let registeredNavigationController = storyBoard.instantiateViewControllerWithIdentifier("RegistrationNavigationController") as! UINavigationController
+        self.presentViewController(registeredNavigationController, animated: true, completion: nil)
     }
     
     var isShowKeyboard = false
@@ -62,41 +77,15 @@ class LoginViewController : UIViewController {
     
     
     @IBAction func Login(sender: UIButton) {
-        User.UserLogIn(email.text!, password: password.text!, completeHandler: {(user) in
+        UserController.sharedInstance().UserLogin(email.text!, password: password.text!, completeHandler: {(user) in
             if user != nil {
-                DBUserTable.SaveUser(user!)
-                UserController.sharedInstance().setUser(user!)
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.startSession()
+                    //self.startSession()
+                    LiveCartController.startSession();
                 }
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.showWarnimgMessage("Incorrect user name or password")
-                }
-            }
-        })
-    }
-    
-    func getUserFromCurrentSession() -> Bool {
-        let user = DBUserTable.GetCurrentUser()
-        if (user != nil) {
-            UserController.sharedInstance().setUser(user!)
-            return true
-        }
-        return false
-    }
-    
-    private func startSession() {
-        OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
-            dispatch_async(dispatch_get_main_queue()) {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tabBarController = storyboard.instantiateViewControllerWithIdentifier("MainTabBarController") as! UITabBarController
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                appDelegate.window?.rootViewController = tabBarController
-                
-                let cartItemCount = OrderController.sharedInstance().getCurrentOrder()!.productItems.count
-                if cartItemCount > 0 {
-                    tabBarController.tabBar.items![2].badgeValue = String(cartItemCount)
                 }
             }
         })

@@ -18,7 +18,11 @@ class HomeTableViewController: UITableViewController {
     
     var imageCache = [String:UIImage]()
     
+    var featureSectionCount = 0
+    
     let cellIdentifier = "NewsPostViewCell"
+    
+    private var isRunning = false
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -42,18 +46,29 @@ class HomeTableViewController: UITableViewController {
                 }
             }
             self.RefreshTable()
-        })
-        
-        BrandItem.GetFeatureProduct(20, completeHandler: {(brandItems) in
-            for item in brandItems {
-                item.fullInitProduct({(brandItem) in
-                    self.featureProducts.append(brandItem)
-                    self.RefreshTable()
-                })
-            }
+            BrandItem.GetFeatureProduct(20, completeHandler: {(brandItems) in
+                for item in brandItems {
+                    item.fullInitProduct({(brandItem) in
+                        self.featureProducts.append(brandItem)
+                        if self.featureProducts.count == brandItems.count {
+                            self.featureSectionCount = self.featureProducts.count
+                            self.RefreshTable()
+                        }
+                    })
+                }
+            })
         })
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        isRunning = true
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        isRunning = false
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -68,7 +83,7 @@ class HomeTableViewController: UITableViewController {
         if section == 0 {
             return simpleNewsPostItems.count
         } else if section == 1 {
-            return featureProducts.count
+            return featureSectionCount
         }
         return 0
     }
@@ -83,7 +98,6 @@ class HomeTableViewController: UITableViewController {
             
             
             if !(newsPost.imageLink as NSString).isEqualToString("") {
-                
                 if let img = imageCache[newsPost.imageLink] {
                     cell.photo.image = img
                 } else {
@@ -104,7 +118,9 @@ class HomeTableViewController: UITableViewController {
                             dispatch_async(dispatch_get_main_queue(), {
                                 let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! NewsPostViewCell
                                 cell.photo.image = image
-                                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                                if self.isRunning {
+                                    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                                }
                             })
                         }
                         task.resume()

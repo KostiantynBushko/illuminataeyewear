@@ -71,22 +71,25 @@ class ItemPageContentViewController: UIViewController {
     }
     
     private func addToCartDialog() {
-        let actionSheetController: UIAlertController = UIAlertController(title: "Add to cart", message: "Do you want add this product to your cart", preferredStyle: .Alert)
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in}
-        
-        actionSheetController.addAction(cancelAction)
-        //Create and an option action
-        let yesAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
-            OrderController.sharedInstance().getCurrentOrder()?.addProductToCart((self.brandItem?.ID)!, completeHandler: {() in
-                OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.tabBarController!.tabBar.items![2].badgeValue = String(OrderController.sharedInstance().getCurrentOrder()!.productItems.count)
-                    }
+        if UserController.sharedInstance().isAnonimous() {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyBoard.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
+            self.presentViewController(viewController, animated: true, completion: nil)
+        } else {
+            let actionSheetController: UIAlertController = UIAlertController(title: "Add to cart", message: "Do you want add this product to your cart", preferredStyle: .Alert)
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in}
+            
+            actionSheetController.addAction(cancelAction)
+            //Create and an option action
+            let yesAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
+                OrderController.sharedInstance().getCurrentOrder()?.addProductToCart((self.brandItem?.ID)!, completeHandler: {() in
+                    OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
+                        LiveCartController.TabBarUpdateBadgeValue(self.tabBarController!)
+                    })
                 })
-            })
+            }
+            actionSheetController.addAction(yesAction)
+            self.presentViewController(actionSheetController, animated: true, completion: nil)
         }
-        actionSheetController.addAction(yesAction)
-        self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
-
 }
