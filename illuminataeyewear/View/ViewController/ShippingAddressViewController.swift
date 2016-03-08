@@ -367,7 +367,8 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
                     })
                 })
             } else {
-                print("Please complete all shipping address fileds")
+                let alert = UIAlertView(title: "Warning", message: "Please complete all shipping address fileds.", delegate: nil, cancelButtonTitle: "Cancel")
+                alert.show()
             }
         } else {
             if self.chekcShippingAddressField() && self.checkBillingAddressFiled() {
@@ -380,7 +381,9 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
                     })
                 })
             }else {
-                print("Please complete all shipping and billing address fileds")
+                print("Warning")
+                let alert = UIAlertView(title: "Warning", message: "Please complete all shipping and billing address fileds.", delegate: nil, cancelButtonTitle: "Cancel")
+                alert.show()
             }
         }
     }

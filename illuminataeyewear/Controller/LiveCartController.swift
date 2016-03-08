@@ -29,7 +29,6 @@ class LiveCartController {
     private func initController () {
         
         // Initialize live cart controller
-        
         Country.GetCountryList({(countryList) in
             self.countryList = countryList
         })
@@ -140,7 +139,12 @@ class LiveCartController {
                 appDelegate.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
             }
             appDelegate.window?.rootViewController = tabBarController
-            
+            if !DBApnToken.IsSuccessSubmited() {
+                let token = DBApnToken.GetToken()
+                if token != nil {
+                    UserApnToken.SaveUserApnToken(nil, token: token!, completeHandler: {() in })
+                }
+            }
         } else {
             OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
                 dispatch_async(dispatch_get_main_queue()) {
@@ -160,8 +164,10 @@ class LiveCartController {
     static func TabBarUpdateBadgeValue(tabBarController: UITabBarController) {
         dispatch_async(dispatch_get_main_queue()) {            
             var count = 0
-            for item in OrderController.sharedInstance().getCurrentOrder()!.productItems {
-                count += item.count
+            if OrderController.sharedInstance().getCurrentOrder() != nil {
+                for item in OrderController.sharedInstance().getCurrentOrder()!.productItems {
+                    count += item.count
+                }
             }
             if count > 0 {
                 tabBarController.tabBar.items![2].badgeValue = String(count)

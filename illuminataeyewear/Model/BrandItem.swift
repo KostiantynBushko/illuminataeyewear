@@ -53,10 +53,10 @@ class BrandItem {
     var ProductDefaultImage_title = String()
     var ProductDefaultImage_URL = String()
     var Manufacturer_name = String()
-    var Category_name = String()
+    private var Category_name = String()
     
     
-    var image = UIImage()
+    private var image: UIImage?
     var defaultImageName: String!
     
     var parentBrandItem: BrandItem?
@@ -114,15 +114,7 @@ class BrandItem {
             })
         }
     }
-    
-    /*func intProductProperty(completeHandler: () -> Void ) {
-        ProductVariationValue.GetProductVariationByProductID(self.ID, completeHandler: {(let productVariationValue) in
-            self.productVariationValue = productVariationValue
-            ProductVariation.GetProductVariationByID(productVariationValue.getVariationID(), completeHandler: {(let productVariation) in
-                self.productSuccesInit()
-            })
-        })
-    }*/
+
     
     func getDefaultImage(completeHandker:(success: Bool) -> Void) {
         let url:NSURL =  NSURL(string: Constant.URL_IMAGE + self.defaultImageName)!
@@ -142,6 +134,14 @@ class BrandItem {
         task.resume()
     }
     
+    func getImage() -> UIImage? {
+        return self.image
+    }
+    
+    func setImage(image : UIImage?) {
+        self.image = image
+    }
+    
     // Geters
     func getName() -> String {
         if !(parentBrandItem == nil) {
@@ -151,6 +151,16 @@ class BrandItem {
         }
         return name
     }
+    
+    func getCategoryName() -> String {
+        if !(parentBrandItem == nil) {
+            if Category_name.isEmpty && !parentBrandItem!.getCategoryName().isEmpty {
+                Category_name = parentBrandItem!.getCategoryName()
+            }
+        }
+        return Category_name
+    }
+    
     func getSKU() -> String {
         if (parentBrandItem != nil) {
             self.sku = parentBrandItem!.getSKU()
@@ -174,9 +184,13 @@ class BrandItem {
         self.name = name.htmlDecoded()
     }
     
+    func setCategoryName(Category_name: String) {
+        self.Category_name = Category_name
+    }
+    
     func getProductCodeName() -> String {
         let name = self.getName()
-        return name.stringByReplacingOccurrencesOfString(self.Category_name, withString: "")
+        return name.stringByReplacingOccurrencesOfString(self.getCategoryName(), withString: "")
     }
     
     func setSKU(sku: String) {
@@ -199,8 +213,14 @@ class BrandItem {
         return shippingWeight
     }
     
-    static func getBrandItems(categoryID: String, completeHandler: (Array<BrandItem>) -> Void){
-        let paramString = "xml=<product><list><categoryID>" + (categoryID) + "</categoryID></list></product>"
+    static func getBrandItems(categoryID: Int64, start: Int64, limit: Int64, completeHandler: (Array<BrandItem>) -> Void){
+        var paramString = "xml=<product><list"
+        paramString.appendContentsOf(" start=" + String(start))
+        if limit > 0 {
+            paramString.appendContentsOf(" limit=" + String(limit))
+        }
+        paramString.appendContentsOf("><categoryID>" + String(categoryID) + "</categoryID></list></product>")
+        
         let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
         let session = NSURLSession.sharedSession()
         
@@ -213,7 +233,7 @@ class BrandItem {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            XmlBrandParser().ParseItems(data!, completeHandler: {(brandItems) in
+            XmlBrandItemParser().ParseItems(data!, completeHandler: {(brandItems) in
                 completeHandler(brandItems)
             })
         }
@@ -234,7 +254,7 @@ class BrandItem {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            XmlBrandParser().ParseItems(data!, completeHandler: {(brandItems) in
+            XmlBrandItemParser().ParseItems(data!, completeHandler: {(brandItems) in
                 completeHandler(brandItems)
             })
         }
@@ -255,7 +275,7 @@ class BrandItem {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            XmlBrandParser().ParseItems(data!, completeHandler: {(brandItems) in
+            XmlBrandItemParser().ParseItems(data!, completeHandler: {(brandItems) in
                 completeHandler(brandItems)
             })
         }
@@ -276,7 +296,28 @@ class BrandItem {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            XmlBrandParser().ParseItems(data!, completeHandler: {(brandItems) in
+            XmlBrandItemParser().ParseItems(data!, completeHandler: {(brandItems) in
+                completeHandler(brandItems)
+            })
+        }
+        task.resume()
+    }
+    
+    func serchBrandByName(categoryID: Int64, name: String, start: Int64, limit: Int64, completeHandler: (Array<BrandItem>) -> Void) {
+        let paramString = "xml=<product><list><categoryID>" + String(categoryID) + "</categoryID><name>" + name + "</name></list></product>"
+        let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSMutableURLRequest(URL:url)
+        request.HTTPMethod = "POST"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request){ (let data, let response, let error) in
+            guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
+                return
+            }
+            XmlBrandItemParser().ParseItems(data!, completeHandler: {(brandItems) in
                 completeHandler(brandItems)
             })
         }
@@ -297,7 +338,7 @@ class BrandItem {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            XmlBrandParser().ParseItems(data!, completeHandler: {(brandItems) in
+            XmlBrandItemParser().ParseItems(data!, completeHandler: {(brandItems) in
                 completeHandler(brandItems)
             })
         }

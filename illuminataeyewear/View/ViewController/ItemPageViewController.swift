@@ -16,7 +16,7 @@ class ItemPageViewController: UIViewController,UIPageViewControllerDataSource, U
     var currentPage = 0
     
     var pageViewController : UIPageViewController!
-
+    var margin_bottom: Float = 45
     
     func reset() {
         /* Getting the page View controller */
@@ -33,7 +33,7 @@ class ItemPageViewController: UIViewController,UIPageViewControllerDataSource, U
             self.pageViewController.setViewControllers([pageContentViewController!], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
             
             /* We are substracting 30 because we have a start again button whose height is 30*/
-            self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height - 45)
+            self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height - (CGFloat)(self.margin_bottom))
             self.addChildViewController(pageViewController)
             self.view.addSubview(pageViewController.view)
             self.pageViewController.didMoveToParentViewController(self)
@@ -44,14 +44,56 @@ class ItemPageViewController: UIViewController,UIPageViewControllerDataSource, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = parentBrandItem?.getName()
-        self.navigationItem.setRightBarButtonItem((UIBarButtonItem(image:UIImage(named:"wish_black_button"), style: .Plain, target:self, action:"addToWishList:")), animated: false)
-        reset()
+        let info: UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"ic_info_outline_18p"), style: .Plain, target:self, action:"productInfo:")
+        let wish: UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"wish_black_button"), style: .Plain, target:self, action:"addToWishList:")
+        self.navigationItem.setRightBarButtonItems([wish,info], animated: true)
+        if self.brandItems.count > 0 && self.parentBrandItem != nil{
+            self.title = parentBrandItem?.getProductCodeName()
+            reset()
+        }
+    }
+    
+    func InitwithProductID(productID: Int64) {
+        BrandItem.getBrandItemByID(productID, completeHandler: {(brandItems) in
+            if brandItems.count > 0 {
+                if brandItems[0].parentID > 0 {
+                    self.brandItems.append(brandItems[0])
+                    BrandItem.getBrandItemByID(brandItems[0].parentID, completeHandler: {(brandItems) in
+                        self.parentBrandItem = brandItems[0]
+                        self.brandItems[0].parentBrandItem = self.parentBrandItem
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.title = self.parentBrandItem?.getProductCodeName()
+                            self.reset()
+                        }
+                    })
+                    
+                } else {
+                    self.parentBrandItem = brandItems[0]
+                    BrandItem.getBrandItemByParentNode(brandItems[0].ID, completeHandler: {(items) in
+                        for item in items {
+                            item.parentBrandItem = self.parentBrandItem
+                        }
+                        self.brandItems = items
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.title = self.parentBrandItem?.getProductCodeName()
+                            self.reset()
+                        }
+                    })
+                }
+            }
+        })
     }
     
     func addToWishList(sender: AnyObject) {
-        print(currentPage)
         addToWishListDialog()
+    }
+    
+    func productInfo(sender: AnyObject) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyBoard.instantiateViewControllerWithIdentifier("ProductInfoNavigationController") as! UINavigationController
+        self.presentViewController(navigationController, animated: true, completion: nil)
+        let productInfoViewController = navigationController.viewControllers.first as! ProductInfoViewController
+        productInfoViewController.brandItem = self.brandItems[currentPage]
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
@@ -83,8 +125,6 @@ class ItemPageViewController: UIViewController,UIPageViewControllerDataSource, U
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
         let pageContentViewController = pageViewController.viewControllers![0] as! ItemPageContentViewController
         currentPage = pageContentViewController.pageIndex!
-        print(currentPage)
-        
     }
     
     func viewControllerAtIndex(index : Int) -> UIViewController? {

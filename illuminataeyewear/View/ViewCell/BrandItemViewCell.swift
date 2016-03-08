@@ -33,7 +33,7 @@ class BrandItemViewCell: UITableViewCell {
     
     func getDataModelObject() -> BrandItem {
         brandItem = BrandItem()
-        brandItem?.image = self.photo.image!
+        brandItem?.setImage(self.photo.image!)
         brandItem?.setName(self.name.text!)
         return brandItem!
     }

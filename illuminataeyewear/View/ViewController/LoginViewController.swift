@@ -15,23 +15,10 @@ class LoginViewController : UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    private var successLogin: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //email.hidden = true
-        //password.hidden = true
-        //logInButton.hidden = true
-        
-        
-        /*if getUserFromCurrentSession() {
-            startSession()
-        } else {
-            email.hidden = false
-            password.hidden = false
-            logInButton.hidden = false
-        }*/
-        
-        //startSession()
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         
@@ -40,6 +27,10 @@ class LoginViewController : UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setSuccesLoginHandler(handler: () -> Void) {
+        self.successLogin = handler
     }
     
     func close(target: AnyObject) {
@@ -80,8 +71,25 @@ class LoginViewController : UIViewController {
         UserController.sharedInstance().UserLogin(email.text!, password: password.text!, completeHandler: {(user) in
             if user != nil {
                 dispatch_async(dispatch_get_main_queue()) {
-                    //self.startSession()
-                    LiveCartController.startSession();
+                    //LiveCartController.startSession();
+                    if user != nil {
+                        OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                                LiveCartController.TabBarUpdateBadgeValue((appDelegate.window?.rootViewController as! UITabBarController))
+                                
+                                if self.successLogin != nil {
+                                    self.successLogin!()
+                                }
+                                let token = DBApnToken.GetToken()
+                                if token != nil {
+                                    print(" User success login save token : " + token!)
+                                    UserApnToken.SaveUserApnToken((user?.ID)!, token: token!, completeHandler: {() in})
+                                }
+                            }
+                        })
+                    }
                 }
             } else {
                 dispatch_async(dispatch_get_main_queue()) {

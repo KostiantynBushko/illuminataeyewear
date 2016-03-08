@@ -30,6 +30,10 @@ class OrderController {
         return _instance
     }
     
+    func dropOrder() {
+        self.orders = [Order]()
+    }
+    
     func UpdateUserOrder(userID: Int64, completeHandler:(succesInit: Bool) -> Void) {
         self.successCompleteHandler = completeHandler
         Order.GetOrdersList(userID, isFinalised: false, completeHandler: {(listOrders) in
@@ -69,7 +73,10 @@ class OrderController {
         return 0
     }
     func getCurrentOrder() -> Order? {
-        return orders[0]
+        if orders.count > 0 {
+            return orders[0]
+        }
+        return nil
     }
     
     func getCurrentOrderCurrency() -> String {

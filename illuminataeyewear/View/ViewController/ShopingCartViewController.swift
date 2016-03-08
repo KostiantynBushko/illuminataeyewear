@@ -75,10 +75,15 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
                 }
             } else if order?.productItems.count == orderProductItems.count {
                 orderProductItems = (order?.productItems)!
+                self.checkoutButton.enabled = true
                 self.RefreshTable()
             }
             
             self.navigationItem.leftBarButtonItem = editButtonItem()
+        } else {
+            self.emptyCart.hidden = false
+            self.tableView.hidden = true
+            self.checkoutButton.enabled = false
         }
     }
     
@@ -109,7 +114,7 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
         
         cell.name.text = brandItem.getName()
         cell.price.text = String(orderProductItems[indexPath.row].count) + String(" x ") + brandItem.getPrice().definePrices
-        cell.photo.image = brandItem.image
+        cell.photo.image = brandItem.getImage()
         //cell.quantity.text = String(orderProductItems[indexPath.row].count)
         cell.property.text = brandItem.getProductVariation().getName()
         cell.cost.text = OrderController.sharedInstance().getCurrentOrderCurrency() + " " + String(Float(orderProductItem.count) * price!)
@@ -134,6 +139,9 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
                     dispatch_async(dispatch_get_main_queue()) {
                         self.brandItems.removeAtIndex(indexPath.row)
                         self.orderProductItems = (OrderController.sharedInstance().getCurrentOrder()?.productItems)!
+                        if self.orderProductItems.count == 0 {
+                            self.checkoutButton.enabled = false
+                        }
                         self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                         LiveCartController.TabBarUpdateBadgeValue(self.tabBarController!)
                     }

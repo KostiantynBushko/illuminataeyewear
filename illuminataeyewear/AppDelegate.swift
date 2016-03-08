@@ -29,10 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Override point for customization after application launch.
         //UINavigationBar.appearance().barTintColor = UIColor(red: 237.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 0.5)
         UINavigationBar.appearance().tintColor = UIColor(red: 154.0/255.0, green: 30.0/255.0, blue: 236.0/255.0, alpha: 1.0) //UIColor.whiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor(red: 154.0/255.0, green: 30.0/255.0, blue: 236.0/255.0, alpha: 1.0)]
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor(red: 154.0/255.0, green: 30.0/255.0, blue: 236.0/255.0, alpha: 1.0),NSFontAttributeName : UIFont(name: "Didot-Italic", size:21)!]
+        
+        //self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Lobster 1.4", size: 34)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         //UITabBar.appearance().barTintColor = UIColor(red: 237.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 0.5)
-        //UITabBar.appearance().tintColor = UIColor.blackColor()
+        UITabBar.appearance().tintColor = UIColor(red: 154.0/255.0, green: 30.0/255.0, blue: 236.0/255.0, alpha: 1.0)
         //UITabBar.appearance().barStyle = UIBarStyle.Black
         
         let pageController = UIPageControl.appearance()
@@ -140,9 +142,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Push notifications callback
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         //let dataString = NSString(data: deviceToken, encoding: NSUTF8StringEncoding) as! String
-        print("----------------------------------------------------------------")
-        print("Device token " + String(deviceToken))
-        print("----------------------------------------------------------------")
+        //print(String(deviceToken))
+        var token = String(deviceToken).subStringFrom(1)
+        token = token.substringToIndex(token.endIndex.predecessor())
+        //print("APN Device token : " + token)
+        if let currentToken = DBApnToken.GetToken() {
+            if !(currentToken as NSString).isEqualToString(token) {
+                DBApnToken.SaveApnToken(token)
+            }
+        } else {
+            DBApnToken.SaveApnToken(token)
+            if !DBApnToken.IsSuccessSubmited() {
+                if UserController.sharedInstance().isAnonimous() {
+                    UserApnToken.SaveUserApnToken(nil, token: token, completeHandler: {() in })
+                } else {
+                    UserApnToken.SaveUserApnToken(UserController.sharedInstance().getUser()?.ID, token: token, completeHandler: {() in })
+                }
+            }
+        }
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        //print("Receive Remote Notification :  " + String(userInfo))
+        
+        if let app = userInfo["aps"] as? NSDictionary {
+            let simpleNotification = SimpleNotification()
+            simpleNotification.payload = String(userInfo)
+            
+            if let alert = app["alert"] as? String {
+                simpleNotification.message = alert
+            }
+            if let url = app["url"] as? String {
+                simpleNotification.url = url
+            }
+            if let targetID = Int64((app["targetID"] as? String)!) {
+                simpleNotification.targetID = targetID
+            }
+            if let type = Int64((app["type"] as? String)!) {
+                simpleNotification.type = NotificatioinType(rawValue: type)!
+            }
+            DBNotifications.SaveNotification(simpleNotification)
+        }
     }
 }
 

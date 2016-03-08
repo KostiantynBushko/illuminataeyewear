@@ -15,4 +15,5 @@ class Constant {
     static let URL_BASE: String = "http://www.illuminataeyewear.ca/public/"
     static let URL_BASE_API: String = "http://www.illuminataeyewear.ca/api/xml"
     static let URL_IMAGE: String = "http://illuminataeyewear.ca/public/upload/productimage/"
+    
 }

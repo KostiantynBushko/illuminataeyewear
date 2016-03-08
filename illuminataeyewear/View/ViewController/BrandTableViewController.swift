@@ -19,7 +19,10 @@ class BrandTableViewController: UITableViewController, NSXMLParserDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getBrand()
+        Brand.GetBrands({(brands) in
+            self.brands = brands
+            self.RefreshTable()
+        })
     }
     
     // MARK: Table view data source
@@ -37,8 +40,7 @@ class BrandTableViewController: UITableViewController, NSXMLParserDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BrandViewCell
         
         let brand = brands[indexPath.row]
-        
-        cell.brandName.text = brand.brandName
+        cell.brandName.text = brand.name
         cell.number.text = String(indexPath.row)
         return cell
     }
@@ -46,11 +48,6 @@ class BrandTableViewController: UITableViewController, NSXMLParserDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "showBrandItemsTableView") {
             let brandItemsTableViewController = segue.destinationViewController as! ItemsBrandTableViewController
-            //let cell = sender as! BrandViewCell
-            
-            /*if let indexPath = self.tableView.indexPathForCell(sender as! BrandViewCell) {
-                brandItemsTableViewController.brand = brands[indexPath]  //cell.getDataModelObject()
-            }*/
             if let indexPath : NSIndexPath = self.tableView.indexPathForSelectedRow! {
                 brandItemsTableViewController.brand = brands[indexPath.row]
             }
@@ -63,7 +60,7 @@ class BrandTableViewController: UITableViewController, NSXMLParserDelegate {
     /***********************************************************************************************************/
     // Make http request to get brand list
     /***********************************************************************************************************/
-    func getBrand() {
+    /*func getBrand() {
         
         let url:NSURL = NSURL(string: "http://www.illuminataeyewear.ca/api/xml")!
         let session = NSURLSession.sharedSession()
@@ -83,17 +80,21 @@ class BrandTableViewController: UITableViewController, NSXMLParserDelegate {
                 return
             }
             
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print(dataString)
-            self.beginParse(data!)
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print(dataString)
+            //self.beginParse(data!)
+            XmlBrandParser().Parser(data!, completeHandler: {(brands) in
+                self.brands = brands
+                self.RefreshTable()
+            })
         }
         task.resume()
-    }
+    }*/
     
     /***********************************************************************************************************/
     // Implement xml parser interface to parce Brand data from xml request
     /***********************************************************************************************************/
-    var xmlParser = NSXMLParser()
+    /*var xmlParser = NSXMLParser()
     var element = NSString()
     var currentBrand: String = ""
     var ID = NSString()
@@ -116,7 +117,6 @@ class BrandTableViewController: UITableViewController, NSXMLParserDelegate {
     func parser(parser: NSXMLParser, foundCharacters string: String) {
         if element == "name" {
             currentBrand += string
-            //print("element \(i) " + string + " brands cound = " + String(brands.count))
         } else if element == "isEnabled" {
             if (string as NSString).isEqualToString("1") {
                 isEnabled = true
@@ -137,7 +137,7 @@ class BrandTableViewController: UITableViewController, NSXMLParserDelegate {
             }
             isEnabled = false
         }
-    }
+    }*/
     
     func RefreshTable() {
         dispatch_async(dispatch_get_main_queue(), {

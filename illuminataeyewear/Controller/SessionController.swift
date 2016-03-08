@@ -11,6 +11,7 @@ import Foundation
 class SessionController {
     
     private static var _instance: SessionController?
+    private var sessionStatus = false;
     
     class func sharedInstance() -> SessionController {
         if _instance == nil {

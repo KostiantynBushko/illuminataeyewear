@@ -63,6 +63,7 @@ class HomeTableViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         isRunning = true
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: UIImage(named: "mail_outline_black_24p"), style: .Plain, target: self, action: "notification:"), animated: true)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -74,6 +75,11 @@ class HomeTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func notification(sender: AnyObject) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let notificationViewController = storyBoard.instantiateViewControllerWithIdentifier("NotificationNavigationController") as! UINavigationController
+        self.presentViewController(notificationViewController, animated: true, completion: nil)
+    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -118,6 +124,7 @@ class HomeTableViewController: UITableViewController {
                             dispatch_async(dispatch_get_main_queue(), {
                                 let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! NewsPostViewCell
                                 cell.photo.image = image
+                                (cell.readMore as! RoundRectButton).enabled = true
                                 if self.isRunning {
                                     tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
                                 }
@@ -131,7 +138,7 @@ class HomeTableViewController: UITableViewController {
             } else if !(newsPost.iframe as NSString).isEqualToString(""){
                 cell.photo.hidden = true
                 cell.iFrame.hidden = false
-                let html = "<iframe src=\"" + newsPost.iframe + "\" width=\"300\" height=\"150\" frameborder=\"0\"></iframe>"
+                let html = "<iframe src=\"" + newsPost.iframe + "\" width=\"100%\" height=\"150\" frameborder=\"0\" allowfullscreen></iframe>"
                 cell.iFrame.loadHTMLString(html, baseURL: nil)
                 cell.iFrame.scrollView.scrollEnabled = false
                 cell.iFrame.scrollView.bounces = false
@@ -139,8 +146,8 @@ class HomeTableViewController: UITableViewController {
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("FeatureProductViewCell", forIndexPath: indexPath) as! FeatureProductViewCell
-            cell.photo.image = featureProducts[indexPath.row].image
-            cell.name.text = featureProducts[indexPath.row].getName()
+            cell.photo.image = featureProducts[indexPath.row].getImage()
+            cell.name.text = featureProducts[indexPath.row].getProductCodeName()
             return cell
         } else {
             return UITableViewCell()
@@ -164,6 +171,16 @@ class HomeTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let navigationController = storyBoard.instantiateViewControllerWithIdentifier("ProductInfoNavigationController") as! UINavigationController
+            self.presentViewController(navigationController, animated: true, completion: nil)
+            let productInfoViewController = navigationController.viewControllers.first as! ProductInfoViewController
+            productInfoViewController.brandItem = self.featureProducts[indexPath.row]
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "NewsDetails") {
             let newsDetailViewController = segue.destinationViewController as! NewsDetailsViewController
@@ -177,7 +194,7 @@ class HomeTableViewController: UITableViewController {
                     text = text.stringByReplacingOccurrencesOfString("<img\\s+[^>]*src=\"([^\"]*)\"[^>]*>", withString: "", options: .RegularExpressionSearch, range: nil)
                     newsDetailViewController.textHtml = text + "<p>" + moreText + "</p>"
                 } else if !(simpleNewsPostItems[indexPath].iframe as NSString).isEqualToString("") {
-                    newsDetailViewController.frameHtml = "<iframe src=\"" + simpleNewsPostItems[indexPath].iframe + "\" width=\"300\" height=\"170\" frameborder=\"0\"></iframe>"
+                    newsDetailViewController.frameHtml = "<iframe src=\"" + simpleNewsPostItems[indexPath].iframe + "\" width=\"100%\" height=\"150\" frameborder=\"0\" allowfullscreen></iframe>"
                     var moreText = newsPostItems[indexPath].moreText;
                     moreText = moreText.htmlDecoded()
                     var text = newsPostItems[indexPath].text;

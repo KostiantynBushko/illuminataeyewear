@@ -68,7 +68,7 @@ class WishListTableViewController: UIViewController, UITableViewDataSource, UITa
         cell.name.text = brandItem.getName()
         cell.itemProduct = brandItem
         cell.addToCartButton.tag = indexPath.row
-        cell.photo.image = brandItem.image
+        cell.photo.image = brandItem.getImage()
         cell.property.text = brandItem.getProductVariation().getName()
         cell.price.text = OrderController.sharedInstance().getCurrentOrderCurrency() + " " + String(brandItem.getPrice().definePrices)
         

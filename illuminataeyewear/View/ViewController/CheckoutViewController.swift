@@ -149,7 +149,6 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
                     self.products.append(brandItem)
                     self.RefreshTable()
                     if self.products.count == self.orderProductItems.count {
-                        
                         self.initOrderTotal({() in
                             self.RefreshTable()
                         })
@@ -159,7 +158,7 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
         }
         
         placeMethod.append("pay_pall_button")
-        placeMethod.append("beanstream_button")
+        //placeMethod.append("beanstream_button")
         
         tableView.separatorStyle = .None
     }
@@ -174,32 +173,38 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
         if shippingMethod != nil {
             ShippingRate().GetShippingRateByServiceID((shippingMethod?.ID)!, completeHandler: {(shippingRateList) in
                 let shippingRate = shippingRateList[0]
-                let order = OrderController.sharedInstance().getCurrentOrder()
-                let orderTota = OrderTotal()
-                
-                for item in (order?.productItems)! {
-                    orderTota.subTotalBeforeTax += item.price * (Float32)(item.count)
-                }
-                
-                orderTota.orderTotal = (order?.totalAmount)!
-                
-                let rate = Float(0)
-                if OrderController.sharedInstance().getShippingService() != nil {
-                    // Calculate shipping rate = ShippingRate.flatCharge + (itemCount * ShippingRate.perItemCharge) + (Product.shippingWeight * ShippingRate.perKgCharge)
-                    var productShippingWeight = Float()
+                OrderController.sharedInstance().UpdateUserOrder((UserController.sharedInstance().getUser()?.ID)!, completeHandler: {(success) in
+                    let order = OrderController.sharedInstance().getCurrentOrder()
+                    let orderTota = OrderTotal()
                     
-                    for index in 0...self.products.count - 1 {
-                        productShippingWeight += (self.products[index].getShippingWeight() * Float32(self.orderProductItems[index].count))
+                    for item in (order?.productItems)! {
+                        orderTota.subTotalBeforeTax += item.price * (Float32)(item.count)
                     }
-                    let rate = shippingRate.flatCharge + (Float32(self.products.count) * shippingRate.perItemCharge) + (productShippingWeight * shippingRate.perKgCharge)
-                    orderTota.shippingPickUp = rate
-                }
+                    
+                    orderTota.orderTotal = (order?.totalAmount)!
+                    
+                    let rate = Float(0)
+                    if OrderController.sharedInstance().getShippingService() != nil {
+                        // Calculate shipping rate = ShippingRate.flatCharge + (itemCount * ShippingRate.perItemCharge) + (Product.shippingWeight * ShippingRate.perKgCharge)
+                        var productShippingWeight = Float()
+                        
+                        for index in 0...self.products.count - 1 {
+                            productShippingWeight += (self.products[index].getShippingWeight() * Float32(self.orderProductItems[index].count))
+                        }
+                        let rate = shippingRate.flatCharge + (Float32(self.products.count) * shippingRate.perItemCharge) + (productShippingWeight * shippingRate.perKgCharge)
+                        orderTota.shippingPickUp = rate
+                    }
+                    
+                    if order?.totalAmount > 0 {
+                        let hst = (order?.totalAmount)! - orderTota.subTotalBeforeTax - rate
+                        if hst > 0 {
+                            orderTota.HST = (order?.totalAmount)! - orderTota.subTotalBeforeTax - rate
+                        }
+                    }
+                    self.orderTotalList.append(orderTota)
+                    completeHandler()
                 
-                if order?.totalAmount > 0 {
-                    orderTota.HST = (order?.totalAmount)! - orderTota.subTotalBeforeTax - rate
-                }
-                self.orderTotalList.append(orderTota)
-                completeHandler()
+                })
             })
         }
     }
@@ -236,7 +241,7 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
             cell.name.text = products[indexPath.row].getName()
             cell.price.text = brandItem.getPrice().definePrices
             cell.property.text = brandItem.getProductVariation().getName()
-            cell.photo.image = brandItem.image
+            cell.photo.image = brandItem.getImage()
             cell.currency.text = currency
             
             return cell

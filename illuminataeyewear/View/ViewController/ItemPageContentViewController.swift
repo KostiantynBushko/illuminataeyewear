@@ -23,7 +23,7 @@ class ItemPageContentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        name.text = brandItem?.getName()
+        name.text = brandItem?.getProductCodeName()
         price.text = brandItem?.getPrice().definePrices
         
         let url:NSURL =  NSURL(string: Constant.URL_IMAGE + brandItem!.defaultImageName)!
@@ -84,7 +84,9 @@ class ItemPageContentViewController: UIViewController {
             let yesAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
                 OrderController.sharedInstance().getCurrentOrder()?.addProductToCart((self.brandItem?.ID)!, completeHandler: {() in
                     OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
-                        LiveCartController.TabBarUpdateBadgeValue(self.tabBarController!)
+                        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        LiveCartController.TabBarUpdateBadgeValue((appDelegate.window?.rootViewController as! UITabBarController))
+
                     })
                 })
             }

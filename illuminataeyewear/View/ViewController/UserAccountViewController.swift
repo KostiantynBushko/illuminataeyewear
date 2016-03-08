@@ -36,13 +36,17 @@ class UserAccountViewController: UIViewController {
         UserController.sharedInstance().UserLogOut({(success) in
             if success {
                 print("Log out")
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                /*let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 appDelegate.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
                 
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let liveCartViewController = storyBoard.instantiateViewControllerWithIdentifier("LiveCartViewController") as! LiveCartViewController
                 appDelegate.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
-                appDelegate.window?.rootViewController? = liveCartViewController
+                appDelegate.window?.rootViewController? = liveCartViewController*/
+                OrderController.sharedInstance().dropOrder()
+                self.navigationController?.popViewControllerAnimated(true)
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                LiveCartController.TabBarUpdateBadgeValue((appDelegate.window?.rootViewController as! UITabBarController))
             }
         })
     }

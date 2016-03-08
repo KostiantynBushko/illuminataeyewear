@@ -64,9 +64,10 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
             for service in serviceList {
                 self.shippingService.append(service)
             }
+            selectedShippingMethod = shippingService[0];
+            shippingMethod.text = selectedShippingMethod?.name
+            donePicker(nil)
         }
-        
-        print(shippingService.count)
         
     }
     
@@ -100,7 +101,7 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
     }
     
     
-    func donePicker(sender: UIBarButtonItem) {
+    func donePicker(sender: UIBarButtonItem?) {
         if selectedShippingMethod != nil {
             Shipment().SetShipmentService((OrderController.sharedInstance().getCurrentOrder()?.ID)!, shippingMethodID: (selectedShippingMethod?.ID)!, completeHandler: {() in
                 OrderController.sharedInstance().setShippingService(self.selectedShippingMethod!)

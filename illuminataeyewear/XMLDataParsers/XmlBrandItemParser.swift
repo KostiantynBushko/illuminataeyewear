@@ -9,7 +9,7 @@
 import Foundation
 
 
-class XmlBrandParser: NSObject, NSXMLParserDelegate {
+class XmlBrandItemParser: NSObject, NSXMLParserDelegate {
     
     var element = NSString()
     var xmlParser = NSXMLParser()
@@ -23,6 +23,7 @@ class XmlBrandParser: NSObject, NSXMLParserDelegate {
     //
     var name = String()
     var sku = String()
+    var Category_name = String()
     
     var handler: ((brandItems: Array<BrandItem>) -> Void)?
     
@@ -81,7 +82,7 @@ class XmlBrandParser: NSObject, NSXMLParserDelegate {
             currentBrandItem.ProductDefaultImage_title.htmlDecoded()
             currentBrandItem.ProductDefaultImage_URL.htmlDecoded()
             currentBrandItem.Manufacturer_name.htmlDecoded()
-            currentBrandItem.Category_name.htmlDecoded()
+            currentBrandItem.setCategoryName(Category_name.htmlDecoded())
             
             currentBrandItem.defaultImageName = String(currentBrandItem.ID) + "-" + (currentBrandItem.defaultImageID as String) + "-3.jpg"
             brandItems.append(currentBrandItem)
@@ -89,6 +90,7 @@ class XmlBrandParser: NSObject, NSXMLParserDelegate {
             
             name = String()
             sku = String()
+            Category_name = String()
         }
     }
     
@@ -177,7 +179,8 @@ class XmlBrandParser: NSObject, NSXMLParserDelegate {
         } else if element.isEqualToString("Manufacturer_name") {
             currentBrandItem.Manufacturer_name.appendContentsOf(string)
         } else if element.isEqualToString("Category_name") {
-            currentBrandItem.Category_name.appendContentsOf(string)
+            self.Category_name.appendContentsOf(string)
+            //currentBrandItem.Category_name.appendContentsOf(string)
         }
     }
 
