@@ -16,11 +16,21 @@ class BrandTableViewController: UITableViewController, NSXMLParserDelegate {
     // MARK: Properties
     
     var brands = [Brand]()
+    var lenses: Brand?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Brand.GetBrands({(brands) in
             self.brands = brands
+            var i = Int()
+            for b in brands {
+                if b.ID == 267 {
+                    self.lenses = b
+                    self.brands.removeAtIndex(i)
+                    break
+                }
+                i++
+            }
             self.RefreshTable()
         })
     }
@@ -28,116 +38,86 @@ class BrandTableViewController: UITableViewController, NSXMLParserDelegate {
     // MARK: Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return brands.count;
+        if section == 0 {
+            if lenses != nil {
+                return 1
+            }
+            return 0
+        } else if section == 1 {
+            return brands.count;
+        }
+        return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellIdentifier = "BrandViewCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BrandViewCell
-        
-        let brand = brands[indexPath.row]
-        cell.brandName.text = brand.name
-        cell.number.text = String(indexPath.row)
-        return cell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("SimpleViewCell", forIndexPath: indexPath) as! SimpleViewCell
+            cell.label.text = "Rx Lenses"
+            return cell
+        } else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("BrandViewCell", forIndexPath: indexPath) as! BrandViewCell
+            let brand = brands[indexPath.row]
+            cell.brandName.text = brand.name
+            cell.number.text = String(indexPath.row)
+            return cell
+        }
+        return UITableViewCell()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 120
+        } else if indexPath.section == 1{
+            return 60
+        } else {
+            return 0
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let brandItemsTableViewController = storyBoard.instantiateViewControllerWithIdentifier("ItemsBrandTableViewController") as! ItemsBrandTableViewController
+        if indexPath.section == 0 {
+            if self.lenses != nil {
+                brandItemsTableViewController.brand = self.lenses
+            }
+        } else {
+            brandItemsTableViewController.brand = brands[indexPath.row]
+        }
+        self.navigationController?.pushViewController(brandItemsTableViewController, animated: true)
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "Our Glasses Brands"
+        }
+        return nil
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 40
+        }
+        return 0
+    }
+    
+    /*override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor
+    }*/
+    
+    /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "showBrandItemsTableView") {
             let brandItemsTableViewController = segue.destinationViewController as! ItemsBrandTableViewController
             if let indexPath : NSIndexPath = self.tableView.indexPathForSelectedRow! {
                 brandItemsTableViewController.brand = brands[indexPath.row]
             }
-            
-        }
-    }
-    
-    
-    
-    /***********************************************************************************************************/
-    // Make http request to get brand list
-    /***********************************************************************************************************/
-    /*func getBrand() {
-        
-        let url:NSURL = NSURL(string: "http://www.illuminataeyewear.ca/api/xml")!
-        let session = NSURLSession.sharedSession()
-        
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
-        
-        let paramString = "xml=<category><filter><parentNodeID>107</parentNodeID></filter></category>"
-        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        let task = session.dataTaskWithRequest(request) {(
-            let data, let response, let error) in
-            
-            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
-                print("error ")
-                return
-            }
-            
-            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            //print(dataString)
-            //self.beginParse(data!)
-            XmlBrandParser().Parser(data!, completeHandler: {(brands) in
-                self.brands = brands
-                self.RefreshTable()
-            })
-        }
-        task.resume()
-    }*/
-    
-    /***********************************************************************************************************/
-    // Implement xml parser interface to parce Brand data from xml request
-    /***********************************************************************************************************/
-    /*var xmlParser = NSXMLParser()
-    var element = NSString()
-    var currentBrand: String = ""
-    var ID = NSString()
-    var isEnabled: Bool = false
-    
-    func beginParse(xmlData: NSData) {
-        xmlParser = NSXMLParser(data: xmlData)
-        xmlParser.delegate = self
-        xmlParser.parse()
-    }
-
-    var i = 0
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        element = elementName
-        if (elementName as NSString).isEqualToString("category") {
-            i += 1
-        }
-    }
-    
-    func parser(parser: NSXMLParser, foundCharacters string: String) {
-        if element == "name" {
-            currentBrand += string
-        } else if element == "isEnabled" {
-            if (string as NSString).isEqualToString("1") {
-                isEnabled = true
-            }
-        } else if element == "ID" {
-            ID = (string as NSString)
-        }
-    }
-    
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if (elementName as NSString).isEqualToString("response") {
-            print("End parse")
-            RefreshTable()
-        } else if (elementName as NSString).isEqualToString("category") {
-            if isEnabled {
-                brands.append(Brand(brandName: currentBrand.htmlDecoded(), categoryId: (ID as String))!)
-                currentBrand = ""
-            }
-            isEnabled = false
         }
     }*/
+    
     
     func RefreshTable() {
         dispatch_async(dispatch_get_main_queue(), {

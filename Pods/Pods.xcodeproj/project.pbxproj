@@ -7,74 +7,204 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20620D9AA80096DF6BD0BA8FC41F877D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
-		2436E7F303F4C4512E4060B6B30F173F /* Pods-illuminataeyewear-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F384BD360235327E949035E1A96DDC26 /* Pods-illuminataeyewear-dummy.m */; };
-		2BD30577E7D147524479E43C0F5721E2 /* CSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE084C274655870C956CD06D271D364 /* CSS.swift */; };
-		33AFFE0825E74D085585A5444E3A05EC /* Kanna-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C7B857EBCAF13770C959046D8DA28 /* Kanna-dummy.m */; };
-		395EB90F99C1B4455D5473D35CC5BD5E /* Kanna-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A6E54BE33194EDB5BE7F20B672F573D /* Kanna-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49704E013BB645536D81224227C9BFDC /* Pods-illuminataeyewear-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 423116A581F040A7AD1ED006930829F2 /* Pods-illuminataeyewear-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5705D790F72EB6F75990B3326D375EDD /* Kanna.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352DB6A4F3CC8AB43750B78CC2600A7D /* Kanna.swift */; };
-		64F4546C4CD18BB14FA0098B55FECA50 /* libxmlHTMLDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB9FAC8A135D8EF16D4A03938A2177 /* libxmlHTMLDocument.swift */; };
-		8D70044694BD80CAE717B97F512ED800 /* libxmlHTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EC09B1A13146E60A2D104450F5C722 /* libxmlHTMLNode.swift */; };
-		9B6713274378B30AEDB42E37B58BD088 /* libxmlParserOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D45A6849CDB6712585DFFE1417119 /* libxmlParserOption.swift */; };
-		D30DE04588D3003AFF5DF9E5D392F005 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
+		01C57309E2EF9E7025552938EFD9E244 /* BTNavigationDropdownMenu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E74103A7785596BF7C8A0170470FEF58 /* BTNavigationDropdownMenu-dummy.m */; };
+		01F39071D344F17F00429C201B758EBE /* AukPageVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6662608E6B8303C2C731661C671A7229 /* AukPageVisibility.swift */; };
+		029105A156815CB901155F7C71744DCC /* Pods-illuminataeyewear-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 423116A581F040A7AD1ED006930829F2 /* Pods-illuminataeyewear-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		045313244F886695D0508084C3F4502F /* AukRemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4D885A91D822DE9B7E04BEDC41C4DD /* AukRemoteImage.swift */; };
+		064537A4D2690D42BA12CB6F36EA8914 /* BTNavigationDropdownMenu.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CC18EFA6EF344671A1DCE5BBC6839CFB /* BTNavigationDropdownMenu.bundle */; };
+		187BDBDD74369DB439D38FC7D107222F /* MoaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22400EB2042A18767DCC3C2B30FEB21 /* MoaSettings.swift */; };
+		1B0A71B889183C9358F0F3CAE8E93D60 /* MoaHttpImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58038526A0BA5BA11C69330666A24E97 /* MoaHttpImageDownloader.swift */; };
+		1E5DAF7B7180901BC650448C66C91DA1 /* MoaHttpSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45807EEE514CAC076CD6D53F087A0245 /* MoaHttpSession.swift */; };
+		20620D9AA80096DF6BD0BA8FC41F877D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62792C193E7D2D6A6CB4C9C53388CF27 /* Foundation.framework */; };
+		23E90387A7D6ADA8940C38516ECF557E /* AukScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20489DC6AC42063D8A0F50EF88E7E11D /* AukScrollViewDelegate.swift */; };
+		2AE87EFAD9EFCEC7C0F85E28EFFAACED /* moa-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C10C45C78E8FA7FFF921711E4D068FF /* moa-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BD30577E7D147524479E43C0F5721E2 /* CSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47FEC066B45F944CF1DE5CECE8D2964 /* CSS.swift */; };
+		2C0BA916E1CFF6C753A5629466247252 /* moa-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B90BD70598D90C0AE9D05B4530D63429 /* moa-dummy.m */; };
+		31375D677778F2B217957BFB3AAAB316 /* BTNavigationDropdownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9601195E24116A7E168A435B2562C74 /* BTNavigationDropdownMenu.swift */; };
+		33AFFE0825E74D085585A5444E3A05EC /* Kanna-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 059ADCF84D40D1F5373C2F68718FA260 /* Kanna-dummy.m */; };
+		33BEC54ED9D501E4623B303CAEF3F64C /* AukPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760704C5448FC7785FC9FDF264BF837C /* AukPage.swift */; };
+		392FA87616C938B1B3A19DC48E377FA4 /* RightToLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01704C793391F8E0A920583FDFD98C31 /* RightToLeft.swift */; };
+		395EB90F99C1B4455D5473D35CC5BD5E /* Kanna-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A7B9ACD5DB82900FD194B665207669 /* Kanna-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C61D514E25C75F17F8CE64E667FCA8D /* AukScrollTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547FD29F243B645BEE94745F251FDEE /* AukScrollTo.swift */; };
+		3D90A6E4474899564B979ABAF299250E /* iiAutolayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B8F1BAE4B1BDF1F7BCF4006A75A3AB /* iiAutolayoutConstraints.swift */; };
+		53BD4028AA944BDFEA181E3FFEA36592 /* Auk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55669EF3A34664B39B42960D98D54CFF /* Auk.swift */; };
+		561F42C7C00A162BA17E8E608D451739 /* Pods-illuminataeyewear-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F384BD360235327E949035E1A96DDC26 /* Pods-illuminataeyewear-dummy.m */; };
+		5705D790F72EB6F75990B3326D375EDD /* Kanna.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90474533A8F2014680FEFDB10AA0FCC /* Kanna.swift */; };
+		5B2D2ABED65D243B3B122A5158DCBAAC /* AukSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40860C30D6BFE397E4E6EFE7E195DF6 /* AukSettings.swift */; };
+		5D82D03B6E1F4D7B31332AB7852F2DFD /* Auk-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 62EC74391120A1C5D5D2D7DEAA554F84 /* Auk-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E01A923B72E3396D0D7A83B26168490 /* MoaHttpImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59321933F1CA2787744C5458BCF47D62 /* MoaHttpImage.swift */; };
+		5F7055B2BF0FC1D3A85E1ACE0823295D /* MoaHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A801EB3B47D665CC619AAE78B4546B /* MoaHttp.swift */; };
+		64F4546C4CD18BB14FA0098B55FECA50 /* libxmlHTMLDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC43BF04D1010DB8C55A3987A6EB130 /* libxmlHTMLDocument.swift */; };
+		685D08083523D9768471AB0063481380 /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5A8B2E742D21856C150206C3C123F5 /* Moa.swift */; };
+		73390C8FFB52A3A11DAE1E6C36B1D7F2 /* MoaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F457B5DE2605A02A3297D3972ECB7CDF /* MoaError.swift */; };
+		752E6B42E6206B1EA6B016B19AAF4652 /* BTNavigationDropdownMenu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F1EE0FE5CD2E76C065E440230550E8C /* BTNavigationDropdownMenu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7FEA95A711FF9E0AA5FE85107AF5074F /* MoaString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BEE03E16D6EF570D9FBBD5786657F2 /* MoaString.swift */; };
+		802583BFD6CA09C84AB1608F0B36BB1B /* Auk-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 22ED71402E86A44A6FC565545AA4F6C6 /* Auk-dummy.m */; };
+		821886611E4CFBA28D8D9199D3C10401 /* AukAutoscroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2924DC594FA5EF8FDBE0686984EF19F /* AukAutoscroll.swift */; };
+		8B07A4ADA35CE800B5C7827162B69179 /* AukPageIndicatorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABD34793E12200BB91992DBCFA9079A /* AukPageIndicatorContainer.swift */; };
+		8C46EEB4929602342E08BD6C50F8231D /* MoaLogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA891EBE57A51B0FE9824292D13FFCF5 /* MoaLogType.swift */; };
+		8D131656B8E4A8AEB399DDFB6214D92C /* MoaTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BF1EA7AA6B7968951F70C9BB76F6FF /* MoaTime.swift */; };
+		8D70044694BD80CAE717B97F512ED800 /* libxmlHTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD75DB3342335033C47ED7D86678750E /* libxmlHTMLNode.swift */; };
+		8EB2D425B7428E4C82B26573EF6CC8C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62792C193E7D2D6A6CB4C9C53388CF27 /* Foundation.framework */; };
+		92A9A5FD8A430176D440F2FAA07C49F9 /* MoaSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A0326FC7C6465C7460D2A3D9888393 /* MoaSimulator.swift */; };
+		942DEEC92CF3755F833A5A4B1F578B8A /* MoaSettingsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548C8834E08E1E77E7C04388F414FF92 /* MoaSettingsCache.swift */; };
+		97F29653F36761C8ED5942F378AF0A18 /* MoaLoggerCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD57AADE14CB451455D1EACE54216C /* MoaLoggerCallback.swift */; };
+		9B6713274378B30AEDB42E37B58BD088 /* libxmlParserOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87ECF8FF9F0406FD60F9A02D0ED73F0 /* libxmlParserOption.swift */; };
+		A0A23F98F14A5550AB13D12EE99D5E0F /* iiQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B8505D0BF229E13104BC708C96595 /* iiQ.swift */; };
+		A4D6851922D797D69B0ACBCE28D366E8 /* ImageView+moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A9594BCB3095EB341A23A8B1E4D12E /* ImageView+moa.swift */; };
+		B0E7C7D6DAECB8925743352FBF432966 /* UIScrollView+Auk.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29D7CAD46EBC768D163E2FAC0745E14 /* UIScrollView+Auk.swift */; };
+		BC86B475658B523E97434F90537BBA1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62792C193E7D2D6A6CB4C9C53388CF27 /* Foundation.framework */; };
+		C40FB6F99E35690C6771E5EA57FB959D /* MoaSimulatedImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C3264218EE64672D11687C4D78F22 /* MoaSimulatedImageDownloader.swift */; };
+		CAC45496AEF6011A860863C3E36948A4 /* MoaConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FA417121EE26BF5D743C0F514BADE3 /* MoaConsoleLogger.swift */; };
+		D0166D6E8552798665CFA71D46892D0D /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CDA7AF66971E49128398ECC5D7888A /* moa.framework */; };
+		DD2F988BA9D5C0695CEB1C9C3EE72483 /* MoaLoggerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A66D6B64624809C507C4DC160848EE7 /* MoaLoggerText.swift */; };
+		E3B2CCBF95AB9D7C03548CDB25E96110 /* MoaImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74849025377D08BA08B370FDD5A553B /* MoaImageDownloader.swift */; };
+		EB12E4E98D7964ED3F433710B1E6C749 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62792C193E7D2D6A6CB4C9C53388CF27 /* Foundation.framework */; };
+		EB9B3A17CE78BED0FFE71767EE47E013 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62792C193E7D2D6A6CB4C9C53388CF27 /* Foundation.framework */; };
+		F4C21D8F0175963A26172D13AFC00DFD /* AutoCancellingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEDA529280A80347E6715FCB12FF1D0 /* AutoCancellingTimer.swift */; };
+		FA452F214BFA20F28F907BF25A805EA0 /* AukScrollViewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9AC6D3831B7161F1D09EFA6A294B87 /* AukScrollViewContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		01F30CCD5630C66AF307C75CB9FCFC9E /* PBXContainerItemProxy */ = {
+		4B1AF4974394C57A736C627E7AE3159B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B6312CAD7E18804AD5E11308495CFD52;
 			remoteInfo = Kanna;
 		};
+		5E62885EBBB9CFA2F1416550F4658E2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96156A5F1AD1FBE6AB7AD495CD1FB54F;
+			remoteInfo = moa;
+		};
+		68F4712BA427E06D359472CDD722D2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C9F8188802DB4395B862D4E5BC72FD3;
+			remoteInfo = Auk;
+		};
+		DDC4C0589DDD6FD1D2BA800EFB246FA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96156A5F1AD1FBE6AB7AD495CD1FB54F;
+			remoteInfo = moa;
+		};
+		FBC0B2DE5F36693418BD3220361817B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD23F1DA220A44C7E84F356B64871271;
+			remoteInfo = BTNavigationDropdownMenu;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A8C7B857EBCAF13770C959046D8DA28 /* Kanna-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Kanna-dummy.m"; sourceTree = "<group>"; };
-		0C2857BF3AD13DD5C509C822D1CF9839 /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalPaymentViewController.h; path = PayPalMobile/PayPalPaymentViewController.h; sourceTree = "<group>"; };
-		0D274D13A11DC4626C208605B257F276 /* CardIOPaymentViewControllerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewControllerDelegate.h; path = CardIO/CardIOPaymentViewControllerDelegate.h; sourceTree = "<group>"; };
-		116E3BC8510F2BD8A5C112BC5D282705 /* libopencv_imgproc.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = CardIO/libopencv_imgproc.a; sourceTree = "<group>"; };
-		2612BE0CC4683186B4F735E0F98F97FB /* Kanna-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kanna-prefix.pch"; sourceTree = "<group>"; };
-		2A6E54BE33194EDB5BE7F20B672F573D /* Kanna-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kanna-umbrella.h"; sourceTree = "<group>"; };
-		2BFFE6D613B47453DEB8A90D96095C16 /* PayPalConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalConfiguration.h; path = PayPalMobile/PayPalConfiguration.h; sourceTree = "<group>"; };
+		01568D0ABB540290B023D7ABDE93CD16 /* Kanna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kanna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		01704C793391F8E0A920583FDFD98C31 /* RightToLeft.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RightToLeft.swift; path = Auk/Utils/RightToLeft.swift; sourceTree = "<group>"; };
+		03CDA7AF66971E49128398ECC5D7888A /* moa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = moa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		059ADCF84D40D1F5373C2F68718FA260 /* Kanna-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Kanna-dummy.m"; sourceTree = "<group>"; };
+		0AFD62A23B469184ADDC4A4DEDF58F9B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0CFCA6473B2CB1F16F971C35EA7F309E /* CardIODetectionMode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIODetectionMode.h; path = CardIO/CardIODetectionMode.h; sourceTree = "<group>"; };
+		0F1EE0FE5CD2E76C065E440230550E8C /* BTNavigationDropdownMenu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BTNavigationDropdownMenu-umbrella.h"; sourceTree = "<group>"; };
+		1D5B8505D0BF229E13104BC708C96595 /* iiQ.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = iiQ.swift; path = Auk/Utils/iiQ.swift; sourceTree = "<group>"; };
+		20489DC6AC42063D8A0F50EF88E7E11D /* AukScrollViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AukScrollViewDelegate.swift; path = Auk/AukScrollViewDelegate.swift; sourceTree = "<group>"; };
+		21E57203DEDFFF0E919CEC269CA6DE1B /* BTNavigationDropdownMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BTNavigationDropdownMenu.modulemap; sourceTree = "<group>"; };
+		22ED71402E86A44A6FC565545AA4F6C6 /* Auk-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Auk-dummy.m"; sourceTree = "<group>"; };
+		22FDC416258083C25C63A5F0CE1296F1 /* CardIOViewDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOViewDelegate.h; path = CardIO/CardIOViewDelegate.h; sourceTree = "<group>"; };
+		2631FD2D83391AF35D9BE29389BF33C3 /* BTNavigationDropdownMenu.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BTNavigationDropdownMenu.xcconfig; sourceTree = "<group>"; };
+		2CA5BF5888BFB9BBD19518D5EC08513B /* CardIO.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIO.h; path = CardIO/CardIO.h; sourceTree = "<group>"; };
+		2F3919404A3DB6CB5B8EE52420A5ECD9 /* CardIOUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOUtilities.h; path = CardIO/CardIOUtilities.h; sourceTree = "<group>"; };
 		2FFC6F2ED917CBABB4F5A5F440CB51CE /* Pods-illuminataeyewear-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-illuminataeyewear-acknowledgements.plist"; sourceTree = "<group>"; };
-		352DB6A4F3CC8AB43750B78CC2600A7D /* Kanna.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Kanna.swift; path = Source/Kanna.swift; sourceTree = "<group>"; };
+		31BF1EA7AA6B7968951F70C9BB76F6FF /* MoaTime.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaTime.swift; path = Moa/Utils/MoaTime.swift; sourceTree = "<group>"; };
+		32A7B9192A4C33F50B7FBE0A5E0A374C /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalFuturePaymentViewController.h; path = PayPalMobile/PayPalFuturePaymentViewController.h; sourceTree = "<group>"; };
+		337726A0E2DAB23012FD577306C69DA4 /* PayPalPayment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalPayment.h; path = PayPalMobile/PayPalPayment.h; sourceTree = "<group>"; };
+		34A9594BCB3095EB341A23A8B1E4D12E /* ImageView+moa.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ImageView+moa.swift"; path = "Moa/ImageView+moa.swift"; sourceTree = "<group>"; };
 		359A093BC7223E6A206AECD7D18A9289 /* Pods-illuminataeyewear.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-illuminataeyewear.release.xcconfig"; sourceTree = "<group>"; };
-		38AB9FAC8A135D8EF16D4A03938A2177 /* libxmlHTMLDocument.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlHTMLDocument.swift; path = Source/libxml/libxmlHTMLDocument.swift; sourceTree = "<group>"; };
-		3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		3AE084C274655870C956CD06D271D364 /* CSS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CSS.swift; path = Source/CSS.swift; sourceTree = "<group>"; };
-		3B041C0A5100D7D3AC44F12B0FD44A5C /* Kanna.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Kanna.xcconfig; sourceTree = "<group>"; };
+		37F3817B33CA867BF7E82081A5E70F5D /* CardIOView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOView.h; path = CardIO/CardIOView.h; sourceTree = "<group>"; };
+		3CAF74FA387DF74395AE9D954C0323AD /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOCreditCardInfo.h; path = CardIO/CardIOCreditCardInfo.h; sourceTree = "<group>"; };
 		423116A581F040A7AD1ED006930829F2 /* Pods-illuminataeyewear-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-illuminataeyewear-umbrella.h"; sourceTree = "<group>"; };
-		490D45A6849CDB6712585DFFE1417119 /* libxmlParserOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlParserOption.swift; path = Source/libxml/libxmlParserOption.swift; sourceTree = "<group>"; };
-		4B07C91C554795348564F3024317863F /* CardIOPaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewController.h; path = CardIO/CardIOPaymentViewController.h; sourceTree = "<group>"; };
-		4B538168CE3D62F21F1FC6405E7BFCA7 /* CardIO.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIO.h; path = CardIO/CardIO.h; sourceTree = "<group>"; };
-		4D2223048A964E288FE42118292D78AC /* CardIOViewDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOViewDelegate.h; path = CardIO/CardIOViewDelegate.h; sourceTree = "<group>"; };
-		60B798F209AA7A924B5B4BEFC410A890 /* CardIODetectionMode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIODetectionMode.h; path = CardIO/CardIODetectionMode.h; sourceTree = "<group>"; };
-		69C32C5ACCE9894E21285E4D3D41752D /* CardIOUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOUtilities.h; path = CardIO/CardIOUtilities.h; sourceTree = "<group>"; };
-		6FDC389387499D4E04B85026ADD2828A /* libopencv_core.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libopencv_core.a; path = CardIO/libopencv_core.a; sourceTree = "<group>"; };
+		4301C1437B4A599873A24F264985F57E /* moa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = moa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45807EEE514CAC076CD6D53F087A0245 /* MoaHttpSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaHttpSession.swift; path = Moa/Http/MoaHttpSession.swift; sourceTree = "<group>"; };
+		4E675DFD6CF9D0F6DEDA8D5FB731ACD8 /* moa.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = moa.modulemap; sourceTree = "<group>"; };
+		51EB4BE5C5D1C6061AB7E9E560B85294 /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalProfileSharingViewController.h; path = PayPalMobile/PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
+		548C8834E08E1E77E7C04388F414FF92 /* MoaSettingsCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaSettingsCache.swift; path = Moa/MoaSettingsCache.swift; sourceTree = "<group>"; };
+		55669EF3A34664B39B42960D98D54CFF /* Auk.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Auk.swift; path = Auk/Auk.swift; sourceTree = "<group>"; };
+		58038526A0BA5BA11C69330666A24E97 /* MoaHttpImageDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaHttpImageDownloader.swift; path = Moa/Http/MoaHttpImageDownloader.swift; sourceTree = "<group>"; };
+		59321933F1CA2787744C5458BCF47D62 /* MoaHttpImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaHttpImage.swift; path = Moa/Http/MoaHttpImage.swift; sourceTree = "<group>"; };
+		5C10C45C78E8FA7FFF921711E4D068FF /* moa-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "moa-umbrella.h"; sourceTree = "<group>"; };
+		62792C193E7D2D6A6CB4C9C53388CF27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		62EC74391120A1C5D5D2D7DEAA554F84 /* Auk-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Auk-umbrella.h"; sourceTree = "<group>"; };
+		645DF2C549D61BDC135A5A95B43048B1 /* moa-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "moa-prefix.pch"; sourceTree = "<group>"; };
+		6662608E6B8303C2C731661C671A7229 /* AukPageVisibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AukPageVisibility.swift; path = Auk/AukPageVisibility.swift; sourceTree = "<group>"; };
+		6858BC579B763708406163117410AEE4 /* Auk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Auk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		693C3264218EE64672D11687C4D78F22 /* MoaSimulatedImageDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaSimulatedImageDownloader.swift; path = Moa/Simulator/MoaSimulatedImageDownloader.swift; sourceTree = "<group>"; };
+		6AB33966A10F555AC62A30FDDF1BCD72 /* Pods_illuminataeyewear.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_illuminataeyewear.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C8CAFFF3E871827894E0D86E82BFF38 /* BTNavigationDropdownMenu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BTNavigationDropdownMenu-prefix.pch"; sourceTree = "<group>"; };
+		6CEEA567515F9E7D8AB4774D04AD7A9B /* PayPalMobile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalMobile.h; path = PayPalMobile/PayPalMobile.h; sourceTree = "<group>"; };
+		7013DFA51CAE99A596F363FE7E3698DD /* libPayPalMobile.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libPayPalMobile.a; path = PayPalMobile/libPayPalMobile.a; sourceTree = "<group>"; };
+		71A0326FC7C6465C7460D2A3D9888393 /* MoaSimulator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaSimulator.swift; path = Moa/Simulator/MoaSimulator.swift; sourceTree = "<group>"; };
 		72ADB2BFBC1D1A4288B54EDD47E1A9E5 /* Pods-illuminataeyewear-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-illuminataeyewear-frameworks.sh"; sourceTree = "<group>"; };
-		792BD2338BF26D7D939ECAE9D2922F6C /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalFuturePaymentViewController.h; path = PayPalMobile/PayPalFuturePaymentViewController.h; sourceTree = "<group>"; };
-		7A233F161639852966245E6E31BD7F02 /* Kanna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kanna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B0984F9FA2734049F13C0504AFDD7AD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8B2440B0A541A77DA51CF41E8738DE7F /* CardIOView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOView.h; path = CardIO/CardIOView.h; sourceTree = "<group>"; };
+		74C293FDFAC7199F41A3A707F93B1287 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		760704C5448FC7785FC9FDF264BF837C /* AukPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AukPage.swift; path = Auk/AukPage.swift; sourceTree = "<group>"; };
+		7A66D6B64624809C507C4DC160848EE7 /* MoaLoggerText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaLoggerText.swift; path = Moa/Logger/MoaLoggerText.swift; sourceTree = "<group>"; };
+		7DEDA529280A80347E6715FCB12FF1D0 /* AutoCancellingTimer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AutoCancellingTimer.swift; path = Auk/Utils/AutoCancellingTimer.swift; sourceTree = "<group>"; };
+		81D47DBB4DC6EF3DC437F67FE088E3E7 /* BTNavigationDropdownMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BTNavigationDropdownMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83A801EB3B47D665CC619AAE78B4546B /* MoaHttp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaHttp.swift; path = Moa/Http/MoaHttp.swift; sourceTree = "<group>"; };
+		86C481A9534737DBD1025E20F8F15507 /* Kanna.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Kanna.modulemap; sourceTree = "<group>"; };
+		8C8DA3BB9856A52FD4724296BB2EA0B9 /* Auk.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Auk.xcconfig; sourceTree = "<group>"; };
+		8D5A8B2E742D21856C150206C3C123F5 /* Moa.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Moa.swift; path = Moa/Moa.swift; sourceTree = "<group>"; };
+		8DB6761760EE90D9A10EEA9E7EB056DA /* libopencv_core.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libopencv_core.a; path = CardIO/libopencv_core.a; sourceTree = "<group>"; };
+		8EFD57AADE14CB451455D1EACE54216C /* MoaLoggerCallback.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaLoggerCallback.swift; path = Moa/Logger/MoaLoggerCallback.swift; sourceTree = "<group>"; };
 		8F67D20FC7D3376EFD7DB0C767923524 /* Pods-illuminataeyewear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-illuminataeyewear.debug.xcconfig"; sourceTree = "<group>"; };
-		94A83D93676622346A061ED162D81E04 /* PayPalPayment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalPayment.h; path = PayPalMobile/PayPalPayment.h; sourceTree = "<group>"; };
+		92BFBD36C6E8F9698006B1A1353459DF /* Auk.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Auk.modulemap; sourceTree = "<group>"; };
 		9920E06EED70383D934414F905B7F3AD /* Pods-illuminataeyewear-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-illuminataeyewear-acknowledgements.markdown"; sourceTree = "<group>"; };
-		9C49178D70D24B2568F8EB0130D075BE /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOCreditCardInfo.h; path = CardIO/CardIOCreditCardInfo.h; sourceTree = "<group>"; };
-		A4EC09B1A13146E60A2D104450F5C722 /* libxmlHTMLNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlHTMLNode.swift; path = Source/libxml/libxmlHTMLNode.swift; sourceTree = "<group>"; };
-		A912A0BA0EC7B06A8679F898EEC40991 /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalProfileSharingViewController.h; path = PayPalMobile/PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
+		99A64E592BA6263E4D80FC89FAE550FC /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalPaymentViewController.h; path = PayPalMobile/PayPalPaymentViewController.h; sourceTree = "<group>"; };
+		A3ADBC29472905AC056B4967DAFE759F /* libCardIO.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libCardIO.a; path = CardIO/libCardIO.a; sourceTree = "<group>"; };
+		A6643009AA5132E9079D91B143F12F39 /* Kanna.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Kanna.xcconfig; sourceTree = "<group>"; };
+		A74849025377D08BA08B370FDD5A553B /* MoaImageDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaImageDownloader.swift; path = Moa/MoaImageDownloader.swift; sourceTree = "<group>"; };
+		A8BEE03E16D6EF570D9FBBD5786657F2 /* MoaString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaString.swift; path = Moa/Utils/MoaString.swift; sourceTree = "<group>"; };
+		A9649EE654A196AA2EF13BD1D423BCF8 /* moa.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = moa.xcconfig; sourceTree = "<group>"; };
+		AC4D885A91D822DE9B7E04BEDC41C4DD /* AukRemoteImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AukRemoteImage.swift; path = Auk/AukRemoteImage.swift; sourceTree = "<group>"; };
+		AD75DB3342335033C47ED7D86678750E /* libxmlHTMLNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlHTMLNode.swift; path = Source/libxml/libxmlHTMLNode.swift; sourceTree = "<group>"; };
+		ADC43BF04D1010DB8C55A3987A6EB130 /* libxmlHTMLDocument.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlHTMLDocument.swift; path = Source/libxml/libxmlHTMLDocument.swift; sourceTree = "<group>"; };
+		B22400EB2042A18767DCC3C2B30FEB21 /* MoaSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaSettings.swift; path = Moa/MoaSettings.swift; sourceTree = "<group>"; };
+		B5B8F1BAE4B1BDF1F7BCF4006A75A3AB /* iiAutolayoutConstraints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = iiAutolayoutConstraints.swift; path = Auk/Utils/iiAutolayoutConstraints.swift; sourceTree = "<group>"; };
+		B5C3299DFDF07C362BA6271F22A6BAB3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B81B6D256E643BC66A0F0D49876CD160 /* libopencv_imgproc.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = CardIO/libopencv_imgproc.a; sourceTree = "<group>"; };
+		B90BD70598D90C0AE9D05B4530D63429 /* moa-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "moa-dummy.m"; sourceTree = "<group>"; };
+		B9CCBC340FC09A02F652B2033CBFAE3B /* Kanna-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kanna-prefix.pch"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BABD34793E12200BB91992DBCFA9079A /* AukPageIndicatorContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AukPageIndicatorContainer.swift; path = Auk/AukPageIndicatorContainer.swift; sourceTree = "<group>"; };
 		BB70067D361F1B6E6AC6B256081E2092 /* Pods-illuminataeyewear.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-illuminataeyewear.modulemap"; sourceTree = "<group>"; };
-		C7BC57A9FEBCCE0DC008DCD10DE1A673 /* Pods_illuminataeyewear.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_illuminataeyewear.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD0D69744C7C32953471BE13E130028B /* PayPalOAuthScopes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalOAuthScopes.h; path = PayPalMobile/PayPalOAuthScopes.h; sourceTree = "<group>"; };
-		CF5578EC44B33299381206A408D80AF0 /* PayPalMobile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalMobile.h; path = PayPalMobile/PayPalMobile.h; sourceTree = "<group>"; };
-		DB246B60E2A29BEFC5EF51249E91636C /* Kanna.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Kanna.modulemap; sourceTree = "<group>"; };
+		C2924DC594FA5EF8FDBE0686984EF19F /* AukAutoscroll.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AukAutoscroll.swift; path = Auk/AukAutoscroll.swift; sourceTree = "<group>"; };
+		C40860C30D6BFE397E4E6EFE7E195DF6 /* AukSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AukSettings.swift; path = Auk/AukSettings.swift; sourceTree = "<group>"; };
+		CC18EFA6EF344671A1DCE5BBC6839CFB /* BTNavigationDropdownMenu.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = BTNavigationDropdownMenu.bundle; path = Source/BTNavigationDropdownMenu.bundle; sourceTree = "<group>"; };
+		D87ECF8FF9F0406FD60F9A02D0ED73F0 /* libxmlParserOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlParserOption.swift; path = Source/libxml/libxmlParserOption.swift; sourceTree = "<group>"; };
+		DA891EBE57A51B0FE9824292D13FFCF5 /* MoaLogType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaLogType.swift; path = Moa/Logger/MoaLogType.swift; sourceTree = "<group>"; };
+		DB475A7D4E372BFA44DEEEDC3E0B3FAB /* PayPalOAuthScopes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalOAuthScopes.h; path = PayPalMobile/PayPalOAuthScopes.h; sourceTree = "<group>"; };
+		E29D7CAD46EBC768D163E2FAC0745E14 /* UIScrollView+Auk.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIScrollView+Auk.swift"; path = "Auk/UIScrollView+Auk.swift"; sourceTree = "<group>"; };
+		E2A7B9ACD5DB82900FD194B665207669 /* Kanna-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kanna-umbrella.h"; sourceTree = "<group>"; };
+		E433C99A20F2202C2D8D44B095216C3E /* CardIOPaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewController.h; path = CardIO/CardIOPaymentViewController.h; sourceTree = "<group>"; };
+		E547FD29F243B645BEE94745F251FDEE /* AukScrollTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AukScrollTo.swift; path = Auk/AukScrollTo.swift; sourceTree = "<group>"; };
+		E639B1C1B0FCAE32E8A75D0141F25644 /* CardIOPaymentViewControllerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewControllerDelegate.h; path = CardIO/CardIOPaymentViewControllerDelegate.h; sourceTree = "<group>"; };
+		E6CDB381E36BA6F47AB3ECF9AC0D5DE1 /* Auk-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Auk-prefix.pch"; sourceTree = "<group>"; };
+		E6FA417121EE26BF5D743C0F514BADE3 /* MoaConsoleLogger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaConsoleLogger.swift; path = Moa/Logger/MoaConsoleLogger.swift; sourceTree = "<group>"; };
+		E74103A7785596BF7C8A0170470FEF58 /* BTNavigationDropdownMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BTNavigationDropdownMenu-dummy.m"; sourceTree = "<group>"; };
 		E778D70E50D111B5E04BDD6CE1082B3E /* Pods-illuminataeyewear-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-illuminataeyewear-resources.sh"; sourceTree = "<group>"; };
+		E90474533A8F2014680FEFDB10AA0FCC /* Kanna.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Kanna.swift; path = Source/Kanna.swift; sourceTree = "<group>"; };
+		EA9AC6D3831B7161F1D09EFA6A294B87 /* AukScrollViewContent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AukScrollViewContent.swift; path = Auk/AukScrollViewContent.swift; sourceTree = "<group>"; };
 		EC8BF0330848D88A564F6951EB650FED /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED88A45DF03DDAF650FE7D68A83BB32D /* libCardIO.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libCardIO.a; path = CardIO/libCardIO.a; sourceTree = "<group>"; };
 		F384BD360235327E949035E1A96DDC26 /* Pods-illuminataeyewear-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-illuminataeyewear-dummy.m"; sourceTree = "<group>"; };
-		FFCA94535FF0556F03E1908CB1746887 /* libPayPalMobile.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libPayPalMobile.a; path = PayPalMobile/libPayPalMobile.a; sourceTree = "<group>"; };
+		F457B5DE2605A02A3297D3972ECB7CDF /* MoaError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MoaError.swift; path = Moa/Http/MoaError.swift; sourceTree = "<group>"; };
+		F47FEC066B45F944CF1DE5CECE8D2964 /* CSS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CSS.swift; path = Source/CSS.swift; sourceTree = "<group>"; };
+		F6EF36479EAE4A6A4C532C3B798ABE34 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9601195E24116A7E168A435B2562C74 /* BTNavigationDropdownMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BTNavigationDropdownMenu.swift; path = Source/BTNavigationDropdownMenu.swift; sourceTree = "<group>"; };
+		F9E6A63CE1435C5C14AB9EE5ADA9D951 /* PayPalConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalConfiguration.h; path = PayPalMobile/PayPalConfiguration.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,84 +216,190 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8A0153BBA47F66408CC7B8F6C77C9572 /* Frameworks */ = {
+		4791B190FA8D97EA7A517032612D1FBF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D30DE04588D3003AFF5DF9E5D392F005 /* Foundation.framework in Frameworks */,
+				EB12E4E98D7964ED3F433710B1E6C749 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5672FC987B52BFD30DCCB5DD69C4F5F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EB2D425B7428E4C82B26573EF6CC8C9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FF9A9A2FEFA44B2F68E8C4F2C496117 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB9B3A17CE78BED0FFE71767EE47E013 /* Foundation.framework in Frameworks */,
+				D0166D6E8552798665CFA71D46892D0D /* moa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C696D45785A75143C95EC12EAEBB833B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC86B475658B523E97434F90537BBA1F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A5E99BE47F54ED0B448A58F5CEC2555 /* PayPal-iOS-SDK */ = {
+		007C11BA83C5FFC2D3C3DF24BD69869B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				29FAED4322F1F1029BCFBBA49B6BE6E8 /* Core */,
+				593E87811A6F46D7B62DD5D2C1BC4EE9 /* Auk */,
+				3D068E793D79130F3D565B2BB92F92BF /* BTNavigationDropdownMenu */,
+				AF08DC8268625BB258DEDA981C46327B /* CardIO */,
+				EE93E1FBFA1637BEF5D806B2535B4646 /* Kanna */,
+				79D9A965B1DE2B4D28DF358B61B35AFA /* moa */,
+				B9B057E4698BEF4682D333CE1E7E0D17 /* PayPal-iOS-SDK */,
 			);
-			path = "PayPal-iOS-SDK";
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		112C7921E3A497328D11F4930CBBC9CA /* iOS */ = {
+		13E6C1C55E31A1AE2C33B4DCD03ACA2D /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */,
+				21E57203DEDFFF0E919CEC269CA6DE1B /* BTNavigationDropdownMenu.modulemap */,
+				2631FD2D83391AF35D9BE29389BF33C3 /* BTNavigationDropdownMenu.xcconfig */,
+				E74103A7785596BF7C8A0170470FEF58 /* BTNavigationDropdownMenu-dummy.m */,
+				6C8CAFFF3E871827894E0D86E82BFF38 /* BTNavigationDropdownMenu-prefix.pch */,
+				0F1EE0FE5CD2E76C065E440230550E8C /* BTNavigationDropdownMenu-umbrella.h */,
+				0AFD62A23B469184ADDC4A4DEDF58F9B /* Info.plist */,
 			);
-			name = iOS;
+			name = "Support Files";
+			path = "../Target Support Files/BTNavigationDropdownMenu";
 			sourceTree = "<group>";
 		};
-		29FAED4322F1F1029BCFBBA49B6BE6E8 /* Core */ = {
+		240F857F4E50525E55CB8BA5AD1B1756 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				2BFFE6D613B47453DEB8A90D96095C16 /* PayPalConfiguration.h */,
-				792BD2338BF26D7D939ECAE9D2922F6C /* PayPalFuturePaymentViewController.h */,
-				CF5578EC44B33299381206A408D80AF0 /* PayPalMobile.h */,
-				CD0D69744C7C32953471BE13E130028B /* PayPalOAuthScopes.h */,
-				94A83D93676622346A061ED162D81E04 /* PayPalPayment.h */,
-				0C2857BF3AD13DD5C509C822D1CF9839 /* PayPalPaymentViewController.h */,
-				A912A0BA0EC7B06A8679F898EEC40991 /* PayPalProfileSharingViewController.h */,
-				CF3BA035350D6C51F6C4BF2A954EFD8A /* Frameworks */,
+				F9E6A63CE1435C5C14AB9EE5ADA9D951 /* PayPalConfiguration.h */,
+				32A7B9192A4C33F50B7FBE0A5E0A374C /* PayPalFuturePaymentViewController.h */,
+				6CEEA567515F9E7D8AB4774D04AD7A9B /* PayPalMobile.h */,
+				DB475A7D4E372BFA44DEEEDC3E0B3FAB /* PayPalOAuthScopes.h */,
+				337726A0E2DAB23012FD577306C69DA4 /* PayPalPayment.h */,
+				99A64E592BA6263E4D80FC89FAE550FC /* PayPalPaymentViewController.h */,
+				51EB4BE5C5D1C6061AB7E9E560B85294 /* PayPalProfileSharingViewController.h */,
+				9CA1EC1E2EF9D1E739EEA64101D36827 /* Frameworks */,
 			);
 			name = Core;
 			sourceTree = "<group>";
 		};
-		2F087B3B0EA1510CC5ADEB42D422C439 /* Support Files */ = {
+		3D068E793D79130F3D565B2BB92F92BF /* BTNavigationDropdownMenu */ = {
 			isa = PBXGroup;
 			children = (
-				7B0984F9FA2734049F13C0504AFDD7AD /* Info.plist */,
-				DB246B60E2A29BEFC5EF51249E91636C /* Kanna.modulemap */,
-				3B041C0A5100D7D3AC44F12B0FD44A5C /* Kanna.xcconfig */,
-				0A8C7B857EBCAF13770C959046D8DA28 /* Kanna-dummy.m */,
-				2612BE0CC4683186B4F735E0F98F97FB /* Kanna-prefix.pch */,
-				2A6E54BE33194EDB5BE7F20B672F573D /* Kanna-umbrella.h */,
+				F9601195E24116A7E168A435B2562C74 /* BTNavigationDropdownMenu.swift */,
+				4A32C70FD32121A8BA26700DE01A610C /* Resources */,
+				13E6C1C55E31A1AE2C33B4DCD03ACA2D /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/Kanna";
+			path = BTNavigationDropdownMenu;
+			sourceTree = "<group>";
+		};
+		3E1632466ABB20639FC7477E34F60C53 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A3ADBC29472905AC056B4967DAFE759F /* libCardIO.a */,
+				8DB6761760EE90D9A10EEA9E7EB056DA /* libopencv_core.a */,
+				B81B6D256E643BC66A0F0D49876CD160 /* libopencv_imgproc.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		42877928D2B189467B7D7F0BDF9044DD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6858BC579B763708406163117410AEE4 /* Auk.framework */,
+				81D47DBB4DC6EF3DC437F67FE088E3E7 /* BTNavigationDropdownMenu.framework */,
+				01568D0ABB540290B023D7ABDE93CD16 /* Kanna.framework */,
+				4301C1437B4A599873A24F264985F57E /* moa.framework */,
+				6AB33966A10F555AC62A30FDDF1BCD72 /* Pods_illuminataeyewear.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4A32C70FD32121A8BA26700DE01A610C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CC18EFA6EF344671A1DCE5BBC6839CFB /* BTNavigationDropdownMenu.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		593E87811A6F46D7B62DD5D2C1BC4EE9 /* Auk */ = {
+			isa = PBXGroup;
+			children = (
+				55669EF3A34664B39B42960D98D54CFF /* Auk.swift */,
+				C2924DC594FA5EF8FDBE0686984EF19F /* AukAutoscroll.swift */,
+				760704C5448FC7785FC9FDF264BF837C /* AukPage.swift */,
+				BABD34793E12200BB91992DBCFA9079A /* AukPageIndicatorContainer.swift */,
+				6662608E6B8303C2C731661C671A7229 /* AukPageVisibility.swift */,
+				AC4D885A91D822DE9B7E04BEDC41C4DD /* AukRemoteImage.swift */,
+				E547FD29F243B645BEE94745F251FDEE /* AukScrollTo.swift */,
+				EA9AC6D3831B7161F1D09EFA6A294B87 /* AukScrollViewContent.swift */,
+				20489DC6AC42063D8A0F50EF88E7E11D /* AukScrollViewDelegate.swift */,
+				C40860C30D6BFE397E4E6EFE7E195DF6 /* AukSettings.swift */,
+				7DEDA529280A80347E6715FCB12FF1D0 /* AutoCancellingTimer.swift */,
+				B5B8F1BAE4B1BDF1F7BCF4006A75A3AB /* iiAutolayoutConstraints.swift */,
+				1D5B8505D0BF229E13104BC708C96595 /* iiQ.swift */,
+				01704C793391F8E0A920583FDFD98C31 /* RightToLeft.swift */,
+				E29D7CAD46EBC768D163E2FAC0745E14 /* UIScrollView+Auk.swift */,
+				DD16F79BAFD119BFDDF23E407B892B71 /* Support Files */,
+			);
+			path = Auk;
+			sourceTree = "<group>";
+		};
+		79D9A965B1DE2B4D28DF358B61B35AFA /* moa */ = {
+			isa = PBXGroup;
+			children = (
+				34A9594BCB3095EB341A23A8B1E4D12E /* ImageView+moa.swift */,
+				8D5A8B2E742D21856C150206C3C123F5 /* Moa.swift */,
+				E6FA417121EE26BF5D743C0F514BADE3 /* MoaConsoleLogger.swift */,
+				F457B5DE2605A02A3297D3972ECB7CDF /* MoaError.swift */,
+				83A801EB3B47D665CC619AAE78B4546B /* MoaHttp.swift */,
+				59321933F1CA2787744C5458BCF47D62 /* MoaHttpImage.swift */,
+				58038526A0BA5BA11C69330666A24E97 /* MoaHttpImageDownloader.swift */,
+				45807EEE514CAC076CD6D53F087A0245 /* MoaHttpSession.swift */,
+				A74849025377D08BA08B370FDD5A553B /* MoaImageDownloader.swift */,
+				8EFD57AADE14CB451455D1EACE54216C /* MoaLoggerCallback.swift */,
+				7A66D6B64624809C507C4DC160848EE7 /* MoaLoggerText.swift */,
+				DA891EBE57A51B0FE9824292D13FFCF5 /* MoaLogType.swift */,
+				B22400EB2042A18767DCC3C2B30FEB21 /* MoaSettings.swift */,
+				548C8834E08E1E77E7C04388F414FF92 /* MoaSettingsCache.swift */,
+				693C3264218EE64672D11687C4D78F22 /* MoaSimulatedImageDownloader.swift */,
+				71A0326FC7C6465C7460D2A3D9888393 /* MoaSimulator.swift */,
+				A8BEE03E16D6EF570D9FBBD5786657F2 /* MoaString.swift */,
+				31BF1EA7AA6B7968951F70C9BB76F6FF /* MoaTime.swift */,
+				E2F219F33E8D5D7F106A99E5CEBE5AED /* Support Files */,
+			);
+			path = moa;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				EFB8580F3207F6372F7BA9D7D89867BB /* Pods */,
-				A9DF87ADEBE7BBD370536BF324019FE7 /* Products */,
+				D43E06997A836CD23B6EB5A6735B8E3D /* Frameworks */,
+				007C11BA83C5FFC2D3C3DF24BD69869B /* Pods */,
+				42877928D2B189467B7D7F0BDF9044DD /* Products */,
 				9E530AFDF70803F18BBA7E5CD795F115 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		90A4B3D33824D3588EBD021F192CC660 /* Kanna */ = {
+		8312335AC1D9FE3392E9ACD8E7B5EC18 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3AE084C274655870C956CD06D271D364 /* CSS.swift */,
-				352DB6A4F3CC8AB43750B78CC2600A7D /* Kanna.swift */,
-				38AB9FAC8A135D8EF16D4A03938A2177 /* libxmlHTMLDocument.swift */,
-				A4EC09B1A13146E60A2D104450F5C722 /* libxmlHTMLNode.swift */,
-				490D45A6849CDB6712585DFFE1417119 /* libxmlParserOption.swift */,
-				2F087B3B0EA1510CC5ADEB42D422C439 /* Support Files */,
+				62792C193E7D2D6A6CB4C9C53388CF27 /* Foundation.framework */,
 			);
-			path = Kanna;
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		91A049D003B8B47660CDD79F842162D8 /* Pods-illuminataeyewear */ = {
@@ -184,12 +420,10 @@
 			path = "Target Support Files/Pods-illuminataeyewear";
 			sourceTree = "<group>";
 		};
-		9A22BBE9F1388A25DF2247FCE9371657 /* Frameworks */ = {
+		9CA1EC1E2EF9D1E739EEA64101D36827 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ED88A45DF03DDAF650FE7D68A83BB32D /* libCardIO.a */,
-				6FDC389387499D4E04B85026ADD2828A /* libopencv_core.a */,
-				116E3BC8510F2BD8A5C112BC5D282705 /* libopencv_imgproc.a */,
+				7013DFA51CAE99A596F363FE7E3698DD /* libPayPalMobile.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -202,55 +436,92 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		9F269A1E2DEB960E205904947CD8A83E /* CardIO */ = {
+		AF08DC8268625BB258DEDA981C46327B /* CardIO */ = {
 			isa = PBXGroup;
 			children = (
-				4B538168CE3D62F21F1FC6405E7BFCA7 /* CardIO.h */,
-				9C49178D70D24B2568F8EB0130D075BE /* CardIOCreditCardInfo.h */,
-				60B798F209AA7A924B5B4BEFC410A890 /* CardIODetectionMode.h */,
-				4B07C91C554795348564F3024317863F /* CardIOPaymentViewController.h */,
-				0D274D13A11DC4626C208605B257F276 /* CardIOPaymentViewControllerDelegate.h */,
-				69C32C5ACCE9894E21285E4D3D41752D /* CardIOUtilities.h */,
-				8B2440B0A541A77DA51CF41E8738DE7F /* CardIOView.h */,
-				4D2223048A964E288FE42118292D78AC /* CardIOViewDelegate.h */,
-				9A22BBE9F1388A25DF2247FCE9371657 /* Frameworks */,
+				2CA5BF5888BFB9BBD19518D5EC08513B /* CardIO.h */,
+				3CAF74FA387DF74395AE9D954C0323AD /* CardIOCreditCardInfo.h */,
+				0CFCA6473B2CB1F16F971C35EA7F309E /* CardIODetectionMode.h */,
+				E433C99A20F2202C2D8D44B095216C3E /* CardIOPaymentViewController.h */,
+				E639B1C1B0FCAE32E8A75D0141F25644 /* CardIOPaymentViewControllerDelegate.h */,
+				2F3919404A3DB6CB5B8EE52420A5ECD9 /* CardIOUtilities.h */,
+				37F3817B33CA867BF7E82081A5E70F5D /* CardIOView.h */,
+				22FDC416258083C25C63A5F0CE1296F1 /* CardIOViewDelegate.h */,
+				3E1632466ABB20639FC7477E34F60C53 /* Frameworks */,
 			);
 			path = CardIO;
 			sourceTree = "<group>";
 		};
-		A9DF87ADEBE7BBD370536BF324019FE7 /* Products */ = {
+		B9B057E4698BEF4682D333CE1E7E0D17 /* PayPal-iOS-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				7A233F161639852966245E6E31BD7F02 /* Kanna.framework */,
-				C7BC57A9FEBCCE0DC008DCD10DE1A673 /* Pods_illuminataeyewear.framework */,
+				240F857F4E50525E55CB8BA5AD1B1756 /* Core */,
 			);
-			name = Products;
+			path = "PayPal-iOS-SDK";
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+		D43E06997A836CD23B6EB5A6735B8E3D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				112C7921E3A497328D11F4930CBBC9CA /* iOS */,
+				03CDA7AF66971E49128398ECC5D7888A /* moa.framework */,
+				8312335AC1D9FE3392E9ACD8E7B5EC18 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CF3BA035350D6C51F6C4BF2A954EFD8A /* Frameworks */ = {
+		DD16F79BAFD119BFDDF23E407B892B71 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FFCA94535FF0556F03E1908CB1746887 /* libPayPalMobile.a */,
+				92BFBD36C6E8F9698006B1A1353459DF /* Auk.modulemap */,
+				8C8DA3BB9856A52FD4724296BB2EA0B9 /* Auk.xcconfig */,
+				22ED71402E86A44A6FC565545AA4F6C6 /* Auk-dummy.m */,
+				E6CDB381E36BA6F47AB3ECF9AC0D5DE1 /* Auk-prefix.pch */,
+				62EC74391120A1C5D5D2D7DEAA554F84 /* Auk-umbrella.h */,
+				B5C3299DFDF07C362BA6271F22A6BAB3 /* Info.plist */,
 			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "../Target Support Files/Auk";
 			sourceTree = "<group>";
 		};
-		EFB8580F3207F6372F7BA9D7D89867BB /* Pods */ = {
+		E2F219F33E8D5D7F106A99E5CEBE5AED /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				9F269A1E2DEB960E205904947CD8A83E /* CardIO */,
-				90A4B3D33824D3588EBD021F192CC660 /* Kanna */,
-				0A5E99BE47F54ED0B448A58F5CEC2555 /* PayPal-iOS-SDK */,
+				F6EF36479EAE4A6A4C532C3B798ABE34 /* Info.plist */,
+				4E675DFD6CF9D0F6DEDA8D5FB731ACD8 /* moa.modulemap */,
+				A9649EE654A196AA2EF13BD1D423BCF8 /* moa.xcconfig */,
+				B90BD70598D90C0AE9D05B4530D63429 /* moa-dummy.m */,
+				645DF2C549D61BDC135A5A95B43048B1 /* moa-prefix.pch */,
+				5C10C45C78E8FA7FFF921711E4D068FF /* moa-umbrella.h */,
 			);
-			name = Pods;
+			name = "Support Files";
+			path = "../Target Support Files/moa";
+			sourceTree = "<group>";
+		};
+		EB1AA35749ADCFAC2E38711710D07DA2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				74C293FDFAC7199F41A3A707F93B1287 /* Info.plist */,
+				86C481A9534737DBD1025E20F8F15507 /* Kanna.modulemap */,
+				A6643009AA5132E9079D91B143F12F39 /* Kanna.xcconfig */,
+				059ADCF84D40D1F5373C2F68718FA260 /* Kanna-dummy.m */,
+				B9CCBC340FC09A02F652B2033CBFAE3B /* Kanna-prefix.pch */,
+				E2A7B9ACD5DB82900FD194B665207669 /* Kanna-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Kanna";
+			sourceTree = "<group>";
+		};
+		EE93E1FBFA1637BEF5D806B2535B4646 /* Kanna */ = {
+			isa = PBXGroup;
+			children = (
+				F47FEC066B45F944CF1DE5CECE8D2964 /* CSS.swift */,
+				E90474533A8F2014680FEFDB10AA0FCC /* Kanna.swift */,
+				ADC43BF04D1010DB8C55A3987A6EB130 /* libxmlHTMLDocument.swift */,
+				AD75DB3342335033C47ED7D86678750E /* libxmlHTMLNode.swift */,
+				D87ECF8FF9F0406FD60F9A02D0ED73F0 /* libxmlParserOption.swift */,
+				EB1AA35749ADCFAC2E38711710D07DA2 /* Support Files */,
+			);
+			path = Kanna;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,33 +535,95 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D756A8C1DD0E093626C3270129657C55 /* Headers */ = {
+		BEAEBC3C33C84BDC5074B6EE10B23613 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49704E013BB645536D81224227C9BFDC /* Pods-illuminataeyewear-umbrella.h in Headers */,
+				029105A156815CB901155F7C71744DCC /* Pods-illuminataeyewear-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C47143ED3060DA40E26E90CADF020695 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AE87EFAD9EFCEC7C0F85E28EFFAACED /* moa-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD1B2DB92C13294AD73442F04AB5B66E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D82D03B6E1F4D7B31332AB7852F2DFD /* Auk-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D56E6C57C581156BA5B9D5E2E3301A66 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				752E6B42E6206B1EA6B016B19AAF4652 /* BTNavigationDropdownMenu-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		5E9A6F6948874AF7A61121BE2CCA99A9 /* Pods-illuminataeyewear */ = {
+		134D818D1BC6DADF34FE05FCF2E90133 /* Pods-illuminataeyewear */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E73EB5607549DD0D78C9A39F1BBA6683 /* Build configuration list for PBXNativeTarget "Pods-illuminataeyewear" */;
+			buildConfigurationList = E69A620B64DF3221532970D1BA110B8F /* Build configuration list for PBXNativeTarget "Pods-illuminataeyewear" */;
 			buildPhases = (
-				EAF2C95BE1B1C7D2052E5AA648CF619F /* Sources */,
-				8A0153BBA47F66408CC7B8F6C77C9572 /* Frameworks */,
-				D756A8C1DD0E093626C3270129657C55 /* Headers */,
+				64DA35044432DF57AD0BE26FB038B298 /* Sources */,
+				4791B190FA8D97EA7A517032612D1FBF /* Frameworks */,
+				BEAEBC3C33C84BDC5074B6EE10B23613 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1266679FEC87497F64BD226AC275A7F5 /* PBXTargetDependency */,
+				A552D2A0CA1BCE2A8490DB78DD40EDF1 /* PBXTargetDependency */,
+				2012DE53DCCCC4B50452163CDF1832EA /* PBXTargetDependency */,
+				23F708EEDC4E1E87361D222CE679DD3E /* PBXTargetDependency */,
+				A3342307C496AE871E62991FAC01D34E /* PBXTargetDependency */,
 			);
 			name = "Pods-illuminataeyewear";
 			productName = "Pods-illuminataeyewear";
-			productReference = C7BC57A9FEBCCE0DC008DCD10DE1A673 /* Pods_illuminataeyewear.framework */;
+			productReference = 6AB33966A10F555AC62A30FDDF1BCD72 /* Pods_illuminataeyewear.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2C9F8188802DB4395B862D4E5BC72FD3 /* Auk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E26A6FB0E7EF3E059630D0C14A266892 /* Build configuration list for PBXNativeTarget "Auk" */;
+			buildPhases = (
+				B945CCF7943610CE4100F91737E12D76 /* Sources */,
+				9FF9A9A2FEFA44B2F68E8C4F2C496117 /* Frameworks */,
+				CD1B2DB92C13294AD73442F04AB5B66E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A46EAC27610C22EC0614634C5C05667A /* PBXTargetDependency */,
+			);
+			name = Auk;
+			productName = Auk;
+			productReference = 6858BC579B763708406163117410AEE4 /* Auk.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		96156A5F1AD1FBE6AB7AD495CD1FB54F /* moa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48DDD4A6A17A745924D9FE2629417AD3 /* Build configuration list for PBXNativeTarget "moa" */;
+			buildPhases = (
+				594C40770958C90D614B0ED5EACE9466 /* Sources */,
+				5672FC987B52BFD30DCCB5DD69C4F5F4 /* Frameworks */,
+				C47143ED3060DA40E26E90CADF020695 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = moa;
+			productName = moa;
+			productReference = 4301C1437B4A599873A24F264985F57E /* moa.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		B6312CAD7E18804AD5E11308495CFD52 /* Kanna */ = {
@@ -307,7 +640,25 @@
 			);
 			name = Kanna;
 			productName = Kanna;
-			productReference = 7A233F161639852966245E6E31BD7F02 /* Kanna.framework */;
+			productReference = 01568D0ABB540290B023D7ABDE93CD16 /* Kanna.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FD23F1DA220A44C7E84F356B64871271 /* BTNavigationDropdownMenu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB28785AF4C163D5A2CE51D1AC9BA7E5 /* Build configuration list for PBXNativeTarget "BTNavigationDropdownMenu" */;
+			buildPhases = (
+				255A4F3B097CD7D88E8A81A11E927FCD /* Sources */,
+				C696D45785A75143C95EC12EAEBB833B /* Frameworks */,
+				AB5F8557DF89A3F13F78919A61FB8EF1 /* Resources */,
+				D56E6C57C581156BA5B9D5E2E3301A66 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BTNavigationDropdownMenu;
+			productName = BTNavigationDropdownMenu;
+			productReference = 81D47DBB4DC6EF3DC437F67FE088E3E7 /* BTNavigationDropdownMenu.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -327,17 +678,97 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = A9DF87ADEBE7BBD370536BF324019FE7 /* Products */;
+			productRefGroup = 42877928D2B189467B7D7F0BDF9044DD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				2C9F8188802DB4395B862D4E5BC72FD3 /* Auk */,
+				FD23F1DA220A44C7E84F356B64871271 /* BTNavigationDropdownMenu */,
 				B6312CAD7E18804AD5E11308495CFD52 /* Kanna */,
-				5E9A6F6948874AF7A61121BE2CCA99A9 /* Pods-illuminataeyewear */,
+				96156A5F1AD1FBE6AB7AD495CD1FB54F /* moa */,
+				134D818D1BC6DADF34FE05FCF2E90133 /* Pods-illuminataeyewear */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		AB5F8557DF89A3F13F78919A61FB8EF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				064537A4D2690D42BA12CB6F36EA8914 /* BTNavigationDropdownMenu.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		255A4F3B097CD7D88E8A81A11E927FCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01C57309E2EF9E7025552938EFD9E244 /* BTNavigationDropdownMenu-dummy.m in Sources */,
+				31375D677778F2B217957BFB3AAAB316 /* BTNavigationDropdownMenu.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		594C40770958C90D614B0ED5EACE9466 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4D6851922D797D69B0ACBCE28D366E8 /* ImageView+moa.swift in Sources */,
+				2C0BA916E1CFF6C753A5629466247252 /* moa-dummy.m in Sources */,
+				685D08083523D9768471AB0063481380 /* Moa.swift in Sources */,
+				CAC45496AEF6011A860863C3E36948A4 /* MoaConsoleLogger.swift in Sources */,
+				73390C8FFB52A3A11DAE1E6C36B1D7F2 /* MoaError.swift in Sources */,
+				5F7055B2BF0FC1D3A85E1ACE0823295D /* MoaHttp.swift in Sources */,
+				5E01A923B72E3396D0D7A83B26168490 /* MoaHttpImage.swift in Sources */,
+				1B0A71B889183C9358F0F3CAE8E93D60 /* MoaHttpImageDownloader.swift in Sources */,
+				1E5DAF7B7180901BC650448C66C91DA1 /* MoaHttpSession.swift in Sources */,
+				E3B2CCBF95AB9D7C03548CDB25E96110 /* MoaImageDownloader.swift in Sources */,
+				97F29653F36761C8ED5942F378AF0A18 /* MoaLoggerCallback.swift in Sources */,
+				DD2F988BA9D5C0695CEB1C9C3EE72483 /* MoaLoggerText.swift in Sources */,
+				8C46EEB4929602342E08BD6C50F8231D /* MoaLogType.swift in Sources */,
+				187BDBDD74369DB439D38FC7D107222F /* MoaSettings.swift in Sources */,
+				942DEEC92CF3755F833A5A4B1F578B8A /* MoaSettingsCache.swift in Sources */,
+				C40FB6F99E35690C6771E5EA57FB959D /* MoaSimulatedImageDownloader.swift in Sources */,
+				92A9A5FD8A430176D440F2FAA07C49F9 /* MoaSimulator.swift in Sources */,
+				7FEA95A711FF9E0AA5FE85107AF5074F /* MoaString.swift in Sources */,
+				8D131656B8E4A8AEB399DDFB6214D92C /* MoaTime.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64DA35044432DF57AD0BE26FB038B298 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				561F42C7C00A162BA17E8E608D451739 /* Pods-illuminataeyewear-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B945CCF7943610CE4100F91737E12D76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				802583BFD6CA09C84AB1608F0B36BB1B /* Auk-dummy.m in Sources */,
+				53BD4028AA944BDFEA181E3FFEA36592 /* Auk.swift in Sources */,
+				821886611E4CFBA28D8D9199D3C10401 /* AukAutoscroll.swift in Sources */,
+				33BEC54ED9D501E4623B303CAEF3F64C /* AukPage.swift in Sources */,
+				8B07A4ADA35CE800B5C7827162B69179 /* AukPageIndicatorContainer.swift in Sources */,
+				01F39071D344F17F00429C201B758EBE /* AukPageVisibility.swift in Sources */,
+				045313244F886695D0508084C3F4502F /* AukRemoteImage.swift in Sources */,
+				3C61D514E25C75F17F8CE64E667FCA8D /* AukScrollTo.swift in Sources */,
+				FA452F214BFA20F28F907BF25A805EA0 /* AukScrollViewContent.swift in Sources */,
+				23E90387A7D6ADA8940C38516ECF557E /* AukScrollViewDelegate.swift in Sources */,
+				5B2D2ABED65D243B3B122A5158DCBAAC /* AukSettings.swift in Sources */,
+				F4C21D8F0175963A26172D13AFC00DFD /* AutoCancellingTimer.swift in Sources */,
+				3D90A6E4474899564B979ABAF299250E /* iiAutolayoutConstraints.swift in Sources */,
+				A0A23F98F14A5550AB13D12EE99D5E0F /* iiQ.swift in Sources */,
+				392FA87616C938B1B3A19DC48E377FA4 /* RightToLeft.swift in Sources */,
+				B0E7C7D6DAECB8925743352FBF432966 /* UIScrollView+Auk.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9E85B0825EF5C9D935B377B7618188A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -351,26 +782,133 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EAF2C95BE1B1C7D2052E5AA648CF619F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2436E7F303F4C4512E4060B6B30F173F /* Pods-illuminataeyewear-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1266679FEC87497F64BD226AC275A7F5 /* PBXTargetDependency */ = {
+		2012DE53DCCCC4B50452163CDF1832EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BTNavigationDropdownMenu;
+			target = FD23F1DA220A44C7E84F356B64871271 /* BTNavigationDropdownMenu */;
+			targetProxy = FBC0B2DE5F36693418BD3220361817B5 /* PBXContainerItemProxy */;
+		};
+		23F708EEDC4E1E87361D222CE679DD3E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Kanna;
 			target = B6312CAD7E18804AD5E11308495CFD52 /* Kanna */;
-			targetProxy = 01F30CCD5630C66AF307C75CB9FCFC9E /* PBXContainerItemProxy */;
+			targetProxy = 4B1AF4974394C57A736C627E7AE3159B /* PBXContainerItemProxy */;
+		};
+		A3342307C496AE871E62991FAC01D34E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = moa;
+			target = 96156A5F1AD1FBE6AB7AD495CD1FB54F /* moa */;
+			targetProxy = 5E62885EBBB9CFA2F1416550F4658E2E /* PBXContainerItemProxy */;
+		};
+		A46EAC27610C22EC0614634C5C05667A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = moa;
+			target = 96156A5F1AD1FBE6AB7AD495CD1FB54F /* moa */;
+			targetProxy = DDC4C0589DDD6FD1D2BA800EFB246FA7 /* PBXContainerItemProxy */;
+		};
+		A552D2A0CA1BCE2A8490DB78DD40EDF1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Auk;
+			target = 2C9F8188802DB4395B862D4E5BC72FD3 /* Auk */;
+			targetProxy = 68F4712BA427E06D359472CDD722D2C8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		520E0AA0C635E79D7F27CD0B6182FC26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 359A093BC7223E6A206AECD7D18A9289 /* Pods-illuminataeyewear.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-illuminataeyewear/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-illuminataeyewear/Pods-illuminataeyewear.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_illuminataeyewear;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		59975A5E4FCBB5EDF3EA6BFC44E75008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9649EE654A196AA2EF13BD1D423BCF8 /* moa.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/moa/moa-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/moa/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/moa/moa.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = moa;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		68CBD42B56B08C3493035ECA0B68EA48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C8DA3BB9856A52FD4724296BB2EA0B9 /* Auk.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Auk/Auk-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Auk/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Auk/Auk.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Auk;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		811519CB8F683AC06F9C98B55AC40F11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -449,9 +987,68 @@
 			};
 			name = Debug;
 		};
+		8AA444D9B3DE9C29543A27CA8BEE10B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2631FD2D83391AF35D9BE29389BF33C3 /* BTNavigationDropdownMenu.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/BTNavigationDropdownMenu/BTNavigationDropdownMenu-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BTNavigationDropdownMenu/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BTNavigationDropdownMenu/BTNavigationDropdownMenu.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = BTNavigationDropdownMenu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		989F7944327ADBDE4C39777729675AE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2631FD2D83391AF35D9BE29389BF33C3 /* BTNavigationDropdownMenu.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/BTNavigationDropdownMenu/BTNavigationDropdownMenu-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BTNavigationDropdownMenu/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BTNavigationDropdownMenu/BTNavigationDropdownMenu.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = BTNavigationDropdownMenu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		ADF0F62DEA88DEDE28D6B457ED481B6E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B041C0A5100D7D3AC44F12B0FD44A5C /* Kanna.xcconfig */;
+			baseConfigurationReference = A6643009AA5132E9079D91B143F12F39 /* Kanna.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -480,7 +1077,7 @@
 		};
 		BDCC9486BE3C2468B67A63294291DC9F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B041C0A5100D7D3AC44F12B0FD44A5C /* Kanna.xcconfig */;
+			baseConfigurationReference = A6643009AA5132E9079D91B143F12F39 /* Kanna.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -508,40 +1105,67 @@
 			};
 			name = Debug;
 		};
-		C107874EF2B1DEEA4B62679D694F0274 /* Release */ = {
+		D771EE20057CB9449994EE9F5736871C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 359A093BC7223E6A206AECD7D18A9289 /* Pods-illuminataeyewear.release.xcconfig */;
+			baseConfigurationReference = A9649EE654A196AA2EF13BD1D423BCF8 /* moa.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-illuminataeyewear/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/moa/moa-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/moa/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-illuminataeyewear/Pods-illuminataeyewear.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_illuminataeyewear;
+				MODULEMAP_FILE = "Target Support Files/moa/moa.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = moa;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		F46A05E5E7AEC381FD9343BCB013FECA /* Debug */ = {
+		E6DCDD201D0CD8972FF18AE4747E1287 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C8DA3BB9856A52FD4724296BB2EA0B9 /* Auk.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Auk/Auk-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Auk/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Auk/Auk.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Auk;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FB31729F67436666CF62E3F9B0D63E75 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8F67D20FC7D3376EFD7DB0C767923524 /* Pods-illuminataeyewear.debug.xcconfig */;
 			buildSettings = {
@@ -587,6 +1211,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		48DDD4A6A17A745924D9FE2629417AD3 /* Build configuration list for PBXNativeTarget "moa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D771EE20057CB9449994EE9F5736871C /* Debug */,
+				59975A5E4FCBB5EDF3EA6BFC44E75008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AA1992C45AE207CB55A07F55BA14D559 /* Build configuration list for PBXNativeTarget "Kanna" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -596,11 +1229,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E73EB5607549DD0D78C9A39F1BBA6683 /* Build configuration list for PBXNativeTarget "Pods-illuminataeyewear" */ = {
+		E26A6FB0E7EF3E059630D0C14A266892 /* Build configuration list for PBXNativeTarget "Auk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F46A05E5E7AEC381FD9343BCB013FECA /* Debug */,
-				C107874EF2B1DEEA4B62679D694F0274 /* Release */,
+				E6DCDD201D0CD8972FF18AE4747E1287 /* Debug */,
+				68CBD42B56B08C3493035ECA0B68EA48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E69A620B64DF3221532970D1BA110B8F /* Build configuration list for PBXNativeTarget "Pods-illuminataeyewear" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB31729F67436666CF62E3F9B0D63E75 /* Debug */,
+				520E0AA0C635E79D7F27CD0B6182FC26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB28785AF4C163D5A2CE51D1AC9BA7E5 /* Build configuration list for PBXNativeTarget "BTNavigationDropdownMenu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				989F7944327ADBDE4C39777729675AE2 /* Debug */,
+				8AA444D9B3DE9C29543A27CA8BEE10B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

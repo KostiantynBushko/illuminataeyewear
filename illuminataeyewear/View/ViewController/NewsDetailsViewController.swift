@@ -12,7 +12,7 @@ class NewsDetailsViewController: UIViewController, UIWebViewDelegate {
     
     
     var frameHtml = String()
-    var image = UIImage()
+    var image: UIImage?
     var textHtml = String()
     
 
@@ -34,7 +34,11 @@ class NewsDetailsViewController: UIViewController, UIWebViewDelegate {
             iFrame.scrollView.bounces = false
         } else {
             iFrame.hidden = true
-            imageView.image = image
+            if image != nil {
+                imageView.image = image
+            } else {
+                imageView.hidden = true
+            }
         }
         moreText.loadHTMLString(textHtml, baseURL: NSURL(string: Constant.URL_BASE))
         moreText.delegate = self

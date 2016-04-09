@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5E9A6F6948874AF7A61121BE2CCA99A9"
+               BlueprintIdentifier = "134D818D1BC6DADF34FE05FCF2E90133"
                BuildableName = "Pods_illuminataeyewear.framework"
                BlueprintName = "Pods-illuminataeyewear"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5E9A6F6948874AF7A61121BE2CCA99A9"
+            BlueprintIdentifier = "134D818D1BC6DADF34FE05FCF2E90133"
             BuildableName = "Pods_illuminataeyewear.framework"
             BlueprintName = "Pods-illuminataeyewear"
             ReferencedContainer = "container:Pods.xcodeproj">

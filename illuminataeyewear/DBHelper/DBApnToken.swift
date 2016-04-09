@@ -32,8 +32,8 @@ class DBApnToken {
     
     static func SaveApnToken(token: String) -> Bool {
         let db = SQLiteDB.sharedInstance()
-        db.query("insert into " + DB_APN_TOKEN + "('id','token','new')" + " values('1','" + token + "','1')")
-        //print(ret)
+        let ret = db.query("insert into " + DB_APN_TOKEN + "('id','token','new')" + " values('1','" + token + "','1')")
+        print(ret)
         //print("DB Save token")
         return true
     }

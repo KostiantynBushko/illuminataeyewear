@@ -130,7 +130,7 @@ class LiveCartController {
     
     // MARK
     
-    static func startSession() {
+    func startSession() {
         if UserController.sharedInstance().isAnonimous() {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tabBarController = storyboard.instantiateViewControllerWithIdentifier("MainTabBarController") as! UITabBarController
@@ -145,6 +145,9 @@ class LiveCartController {
                     UserApnToken.SaveUserApnToken(nil, token: token!, completeHandler: {() in })
                 }
             }
+            dispatch_async(dispatch_get_main_queue()) {
+                LiveCartController.TabBarUpdateWishBadgeValue(tabBarController)
+            }
         } else {
             OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
                 dispatch_async(dispatch_get_main_queue()) {
@@ -156,9 +159,11 @@ class LiveCartController {
                     }
                     appDelegate.window?.rootViewController = tabBarController
                     LiveCartController.TabBarUpdateBadgeValue(tabBarController)
+                    LiveCartController.TabBarUpdateWishBadgeValue(tabBarController)
                 }
             })
         }
+        
     }
     
     static func TabBarUpdateBadgeValue(tabBarController: UITabBarController) {
@@ -173,6 +178,17 @@ class LiveCartController {
                 tabBarController.tabBar.items![2].badgeValue = String(count)
             } else {
                 tabBarController.tabBar.items![2].badgeValue = nil
+            }
+        }
+    }
+    
+    static func TabBarUpdateWishBadgeValue(tabBarController: UITabBarController) {
+        dispatch_async(dispatch_get_main_queue()) {
+            let count = DBWishProductTable.SelectWish().count
+            if count > 0 {
+                tabBarController.tabBar.items![3].badgeValue = String(count)
+            } else {
+                tabBarController.tabBar.items![3].badgeValue = nil
             }
         }
     }

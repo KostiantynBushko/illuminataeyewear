@@ -54,11 +54,11 @@ class ItemPageViewController: UIViewController,UIPageViewControllerDataSource, U
     }
     
     func InitwithProductID(productID: Int64) {
-        BrandItem.getBrandItemByID(productID, completeHandler: {(brandItems) in
+        BrandItem().getBrandItemByID(productID, completeHandler: {(brandItems) in
             if brandItems.count > 0 {
                 if brandItems[0].parentID > 0 {
                     self.brandItems.append(brandItems[0])
-                    BrandItem.getBrandItemByID(brandItems[0].parentID, completeHandler: {(brandItems) in
+                    BrandItem().getBrandItemByID(brandItems[0].parentID, completeHandler: {(brandItems) in
                         self.parentBrandItem = brandItems[0]
                         self.brandItems[0].parentBrandItem = self.parentBrandItem
                         dispatch_async(dispatch_get_main_queue()) {
@@ -139,7 +139,7 @@ class ItemPageViewController: UIViewController,UIPageViewControllerDataSource, U
     }
     
     private func addToWishListDialog() {
-        let actionSheetController: UIAlertController = UIAlertController(title: "Add to wish", message: "Do you want add this product to wish list", preferredStyle: .Alert)
+        let actionSheetController: UIAlertController = UIAlertController(title: "Add to wish list", message: "Do you want to add this product to Wish List?", preferredStyle: .Alert)
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in}
         
         actionSheetController.addAction(cancelAction)
@@ -147,6 +147,7 @@ class ItemPageViewController: UIViewController,UIPageViewControllerDataSource, U
         let yesAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
             let wishItem = WishItem(productID: self.brandItems[self.currentPage].ID)
             DBWishProductTable.AddItemToWishList(wishItem!)
+            LiveCartController.TabBarUpdateWishBadgeValue(self.tabBarController!)
         }
         actionSheetController.addAction(yesAction)
         self.presentViewController(actionSheetController, animated: true, completion: nil)

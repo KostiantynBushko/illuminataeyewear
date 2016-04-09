@@ -84,8 +84,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-illuminataeyewear/Auk.framework"
+  install_framework "Pods-illuminataeyewear/BTNavigationDropdownMenu.framework"
   install_framework "Pods-illuminataeyewear/Kanna.framework"
+  install_framework "Pods-illuminataeyewear/moa.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-illuminataeyewear/Auk.framework"
+  install_framework "Pods-illuminataeyewear/BTNavigationDropdownMenu.framework"
   install_framework "Pods-illuminataeyewear/Kanna.framework"
+  install_framework "Pods-illuminataeyewear/moa.framework"
 fi

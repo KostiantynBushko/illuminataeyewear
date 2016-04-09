@@ -9,7 +9,7 @@
 import Foundation
 
 enum NotificatioinType: Int64 {
-    case Unknown, SimpleMessage, Product, Category, News, Coupon, Url
+    case Unknown, SimpleMessage, Product, Category, News, Coupon, Url, UserMessage
 }
 
 class SimpleNotification : BaseNotification, NotificationProtocol {

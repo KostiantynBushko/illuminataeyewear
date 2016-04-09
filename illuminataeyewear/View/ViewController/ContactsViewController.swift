@@ -72,8 +72,8 @@ class ContactsViewController: UIViewController, MFMailComposeViewControllerDeleg
     func configureMailComposeViewController() -> MFMailComposeViewController {
         let mailComposeViewController = MFMailComposeViewController()
         mailComposeViewController.mailComposeDelegate = self
-        mailComposeViewController.setToRecipients(["bushko1979@gmail.com"])
-        mailComposeViewController.setSubject("From illumine app e-mail")
+        mailComposeViewController.setToRecipients(["sales@illuminataeyewear.com "])
+        mailComposeViewController.setSubject("From illuminata mobile app e-mail")
         mailComposeViewController.setMessageBody(emailMessage.text, isHTML: false)
         return mailComposeViewController
     }

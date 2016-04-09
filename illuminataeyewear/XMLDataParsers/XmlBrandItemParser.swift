@@ -42,8 +42,8 @@ class XmlBrandItemParser: NSObject, NSXMLParserDelegate {
         if (elementName as NSString).isEqualToString("response") {
             handler!(brandItems: brandItems)
         } else if (elementName as NSString).isEqualToString("product") {
-            currentBrandItem.categoryID.htmlDecoded()
-            currentBrandItem.categoryID.htmlDecoded()
+            //currentBrandItem.categoryID.htmlDecoded()
+            //currentBrandItem.categoryID.htmlDecoded()
             currentBrandItem.manufacturerID.htmlDecoded()
             currentBrandItem.defaultImageID.htmlDecoded()
             currentBrandItem.shippingClassID.htmlDecoded()
@@ -98,7 +98,8 @@ class XmlBrandItemParser: NSObject, NSXMLParserDelegate {
         if element.isEqualToString("ID") {
             currentBrandItem.ID = Int64(string)!
         } else if element.isEqualToString("categoryID") {
-            currentBrandItem.categoryID.appendContentsOf(string)
+            //currentBrandItem.categoryID.appendContentsOf(string)
+            currentBrandItem.categoryID = Int64(string)!
         } else if element.isEqualToString("manufacturerID") {
             currentBrandItem.manufacturerID.appendContentsOf(string)
         } else if element.isEqualToString("defaultImageID") {

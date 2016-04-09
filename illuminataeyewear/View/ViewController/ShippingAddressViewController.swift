@@ -57,7 +57,7 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
     let TAG_BILLING_COUNTRY_PICKER = 2
     let TAG_BILLING_STATE_PICKER = 3
     
-    let shippingCountryPicker = UIPickerView();
+    let shippingCountryPicker = UIPickerView()
     let billingCountryPicker = UIPickerView()
     let shippingStatePicker = UIPickerView()
     let billingStatePicker = UIPickerView()
@@ -142,7 +142,7 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        busyAlertController = BusyAlert(title: "", message: "", presentingViewController: self)
+        busyAlertController = BusyAlert(title: "", message: "", button: "OK", presentingViewController: self)
         busyAlertController?.delegate = self
     }
     
@@ -363,6 +363,7 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
                 busyAlertController!.display()
                 updateShippingAddress({() in
                     OrderController.sharedInstance().UpdateUserOrder((UserController.sharedInstance().getUser()?.ID)!, completeHandler: {(success) in
+                        self.busyAlertController?.message = "Address verification is complete"
                         self.busyAlertController!.finish()
                     })
                 })
@@ -376,6 +377,7 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
                 updateShippingAddress({() in
                     self.updateBillingAddress({() in
                         OrderController.sharedInstance().UpdateUserOrder((UserController.sharedInstance().getUser()?.ID)!, completeHandler: {(success) in
+                            self.busyAlertController?.message = "Address verification is complete"
                             self.busyAlertController!.finish()
                         })
                     })
@@ -402,8 +404,8 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
     }
     
     private func chekcShippingAddressField() -> Bool {
-        if !(shippingNameTextField.text!.isEmpty || shippingLastNameTextField.text!.isEmpty ||
-            shippingCompanyNameTextField.text!.isEmpty || shippingPhoneNumberTextField.text!.isEmpty ||
+        if !(shippingNameTextField.text!.isEmpty || shippingLastNameTextField.text!.isEmpty /*||
+            shippingCompanyNameTextField.text!.isEmpty*/ || shippingPhoneNumberTextField.text!.isEmpty ||
             shippingAddressTextField.text!.isEmpty /*|| shippingAddressTwoTextField.text!.isEmpty*/ ||
             shippingCityTextField.text!.isEmpty || shippingCountryTextField.text!.isEmpty ||
             shippingStateTextField.text!.isEmpty || shippingPostalCodeTextField.text!.isEmpty)
@@ -414,8 +416,8 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
     }
     
     private func checkBillingAddressFiled() -> Bool {
-        if !(billingNameTextField.text!.isEmpty || billingLasNameTextField.text!.isEmpty ||
-            billingCompanyNameTextField.text!.isEmpty || billingPhoneNumberTextField.text!.isEmpty ||
+        if !(billingNameTextField.text!.isEmpty || billingLasNameTextField.text!.isEmpty /*||
+            billingCompanyNameTextField.text!.isEmpty*/ || billingPhoneNumberTextField.text!.isEmpty ||
             billingAddressTextField.text!.isEmpty /*|| billingAddressTwoTextField.text!.isEmpty*/ ||
             billingCityTextField.text!.isEmpty || billingCountryTextField.text!.isEmpty ||
             billingStateTextField.text!.isEmpty || billingPostalCodeTextField.text!.isEmpty)
@@ -512,7 +514,6 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     func didCancelBusyAlert() {
-        print("cancel")
         self.startCheckoutViewController()
     }
 }

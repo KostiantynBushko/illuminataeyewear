@@ -10,11 +10,12 @@ import Foundation
 
 
 class OrderController {
-    private static let DEFAULT_CURRENCY = "CAD"
+    private static let DEFAULT_CURRENCY = "CAD $"
     
     private static let _instance = OrderController()
     
     private var shippingService: ShippingService?
+    private var coupons = [OrderCoupon]()
     
     private init(){
         successCompleteHandler = nil
@@ -60,10 +61,27 @@ class OrderController {
                     if self.successCompleteHandler != nil {
                         completeHandler(succesInit: true)
                     }
-
+                    self.coupons = [OrderCoupon]()
+                    self.getCouponForCurrentOrder({(coupons, message, error) in
+                        self.coupons = coupons
+                    })
                 })
             }
         })
+    }
+    
+    func getCouponForCurrentOrder(completeHandler:(Array<OrderCoupon>, String?, NSError?) -> Void) {
+        if coupons.count > 0 {
+            completeHandler(self.coupons, nil, nil)
+        } else {
+            if self.orders.count ==  0 || getCurrentOrder() == nil {
+                completeHandler(self.coupons, nil, nil)
+            } else {
+                OrderCoupon.GetOrderCoupons((self.getCurrentOrder()?.ID)!, completeHandler: {(coupons, message, error) in
+                    completeHandler(coupons, message, error)
+                })
+            }
+        }
     }
     
     func getCurrentOrderID() -> Int64 {

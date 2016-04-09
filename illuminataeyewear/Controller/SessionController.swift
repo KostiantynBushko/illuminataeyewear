@@ -10,6 +10,8 @@ import Foundation
 
 class SessionController {
     
+    private var product: Int64?
+    
     private static var _instance: SessionController?
     private var sessionStatus = false;
     
@@ -18,5 +20,16 @@ class SessionController {
             _instance = SessionController()
         }
         return _instance!
+    }
+    
+    
+    func SetProduct(product: Int64?) {
+        self.product = product
+    }
+    
+    func GetProduct() -> Int64? {
+        let p = self.product
+        self.product = nil
+        return p
     }
 }

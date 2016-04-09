@@ -8,16 +8,28 @@
 
 import UIKit
 import Foundation
+import BTNavigationDropdownMenu
+
+enum SortType: Int {
+    case None, New, AZ, ZA, Price
+}
 
 class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSXMLParserDelegate {
     
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tableView: UITableView!
+    
+    
     var isRunning: Bool = false
     var brand: Brand?
     var brandID = Int64()
     var brandItems = [BrandItem]()
     var imageCache = [String:UIImage]()
+    
+    let items = ["Newest Arrivals","Product Name: A-Z", "Product Name: Z-A"]
+    var sortMenuView: BTNavigationDropdownMenu?
+    var sortType = SortType.None
+    var postMethod = "list"
     
     let cellIdentifier = "BrandItemViewCell"
     
@@ -25,6 +37,8 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
     var end: Bool = false
     
     var indicatorCellCoun = 1
+    
+    var paramString = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +51,58 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        sortMenuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: items.first!, items: items)
+        sortMenuView?.checkMarkImage = UIImage(named: "sort_white_24p")
+    
+        sortMenuView!.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
+            self.sortType = SortType(rawValue: indexPath + 1)!
+            print("Did select item at index: \(indexPath) " + String(self.sortType))
+            
+            switch self.sortType.rawValue {
+                case SortType.New.rawValue:
+                    print("Newest Arrivals")
+                    self.postMethod = "list"
+                    break
+                case SortType.AZ.rawValue:
+                    print("A-Z")
+                    self.postMethod = "az"
+                    break
+                case SortType.ZA.rawValue:
+                    print("Z-A")
+                    self.postMethod = "za"
+                    break
+                default:
+                    print("LIST")
+                    self.postMethod = "list"
+                    break
+            }
+            self.end = false
+            self.brandItems = [BrandItem]()
+            self.imageCache = [String:UIImage]()
+            self.activityIndicator.startAnimating()
+            self.tableView.hidden = true
+            self.getProduct()
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(false)
         isRunning = false
+        if sortMenuVisible {
+            self.sortMenuView?.hide()
+        }
+    }
+    
+    var sortMenuVisible:Bool = false
+    @IBAction func SortBy(sender: AnyObject) {
+        if self.sortMenuVisible {
+            self.sortMenuVisible = false
+            self.sortMenuView?.hide()
+        } else {
+            self.sortMenuVisible = true
+            self.sortMenuView?.show()
+        }
     }
     
     func initWithBrandID(brandID: Int64) {
@@ -75,7 +136,7 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
             let brandItem = brandItems[indexPath.row]
             cell.name.text = brandItem.getProductCodeName()
             cell.number.text = String(indexPath.row)
-            cell.price.text = "CAD $ " + brandItem.getPrice().definePrices
+            cell.price.text = OrderController.sharedInstance().getCurrentOrderCurrency() + " " + brandItem.getPrice().definePrices
             cell.brandItem = brandItem
             (cell.BuyNowButton as ExButton).id = indexPath.row
             
@@ -120,7 +181,6 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
             }
             
             if indexPath.row == (self.brandItems.count - 1) {
-                //print("Need update lisr")
                 getProduct()
             }
             return cell
@@ -134,7 +194,7 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 145
+            return 265//145
         } else if indexPath.section == 1{
             return 60
         } else {
@@ -153,18 +213,26 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
         let index = (sender as! ExButton).id
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             BrandItem.getBrandItemByParentNode(self.brandItems[index].ID, completeHandler: {(brandItems) in
-                for item in brandItems {
-                    item.parentBrandItem = self.brandItems[index]
-                    //self.brandItems.append(item)
+                if brandItems.count == 0 {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        let brandItemViewController = self.storyboard?.instantiateViewControllerWithIdentifier("BrandItemViewController") as? BrandItemViewController
+                        brandItemViewController?.brandItem = self.brandItems[index]
+                        self.navigationController?.pushViewController(brandItemViewController!, animated: true)
+                    }
+                } else {
+                    for item in brandItems {
+                        item.parentBrandItem = self.brandItems[index]
+                        //self.brandItems.append(item)
+                    }
+                    dispatch_async(dispatch_get_main_queue(), {
+                        let index = (sender as! ExButton).id
+                        let itemPageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ItemPageViewController") as? ItemPageViewController
+                        self.navigationController?.pushViewController(itemPageViewController!, animated: true)
+                        itemPageViewController!.brandItems = brandItems
+                        itemPageViewController!.parentBrandItem = self.brandItems[index]
+                        return
+                    })
                 }
-                dispatch_async(dispatch_get_main_queue(), {
-                    let index = (sender as! ExButton).id
-                    let itemPageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ItemPageViewController") as? ItemPageViewController
-                    self.navigationController?.pushViewController(itemPageViewController!, animated: true)
-                    itemPageViewController!.brandItems = brandItems
-                    itemPageViewController!.parentBrandItem = self.brandItems[index]
-                    return
-                })
             })
         }
     }
@@ -177,17 +245,16 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
         searchViewController.categoryID = (self.brand?.ID)!
     }
     
-    
-    
-    /***********************************************************************************************************/
-    // Make http request to get brand list
-    /***********************************************************************************************************/
+
     func getProduct() {
         if self.end {
             return
         }
         let start: Int64 = (Int64)(self.brandItems.count)
-        BrandItem.getBrandItems((brand?.ID)!, start: start, limit: self.limit, completeHandler: {(brandItems) in
+        let categoryID: String = String((brand?.ID)!)
+        self.paramString = "xml=<product><" + self.postMethod + " start=" + String(start) + " limit=" + String(self.limit) + "><categoryID>" + categoryID + "</categoryID><isEnabled>1</isEnabled></" + self.postMethod + "></product>"
+        
+        BrandItem.getItems(self.paramString, completeHandler: {(brandItems) in
             if (Int64)(brandItems.count) < self.limit {
                 self.end = true
                 self.indicatorCellCoun = 0
@@ -197,27 +264,8 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
             self.activityIndicator.stopAnimating()
             self.tableView.hidden = false
             self.RefreshTable()
-            
         })
     }
-    
-    /*func getProduct(brandID: Int64) {
-        if self.end {
-            return
-        }
-        let start: Int64 = (Int64)(self.brandItems.count)
-        BrandItem.getBrandItems(brandID, start: start, limit: self.limit, completeHandler: {(brandItems) in
-            if (Int64)(brandItems.count) < self.limit {
-                self.end = true
-                self.indicatorCellCoun = 0
-                print("End list")
-            }
-            self.brandItems += brandItems
-            self.activityIndicator.stopAnimating()
-            self.tableView.hidden = false
-            self.RefreshTable()
-        })
-    }*/
     
     func RefreshTable() {
         dispatch_async(dispatch_get_main_queue(), {

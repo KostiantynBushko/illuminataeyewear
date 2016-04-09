@@ -27,5 +27,17 @@ extension String {
         }
         return newStr
     }
+    
+    func deleteHTMLTag(tag:String) -> String {
+        return self.stringByReplacingOccurrencesOfString("(?i)</?\(tag)\\b[^<]*>", withString: "", options: .RegularExpressionSearch, range: nil)
+    }
+    
+    func deleteHTMLTags(tags:[String]) -> String {
+        var mutableString = self
+        for tag in tags {
+            mutableString = mutableString.deleteHTMLTag(tag)
+        }
+        return mutableString
+    }
 
 }

@@ -12,7 +12,7 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
     
     var isRunning: Bool = false
     private var products = [BrandItem]()
-    private var orderProductItems = [OrderProductItem]()
+    private var orderProductItems = [Int64:OrderProductItem]()
     private var address = [SimpleAddress]()
     private var orderTotalList = [OrderTotal]()
     private var placeMethod = [String]()
@@ -24,7 +24,7 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
     
     // PayPal SDK Integration
     var payPalConfig = PayPalConfiguration()
-    var environment:String = PayPalEnvironmentSandbox /*PayPalEnvironmentNoNetwork*/ {
+    var environment:String = /*PayPalEnvironmentProduction*/ PayPalEnvironmentSandbox /*PayPalEnvironmentNoNetwork*/ {
         willSet(newEnvironment) {
             if (newEnvironment != environment) {
                 PayPalMobile.preconnectWithEnvironment(newEnvironment)
@@ -52,7 +52,7 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
             var amount = Float()  //OrderController.sharedInstance().getCurrentOrder()?.totalAmount
             
             for item in (OrderController.sharedInstance().getCurrentOrder()?.productItems)! {
-                amount += item.price
+                amount += (Float)(item.GetPrice())
             }
             
             Transaction.MakeTransaction(orderID!, currencyID: self.currency, amount: String(amount), gatewayTransactionID: String(gatewayTransactionID!), completeHandler: {(transaction) in
@@ -67,9 +67,14 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
     }
     
     private func PreparePayPalOrder() {
+        let behaviour = NSDecimalNumberHandler(roundingMode:.RoundDown,
+            scale: 2, raiseOnExactness: false,
+            raiseOnOverflow: false, raiseOnUnderflow:
+            false, raiseOnDivideByZero: false)
         
-        var totalProductItem = Float32();
+        
         var payPalItems = [PayPalItem]()
+        /*var totalProductItem = Float();
         for var i = 0; i < products.count; i++ {
             let orderProductItem = orderProductItems[i]
             let property = products[i].getProductVariation().getName()
@@ -84,26 +89,35 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
         
         
         if(self.orderTotalList[0].HST > 0) {
-            let taxHST = PayPalItem(name: "tax HST", withQuantity: UInt(1), withPrice: NSDecimalNumber(float: self.orderTotalList[0].HST), withCurrency: currency, withSku: "hst")
+            let hst = NSDecimalNumber(float: self.orderTotalList[0].HST).decimalNumberByRoundingAccordingToBehavior(behaviour)
+            let taxHST = PayPalItem(name: "tax HST", withQuantity: UInt(1), withPrice: hst, withCurrency: currency, withSku: "hst")
             payPalItems.append(taxHST)
         }
         
         let currentShippingService = OrderController.sharedInstance().getShippingService()
         if  currentShippingService != nil {
             // Set shipping service price
-            let shippingServiceItem = PayPalItem(name: currentShippingService!.name, withQuantity: 1, withPrice: NSDecimalNumber(float: self.orderTotalList[0].shippingPickUp), withCurrency: currency, withSku: "shipment")
+            let shippingPrice = NSDecimalNumber(double: (Double)(self.orderTotalList[0].shippingPickUp)).decimalNumberByRoundingAccordingToBehavior(behaviour)
+            
+            let shippingServiceItem = PayPalItem(name: currentShippingService!.name, withQuantity: 1, withPrice: shippingPrice, withCurrency: currency, withSku: "shipment")
             payPalItems.append(shippingServiceItem)
-        }
+        }*/
         
+        // new
+        let itemName = String(OrderController.sharedInstance().getCurrentOrder()?.ID)
+        let price = NSDecimalNumber(double: (Double)((OrderController.sharedInstance().getCurrentOrder()?.totalAmount)!)).decimalNumberByRoundingAccordingToBehavior(behaviour)
+        let paypalItem = PayPalItem(name: itemName, withQuantity: UInt(1), withPrice: price, withCurrency: currency, withSku: itemName)
+        payPalItems.append(paypalItem)
+        //end
         
-        let subTotal = PayPalItem.totalPriceForItems(payPalItems)
+        let subTotal = PayPalItem.totalPriceForItems(payPalItems).decimalNumberByRoundingAccordingToBehavior(behaviour)
         let shipping = NSDecimalNumber(string:"0.00")
         let tax = NSDecimalNumber(string: "0.00")
         
         let paymentDetail = PayPalPaymentDetails(subtotal: subTotal, withShipping: shipping, withTax: tax)
         let total = subTotal.decimalNumberByAdding(shipping).decimalNumberByAdding(tax)
         
-        let payment = PayPalPayment(amount: total, currencyCode: "CAD", shortDescription: "illuminataeyewear", intent: .Sale)
+        let payment = PayPalPayment(amount: total, currencyCode: (OrderController.sharedInstance().getCurrentOrder()?.currencyID)!, shortDescription: "illuminata", intent: .Sale)
         payment.items = payPalItems
         payment.paymentDetails = paymentDetail
         
@@ -143,8 +157,9 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
 
         
         for productItem in (order?.productItems)! {
-            orderProductItems.append(productItem)
-            BrandItem.getBrandItemByID(productItem.productID, completeHandler: {(let brandItems) in
+            orderProductItems[productItem.productID] = productItem
+            print("Price : " + String(productItem.GetPrice()))
+            BrandItem().getBrandItemByID(productItem.productID, completeHandler: {(let brandItems) in
                 brandItems[0].fullInitProduct({(brandItem) in
                     self.products.append(brandItem)
                     self.RefreshTable()
@@ -177,28 +192,31 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
                     let order = OrderController.sharedInstance().getCurrentOrder()
                     let orderTota = OrderTotal()
                     
-                    for item in (order?.productItems)! {
-                        orderTota.subTotalBeforeTax += item.price * (Float32)(item.count)
+                    for item in (self.products) {
+                        orderTota.subTotalBeforeTax += (Float32)(self.orderProductItems[item.ID]!.GetPrice()) * (Float32)(self.orderProductItems[item.ID]!.count)
                     }
                     
                     orderTota.orderTotal = (order?.totalAmount)!
                     
-                    let rate = Float(0)
+                    var rate = Float()
                     if OrderController.sharedInstance().getShippingService() != nil {
                         // Calculate shipping rate = ShippingRate.flatCharge + (itemCount * ShippingRate.perItemCharge) + (Product.shippingWeight * ShippingRate.perKgCharge)
                         var productShippingWeight = Float()
                         
-                        for index in 0...self.products.count - 1 {
+                        /*for index in 0...self.products.count - 1 {
                             productShippingWeight += (self.products[index].getShippingWeight() * Float32(self.orderProductItems[index].count))
+                        }*/
+                        for item in self.products {
+                            productShippingWeight += (item.getShippingWeight() * Float32((self.orderProductItems[item.ID]?.count)!))
                         }
-                        let rate = shippingRate.flatCharge + (Float32(self.products.count) * shippingRate.perItemCharge) + (productShippingWeight * shippingRate.perKgCharge)
+                        rate = shippingRate.flatCharge + (Float32(self.products.count) * shippingRate.perItemCharge) + (productShippingWeight * shippingRate.perKgCharge)
                         orderTota.shippingPickUp = rate
                     }
                     
                     if order?.totalAmount > 0 {
-                        let hst = (order?.totalAmount)! - orderTota.subTotalBeforeTax - rate
-                        if hst > 0 {
-                            orderTota.HST = (order?.totalAmount)! - orderTota.subTotalBeforeTax - rate
+                        let hst = (order?.totalAmount)! - orderTota.subTotalBeforeTax - orderTota.shippingPickUp
+                        if hst >= 0 {
+                            orderTota.HST = hst //(order?.totalAmount)! - orderTota.subTotalBeforeTax - rate
                         }
                     }
                     self.orderTotalList.append(orderTota)
@@ -239,7 +257,7 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
             let brandItem = products[indexPath.row]
             
             cell.name.text = products[indexPath.row].getName()
-            cell.price.text = brandItem.getPrice().definePrices
+            cell.price.text = String(self.orderProductItems[brandItem.ID]!.GetPrice()) //brandItem.getPrice().definePrices
             cell.property.text = brandItem.getProductVariation().getName()
             cell.photo.image = brandItem.getImage()
             cell.currency.text = currency
@@ -329,10 +347,10 @@ private class SimpleAddress {
 }
 
 private class OrderTotal {
-    var subTotalBeforeTax = Float32()
-    var shippingPickUp = Float32()
-    var HST = Float32()
-    var orderTotal = Float32()
+    var subTotalBeforeTax = Float()
+    var shippingPickUp = Float()
+    var HST = Float()
+    var orderTotal = Float()
 }
 
 

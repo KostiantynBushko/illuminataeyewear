@@ -18,7 +18,7 @@ class DBNotifications {
         var notifications = [SimpleNotification]()
         
         for row in result {
-            //print(String(row["id"]!) + ":" + String(row["payload"]!))
+            print(String(row["id"]!) + ":" + String(row["payload"]!))
             let notification = SimpleNotification()
             
             notification.ID = Int64(String(row["id"]!))!
@@ -43,8 +43,8 @@ class DBNotifications {
         let type = "'" + (String(simpleNotification.type.rawValue)) + "'"
         
         let values = " values(" + payload + "," + url + "," + targetID + "," + message + "," +  type + ")"
-        db.query("insert into " + DB_NOTIFICATIONS + "('payload','url','targetID','message','type')" + values)
-        //print(ret)
+        let ret = db.query("insert into " + DB_NOTIFICATIONS + "('payload','url','targetID','message','type')" + values)
+        print(ret)
         return true
     }
     
@@ -53,6 +53,18 @@ class DBNotifications {
             let db = SQLiteDB.sharedInstance()
             let id = String(id!)
             db.query("update " + DB_NOTIFICATIONS + " set new='0' where id = " + id)
+        }
+    }
+    
+    static func removeNotification(id: Int64?) {
+        if id == nil {
+            return
+        }
+        let db = SQLiteDB.sharedInstance()
+        db.query("delete from " + DB_NOTIFICATIONS + " where id = " + String(id!))
+        let ret = db.query("select id from " + DB_NOTIFICATIONS)
+        if ret.count == 0 {
+            db.query("delete from sqlite_sequence where name = '" + DB_NOTIFICATIONS + "'")
         }
     }
 }

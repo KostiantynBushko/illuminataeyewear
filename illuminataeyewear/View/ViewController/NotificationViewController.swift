@@ -24,6 +24,9 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidAppear(animated)
         notifications = DBNotifications.GetNotification()
         RefreshTable()
+        if(notifications.count > 0) {
+            self.navigationItem.rightBarButtonItem = editButtonItem()
+        }
         print("Notification count : " + String(notifications.count))
     }
     
@@ -55,6 +58,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let notification = self.notifications[indexPath.row]
+        let targetID = notification.targetID
         if notification.type == NotificatioinType.Url {
             if (notification.ID != nil) {
                 self.tableView.reloadData()
@@ -71,9 +75,40 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
             let itemsBrandTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ItemsBrandTableViewController") as? ItemsBrandTableViewController
             self.navigationController?.pushViewController(itemsBrandTableViewController!, animated: true)
             itemsBrandTableViewController?.initWithBrandID(brandID)
+        } else if notification.type == NotificatioinType.UserMessage {
+            let suportViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SuportViewController") as! SuportViewController
+            suportViewController.orderID = targetID
+            self.navigationController?.pushViewController(suportViewController, animated: true)
+        } else if notification.type == NotificatioinType.Coupon || notification.type == NotificatioinType.SimpleMessage {
+            let alert: UIAlertController = UIAlertController(title: "Message", message: notification.message, preferredStyle: .Alert)
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Cancel) { action -> Void in}
+            alert.addAction(cancelAction)
+            self.presentViewController(alert, animated: true, completion: nil)
         }
         
+        notification.new = false
+        self.tableView.reloadData()
+        
         DBNotifications.MarkAsReaded(notification.ID)
+    }
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            dispatch_async(dispatch_get_main_queue()) {
+                DBNotifications.removeNotification(self.notifications[indexPath.row].ID)
+                self.notifications.removeAtIndex(indexPath.row)
+                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+        }
     }
     
     func RefreshTable() {

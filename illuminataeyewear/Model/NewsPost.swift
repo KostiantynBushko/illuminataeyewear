@@ -21,7 +21,7 @@ class NewsPost {
     var img = String()
     
  
-    static func getNewsPost(completeHandler: (Array<NewsPost>) -> Void) {
+    func getNewsPost(completeHandler: (Array<NewsPost>) -> Void) {
         let paramString = "xml=<newspost><list></list></newspost>"
         let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
         let session = NSURLSession.sharedSession()
@@ -35,6 +35,8 @@ class NewsPost {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("News Post : " + dataString)
             XmlNewsPosParser().ParseItems(data!, completeHandler: {(newsPostItems) in
                 completeHandler(newsPostItems)
             })

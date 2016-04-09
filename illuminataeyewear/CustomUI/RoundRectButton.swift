@@ -14,5 +14,10 @@ class RoundRectButton: ExButton {
         super.init(coder: aDecoder)
         self.layer.cornerRadius = 8.0;
     }
+    
+    required override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.layer.cornerRadius = 8.0;
+    }
 
 }

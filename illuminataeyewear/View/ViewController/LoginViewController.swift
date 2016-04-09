@@ -40,8 +40,10 @@ class LoginViewController : UIViewController {
     
     @IBAction func createNewCustomer(sender: AnyObject) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let registeredNavigationController = storyBoard.instantiateViewControllerWithIdentifier("RegistrationNavigationController") as! UINavigationController
-        self.presentViewController(registeredNavigationController, animated: true, completion: nil)
+        let registeredNavigationController = storyBoard.instantiateViewControllerWithIdentifier("RegistrationViewController") as! RegistrationViewController
+        registeredNavigationController.enableCloseButton = false
+        self.navigationController?.pushViewController(registeredNavigationController, animated: true)
+        
     }
     
     var isShowKeyboard = false
@@ -68,7 +70,7 @@ class LoginViewController : UIViewController {
     
     
     @IBAction func Login(sender: UIButton) {
-        UserController.sharedInstance().UserLogin(email.text!, password: password.text!, completeHandler: {(user) in
+        UserController.sharedInstance().UserLogin(email.text!, password: password.text!, completeHandler: {(user, error   ) in
             if user != nil {
                 dispatch_async(dispatch_get_main_queue()) {
                     //LiveCartController.startSession();
@@ -106,3 +108,20 @@ class LoginViewController : UIViewController {
         self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

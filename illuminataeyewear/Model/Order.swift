@@ -88,6 +88,7 @@ class Order {
             XmlOrderParser().ParseOrder(data!, completeHandler: {(ordersList) in
                 if ordersList != nil && ordersList?.count > 0 {
                     ordersList![0].InitUserAddress()
+                    ordersList![0].InitOrderedItemOption({()in})
                     completeHandler(ordersList![0])
                 }
             })
@@ -104,7 +105,13 @@ class Order {
         })
     }
     
-    func addProductToCart(productId: Int64, completeHandler: () -> Void) {
+    func InitOrderedItemOption(completeHandler: () -> Void) {
+        for productItem in self.productItems {
+            productItem.InitOrderedItemOption({(options)in})
+        }
+    }
+    
+    func addProductToCart(productId: Int64, completeHandler: (Array<OrderProductItem>, String?, NSError?) -> Void) {
         let paramString = "xml=<ordered_item><add_to_cart><customerOrderID>"
             + String(ID) + "</customerOrderID><productID>"
             + String(productId) + "</productID><count>1</count></add_to_cart></ordered_item>"
@@ -120,9 +127,11 @@ class Order {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            //print("AddProductToCart : " + String(dataString))
-            completeHandler()
+            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            print("AddProductToCart : " + String(dataString))
+            XmlOrderedItemParser().Parse(data!, completeHandler: {(orderedItem, message, error) in
+                completeHandler(orderedItem, message, error)
+            })
         }
         task.resume()
     }
@@ -167,12 +176,13 @@ class Order {
                 return
             }
             //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            //print(dataString)
+            //print("Order List : " + dataString)
             XmlOrderParser().ParseOrder(data!, completeHandler: {(ordersList) in
                 completeHandler(ordersList: ordersList)
                 if ordersList != nil && ordersList?.count > 0 {
                     for order in ordersList! {
                         order.InitUserAddress()
+                        order.InitOrderedItemOption({()in})
                     }
                 }
             })
@@ -208,6 +218,14 @@ class Order {
         task.resume()
     }
     
+    static func GetOrderedProductCount(orderProductItems: Array<OrderProductItem>) -> Int {
+        var count: Int = 0
+        for item in orderProductItems {
+            count += item.count
+        }
+        return count
+    }
+    
 }
 
 class OrderProductItem {
@@ -217,11 +235,47 @@ class OrderProductItem {
     var productID = Int64()
     var customerOrderID = Int64()
     var shipmentID = Int64()
-    var price = Float32()
+    private var price = Float32()
     var count = Int(1)
     var reservedProductCount = Int()
     var dateAdded = String()
     var isSavedForLater = Bool()
+    
+    var orderedItemOptionsList = [OrderedItemOption]()
+    
+    func GetPrice() -> Float64 {
+        var price: Float64 = (Float64)(self.price)
+        if self.orderedItemOptionsList.count > 0 {
+            for item in self.orderedItemOptionsList {
+                price += item.priceDiff
+            }
+        }
+        return price
+    }
+    
+    func SetPrice(price: Float32) {
+        self.price = price
+    }
+    
+    func InitOrderedItemOption(completeHandler:(Array<OrderedItemOption>) -> Void) {
+        OrderedItemOption().GetOrderedItemOption(self.ID, completeHandler: {(orderedItemOptions, message, error) in
+            if error == nil {
+                self.orderedItemOptionsList = orderedItemOptions
+                completeHandler(self.orderedItemOptionsList)
+            }
+        })
+    }
+    
+    /*<ID>1878</ID>
+    <productID>15856</productID>
+    <customerOrderID>1687</customerOrderID>
+    <shipmentID/><parentID/>
+    <price>198</price>
+    <count>1</count>
+    <reservedProductCount/>
+    <dateAdded>2016-04-05 08:40:43</dateAdded>
+    <isSavedForLater/>
+    <name/>*/
 }
 
 

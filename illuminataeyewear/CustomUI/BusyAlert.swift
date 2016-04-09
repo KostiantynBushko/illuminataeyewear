@@ -25,7 +25,14 @@ class BusyAlert {
     var constrainX: NSLayoutConstraint?
     var constrainY: NSLayoutConstraint?
     
-    init (title:String, message:String, presentingViewController: UIViewController) {
+    var message = String()
+    var title = String()
+    var button: String = "OK"
+    
+    init (title:String, message:String, button: String, presentingViewController: UIViewController) {
+        self.message = message
+        self.title = title
+        self.button = button
         busyAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         /*busyAlertController!.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel Button"), style: UIAlertActionStyle.Cancel, handler:{(alert: UIAlertAction!) in
             self.delegate?.didCancelBusyAlert()
@@ -56,8 +63,8 @@ class BusyAlert {
         dispatch_async(dispatch_get_main_queue()) {
             //sleep(2)
             self.activityIndicator?.removeFromSuperview()
-            self.busyAlertController?.message = "Success complete"
-            self.busyAlertController!.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Cancel Button"), style: UIAlertActionStyle.Cancel, handler:{(alert: UIAlertAction!) in
+            self.busyAlertController?.message = self.message
+            self.busyAlertController!.addAction(UIAlertAction(title: NSLocalizedString(self.button, comment: "Cancel Button"), style: UIAlertActionStyle.Cancel, handler:{(alert: UIAlertAction!) in
                 self.delegate?.didCancelBusyAlert()
             }))
         }

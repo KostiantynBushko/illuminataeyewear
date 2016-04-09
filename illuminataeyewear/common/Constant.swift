@@ -10,10 +10,12 @@ import Foundation
 
 class Constant {
     
-    static let URL_ABOUT_PAGE: String = "http://illuminataeyewear.ca/aboutUs.html"
+    static let URL: String = "http://illuminataeyewear.ca"
     
-    static let URL_BASE: String = "http://www.illuminataeyewear.ca/public/"
-    static let URL_BASE_API: String = "http://www.illuminataeyewear.ca/api/xml"
-    static let URL_IMAGE: String = "http://illuminataeyewear.ca/public/upload/productimage/"
+    static let URL_ABOUT_PAGE: String = URL + "/aboutUs.html"
+
+    static let URL_BASE: String = URL + "/public/"
+    static let URL_BASE_API: String = URL + "/api/xml"
+    static let URL_IMAGE: String = URL + "/public/upload/productimage/"
     
 }

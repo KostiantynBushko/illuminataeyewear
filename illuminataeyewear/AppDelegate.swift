@@ -14,7 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    var StoryBoardIdentifier: String = "Main"
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Register for Push Notitications, if running iOS 8
         if application.respondsToSelector("registerUserNotificationSettings:") {
@@ -40,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
         pageController.currentPageIndicatorTintColor = UIColor.redColor()
-        pageController.backgroundColor = UIColor.whiteColor()
+        //pageController.backgroundColor = UIColor.whiteColor()
         
         
         // Initialise PayPall with client ID's 
@@ -51,6 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Init Live Cart Controller
         LiveCartController.sharedInstance()
+        
+        // Check if app launch from push notification
+        if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
+            self.application(UIApplication.sharedApplication(), didReceiveRemoteNotification: remoteNotification as! [NSObject : AnyObject])
+        }
         return true
     }
 
@@ -142,7 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Push notifications callback
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         //let dataString = NSString(data: deviceToken, encoding: NSUTF8StringEncoding) as! String
-        //print(String(deviceToken))
+        print(String(deviceToken))
         var token = String(deviceToken).subStringFrom(1)
         token = token.substringToIndex(token.endIndex.predecessor())
         //print("APN Device token : " + token)
@@ -152,6 +158,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         } else {
             DBApnToken.SaveApnToken(token)
+            if UserController.sharedInstance().isAnonimous() {
+                UserApnToken.SaveUserApnToken(nil, token: token, completeHandler: {() in })
+            } else {
+                UserApnToken.SaveUserApnToken(UserController.sharedInstance().getUser()?.ID, token: token, completeHandler: {() in })
+            }
             if !DBApnToken.IsSuccessSubmited() {
                 if UserController.sharedInstance().isAnonimous() {
                     UserApnToken.SaveUserApnToken(nil, token: token, completeHandler: {() in })
@@ -160,10 +171,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+        /*DBApnToken.SaveApnToken(token)
+        if UserController.sharedInstance().isAnonimous() {
+            UserApnToken.SaveUserApnToken(nil, token: token, completeHandler: {() in })
+        } else {
+            UserApnToken.SaveUserApnToken(UserController.sharedInstance().getUser()?.ID, token: token, completeHandler: {() in })
+        }*/
     }
+
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         //print("Receive Remote Notification :  " + String(userInfo))
+        /*dispatch_async(dispatch_get_main_queue(), {
+            let importantAlert: UIAlertController = UIAlertController(title: "Action Sheet", message: "Remote notification " + String(userInfo.count), preferredStyle: .ActionSheet)
+            self.window?.rootViewController?.presentViewController(importantAlert, animated: true, completion: nil)
+        })*/
         
         if let app = userInfo["aps"] as? NSDictionary {
             let simpleNotification = SimpleNotification()

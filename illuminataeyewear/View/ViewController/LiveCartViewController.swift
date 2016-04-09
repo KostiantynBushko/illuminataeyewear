@@ -19,7 +19,7 @@ class LiveCartViewController: UIViewController {
         sleep(5)
         if Reachability.isConnectedToNetwork() == true {
             UserController.sharedInstance().getUserFromCurrentSession()
-            LiveCartController.startSession()
+            LiveCartController.sharedInstance().startSession()
         } else {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
             let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
@@ -30,7 +30,7 @@ class LiveCartViewController: UIViewController {
     func applicationDidBecomeActive(notification: NSNotification?) {
         if Reachability.isConnectedToNetwork() == true {
             UserController.sharedInstance().getUserFromCurrentSession()
-            LiveCartController.startSession()
+            LiveCartController.sharedInstance().startSession()
         } else {
             let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()

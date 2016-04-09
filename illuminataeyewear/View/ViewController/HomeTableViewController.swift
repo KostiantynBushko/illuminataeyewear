@@ -26,15 +26,19 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        NewsPost.getNewsPost({(newsPostItems) in
+        NewsPost().getNewsPost({(newsPostItems) in
             self.newsPostItems = newsPostItems
             for news in self.newsPostItems {
                 if let doc = Kanna.HTML(html: news.text.htmlDecoded(), encoding: NSUTF8StringEncoding) {
                     let simpleNewsPost = SimpleNewsPost()
                     simpleNewsPost.text = doc.text!
-                    
                     for img in doc.xpath("//img | //src") {
-                        simpleNewsPost.imageLink = Constant.URL_BASE + img["src"]!
+                        let imgLink = img["src"]!
+                        if imgLink.containsString("http://www.") || imgLink.containsString("wwww.")  || imgLink.containsString("http://") || imgLink.containsString("https://"){
+                            simpleNewsPost.imageLink = imgLink
+                        } else {
+                            simpleNewsPost.imageLink = Constant.URL_BASE  + imgLink
+                        }
                     }
                     
                     for iframe in doc.xpath("//iframe | //src") {
@@ -82,13 +86,15 @@ class HomeTableViewController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return simpleNewsPostItems.count
+            return 1
         } else if section == 1 {
+            return  simpleNewsPostItems.count
+        } else if section == 2 {
             return featureSectionCount
         }
         return 0
@@ -96,9 +102,12 @@ class HomeTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("ImageCarouselCall", forIndexPath: indexPath) as! ImageCarouselCall
+            return cell
+        } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! NewsPostViewCell
             let newsPost = simpleNewsPostItems[indexPath.row]
-            cell.title.text = newsPost.title
+            cell.title.text = newsPost.title.htmlDecoded()
             cell.shortDescription.text = newsPost.text
             (cell.readMore as! RoundRectButton).id = indexPath.row
             
@@ -144,10 +153,12 @@ class HomeTableViewController: UITableViewController {
                 cell.iFrame.scrollView.bounces = false
             }
             return cell
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCellWithIdentifier("FeatureProductViewCell", forIndexPath: indexPath) as! FeatureProductViewCell
             cell.photo.image = featureProducts[indexPath.row].getImage()
-            cell.name.text = featureProducts[indexPath.row].getProductCodeName()
+            cell.name.text = featureProducts[indexPath.row].getName()
+            cell.name.numberOfLines = 0
+            cell.name.sizeToFit()
             return cell
         } else {
             return UITableViewCell()
@@ -155,7 +166,7 @@ class HomeTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1 {
+        if section == 2 {
             return "Featured Products"
         }
         return nil
@@ -163,8 +174,10 @@ class HomeTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
+            return 200
+        } else if indexPath.section == 1 {
             return 366
-        } else if indexPath.section == 1{
+        } else if indexPath.section == 2{
             return 100
         } else {
             return 0
@@ -172,7 +185,7 @@ class HomeTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
+        if indexPath.section == 2 {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let navigationController = storyBoard.instantiateViewControllerWithIdentifier("ProductInfoNavigationController") as! UINavigationController
             self.presentViewController(navigationController, animated: true, completion: nil)
@@ -186,7 +199,10 @@ class HomeTableViewController: UITableViewController {
             let newsDetailViewController = segue.destinationViewController as! NewsDetailsViewController
             if let indexPath : Int = (sender as! RoundRectButton).id {
                 if !(simpleNewsPostItems[indexPath].imageLink as NSString).isEqualToString("") {
-                    newsDetailViewController.image = self.imageCache[simpleNewsPostItems[indexPath].imageLink]!
+
+                    if self.imageCache[simpleNewsPostItems[indexPath].imageLink] != nil  {
+                        newsDetailViewController.image = self.imageCache[simpleNewsPostItems[indexPath].imageLink]!
+                    }
                     var moreText = newsPostItems[indexPath].moreText;
                     moreText = moreText.htmlDecoded()
                     var text = newsPostItems[indexPath].text;

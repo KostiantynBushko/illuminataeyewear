@@ -1,6 +1,10 @@
 PODS:
+  - Auk (2.0.19):
+    - moa (~> 2.0)
+  - BTNavigationDropdownMenu (0.2.1)
   - CardIO (5.3.1)
   - Kanna (1.0.4)
+  - moa (2.1.7)
   - PayPal-iOS-SDK (2.13.1):
     - PayPal-iOS-SDK/CardIO (= 2.13.1)
     - PayPal-iOS-SDK/Core (= 2.13.1)
@@ -9,14 +13,19 @@ PODS:
   - PayPal-iOS-SDK/Core (2.13.1)
 
 DEPENDENCIES:
+  - Auk (~> 2.0)
+  - BTNavigationDropdownMenu
   - Kanna
   - PayPal-iOS-SDK
 
 SPEC CHECKSUMS:
+  Auk: 28b2f2372b8482d4bd1f1188c3638ef72a021dea
+  BTNavigationDropdownMenu: 9cf4060162c96510ee27c388412e28678320cdc0
   CardIO: a299efcd0348c3b256a1da53f22951319c3855a2
   Kanna: 537762df5e2203714769f8351340b3c724adb2bd
+  moa: bf5704e649973fdefbcebe7bfa1aa21cdd3292b4
   PayPal-iOS-SDK: fc36f26c818d31b014044ec0b22c0861b2fe733f
 
-PODFILE CHECKSUM: 05577ed3d128c018df2fb9c68231f92e9f663af9
+PODFILE CHECKSUM: 7ad5f1da704eded6fc9d988b6b68131386cec36e
 
 COCOAPODS: 1.0.0.beta.2

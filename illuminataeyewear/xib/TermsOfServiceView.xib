@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="7xj-8e-Vdk">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5o2-el-xL2">
+                    <rect key="frame" x="8" y="13" width="527" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wgg-jX-8bz">
+                    <rect key="frame" x="543" y="8" width="51" height="31"/>
+                </switch>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="wgg-jX-8bz" firstAttribute="trailing" secondItem="7xj-8e-Vdk" secondAttribute="trailingMargin" id="Mca-k0-uLj"/>
+                <constraint firstItem="5o2-el-xL2" firstAttribute="centerY" secondItem="wgg-jX-8bz" secondAttribute="centerY" id="aQm-SB-FuH"/>
+                <constraint firstItem="5o2-el-xL2" firstAttribute="leading" secondItem="7xj-8e-Vdk" secondAttribute="leadingMargin" id="k96-Ha-xLK"/>
+                <constraint firstItem="wgg-jX-8bz" firstAttribute="leading" secondItem="5o2-el-xL2" secondAttribute="trailing" constant="8" symbolic="YES" id="rHl-vr-Z6r"/>
+                <constraint firstItem="wgg-jX-8bz" firstAttribute="top" secondItem="7xj-8e-Vdk" secondAttribute="topMargin" id="rrS-zg-63g"/>
+            </constraints>
+            <point key="canvasLocation" x="437" y="232"/>
+        </view>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dHL-DN-Xz6">
+            <rect key="frame" x="0.0" y="0.0" width="218" height="46"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="1014" y="384"/>
+        </label>
+    </objects>
+</document>

@@ -25,10 +25,10 @@ class XmlUserParser: NSObject, NSXMLParserDelegate {
     var locale = String()
     var dateCreated = String()
     
-    var handler: ((user: User?) -> Void)?
+    var handler: ((user: User?, error: NSError?) -> Void)?
     
     
-    func ParseUser(data: NSData, completeHandler:(user: User?) -> Void) {
+    func ParseUser(data: NSData, completeHandler:(user: User?, error: NSError?) -> Void) {
         handler = completeHandler
         xmlParser = NSXMLParser(data: data)
         xmlParser.delegate = self
@@ -72,7 +72,7 @@ class XmlUserParser: NSObject, NSXMLParserDelegate {
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if (elementName as NSString).isEqualToString(TAG_RESPONSE) {
-            handler!(user: user)
+            handler!(user: user, error: nil)
         } else if (elementName as NSString).isEqualToString(TAG_CUSTOMER) {
             user?.email = email.htmlDecoded()
             user?.firstName = firstName.htmlDecoded()

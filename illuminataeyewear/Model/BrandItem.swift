@@ -8,12 +8,12 @@
 
 import UIKit
 
-class BrandItem {
+class BrandItem : NSObject{
     
     // MARK: Properties
     
     var ID = Int64()
-    var categoryID = String()
+    var categoryID = Int64()
     var manufacturerID = String()
     var defaultImageID = String()
     var parentID = Int64()
@@ -108,7 +108,7 @@ class BrandItem {
     func initParentNodeBrandItem(completeHandler: (brandItem: BrandItem) -> Void) {
         if parentID > 0 {
             parentNodeInitHandler = completeHandler
-            BrandItem.getBrandItemByID(self.parentID, completeHandler: {(items) in
+            BrandItem().getBrandItemByID(self.parentID, completeHandler: {(items) in
                 self.parentBrandItem = items[0]
                 self.parentNodeInitHandler(brandItem: self.parentBrandItem!)
             })
@@ -219,16 +219,21 @@ class BrandItem {
         if limit > 0 {
             paramString.appendContentsOf(" limit=" + String(limit))
         }
-        paramString.appendContentsOf("><categoryID>" + String(categoryID) + "</categoryID></list></product>")
-        
+        paramString.appendContentsOf("><categoryID>" + String(categoryID) + "</categoryID><isEnabled>1</isEnabled></list></product>")
+        BrandItem.getItems(paramString, completeHandler: {(items) in
+            completeHandler(items)
+        })
+    }
+    
+    static func getItems(param: String, completeHandler: (Array<BrandItem>) -> Void) {
         let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
         let session = NSURLSession.sharedSession()
         
         let request = NSMutableURLRequest(URL:url)
         request.HTTPMethod = "POST"
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
-        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
-    
+        request.HTTPBody = param.dataUsingEncoding(NSUTF8StringEncoding)
+        
         let task = session.dataTaskWithRequest(request){ (let data, let response, let error) in
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
@@ -261,7 +266,7 @@ class BrandItem {
         task.resume()
     }
     
-    static func getBrandItemByID(ID: Int64, completeHandler: (Array<BrandItem>) -> Void){
+    /*static func getBrandItemByID(ID: Int64, completeHandler: (Array<BrandItem>) -> Void){
         let paramString = "xml=<product><list><ID>" + String(ID) + "</ID></list></product>"
         let url: NSURL = NSURL(string: Constant.URL_BASE_API)!
         let session = NSURLSession.sharedSession()
@@ -280,7 +285,7 @@ class BrandItem {
             })
         }
         task.resume()
-    }
+    }*/
     
     func getBrandItemByID(ID: Int64, completeHandler: (Array<BrandItem>) -> Void){
         let paramString = "xml=<product><list><ID>" + String(ID) + "</ID></list></product>"

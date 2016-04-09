@@ -25,11 +25,13 @@ class TransactionDetailViewController: UIViewController, UITableViewDataSource, 
             Transaction.GetTransactionByOrderID((self.order?.ID)!, completeHandler: {(transactions) in
                 if transactions.count > 0 {
                     self.transaction = transactions[0]
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Suport", style: .Plain, target: self, action: "suport:"), animated: true)
+                    }
                 }
             })
-            
-            self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Suport", style: .Plain, target: self, action: "suport:"), animated: true)
         }
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Suport", style: .Plain, target: self, action: "suport:"), animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,9 +40,12 @@ class TransactionDetailViewController: UIViewController, UITableViewDataSource, 
     
     func suport(target: AnyObject) {
         print("Run support view controller")
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let suportNavigationController = storyBoard.instantiateViewControllerWithIdentifier("SuportNavigationController") as! UINavigationController
-        self.presentViewController(suportNavigationController, animated: true, completion: nil)
+        //let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        //let suportNavigationController = storyBoard.instantiateViewControllerWithIdentifier("SuportNavigationController") as! UINavigationController
+        //self.presentViewController(suportNavigationController, animated: true, completion: nil)
+        let suportViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SuportViewController") as! SuportViewController
+        suportViewController.orderID = self.order?.ID
+        self.navigationController?.pushViewController(suportViewController, animated: true)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -58,9 +63,9 @@ class TransactionDetailViewController: UIViewController, UITableViewDataSource, 
         let cell = tableView.dequeueReusableCellWithIdentifier("TransactionDetailProductCell", forIndexPath: indexPath) as! TransactionDetailProductCell
         cell.name.text = self.order?.productItems[indexPath.row].name
         cell.SKU.text = self.order?.productItems[indexPath.row].sku
-        cell.price.text = String(self.order!.currencyID) + " " + String(self.order!.productItems[indexPath.row].price)
+        cell.price.text = String(self.order!.currencyID) + " " + String(self.order!.productItems[indexPath.row].GetPrice())
         cell.quantity.text = String(self.order!.productItems[indexPath.row].count)
-        let subtotal = Float32(self.order!.productItems[indexPath.row].price) * Float32(self.order!.productItems[indexPath.row].count)
+        let subtotal = Float32(self.order!.productItems[indexPath.row].GetPrice()) * Float32(self.order!.productItems[indexPath.row].count)
         cell.subtotal.text = String(self.order!.currencyID) + " " + String(subtotal)
         return cell
     }

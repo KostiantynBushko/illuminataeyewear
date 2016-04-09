@@ -36,13 +36,13 @@ class UserController {
         return false
     }
     
-    func UserLogin(email: String, password: String, completeHandler: (user: User?) -> Void) {
-        User.UserLogIn(email, password: password, completeHandler: {(user) in
+    func UserLogin(email: String, password: String, completeHandler: (user: User?, error: NSError?) -> Void) {
+        User.UserLogIn(email, password: password, completeHandler: {(user, error) in
             if user != nil {
                 DBUserTable.SaveUser(user!)
                 self.setUser(user!)
             }
-            completeHandler(user: user)
+            completeHandler(user: user, error: error)
         })
     }
     

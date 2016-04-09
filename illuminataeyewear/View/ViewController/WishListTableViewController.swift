@@ -34,14 +34,16 @@ class WishListTableViewController: UIViewController, UITableViewDataSource, UITa
             RefreshTable()
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                 for i in 0...self.wishList.count - 1 {
-                    BrandItem.getBrandItemByID(self.wishList[i].productID, completeHandler: {(items) in
-                        items[0].fullInitProduct({(brandItem) in
-                            self.wishProductsList.append(brandItem)
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.RefreshTable()
-                                self.tableView.hidden = false
-                            }
-                        })
+                    BrandItem().getBrandItemByID(self.wishList[i].productID, completeHandler: {(items) in
+                        if items.count > 0 {
+                            items[0].fullInitProduct({(brandItem) in
+                                self.wishProductsList.append(brandItem)
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    self.RefreshTable()
+                                    self.tableView.hidden = false
+                                }
+                            })
+                        }
                     })
                 }
             }
@@ -94,7 +96,7 @@ class WishListTableViewController: UIViewController, UITableViewDataSource, UITa
                 let viewController = storyBoard.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
                 self.presentViewController(viewController, animated: true, completion: nil)
             } else {
-                OrderController.sharedInstance().getCurrentOrder()?.addProductToCart(self.wishProductsList[actionSheetController.view.tag].ID, completeHandler: {() in
+                OrderController.sharedInstance().getCurrentOrder()?.addProductToCart(self.wishProductsList[actionSheetController.view.tag].ID, completeHandler: {(orderedItem, message, error) in
                     OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
                         dispatch_async(dispatch_get_main_queue()) {
                             self.removeFromWish(actionSheetController.view.tag)
