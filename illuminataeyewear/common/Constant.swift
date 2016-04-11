@@ -10,7 +10,7 @@ import Foundation
 
 class Constant {
     
-    static let URL: String = "http://illuminataeyewear.ca"
+    static let URL: String = "http://illuminataeyewear.com"
     
     static let URL_ABOUT_PAGE: String = URL + "/aboutUs.html"
 

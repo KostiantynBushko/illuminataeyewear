@@ -13,10 +13,14 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
     @IBOutlet weak var shippingMethod: UITextField!
     
     
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var shippingPriceLabel: UILabel!
     let shippingMethodPicker = UIPickerView();
     var shippingService = [ShippingService]();
     var deliveryZoneDict = [String:DeliveryZone]()
     var selectedShippingMethod: ShippingService?
+    var products = [BrandItem]()
+    private var orderProductItems = [Int64:OrderProductItem]()
     
     
     override func viewDidLoad() {
@@ -69,6 +73,22 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
             donePicker(nil)
         }
         
+        let order = OrderController.sharedInstance().getCurrentOrder()
+        for productItem in (order?.productItems)! {
+            orderProductItems[productItem.productID] = productItem
+            print("Price : " + String(productItem.GetPrice()))
+            BrandItem().getBrandItemByID(productItem.productID, completeHandler: {(let brandItems) in
+                brandItems[0].fullInitProduct({(brandItem) in
+                    self.products.append(brandItem)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if self.products.count == self.orderProductItems.count {
+                            self.scrollView.hidden = false
+                        }
+                    }
+                })
+            })
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,6 +97,8 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
     
     func nextAction(selector: AnyObject) {
         let checkoutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CheckoutViewController") as! CheckoutViewController
+        checkoutViewController.products = self.products
+        checkoutViewController.orderProductItems = self.orderProductItems
         self.navigationController?.pushViewController(checkoutViewController, animated: true)
     }
     
@@ -105,9 +127,22 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
         if selectedShippingMethod != nil {
             Shipment().SetShipmentService((OrderController.sharedInstance().getCurrentOrder()?.ID)!, shippingMethodID: (selectedShippingMethod?.ID)!, completeHandler: {() in
                 OrderController.sharedInstance().setShippingService(self.selectedShippingMethod!)
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.navigationItem.rightBarButtonItem?.enabled = true
-                }
+                self.calculateShippingRate({(rate) in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.navigationItem.rightBarButtonItem?.enabled = true
+                        //print("RATE : " + String(rate))
+                        self.shippingPriceLabel.text = "Price: " + OrderController.sharedInstance().getCurrentOrderCurrency() + " " + String(rate)
+                    }
+                })
+                /*dispatch_async(dispatch_get_main_queue()) {
+                    self.calculateShippingRate({(rate) in
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.navigationItem.rightBarButtonItem?.enabled = true
+                            print("RATE : " + String(rate))
+                            self.shippingPriceLabel.text = String(rate)
+                        }
+                    })
+                }*/
             })
         } else {
             self.navigationItem.rightBarButtonItem?.enabled = false
@@ -126,5 +161,35 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
         toolBar.setItems([spaceButton, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
         return toolBar
+    }
+    
+    private func calculateShippingRate(completeHandler: (Float) -> Void) {
+        let shippingMethod = OrderController.sharedInstance().getShippingService()
+        if shippingMethod != nil {
+            ShippingRate().GetShippingRateByServiceID((shippingMethod?.ID)!, completeHandler: {(shippingRateList) in
+                let shippingRate = shippingRateList[0]
+                var rate = Float()
+                if OrderController.sharedInstance().getShippingService() != nil {
+                    // Calculate shipping rate = ShippingRate.flatCharge + (itemCount * ShippingRate.perItemCharge) + (Product.shippingWeight * ShippingRate.perKgCharge)
+                    var productShippingWeight = Float()
+                    for item in self.products {
+                        productShippingWeight += (item.getShippingWeight() * Float32((self.orderProductItems[item.ID]?.count)!))
+                    }
+                    rate = shippingRate.flatCharge + (Float32(self.products.count) * shippingRate.perItemCharge) + (productShippingWeight * shippingRate.perKgCharge)
+                }
+                completeHandler(rate)
+                /*OrderController.sharedInstance().UpdateUserOrder((UserController.sharedInstance().getUser()?.ID)!, completeHandler: {(success) in
+                    var rate = Float()
+                    if OrderController.sharedInstance().getShippingService() != nil {
+                        // Calculate shipping rate = ShippingRate.flatCharge + (itemCount * ShippingRate.perItemCharge) + (Product.shippingWeight * ShippingRate.perKgCharge)
+                        var productShippingWeight = Float()
+                        for item in self.products {
+                            productShippingWeight += (item.getShippingWeight() * Float32((self.orderProductItems[item.ID]?.count)!))
+                        }
+                        rate = shippingRate.flatCharge + (Float32(self.products.count) * shippingRate.perItemCharge) + (productShippingWeight * shippingRate.perKgCharge)
+                    }
+                })*/
+            })
+        }
     }
 }

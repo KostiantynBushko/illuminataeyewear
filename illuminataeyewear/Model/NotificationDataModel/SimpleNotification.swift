@@ -17,6 +17,7 @@ class SimpleNotification : BaseNotification, NotificationProtocol {
     
     var ID: Int64?
     var type = NotificatioinType.SimpleMessage
+    var title = String()
     var payload = String()
     var targetID = Int64()
     var url = String()

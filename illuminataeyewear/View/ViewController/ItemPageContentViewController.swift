@@ -23,7 +23,7 @@ class ItemPageContentViewController: UIViewController, UIPickerViewDelegate, UIP
     
     var productOptions = [ProductOption]()
     var optionChoiceDictionary = [Int64:[ProductOptionChoice]]()
-    var choicedOption = [Int64:ProductOptionChoice]()
+    //var choicedOption = [Int64:ProductOptionChoice]()
     var selectedOption = [Int64:ProductOptionChoice]()
     var textFields = [Int:UITextField]()
     
@@ -258,16 +258,24 @@ class ItemPageContentViewController: UIViewController, UIPickerViewDelegate, UIP
     
     var countUpdateOptions: Int = 0
     private func addToCartDialog() {
+        if self.productOptions.count != self.selectedOption.count {
+            let actionSheetController: UIAlertController = UIAlertController(title: "Warning", message: "Please complete required product options", preferredStyle: .Alert)
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in}
+            actionSheetController.addAction(cancelAction)
+            self.presentViewController(actionSheetController, animated: true, completion: nil)
+            return
+        }
         if UserController.sharedInstance().isAnonimous() {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyBoard.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
             self.presentViewController(viewController, animated: true, completion: nil)
             SessionController.sharedInstance().SetProduct(self.brandItem?.ID)
+            SessionController.sharedInstance().SetOption(self.selectedOption)
         } else {
             let actionSheetController: UIAlertController = UIAlertController(title: "Add to cart", message: "Do you want add this product to your cart", preferredStyle: .Alert)
             let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in}
-            
             actionSheetController.addAction(cancelAction)
+            
             //Create and an option action
             let yesAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
                 self.busyAlertController = BusyAlert(title: "", message: "", button: "OK", presentingViewController: self)
@@ -277,25 +285,36 @@ class ItemPageContentViewController: UIViewController, UIPickerViewDelegate, UIP
                 
                 OrderController.sharedInstance().getCurrentOrder()?.addProductToCart((self.brandItem?.ID)!, completeHandler: {(orderedItem, message, error) in
                     if orderedItem.count > 0 {
-                        for item in self.selectedOption {
-                            OrderedItemOption().SetOrderedItemOption(orderedItem[0].ID, productOptionChoice: item.1.ID, optionText: nil, completeHandler: {(options, message, error) in
-                                self.countUpdateOptions -= 1
-                                if message != nil {
-                                    print(" message : " + message! + " " + String(self.countUpdateOptions))
-                                }
-                                if self.countUpdateOptions == 0 {
-                                    print("Update Order ")
-                                    
-                                    OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
-                                        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                                        LiveCartController.TabBarUpdateBadgeValue((appDelegate.window?.rootViewController as! UITabBarController))
-                                        self.busyAlertController!.dismiss()
-                                    })
-                                }
+                        if self.selectedOption.count > 0 {
+                            for item in self.selectedOption {
+                                OrderedItemOption().SetOrderedItemOption(orderedItem[0].ID, productOptionChoice: item.1.ID, optionText: nil, completeHandler: {(options, message, error) in
+                                    self.countUpdateOptions -= 1
+                                    if message != nil {
+                                        print(" message : " + message! + " " + String(self.countUpdateOptions))
+                                    }
+                                    if self.countUpdateOptions == 0 {
+                                        print("Update Order ")
+                                        OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
+                                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                                            LiveCartController.TabBarUpdateBadgeValue((appDelegate.window?.rootViewController as! UITabBarController))
+                                            self.busyAlertController!.dismiss()
+                                        })
+                                    }
+                                })
+                            }
+                        } else {
+                            OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
+                                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                                LiveCartController.TabBarUpdateBadgeValue((appDelegate.window?.rootViewController as! UITabBarController))
+                                self.busyAlertController!.dismiss()
                             })
                         }
                     } else {
-                        self.busyAlertController!.dismiss()
+                        OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
+                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                            LiveCartController.TabBarUpdateBadgeValue((appDelegate.window?.rootViewController as! UITabBarController))
+                            self.busyAlertController!.dismiss()
+                        })
                     }
                     
                     /*OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in

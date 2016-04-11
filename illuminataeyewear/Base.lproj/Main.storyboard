@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cke-We-q7M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cke-We-q7M">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -309,6 +309,9 @@
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xz8-Rr-nBi">
                                                     <rect key="frame" x="0.0" y="1" width="320" height="170"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="170" id="6G7-fv-Ucr"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CAD $ 0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiy-eK-oi3" customClass="RoundRectLabel" customModule="illuminataeyewear" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="198" width="304" height="21"/>
@@ -320,9 +323,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBi-eg-GkQ" customClass="RoundRectButton" customModule="illuminataeyewear" customModuleProvider="target">
-                                                    <rect key="frame" x="75" y="227" width="170" height="29"/>
+                                                    <rect key="frame" x="45" y="227" width="230" height="29"/>
                                                     <color key="backgroundColor" red="0.0" green="0.81780697599999996" blue="0.2211022956" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="230" id="ZDd-2R-1E9"/>
                                                         <constraint firstAttribute="height" constant="29" id="qtY-Oi-gP9"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -336,19 +340,17 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="aiy-eK-oi3" firstAttribute="top" secondItem="oxt-Et-vbF" secondAttribute="bottom" constant="3" id="4V6-L4-Xap"/>
-                                                <constraint firstItem="aBi-eg-GkQ" firstAttribute="leading" secondItem="xz8-Rr-nBi" secondAttribute="leading" constant="75" id="BGm-rh-Bs2"/>
                                                 <constraint firstItem="Yso-6J-7nH" firstAttribute="trailing" secondItem="iv7-jp-5Zc" secondAttribute="trailingMargin" id="Hrc-ZT-hnj"/>
-                                                <constraint firstAttribute="bottom" secondItem="aBi-eg-GkQ" secondAttribute="bottom" constant="8" id="JqV-lg-HAg"/>
-                                                <constraint firstItem="aBi-eg-GkQ" firstAttribute="top" secondItem="aiy-eK-oi3" secondAttribute="bottom" constant="8" id="Nnu-VF-okk"/>
+                                                <constraint firstItem="aBi-eg-GkQ" firstAttribute="top" secondItem="aiy-eK-oi3" secondAttribute="bottom" constant="8" symbolic="YES" id="Ler-oI-PLX"/>
                                                 <constraint firstItem="xz8-Rr-nBi" firstAttribute="top" secondItem="iv7-jp-5Zc" secondAttribute="topMargin" constant="-7" id="OU3-mE-IHg"/>
-                                                <constraint firstItem="aBi-eg-GkQ" firstAttribute="trailing" secondItem="xz8-Rr-nBi" secondAttribute="trailing" constant="-75" id="OwC-O9-Gwg"/>
+                                                <constraint firstAttribute="trailing" secondItem="xz8-Rr-nBi" secondAttribute="trailing" id="Q8y-9a-jCb"/>
+                                                <constraint firstItem="xz8-Rr-nBi" firstAttribute="centerX" secondItem="oxt-Et-vbF" secondAttribute="centerX" id="cKp-qd-PIQ"/>
                                                 <constraint firstItem="xz8-Rr-nBi" firstAttribute="leading" secondItem="iv7-jp-5Zc" secondAttribute="leading" id="cwL-h4-9A8"/>
                                                 <constraint firstItem="Yso-6J-7nH" firstAttribute="top" secondItem="iv7-jp-5Zc" secondAttribute="topMargin" id="dK4-Vv-JTQ"/>
-                                                <constraint firstAttribute="trailing" secondItem="aBi-eg-GkQ" secondAttribute="trailing" constant="75" id="eOn-b9-wF6"/>
+                                                <constraint firstItem="xz8-Rr-nBi" firstAttribute="centerX" secondItem="aBi-eg-GkQ" secondAttribute="centerX" id="gvh-WH-y5A"/>
                                                 <constraint firstItem="aiy-eK-oi3" firstAttribute="leading" secondItem="iv7-jp-5Zc" secondAttribute="leadingMargin" id="hSY-fq-veJ"/>
                                                 <constraint firstItem="oxt-Et-vbF" firstAttribute="leading" secondItem="iv7-jp-5Zc" secondAttribute="leadingMargin" id="laW-aa-kRB"/>
                                                 <constraint firstItem="oxt-Et-vbF" firstAttribute="top" secondItem="xz8-Rr-nBi" secondAttribute="bottom" constant="3" id="r9g-n3-pI3"/>
-                                                <constraint firstItem="aiy-eK-oi3" firstAttribute="centerX" secondItem="aBi-eg-GkQ" secondAttribute="centerX" id="ufz-8F-LIG"/>
                                                 <constraint firstItem="aiy-eK-oi3" firstAttribute="centerX" secondItem="oxt-Et-vbF" secondAttribute="centerX" id="yte-IN-ZI2"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -785,62 +787,51 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27M-AL-bA9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="324" height="504"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDp-mf-8eh">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="324" height="504"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qAw-rW-mxe">
-                                                <rect key="frame" x="8" y="8" width="304" height="166"/>
+                                                <rect key="frame" x="8" y="8" width="308" height="166"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="166" id="oUo-FM-U9x"/>
+                                                </constraints>
                                             </imageView>
                                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Toy-2N-VfQ">
-                                                <rect key="frame" x="8" y="182" width="304" height="314"/>
+                                                <rect key="frame" x="8" y="182" width="308" height="314"/>
                                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="314" id="xGA-vD-Axv"/>
-                                                </constraints>
                                             </webView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="Toy-2N-VfQ" firstAttribute="top" secondItem="qAw-rW-mxe" secondAttribute="bottom" constant="8" id="8Ca-Vb-vpA"/>
-                                            <constraint firstItem="Toy-2N-VfQ" firstAttribute="leading" secondItem="zDp-mf-8eh" secondAttribute="leadingMargin" id="9al-Cj-zlg"/>
-                                            <constraint firstItem="Toy-2N-VfQ" firstAttribute="top" secondItem="qAw-rW-mxe" secondAttribute="bottom" constant="8" symbolic="YES" id="CBK-qC-kAA"/>
-                                            <constraint firstItem="qAw-rW-mxe" firstAttribute="top" secondItem="zDp-mf-8eh" secondAttribute="top" constant="8" id="GJs-Ou-il9"/>
-                                            <constraint firstAttribute="bottom" secondItem="Toy-2N-VfQ" secondAttribute="bottom" constant="8" id="Rgg-49-D5S"/>
-                                            <constraint firstItem="Toy-2N-VfQ" firstAttribute="trailing" secondItem="zDp-mf-8eh" secondAttribute="trailingMargin" id="Sc8-PN-izB"/>
-                                            <constraint firstAttribute="width" constant="320" id="agk-1d-aRs"/>
-                                            <constraint firstItem="Toy-2N-VfQ" firstAttribute="leading" secondItem="qAw-rW-mxe" secondAttribute="leading" id="c1G-br-FsK"/>
-                                            <constraint firstAttribute="height" constant="504" id="eGS-z8-j12"/>
-                                            <constraint firstItem="Toy-2N-VfQ" firstAttribute="trailing" secondItem="qAw-rW-mxe" secondAttribute="trailing" id="nKa-fH-yXf"/>
-                                            <constraint firstItem="qAw-rW-mxe" firstAttribute="top" secondItem="zDp-mf-8eh" secondAttribute="topMargin" id="vpP-t5-eTL"/>
+                                            <constraint firstItem="Toy-2N-VfQ" firstAttribute="top" secondItem="qAw-rW-mxe" secondAttribute="bottom" constant="8" symbolic="YES" id="413-ax-9an"/>
+                                            <constraint firstItem="qAw-rW-mxe" firstAttribute="leading" secondItem="zDp-mf-8eh" secondAttribute="leading" constant="8" id="Pj3-Mi-bc6"/>
+                                            <constraint firstAttribute="bottom" secondItem="Toy-2N-VfQ" secondAttribute="bottom" constant="8" id="TnR-X2-ZRX"/>
+                                            <constraint firstItem="qAw-rW-mxe" firstAttribute="top" secondItem="zDp-mf-8eh" secondAttribute="top" constant="8" id="VTE-Vr-cLR"/>
+                                            <constraint firstAttribute="trailing" secondItem="qAw-rW-mxe" secondAttribute="trailing" constant="8" id="Z1n-mm-EVc"/>
+                                            <constraint firstItem="Toy-2N-VfQ" firstAttribute="leading" secondItem="zDp-mf-8eh" secondAttribute="leading" constant="8" id="csE-F8-P7W"/>
+                                            <constraint firstAttribute="trailing" secondItem="Toy-2N-VfQ" secondAttribute="trailing" constant="8" id="mcu-q2-Ovq"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="leading" secondItem="27M-AL-bA9" secondAttribute="leading" id="6zF-Yl-shT"/>
-                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="top" secondItem="27M-AL-bA9" secondAttribute="top" id="8R6-o7-4Du"/>
-                                    <constraint firstAttribute="bottom" secondItem="zDp-mf-8eh" secondAttribute="bottom" id="8Xa-7M-BUW"/>
-                                    <constraint firstAttribute="trailing" secondItem="zDp-mf-8eh" secondAttribute="trailing" id="Fog-Tp-dsG"/>
-                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="centerY" secondItem="27M-AL-bA9" secondAttribute="centerY" id="NoD-2j-XMj"/>
-                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="leading" secondItem="27M-AL-bA9" secondAttribute="leading" id="VrG-XG-CCf"/>
-                                    <constraint firstAttribute="bottom" secondItem="zDp-mf-8eh" secondAttribute="bottom" id="b0R-g3-ya8"/>
-                                    <constraint firstAttribute="trailing" secondItem="zDp-mf-8eh" secondAttribute="trailing" id="fhc-xw-g01"/>
-                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="top" secondItem="27M-AL-bA9" secondAttribute="top" id="g2O-ho-FSa"/>
-                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="centerX" secondItem="27M-AL-bA9" secondAttribute="centerX" id="hms-EP-npu"/>
-                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="top" secondItem="27M-AL-bA9" secondAttribute="top" id="idA-cE-0yD"/>
-                                    <constraint firstAttribute="trailing" secondItem="zDp-mf-8eh" secondAttribute="trailing" id="lJV-Xf-Dgw"/>
-                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="leading" secondItem="27M-AL-bA9" secondAttribute="leading" id="sEs-U5-ZQA"/>
-                                    <constraint firstAttribute="bottom" secondItem="zDp-mf-8eh" secondAttribute="bottom" id="v9Q-FC-iHc"/>
-                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="top" secondItem="27M-AL-bA9" secondAttribute="top" id="ySE-s8-CPK"/>
-                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="leading" secondItem="27M-AL-bA9" secondAttribute="leading" id="yTw-w6-uXZ"/>
+                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="leading" secondItem="27M-AL-bA9" secondAttribute="leading" id="1ww-yA-Ned"/>
+                                    <constraint firstAttribute="trailing" secondItem="zDp-mf-8eh" secondAttribute="trailing" id="68A-7E-rdW"/>
+                                    <constraint firstAttribute="bottom" secondItem="zDp-mf-8eh" secondAttribute="bottom" id="CY6-Nk-loV"/>
+                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="centerY" secondItem="27M-AL-bA9" secondAttribute="centerY" id="PBG-QD-qdl"/>
+                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="top" secondItem="27M-AL-bA9" secondAttribute="top" id="ZKj-4m-nWE"/>
+                                    <constraint firstItem="zDp-mf-8eh" firstAttribute="centerX" secondItem="27M-AL-bA9" secondAttribute="centerX" id="gv7-bd-Xtg"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="27M-AL-bA9" firstAttribute="leading" secondItem="DfT-2G-Bdr" secondAttribute="leading" id="7ic-7r-sGK"/>
                             <constraint firstItem="27M-AL-bA9" firstAttribute="top" secondItem="XIh-eT-ja1" secondAttribute="bottom" id="M7y-10-Vug"/>
-                            <constraint firstItem="27M-AL-bA9" firstAttribute="leading" secondItem="DfT-2G-Bdr" secondAttribute="leading" id="gEa-Jv-9Pr"/>
+                            <constraint firstItem="QKH-XE-0HB" firstAttribute="top" secondItem="27M-AL-bA9" secondAttribute="bottom" id="Z6N-9H-1kg"/>
+                            <constraint firstItem="27M-AL-bA9" firstAttribute="top" secondItem="XIh-eT-ja1" secondAttribute="bottom" id="qc1-NM-b7O"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="27M-AL-bA9" secondAttribute="trailing" constant="-20" id="wBZ-BK-C6C"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -963,7 +954,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AQI-Qq-UfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="XwY-5l-kkA"/>
             </objects>
-            <point key="canvasLocation" x="2921" y="1367"/>
+            <point key="canvasLocation" x="3453" y="1367"/>
         </scene>
         <!--Notification-->
         <scene sceneID="b6E-bP-C95">
@@ -1059,7 +1050,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l5J-T8-Pup" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4175" y="1342"/>
+            <point key="canvasLocation" x="4707" y="1342"/>
         </scene>
         <!--Item Page Content View Controller-->
         <scene sceneID="q7V-CY-FSE">
@@ -1137,8 +1128,11 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                 </constraints>
                             </scrollView>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM8-Mm-Oax" customClass="RoundRectButton" customModule="illuminataeyewear" customModuleProvider="target">
-                                <rect key="frame" x="70" y="543" width="180" height="25"/>
+                                <rect key="frame" x="60" y="543" width="200" height="25"/>
                                 <color key="backgroundColor" red="0.0" green="0.81780697599999996" blue="0.2211022956" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="hzF-HE-6x7"/>
+                                </constraints>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title=" Add to Cart" image="cart_black_button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1151,7 +1145,6 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="C7t-SA-DRc" secondAttribute="trailing" id="BbB-B0-BW7"/>
-                            <constraint firstItem="KM8-Mm-Oax" firstAttribute="leading" secondItem="asV-Ds-cS2" secondAttribute="leadingMargin" constant="54" id="CRe-kL-zWU"/>
                             <constraint firstItem="KM8-Mm-Oax" firstAttribute="top" secondItem="C7t-SA-DRc" secondAttribute="bottom" constant="8" symbolic="YES" id="KWe-wi-ilG"/>
                             <constraint firstItem="KM8-Mm-Oax" firstAttribute="centerX" secondItem="C7t-SA-DRc" secondAttribute="centerX" id="NBZ-M5-4vo"/>
                             <constraint firstItem="C7t-SA-DRc" firstAttribute="top" secondItem="Jr9-9S-o3p" secondAttribute="bottom" constant="8" id="S8Y-cP-dKJ"/>
@@ -1204,29 +1197,17 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                                     <color key="textColor" red="0.94646050150000005" green="0.4745507444" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bq-Sz-1dY" customClass="RoundRectButton" customModule="illuminataeyewear" customModuleProvider="target">
-                                                    <rect key="frame" x="163" y="100" width="149" height="23"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.81780697599999996" blue="0.2211022956" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="149" id="R8k-fV-KYk"/>
-                                                    </constraints>
-                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Add to cart" image="cart_black_button"/>
-                                                </button>
-                                                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98t-Re-7KJ" customClass="RoundRectButton" customModule="illuminataeyewear" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="100" width="150" height="23"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.81780697599999996" blue="0.2211022956" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Remove"/>
-                                                </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CX3-1b-j0v">
                                                     <rect key="frame" x="8" y="2" width="92" height="93"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="92" id="xK6-9F-uPb"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="property" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8i-wH-AKV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="property" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8i-wH-AKV">
                                                     <rect key="frame" x="108" y="38" width="204" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="XfY-sK-1FC"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.55549636989999995" green="0.55549636989999995" blue="0.55549636989999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1240,26 +1221,33 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                                     <color key="textColor" red="0.0" green="0.81780697599999996" blue="0.2211022956" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bq-Sz-1dY" customClass="RoundRectButton" customModule="illuminataeyewear" customModuleProvider="target">
+                                                    <rect key="frame" x="86" y="100" width="149" height="23"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.81780697599999996" blue="0.2211022956" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="149" id="OYr-9g-RL5"/>
+                                                        <constraint firstAttribute="height" constant="23" id="gDI-0G-P6h"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Add to cart" image="cart_black_button"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="98t-Re-7KJ" secondAttribute="bottom" constant="-1" id="2Ca-ap-GPX"/>
-                                                <constraint firstItem="98t-Re-7KJ" firstAttribute="top" secondItem="WJg-bm-8fM" secondAttribute="bottom" constant="8" id="4dQ-Y9-Jj8"/>
-                                                <constraint firstItem="98t-Re-7KJ" firstAttribute="leading" secondItem="CX3-1b-j0v" secondAttribute="leading" id="5C3-yp-Csn"/>
-                                                <constraint firstItem="8bq-Sz-1dY" firstAttribute="leading" secondItem="98t-Re-7KJ" secondAttribute="trailing" constant="5" id="Ac1-RD-LKj"/>
-                                                <constraint firstItem="98t-Re-7KJ" firstAttribute="leading" secondItem="pI0-GA-Z9T" secondAttribute="leadingMargin" id="Bfy-x9-hcT"/>
-                                                <constraint firstItem="98t-Re-7KJ" firstAttribute="baseline" secondItem="8bq-Sz-1dY" secondAttribute="firstBaseline" id="GhI-NI-mjZ"/>
-                                                <constraint firstItem="8bq-Sz-1dY" firstAttribute="baseline" secondItem="98t-Re-7KJ" secondAttribute="firstBaseline" id="L7j-y0-Dw8"/>
-                                                <constraint firstItem="WJg-bm-8fM" firstAttribute="leading" secondItem="NSD-ij-uri" secondAttribute="leading" id="M2D-La-Awx"/>
-                                                <constraint firstItem="WJg-bm-8fM" firstAttribute="trailing" secondItem="NSD-ij-uri" secondAttribute="trailing" id="Nkn-av-f6c"/>
-                                                <constraint firstItem="WJg-bm-8fM" firstAttribute="trailing" secondItem="pI0-GA-Z9T" secondAttribute="trailingMargin" id="QR6-r7-cFl"/>
-                                                <constraint firstItem="WJg-bm-8fM" firstAttribute="centerY" secondItem="CX3-1b-j0v" secondAttribute="centerY" constant="33" id="Vq2-mS-enP"/>
-                                                <constraint firstItem="WJg-bm-8fM" firstAttribute="trailing" secondItem="8bq-Sz-1dY" secondAttribute="trailing" id="X8k-Du-0la"/>
-                                                <constraint firstItem="CX3-1b-j0v" firstAttribute="top" secondItem="pI0-GA-Z9T" secondAttribute="topMargin" constant="-6" id="aWQ-JU-Id2"/>
-                                                <constraint firstItem="WJg-bm-8fM" firstAttribute="top" secondItem="NSD-ij-uri" secondAttribute="bottom" constant="41" id="kgE-83-EK2"/>
-                                                <constraint firstItem="98t-Re-7KJ" firstAttribute="top" secondItem="CX3-1b-j0v" secondAttribute="bottom" constant="5" id="ojV-bl-6jm"/>
-                                                <constraint firstItem="NSD-ij-uri" firstAttribute="leading" secondItem="CX3-1b-j0v" secondAttribute="trailing" constant="8" symbolic="YES" id="sn4-y9-HIX"/>
-                                                <constraint firstItem="NSD-ij-uri" firstAttribute="top" secondItem="pI0-GA-Z9T" secondAttribute="topMargin" id="uK5-SW-0zE"/>
-                                                <constraint firstItem="8bq-Sz-1dY" firstAttribute="top" secondItem="98t-Re-7KJ" secondAttribute="top" id="y4E-bG-lnC"/>
+                                                <constraint firstItem="NSD-ij-uri" firstAttribute="top" secondItem="pI0-GA-Z9T" secondAttribute="topMargin" id="2HZ-6B-bCx"/>
+                                                <constraint firstItem="8bq-Sz-1dY" firstAttribute="top" secondItem="CX3-1b-j0v" secondAttribute="bottom" constant="5" id="3M2-HD-8hC"/>
+                                                <constraint firstItem="P8i-wH-AKV" firstAttribute="trailing" secondItem="NSD-ij-uri" secondAttribute="trailing" id="9PA-YR-aqP"/>
+                                                <constraint firstItem="WJg-bm-8fM" firstAttribute="top" secondItem="P8i-wH-AKV" secondAttribute="bottom" constant="12" id="IU2-Oh-IrM"/>
+                                                <constraint firstItem="WJg-bm-8fM" firstAttribute="trailing" secondItem="pI0-GA-Z9T" secondAttribute="trailingMargin" id="KUI-u0-yod"/>
+                                                <constraint firstItem="P8i-wH-AKV" firstAttribute="top" secondItem="NSD-ij-uri" secondAttribute="bottom" constant="8" symbolic="YES" id="TJK-kF-WCL"/>
+                                                <constraint firstItem="CX3-1b-j0v" firstAttribute="leading" secondItem="pI0-GA-Z9T" secondAttribute="leadingMargin" id="Wfv-y9-6Jb"/>
+                                                <constraint firstItem="8bq-Sz-1dY" firstAttribute="top" secondItem="WJg-bm-8fM" secondAttribute="bottom" constant="8" symbolic="YES" id="coE-dz-3X6"/>
+                                                <constraint firstItem="CX3-1b-j0v" firstAttribute="top" secondItem="pI0-GA-Z9T" secondAttribute="topMargin" constant="-6" id="dIA-8s-Agd"/>
+                                                <constraint firstItem="NSD-ij-uri" firstAttribute="leading" secondItem="CX3-1b-j0v" secondAttribute="trailing" constant="8" symbolic="YES" id="egG-c1-esd"/>
+                                                <constraint firstItem="P8i-wH-AKV" firstAttribute="leading" secondItem="NSD-ij-uri" secondAttribute="leading" id="hZU-9d-Grl"/>
+                                                <constraint firstItem="CX3-1b-j0v" firstAttribute="centerY" secondItem="P8i-wH-AKV" secondAttribute="centerY" id="lVr-z1-TfH"/>
+                                                <constraint firstItem="WJg-bm-8fM" firstAttribute="leading" secondItem="P8i-wH-AKV" secondAttribute="leading" id="ldp-h7-oyX"/>
+                                                <constraint firstItem="8bq-Sz-1dY" firstAttribute="centerX" secondItem="pI0-GA-Z9T" secondAttribute="centerX" id="sCm-zw-wad"/>
+                                                <constraint firstItem="P8i-wH-AKV" firstAttribute="trailing" secondItem="WJg-bm-8fM" secondAttribute="trailing" id="sg1-wW-Bsy"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1268,7 +1256,6 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                             <outlet property="photo" destination="CX3-1b-j0v" id="8GP-2B-EFs"/>
                                             <outlet property="price" destination="WJg-bm-8fM" id="sDp-l9-0NE"/>
                                             <outlet property="property" destination="P8i-wH-AKV" id="1de-lV-cxJ"/>
-                                            <outlet property="removeFromWish" destination="98t-Re-7KJ" id="HMr-Hq-ASA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2266,7 +2253,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
             </objects>
             <point key="canvasLocation" x="1603" y="681"/>
         </scene>
-        <!--Shipping Method View Controller-->
+        <!--Sipping method-->
         <scene sceneID="Ug7-j6-rkI">
             <objects>
                 <viewController storyboardIdentifier="ShippingMethodViewController" id="3U1-8u-itC" customClass="ShippingMethodViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
@@ -2275,14 +2262,17 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                         <viewControllerLayoutGuide type="bottom" id="7Zc-6k-Avn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EFE-CX-5gU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Lz-uN-FJx">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="thT-at-YBc">
+                                <rect key="frame" x="150" y="242" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Lz-uN-FJx">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1X-oi-Kdl">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select shipping method" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfT-UI-0ZF">
                                                 <rect key="frame" x="8" y="8" width="304" height="21"/>
@@ -2295,15 +2285,24 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htv-qz-Tag">
+                                                <rect key="frame" x="8" y="75" width="304" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.7830432665" green="0.40241849489999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="NfT-UI-0ZF" firstAttribute="trailing" secondItem="d1X-oi-Kdl" secondAttribute="trailingMargin" id="8Em-OI-lp2"/>
                                             <constraint firstItem="NfT-UI-0ZF" firstAttribute="top" secondItem="d1X-oi-Kdl" secondAttribute="topMargin" id="D0x-D2-4I8"/>
                                             <constraint firstItem="NfT-UI-0ZF" firstAttribute="trailing" secondItem="nLi-JH-Z8X" secondAttribute="trailing" id="IT0-IN-bGH"/>
+                                            <constraint firstItem="Htv-qz-Tag" firstAttribute="leading" secondItem="nLi-JH-Z8X" secondAttribute="leading" id="Ppb-tx-4B7"/>
                                             <constraint firstItem="NfT-UI-0ZF" firstAttribute="leading" secondItem="d1X-oi-Kdl" secondAttribute="leadingMargin" id="S8q-82-3Fc"/>
+                                            <constraint firstItem="Htv-qz-Tag" firstAttribute="top" secondItem="nLi-JH-Z8X" secondAttribute="bottom" constant="8" symbolic="YES" id="VeB-4V-XkQ"/>
                                             <constraint firstItem="NfT-UI-0ZF" firstAttribute="leading" secondItem="nLi-JH-Z8X" secondAttribute="leading" id="bCv-R4-QOQ"/>
                                             <constraint firstItem="nLi-JH-Z8X" firstAttribute="top" secondItem="NfT-UI-0ZF" secondAttribute="bottom" constant="8" symbolic="YES" id="fBw-35-CN6"/>
+                                            <constraint firstItem="Htv-qz-Tag" firstAttribute="trailing" secondItem="nLi-JH-Z8X" secondAttribute="trailing" id="fEu-An-E6I"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -2326,13 +2325,16 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Sipping method" id="3St-51-V3R"/>
                     <connections>
+                        <outlet property="scrollView" destination="2Lz-uN-FJx" id="gfV-eL-mD9"/>
                         <outlet property="shippingMethod" destination="nLi-JH-Z8X" id="H7O-Oa-aDF"/>
+                        <outlet property="shippingPriceLabel" destination="Htv-qz-Tag" id="a8a-A1-hWU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DKG-LE-hWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1949" y="681"/>
+            <point key="canvasLocation" x="2032" y="1352"/>
         </scene>
         <!--Checkout-->
         <scene sceneID="vfh-gG-qgr">
@@ -3972,7 +3974,7 @@ If you have any questions, please visit us in store or call.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="htb-fG-PCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2481" y="1367"/>
+            <point key="canvasLocation" x="3013" y="1367"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7XL-FP-QXV">
@@ -4008,7 +4010,7 @@ If you have any questions, please visit us in store or call.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sSW-ZO-sVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3770" y="1342"/>
+            <point key="canvasLocation" x="4302" y="1342"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LQn-vc-Jzf">
@@ -4063,6 +4065,24 @@ If you have any questions, please visit us in store or call.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vLs-6d-BqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3125" y="2447"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vOy-Dq-nSv">
+            <objects>
+                <navigationController storyboardIdentifier="ShippingNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="RdU-8v-HX8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="c9k-2z-Tip">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3U1-8u-itC" kind="relationship" relationship="rootViewController" id="WHX-wo-zqk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nlg-d7-qWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1603" y="1352"/>
         </scene>
     </scenes>
     <resources>

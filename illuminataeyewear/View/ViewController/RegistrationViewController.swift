@@ -152,12 +152,23 @@ class RegistrationViewController: UIViewController, BusyAlertDelegate {
         } else if successLogin {
             dispatch_async(dispatch_get_main_queue()) {
                 let product = SessionController.sharedInstance().GetProduct()
+                let productOptionChoice = SessionController.sharedInstance().GetOption()
+                let optionsText = SessionController.sharedInstance().GetOptionText()
+                print("ALL SELECTED OPTIONS : " + String(optionsText))
                 if product != nil {
                     OrderController.sharedInstance().getCurrentOrder()?.addProductToCart(product!, completeHandler: {(orderedItem, message, error) in
+                        
+                        if productOptionChoice != nil {
+                            for optionChoice in productOptionChoice! {
+                                print("OPTION TEXT : " + String(optionsText[optionChoice.1.ID]))
+                                OrderedItemOption().SetOrderedItemOption(orderedItem[0].ID, productOptionChoice: optionChoice.1.ID, optionText: optionsText[optionChoice.1.ID], completeHandler: {(options, message, error) in
+                                })
+                            }
+                        }
+                        
                         OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
                             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                             LiveCartController.TabBarUpdateBadgeValue((appDelegate.window?.rootViewController as! UITabBarController))
-                            
                             if OrderController.sharedInstance().getCurrentOrder()?.productItems.count > 0 {
                                 dispatch_async(dispatch_get_main_queue()) {
                                     self.dismissViewControllerAnimated(true, completion: nil)
@@ -172,6 +183,8 @@ class RegistrationViewController: UIViewController, BusyAlertDelegate {
                             }
                         })
                     })
+                    
+                    
                     //self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
                     self.dismissViewControllerAnimated(true, completion: nil)

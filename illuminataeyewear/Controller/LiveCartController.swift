@@ -9,6 +9,8 @@
 import Foundation
 
 class LiveCartController {
+    private static var DEFAULT_COUNTRY_ID: String = "CA"
+    private static var DEFAULT_COUNTRY_NAME: String = "Canada"
     
     private static var _instance: LiveCartController?
     private init() {}
@@ -53,7 +55,10 @@ class LiveCartController {
                 return country
             }
         }
-        return Country()
+        let country = Country()
+        country.setCountryID(LiveCartController.DEFAULT_COUNTRY_ID)
+        country.setCountry(LiveCartController.DEFAULT_COUNTRY_NAME)
+        return country
     }
     
     func getCountryNameByCode(countryID: String) -> String {

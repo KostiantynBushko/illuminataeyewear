@@ -51,8 +51,8 @@ class UserApnToken {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print("UserApnToken : " + dataString)
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("UserApnToken : " + dataString)
             XmlUserApnTokenParser().Parse(data!, completeHandler: {(userApnToken) in
                 completeHandler(userApnToken)
             })

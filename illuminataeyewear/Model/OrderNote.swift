@@ -32,8 +32,8 @@ class OrderNote {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print("Order notes : " + dataString)
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("Order notes : " + dataString)
             
             XmlOrderNoteParser().Parse(data!, completeHandler: {(notes, message, error)in
                 completeHandler(notes, message, error)
@@ -56,8 +56,8 @@ class OrderNote {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print("Order notes : " + dataString)
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("Order notes : " + dataString)
             
             XmlOrderNoteParser().Parse(data!, completeHandler: {(notes, message, error)in
                 completeHandler(notes, message, error)

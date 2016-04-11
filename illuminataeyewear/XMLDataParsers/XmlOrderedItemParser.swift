@@ -42,7 +42,7 @@ class XmlOrderedItemParser: NSObject, NSXMLParserDelegate {
         } else if element.isEqualToString("shipmentID") {
             self.orderProductItem.shipmentID = Int64(string)!
         } else if element.isEqualToString("price") {
-            self.orderProductItem.productID = Int64(string)!
+            self.orderProductItem.SetPrice(Float32(string)!)
         } else if element.isEqualToString("count") {
             self.orderProductItem.count = Int(string)!
         }

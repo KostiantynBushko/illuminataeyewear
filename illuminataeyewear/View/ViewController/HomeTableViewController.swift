@@ -62,6 +62,10 @@ class HomeTableViewController: UITableViewController {
                 }
             })
         })
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if let remoteNotification = appDelegate.options?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
+            appDelegate.application(UIApplication.sharedApplication(), didReceiveRemoteNotification: remoteNotification as [NSObject : AnyObject])
+        }
     }
     
     override func viewDidAppear(animated: Bool) {

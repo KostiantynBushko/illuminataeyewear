@@ -390,6 +390,19 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             let viewController = storyBoard.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
             self.presentViewController(viewController, animated: true, completion: nil)
             SessionController.sharedInstance().SetProduct(self.brandItem?.ID)
+            SessionController.sharedInstance().SetOption(self.selectedOption)
+            var optionsText = [Int64:String]()
+            for item in self.selectedOption {
+                print(item.1)
+                for option in self.productOptions {
+                    if option.ID == item.0 {
+                        //print("Selected Option type = " + String(option.type) + " " + String(self.optionTexts[item.1.ID]))
+                        optionsText[item.1.ID] = self.optionTexts[item.1.ID]
+                    }
+                }
+            }
+            SessionController.sharedInstance().SetOptionText(optionsText)
+            return
         } else {
             let actionSheetController: UIAlertController = UIAlertController(title: "Add to cart", message: "Do you want add this product to your cart", preferredStyle: .Alert)
             let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in}
@@ -409,7 +422,7 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                             var optionText: String?
                             for option in self.productOptions {
                                 if option.ID == item.0 {
-                                    print("Selected Option type = " + String(option.type))
+                                    //print("Selected Option type = " + String(option.type))
                                     optionText = self.optionTexts[item.1.ID]
                                 }
                             }
@@ -419,7 +432,7 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                                     print(" message : " + message! + " " + String(self.countUpdateOptions))
                                 }
                                 if self.countUpdateOptions == 0 {
-                                    print("Update Order ")
+                                    //print("Update Order ")
                                     
                                     OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
                                         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

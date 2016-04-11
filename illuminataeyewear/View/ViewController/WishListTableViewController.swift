@@ -27,6 +27,8 @@ class WishListTableViewController: UIViewController, UITableViewDataSource, UITa
         wishList = DBWishProductTable.SelectWish()
         if wishList.count == 0 {
             tableView.hidden = true
+        } else {
+            self.navigationItem.rightBarButtonItem = editButtonItem()
         }
         
         if wishList.count > wishProductsList.count {
@@ -75,9 +77,7 @@ class WishListTableViewController: UIViewController, UITableViewDataSource, UITa
         cell.price.text = OrderController.sharedInstance().getCurrentOrderCurrency() + " " + String(brandItem.getPrice().definePrices)
         
         cell.addToCartButton.addTarget(self, action: "addToCartDialog:", forControlEvents: UIControlEvents.TouchUpInside)
-        cell.removeFromWish.tag = indexPath.row
-        cell.removeFromWish.addTarget(self, action: "removeFromWishListAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        
+
         return cell
     }
     
@@ -122,6 +122,24 @@ class WishListTableViewController: UIViewController, UITableViewDataSource, UITa
         wishProductsList.removeAtIndex(index)
         if wishList.count == 0 {
             self.tableView.hidden = true
+            self.navigationItem.rightBarButtonItem = nil
+        }
+        LiveCartController.TabBarUpdateWishBadgeValue(self.tabBarController!)
+    }
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            dispatch_async(dispatch_get_main_queue()) {
+                //DBNotifications.removeNotification(self.notifications[indexPath.row].ID)
+                //self.notifications.removeAtIndex(indexPath.row)
+                self.removeFromWish(indexPath.row)
+                //self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
         }
     }
     

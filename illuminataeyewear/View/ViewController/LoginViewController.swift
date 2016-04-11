@@ -86,7 +86,7 @@ class LoginViewController : UIViewController {
                                 }
                                 let token = DBApnToken.GetToken()
                                 if token != nil {
-                                    print(" User success login save token : " + token!)
+                                    //print(" User success login save token : " + token!)
                                     UserApnToken.SaveUserApnToken((user?.ID)!, token: token!, completeHandler: {() in})
                                 }
                             }

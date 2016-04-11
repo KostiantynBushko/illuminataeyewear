@@ -11,6 +11,8 @@ import Foundation
 class SessionController {
     
     private var product: Int64?
+    private var selectedOption: [Int64:ProductOptionChoice]?
+    private var optionText = [Int64:String]()
     
     private static var _instance: SessionController?
     private var sessionStatus = false;
@@ -31,5 +33,25 @@ class SessionController {
         let p = self.product
         self.product = nil
         return p
+    }
+    
+    func SetOption(option:[Int64:ProductOptionChoice]?) {
+        self.selectedOption = option
+    }
+    
+    func GetOption() -> [Int64:ProductOptionChoice]? {
+        let option = self.selectedOption
+        self.selectedOption = nil
+        return option
+    }
+    
+    func SetOptionText(optionText:[Int64:String]!) {
+        self.optionText = optionText
+    }
+    
+    func GetOptionText() -> [Int64:String] {
+        let optionText = self.optionText
+        self.optionText = [Int64:String]()
+        return optionText
     }
 }

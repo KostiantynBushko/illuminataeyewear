@@ -38,8 +38,8 @@ class Shipment {
                 return
             }
             
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print("Shipment : " + String(dataString))
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("Shipment : " + String(dataString))
             
             XmlShipmentParser().Parse(data!, completeHandler: {(shipmentList) in
                 completeHandler(shipmentList)

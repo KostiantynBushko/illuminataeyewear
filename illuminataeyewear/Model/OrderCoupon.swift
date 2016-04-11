@@ -28,8 +28,8 @@ class OrderCoupon {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print("Order Coupons : " + dataString)
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("Order Coupons : " + dataString)
             XmlOrderCouponParser().Parse(data!, completeHandler: {(coupons, message, error) in
                 completeHandler(coupons, message, error)
             })
@@ -52,8 +52,8 @@ class OrderCoupon {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print("Order Coupons : " + dataString)
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("Order Coupons : " + dataString)
             XmlOrderCouponParser().Parse(data!, completeHandler: {(coupons, message, error) in
                 completeHandler(coupons, message, error)
             })

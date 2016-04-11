@@ -11,8 +11,8 @@ import UIKit
 class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
     
     var isRunning: Bool = false
-    private var products = [BrandItem]()
-    private var orderProductItems = [Int64:OrderProductItem]()
+    var products = [BrandItem]()
+    var orderProductItems = [Int64:OrderProductItem]()
     private var address = [SimpleAddress]()
     private var orderTotalList = [OrderTotal]()
     private var placeMethod = [String]()
@@ -156,7 +156,7 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
         address.append(user_address)
 
         
-        for productItem in (order?.productItems)! {
+        /*for productItem in (order?.productItems)! {
             orderProductItems[productItem.productID] = productItem
             print("Price : " + String(productItem.GetPrice()))
             BrandItem().getBrandItemByID(productItem.productID, completeHandler: {(let brandItems) in
@@ -170,7 +170,12 @@ class CheckoutViewController: UITableViewController, PayPalPaymentDelegate {
                     }
                 })
             })
-        }
+        }*/
+        
+        self.initOrderTotal({() in
+            self.RefreshTable()
+        })
+        
         
         placeMethod.append("pay_pall_button")
         //placeMethod.append("beanstream_button")
