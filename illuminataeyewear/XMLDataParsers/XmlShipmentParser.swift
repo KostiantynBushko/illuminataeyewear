@@ -64,7 +64,7 @@ class XmlShipmentParser: NSObject, NSXMLParserDelegate {
     }
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if (elementName as NSString).isEqualToString(XmlShipmentParser.TAG_SHIPMENT) {
+        if (elementName as NSString).isEqualToString(XmlShipmentParser.TAG_RESPONSE) {
             if self.handler != nil {
                 handler!(shipmentList)
             }

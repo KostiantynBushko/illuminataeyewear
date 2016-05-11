@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WishListTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class WishListTableViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var wishList = [WishItem]()
@@ -20,13 +20,14 @@ class WishListTableViewController: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad();
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.hidden = true
+        //tableView.hidden = true
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         wishList = DBWishProductTable.SelectWish()
         if wishList.count == 0 {
-            tableView.hidden = true
+            //self.tableView.hidden = true
         } else {
             self.navigationItem.rightBarButtonItem = editButtonItem()
         }
@@ -42,7 +43,7 @@ class WishListTableViewController: UIViewController, UITableViewDataSource, UITa
                                 self.wishProductsList.append(brandItem)
                                 dispatch_async(dispatch_get_main_queue()) {
                                     self.RefreshTable()
-                                    self.tableView.hidden = false
+                                    //self.tableView.hidden = false
                                 }
                             })
                         }
@@ -58,6 +59,21 @@ class WishListTableViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if self.wishProductsList.count > 0 {
+            self.tableView.separatorStyle = .SingleLine
+            return 1
+        } else {
+            let label: UILabel = UILabel()
+            label.frame = CGRectMake(100, 0, self.view.bounds.size.width - 100, self.view.bounds.size.height)
+            label.text = "Your wish list currently is empty, please go to the catalog to start shopping"
+            label.numberOfLines = 0
+            label.textColor = UIColor.grayColor()
+            label.font = label.font.fontWithSize(15)
+            label.textAlignment = .Center
+            label.sizeToFit()
+            self.tableView.backgroundView = label
+            self.tableView.separatorStyle = .None
+        }
         return 1
     }
     
@@ -76,7 +92,7 @@ class WishListTableViewController: UIViewController, UITableViewDataSource, UITa
         cell.property.text = brandItem.getProductVariation().getName()
         cell.price.text = OrderController.sharedInstance().getCurrentOrderCurrency() + " " + String(brandItem.getPrice().definePrices)
         
-        cell.addToCartButton.addTarget(self, action: "addToCartDialog:", forControlEvents: UIControlEvents.TouchUpInside)
+        cell.addToCartButton.addTarget(self, action: #selector(WishListTableViewController.addToCartDialog(_:)), forControlEvents: UIControlEvents.TouchUpInside)
 
         return cell
     }
@@ -121,7 +137,7 @@ class WishListTableViewController: UIViewController, UITableViewDataSource, UITa
         wishList.removeAtIndex(index)
         wishProductsList.removeAtIndex(index)
         if wishList.count == 0 {
-            self.tableView.hidden = true
+            //self.tableView.hidden = true
             self.navigationItem.rightBarButtonItem = nil
         }
         LiveCartController.TabBarUpdateWishBadgeValue(self.tabBarController!)

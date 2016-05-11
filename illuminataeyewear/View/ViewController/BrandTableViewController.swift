@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-class BrandTableViewController: UITableViewController, NSXMLParserDelegate {
+class BrandTableViewController: BaseTableViewController, NSXMLParserDelegate {
     
     // MARK: Properties
     
@@ -29,7 +29,7 @@ class BrandTableViewController: UITableViewController, NSXMLParserDelegate {
                     self.brands.removeAtIndex(i)
                     break
                 }
-                i++
+                i += 1
             }
             self.RefreshTable()
         })

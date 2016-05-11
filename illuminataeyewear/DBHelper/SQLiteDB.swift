@@ -103,7 +103,7 @@ class SQLiteDB {
 			// Get launch count value
 			let ud = NSUserDefaults.standardUserDefaults()
 			var launchCount = ud.integerForKey("LaunchCount")
-			launchCount--
+			launchCount -= 1
 			print("SQLiteDB - Launch count \(launchCount)")
 			var clean = false
 			if launchCount < 0 {
@@ -246,7 +246,7 @@ class SQLiteDB {
 		} else if upp.hasPrefix("DELETE") || upp.hasPrefix("UPDATE") {
 			var cnt = sqlite3_changes(self.db)
 			if cnt == 0 {
-				cnt++
+				cnt += 1
 			}
 			result = CInt(cnt)
 		} else {

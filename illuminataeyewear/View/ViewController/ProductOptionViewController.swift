@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, BusyAlertDelegate {
+class ProductOptionViewController: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, BusyAlertDelegate {
 
     private var HEIGHT_BETWEN_OPTIONS: CGFloat = 15
     private var START_ELEMENT_X: CGFloat = 10
@@ -40,29 +40,48 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancel:"), animated: true)
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "save:"), animated: true)
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(ProductOptionViewController.cancel(_:))), animated: true)
+        
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(ProductOptionViewController.save(_:))), animated: true)
+        //let save: UIBarButtonItem
+        let info: UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"ic_info_outline_18p"), style: .Plain, target:self, action:#selector(ItemPageViewController.productInfo(_:)))
+        
+        //self.navigationItem.setRightBarButtonItems([wish,info], animated: true)
+        self.navigationItem.rightBarButtonItems?.append(info)
+        
         self.navigationItem.rightBarButtonItem?.enabled = false
         viewContainer.autoresizesSubviews = true
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+    
         
         if brandItem != nil {
+            
             self.name.text = self.brandItem?.getName()
-            ProductOption().GetProductOption((brandItem?.ID)!, completeHandler: {(options, message, error) in
-                self.productOptions = options
-                for productOption in self.productOptions {
-                    ProductOptionChoice().GetProductOptionChoice(productOption.ID, completeHandler: {(optionChoice, message, error) in
-                        if error == nil {
-                            self.optionChoiceDictionary[optionChoice[0].optionID] = optionChoice
-                            if self.optionChoiceDictionary.count == self.productOptions.count {
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    self.createView()
+            var productID = Int64()
+            if (self.brandItem?.parentBrandItem != nil) {
+                productID = (self.brandItem?.parentBrandItem?.ID)!
+            } else {
+                productID = (self.brandItem?.ID)!
+            }
+            ProductOption().GetProductOption(productID, completeHandler: {(options, message, error) in
+                if options.count == 0 {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.createView()
+                        self.addDescriptionView(0, y: 0, description: "This product does not contain any specific options for choice")
+                    }
+                } else {
+                    self.productOptions = options
+                    for productOption in self.productOptions {
+                        ProductOptionChoice().GetProductOptionChoice(productOption.ID, completeHandler: {(optionChoice, message, error) in
+                            if error == nil {
+                                self.optionChoiceDictionary[optionChoice[0].optionID] = optionChoice
+                                if self.optionChoiceDictionary.count == self.productOptions.count {
+                                    dispatch_async(dispatch_get_main_queue()) {
+                                        self.createView()
+                                    }
                                 }
                             }
-                        }
-                    })
+                        })
+                    }
                 }
             })
         }
@@ -70,6 +89,13 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BrandItemViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BrandItemViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     private func createView() {
@@ -97,7 +123,7 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
                 swButton.frame = CGRectMake(self.view.frame.width - swButton.frame.width - START_ELEMENT_X, y, 0, 0)
                 swButton.tag = tag
                 swButton.setOn(true, animated: false)
-                swButton.addTarget(self, action: "setTermsService:", forControlEvents: UIControlEvents.ValueChanged)
+                swButton.addTarget(self, action: #selector(ProductOptionViewController.setTermsService(_:)), forControlEvents: UIControlEvents.ValueChanged)
                 
                 //self.addConstarain(swButton, view: lastView, marginTop: 10.0)
                 swButton.translatesAutoresizingMaskIntoConstraints = false
@@ -111,7 +137,7 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
                     y += 5
                 }
                 
-            } else if item.type == 1 || item.type == 2 {
+            } else if item.type == 1 {
                 
                 var optionLabel = item.name + ": "
                 optionLabel += (item.isRequired) ? "*" : ""
@@ -119,7 +145,7 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
                 
                 lastView = self.getLastViewFrame()!
                 y += 5
-                let textField = UITextField(frame: CGRectMake(x, y, self.view.frame.width - (x * 2), 30))
+                let textField = TextFieldRightArrow(frame: CGRectMake(x, y, self.view.frame.width - (x * 2), 30))
                 textField.borderStyle = UITextBorderStyle.RoundedRect
                 textField.tag = tag
                 textField.inputAccessoryView = toolBarButtonDone(tag)
@@ -130,14 +156,13 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
                 
                 y += textField.frame.height
                 
-                if item.type == 1 {
-                    let pickerView = UIPickerView()
-                    pickerView.tag = tag
-                    pickerView.delegate = self
-                    pickerView.dataSource = self
-                    pickerView.showsSelectionIndicator = true
-                    textField.inputView = pickerView
-                }
+                let pickerView = UIPickerView()
+                pickerView.tag = tag
+                pickerView.delegate = self
+                pickerView.dataSource = self
+                pickerView.showsSelectionIndicator = true
+                textField.inputView = pickerView
+                
                 let count = optionChoiceDictionary.count
                 if count > 0 {
                     for optionChoice in optionChoiceDictionary[item.ID]! {
@@ -170,6 +195,56 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
                     y += 5
                 }
                 
+                
+            } else if item.type == 2 {
+                var optionLabel = item.name + ": "
+                optionLabel += (item.isRequired) ? "*" : ""
+                y += addNameView(x,y: y, name: optionLabel)
+                
+                lastView = self.getLastViewFrame()!
+                y += 5
+                let textField = UITextField(frame: CGRectMake(x, y, self.view.frame.width - (x * 2), 30))
+                textField.borderStyle = UITextBorderStyle.RoundedRect
+                textField.tag = tag
+                textField.inputAccessoryView = toolBarButtonDone(tag)
+                textField.delegate = self
+                self.viewContainer.addSubview(textField)
+                
+                self.addConstarain(textField, view: lastView, marginTop: 10.0)
+                
+                y += textField.frame.height
+                
+                let count = optionChoiceDictionary.count
+                if count > 0 {
+                    for optionChoice in optionChoiceDictionary[item.ID]! {
+                        for orderedItem in self.orderProductItem!.orderedItemOptionsList {
+                            if orderedItem.choiceID == optionChoice.ID {
+                                if item.type == 1 {
+                                    //title.appendContentsOf(String("(+" + currency + " " + String(optionChoice![row].priceDiff!) + ")"))
+                                    textField.text = optionChoice.name
+                                    if optionChoice.priceDiff > 0 {
+                                        let currency: String = OrderController.sharedInstance().getCurrentOrderCurrency()
+                                        textField.text?.appendContentsOf(String(" (+" + currency + " " + String(optionChoice.priceDiff!) + ")"))
+                                    }
+                                    
+                                } else {
+                                    textField.text = orderedItem.optionText
+                                }
+                                break
+                            }
+                        }
+                        if (!textField.text!.isEmpty) {
+                            break
+                        }
+                    }
+                }
+                
+                self.textFields[tag] = textField
+                
+                if !item.description.isEmpty {
+                    y += addDescriptionView(x, y: y, description: item.description)
+                    y += 5
+                }
                 
             } else if item.type == 4 {
                 lastView = self.getLastViewFrame()!
@@ -222,7 +297,7 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
         let dynamicLabel: UILabel = UILabel()
         dynamicLabel.frame = CGRectMake(x, y, self.view.frame.width - (x * 2), 18)
         dynamicLabel.textColor = UIColor.grayColor()
-        dynamicLabel.textAlignment = NSTextAlignment.Left
+        dynamicLabel.textAlignment = NSTextAlignment.Center
         dynamicLabel.font = dynamicLabel.font.fontWithSize(13)
         dynamicLabel.text = description
         dynamicLabel.numberOfLines = 0
@@ -241,7 +316,7 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
         toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("donePicker:"))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ProductOptionViewController.donePicker(_:)))
         doneButton.tag = tag
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.setItems([spaceButton, doneButton], animated: false)
@@ -304,17 +379,17 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     // Text field delegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        print(" : " + textField.text!)
+        //print(" : " + textField.text!)
         textField.resignFirstResponder()
         return true
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        print("TextField end editing : " + textField.text!)
+        //print("TextField end editing : " + textField.text!)
         self.navigationItem.rightBarButtonItem?.enabled = true
         if self.productOptions[textField.tag].type == 2 {
             var choiceOptions = self.optionChoiceDictionary[self.productOptions[textField.tag].ID]
-            print(choiceOptions?.count)
+            //print(choiceOptions?.count)
             self.selectedOption[self.productOptions[textField.tag].ID] = choiceOptions![0]
             self.optionTexts[choiceOptions![0].ID] = textField.text
         }
@@ -347,11 +422,7 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
     var countUpdateOptions: Int = 0
     func save(sender: AnyObject) {
         countUpdateOptions = selectedOption.count
-        print("Add to cart")
-        let countSelectedOption = self.selectedOption.count
-        let countOption = self.productOptions.count
-        print("selected: " + String(countSelectedOption) + " options: " + String(countOption))
-        
+        //print("Add to cart")
         for field in self.textFields {
             if field.1.text!.isEmpty && self.productOptions[field.1.tag].isRequired {
                 let actionSheetController: UIAlertController = UIAlertController(title: "Warning", message: "Please complete all field", preferredStyle: .Alert)
@@ -375,11 +446,11 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
         busyAlertController?.display()
         
         for item in selectedOption {
-            print(item.1)
+            //print(item.1)
             var optionText: String?
             for option in self.productOptions {
                 if option.ID == item.0 {
-                    print("Selected Option type = " + String(option.type))
+                    //print("Selected Option type = " + String(option.type))
                     optionText = self.optionTexts[item.1.ID]
                 }
             }
@@ -438,6 +509,14 @@ class ProductOptionViewController: UIViewController, UIPickerViewDelegate, UIPic
         NSLayoutConstraint(item: myView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: marginTop).active = true
         NSLayoutConstraint(item: myView, attribute: .LeadingMargin, relatedBy: .Equal, toItem: self.viewContainer, attribute: .LeadingMargin, multiplier: 1.0,constant: 15).active = true
         NSLayoutConstraint(item: myView, attribute: .TrailingMargin, relatedBy: .Equal, toItem: self.viewContainer, attribute: .TrailingMargin, multiplier: 1.0, constant: -15).active = true
+    }
+    
+    func productInfo(sender: AnyObject) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyBoard.instantiateViewControllerWithIdentifier("ProductInfoNavigationController") as! UINavigationController
+        self.presentViewController(navigationController, animated: true, completion: nil)
+        let productInfoViewController = navigationController.viewControllers.first as! ProductInfoViewController
+        productInfoViewController.brandItem = self.brandItem
     }
     
 }

@@ -52,7 +52,7 @@ class XmlOrderParser: NSObject, NSXMLParserDelegate {
             } else if element.isEqualToString("billingAddressID") {
                 currentOrder.billingAddressID = Int64(string)!
             } else if element.isEqualToString("currencyID") {
-                currentOrder.currencyID = string
+                currentOrder.setCurrency(string)
             } else if element.isEqualToString("eavObjectID") {
                 currentOrder.eavObjectID = Int64(string)!
             } else if element.isEqualToString("invoiceNumber") {

@@ -96,6 +96,7 @@
 		8433CCAF1CB765B400F0C417 /* OrderNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CCAE1CB765B400F0C417 /* OrderNote.swift */; };
 		8433CCB11CB771A400F0C417 /* TextMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CCB01CB771A400F0C417 /* TextMessageViewCell.swift */; };
 		843460831C77848400D4D373 /* ShippingMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843460821C77848400D4D373 /* ShippingMethodViewController.swift */; };
+		8434B2431CC2F625001A9C94 /* TransactionDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434B2421CC2F625001A9C94 /* TransactionDetailViewCell.swift */; };
 		8435256D1C4DC2DA0072B16B /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435256C1C4DC2DA0072B16B /* ItemDetailViewController.swift */; };
 		843525711C4E264A0072B16B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843525701C4E264A0072B16B /* Extension.swift */; };
 		843525751C4E30A30072B16B /* PriceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843525741C4E30A30072B16B /* PriceItem.swift */; };
@@ -109,7 +110,11 @@
 		843CA3C11C6A3A7E005E6923 /* XmlProductVariationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CA3C01C6A3A7E005E6923 /* XmlProductVariationParser.swift */; };
 		843CA3C31C6A419F005E6923 /* ProductVariationValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CA3C21C6A419F005E6923 /* ProductVariationValue.swift */; };
 		843CA3C51C6A438D005E6923 /* XmlProductVariationValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CA3C41C6A438D005E6923 /* XmlProductVariationValueParser.swift */; };
+		843D98C21CC073E100D92D8F /* TextFieldRightArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D98C11CC073E100D92D8F /* TextFieldRightArrow.swift */; };
+		8441555C1CCAA53500B7C46B /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441555B1CCAA53500B7C46B /* Banner.swift */; };
+		8441555E1CCAA5BB00B7C46B /* XmlBannerParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441555D1CCAA5BB00B7C46B /* XmlBannerParser.swift */; };
 		844464DE1C8D7A4800AFD9D5 /* BaseNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844464DD1C8D7A4800AFD9D5 /* BaseNotification.swift */; };
+		844775241CC2763C007EAEA3 /* XmlFloatValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844775231CC2763C007EAEA3 /* XmlFloatValueParser.swift */; };
 		844CD6961C8C9E3F004CCBFC /* DBNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6951C8C9E3F004CCBFC /* DBNotifications.swift */; };
 		844CD6981C8CAE85004CCBFC /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6971C8CAE85004CCBFC /* NotificationViewController.swift */; };
 		844CD69A1C8CB0FF004CCBFC /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6991C8CB0FF004CCBFC /* NotificationViewCell.swift */; };
@@ -141,6 +146,9 @@
 		849CCA271C45B3B900B04589 /* BrandViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CCA261C45B3B900B04589 /* BrandViewCell.swift */; };
 		849CCA291C45B3FB00B04589 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CCA281C45B3FB00B04589 /* LoginViewController.swift */; };
 		849CCA2B1C45C4C500B04589 /* BrandTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CCA2A1C45C4C500B04589 /* BrandTableViewController.swift */; };
+		849F85C41CBF2BE2005888AB /* XmlSpecFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F85C31CBF2BE2005888AB /* XmlSpecFieldParser.swift */; };
+		849F85C61CBF5BA8005888AB /* SpecificationStringValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F85C51CBF5BA8005888AB /* SpecificationStringValue.swift */; };
+		849F85C81CBF639D005888AB /* XmlSpecificationStringValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F85C71CBF639D005888AB /* XmlSpecificationStringValueParser.swift */; };
 		84BF46A91C710387003ABA67 /* PayPal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF46A81C710387003ABA67 /* PayPal.swift */; };
 		84BF46AB1C71199A003ABA67 /* RoundRectLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF46AA1C71199A003ABA67 /* RoundRectLabel.swift */; };
 		84C84BAA1C65E8EA00B14E70 /* LiveCartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C84BA91C65E8EA00B14E70 /* LiveCartController.swift */; };
@@ -151,10 +159,13 @@
 		84D340C51C701F2300AF216A /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D340C41C701F2300AF216A /* Transaction.swift */; };
 		84D340C71C70240B00AF216A /* XmlTransactionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D340C61C70240B00AF216A /* XmlTransactionParser.swift */; };
 		84D883011C6A217800A873A2 /* ProductVariation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D883001C6A217800A873A2 /* ProductVariation.swift */; };
+		84D8890B1CC6CD0C00F34F5A /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D8890A1CC6CD0C00F34F5A /* BaseTableViewController.swift */; };
+		84D8890F1CC6DBF900F34F5A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D8890E1CC6DBF900F34F5A /* BaseViewController.swift */; };
 		84DFDEE71C642ED30032D746 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFDEE61C642ED30032D746 /* CheckoutViewController.swift */; };
 		84DFDEE91C6430110032D746 /* ProductItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFDEE81C6430110032D746 /* ProductItemViewCell.swift */; };
 		84DFDEEB1C64396C0032D746 /* CustomerAddressCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFDEEA1C64396C0032D746 /* CustomerAddressCellView.swift */; };
 		84DFDEEE1C643B550032D746 /* UserAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DFDEED1C643B550032D746 /* UserAddress.swift */; };
+		84E410271CBF010A00C60C32 /* SpecField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E410261CBF010A00C60C32 /* SpecField.swift */; };
 		84E663281C64F1CB00785A80 /* OrderTotalViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E663271C64F1CB00785A80 /* OrderTotalViewCell.swift */; };
 		84E6632A1C65253B00785A80 /* PlaceOrderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E663291C65253B00785A80 /* PlaceOrderCellView.swift */; };
 		84E663381C653FFA00785A80 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E6632F1C653FFA00785A80 /* Accelerate.framework */; };
@@ -288,6 +299,7 @@
 		8433CCAE1CB765B400F0C417 /* OrderNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderNote.swift; path = Model/OrderNote.swift; sourceTree = "<group>"; };
 		8433CCB01CB771A400F0C417 /* TextMessageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageViewCell.swift; path = View/ViewCell/TextMessageViewCell.swift; sourceTree = "<group>"; };
 		843460821C77848400D4D373 /* ShippingMethodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShippingMethodViewController.swift; path = View/ViewController/ShippingMethodViewController.swift; sourceTree = "<group>"; };
+		8434B2421CC2F625001A9C94 /* TransactionDetailViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionDetailViewCell.swift; path = View/ViewCell/TransactionDetailViewCell.swift; sourceTree = "<group>"; };
 		8435256C1C4DC2DA0072B16B /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemDetailViewController.swift; path = View/ViewController/ItemDetailViewController.swift; sourceTree = "<group>"; };
 		843525701C4E264A0072B16B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = common/Extension.swift; sourceTree = "<group>"; };
 		843525741C4E30A30072B16B /* PriceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PriceItem.swift; path = Model/PriceItem.swift; sourceTree = "<group>"; };
@@ -301,7 +313,11 @@
 		843CA3C01C6A3A7E005E6923 /* XmlProductVariationParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlProductVariationParser.swift; path = XMLDataParsers/XmlProductVariationParser.swift; sourceTree = "<group>"; };
 		843CA3C21C6A419F005E6923 /* ProductVariationValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductVariationValue.swift; path = Model/ProductVariationValue.swift; sourceTree = "<group>"; };
 		843CA3C41C6A438D005E6923 /* XmlProductVariationValueParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlProductVariationValueParser.swift; path = XMLDataParsers/XmlProductVariationValueParser.swift; sourceTree = "<group>"; };
+		843D98C11CC073E100D92D8F /* TextFieldRightArrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldRightArrow.swift; path = CustomUI/TextFieldRightArrow.swift; sourceTree = "<group>"; };
+		8441555B1CCAA53500B7C46B /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Banner.swift; path = Model/Banner.swift; sourceTree = "<group>"; };
+		8441555D1CCAA5BB00B7C46B /* XmlBannerParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlBannerParser.swift; path = XMLDataParsers/XmlBannerParser.swift; sourceTree = "<group>"; };
 		844464DD1C8D7A4800AFD9D5 /* BaseNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseNotification.swift; path = Model/NotificationDataModel/BaseNotification.swift; sourceTree = "<group>"; };
+		844775231CC2763C007EAEA3 /* XmlFloatValueParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlFloatValueParser.swift; path = XMLDataParsers/XmlFloatValueParser.swift; sourceTree = "<group>"; };
 		844CD6951C8C9E3F004CCBFC /* DBNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBNotifications.swift; path = DBHelper/DBNotifications.swift; sourceTree = "<group>"; };
 		844CD6971C8CAE85004CCBFC /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationViewController.swift; path = View/ViewController/NotificationViewController.swift; sourceTree = "<group>"; };
 		844CD6991C8CB0FF004CCBFC /* NotificationViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationViewCell.swift; path = View/ViewCell/NotificationViewCell.swift; sourceTree = "<group>"; };
@@ -339,6 +355,9 @@
 		849CCA261C45B3B900B04589 /* BrandViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrandViewCell.swift; path = View/ViewCell/BrandViewCell.swift; sourceTree = "<group>"; };
 		849CCA281C45B3FB00B04589 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = View/ViewController/LoginViewController.swift; sourceTree = "<group>"; };
 		849CCA2A1C45C4C500B04589 /* BrandTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrandTableViewController.swift; path = View/ViewController/BrandTableViewController.swift; sourceTree = "<group>"; };
+		849F85C31CBF2BE2005888AB /* XmlSpecFieldParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlSpecFieldParser.swift; path = XMLDataParsers/XmlSpecFieldParser.swift; sourceTree = "<group>"; };
+		849F85C51CBF5BA8005888AB /* SpecificationStringValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpecificationStringValue.swift; path = Model/SpecificationStringValue.swift; sourceTree = "<group>"; };
+		849F85C71CBF639D005888AB /* XmlSpecificationStringValueParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlSpecificationStringValueParser.swift; path = Model/XmlSpecificationStringValueParser.swift; sourceTree = "<group>"; };
 		84BF46A81C710387003ABA67 /* PayPal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PayPal.swift; path = Model/PayPal.swift; sourceTree = "<group>"; };
 		84BF46AA1C71199A003ABA67 /* RoundRectLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundRectLabel.swift; path = CustomUI/RoundRectLabel.swift; sourceTree = "<group>"; };
 		84C84BA91C65E8EA00B14E70 /* LiveCartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LiveCartController.swift; path = Controller/LiveCartController.swift; sourceTree = "<group>"; };
@@ -349,10 +368,13 @@
 		84D340C41C701F2300AF216A /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Model/Transaction.swift; sourceTree = "<group>"; };
 		84D340C61C70240B00AF216A /* XmlTransactionParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XmlTransactionParser.swift; path = XMLDataParsers/XmlTransactionParser.swift; sourceTree = "<group>"; };
 		84D883001C6A217800A873A2 /* ProductVariation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductVariation.swift; path = Model/ProductVariation.swift; sourceTree = "<group>"; };
+		84D8890A1CC6CD0C00F34F5A /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = View/ViewController/BaseViewController/BaseTableViewController.swift; sourceTree = "<group>"; };
+		84D8890E1CC6DBF900F34F5A /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = View/ViewController/BaseViewController/BaseViewController.swift; sourceTree = "<group>"; };
 		84DFDEE61C642ED30032D746 /* CheckoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CheckoutViewController.swift; path = View/ViewController/CheckoutViewController.swift; sourceTree = "<group>"; };
 		84DFDEE81C6430110032D746 /* ProductItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductItemViewCell.swift; path = View/ViewCell/ProductItemViewCell.swift; sourceTree = "<group>"; };
 		84DFDEEA1C64396C0032D746 /* CustomerAddressCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerAddressCellView.swift; path = View/ViewCell/CustomerAddressCellView.swift; sourceTree = "<group>"; };
 		84DFDEED1C643B550032D746 /* UserAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAddress.swift; path = Model/UserAddress.swift; sourceTree = "<group>"; };
+		84E410261CBF010A00C60C32 /* SpecField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpecField.swift; path = Model/SpecField.swift; sourceTree = "<group>"; };
 		84E663271C64F1CB00785A80 /* OrderTotalViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderTotalViewCell.swift; path = View/ViewCell/OrderTotalViewCell.swift; sourceTree = "<group>"; };
 		84E663291C65253B00785A80 /* PlaceOrderCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaceOrderCellView.swift; path = View/ViewCell/PlaceOrderCellView.swift; sourceTree = "<group>"; };
 		84E6632E1C653F4300785A80 /* ZZAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZAppDelegate.h; sourceTree = "<group>"; };
@@ -457,6 +479,7 @@
 				84098BDB1C6838B300000689 /* ActivityIndicator.swift */,
 				84BF46AA1C71199A003ABA67 /* RoundRectLabel.swift */,
 				843148181CB20E1C0048096A /* TermsOfServiceView.swift */,
+				843D98C11CC073E100D92D8F /* TextFieldRightArrow.swift */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -543,6 +566,7 @@
 		8431B52C1C44974600398526 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				84D889091CC6CCC400F34F5A /* BaseViewController */,
 				849CCA281C45B3FB00B04589 /* LoginViewController.swift */,
 				849CCA2A1C45C4C500B04589 /* BrandTableViewController.swift */,
 				840A688C1C45F69D0072FC42 /* ItemsBrandTableViewController.swift */,
@@ -618,6 +642,10 @@
 				843258831CB3F8900053BFF6 /* XmlOrderedItemParser.swift */,
 				842F96FE1CB7214E001A34B5 /* XmlStaticPageParser.swift */,
 				8433CCAB1CB7657A00F0C417 /* XmlOrderNoteParser.swift */,
+				849F85C31CBF2BE2005888AB /* XmlSpecFieldParser.swift */,
+				849F85C71CBF639D005888AB /* XmlSpecificationStringValueParser.swift */,
+				844775231CC2763C007EAEA3 /* XmlFloatValueParser.swift */,
+				8441555D1CCAA5BB00B7C46B /* XmlBannerParser.swift */,
 			);
 			name = XMLDataParsers;
 			sourceTree = "<group>";
@@ -690,6 +718,7 @@
 				84CCEE3C1CAAFEF80079E989 /* RxLensesViewCell.swift */,
 				842F38181CB1B8090013AB2C /* SimpleViewCell.swift */,
 				8433CCB01CB771A400F0C417 /* TextMessageViewCell.swift */,
+				8434B2421CC2F625001A9C94 /* TransactionDetailViewCell.swift */,
 			);
 			name = ViewCell;
 			sourceTree = "<group>";
@@ -728,6 +757,9 @@
 				843272611CAE4B73007A64AD /* OrderedItemOption.swift */,
 				842F96FC1CB71F24001A34B5 /* StaticPage.swift */,
 				8433CCAE1CB765B400F0C417 /* OrderNote.swift */,
+				84E410261CBF010A00C60C32 /* SpecField.swift */,
+				849F85C51CBF5BA8005888AB /* SpecificationStringValue.swift */,
+				8441555B1CCAA53500B7C46B /* Banner.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -739,6 +771,15 @@
 				849CCA211C45A18A00B04589 /* ViewCell */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		84D889091CC6CCC400F34F5A /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84D8890A1CC6CD0C00F34F5A /* BaseTableViewController.swift */,
+				84D8890E1CC6DBF900F34F5A /* BaseViewController.swift */,
+			);
+			name = BaseViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -951,9 +992,11 @@
 				84313D3E1C5223A90060B52D /* DBWishProductTable.swift in Sources */,
 				84098BDA1C68326C00000689 /* BusyAlert.swift in Sources */,
 				840A68911C45FA4D0072FC42 /* BrandItem.swift in Sources */,
+				849F85C81CBF639D005888AB /* XmlSpecificationStringValueParser.swift in Sources */,
 				843309011CADE40A0013CD80 /* XmlProductOptionChoiceParser.swift in Sources */,
 				8432A90D1C517820009FADAC /* WishProduct.swift in Sources */,
 				8409ACE21C5B86C600E78C5A /* Order.swift in Sources */,
+				849F85C61CBF5BA8005888AB /* SpecificationStringValue.swift in Sources */,
 				84356AA31C73FAAD000A2D16 /* XmlShippingAddressParser.swift in Sources */,
 				844CD69D1C8CC6DD004CCBFC /* NotificationProtocol.swift in Sources */,
 				841474691C61B2F300C262FA /* ExtTabBarController.swift in Sources */,
@@ -969,6 +1012,7 @@
 				8432A9091C5177D3009FADAC /* IlluminCoreData.xcdatamodeld in Sources */,
 				843CA3C51C6A438D005E6923 /* XmlProductVariationValueParser.swift in Sources */,
 				840C24C21C6003360048B006 /* ItemPageContentViewController.swift in Sources */,
+				8441555E1CCAA5BB00B7C46B /* XmlBannerParser.swift in Sources */,
 				843308FF1CADE2D20013CD80 /* ProductOptionChoice.swift in Sources */,
 				842F96FD1CB71F24001A34B5 /* StaticPage.swift in Sources */,
 				849CCA291C45B3FB00B04589 /* LoginViewController.swift in Sources */,
@@ -984,7 +1028,9 @@
 				849CCA241C45B1F000B04589 /* Brand.swift in Sources */,
 				84314C391C7E909400F32B6A /* XmlDeliveryZoneParser.swift in Sources */,
 				847DC2A41CACA59400941B9C /* ProductOptionViewController.swift in Sources */,
+				843D98C21CC073E100D92D8F /* TextFieldRightArrow.swift in Sources */,
 				842F8BD11C535BF80048BE73 /* Constant.swift in Sources */,
+				84D8890B1CC6CD0C00F34F5A /* BaseTableViewController.swift in Sources */,
 				84D340C51C701F2300AF216A /* Transaction.swift in Sources */,
 				849A68711C60D8F000C8B7F9 /* User.swift in Sources */,
 				84FF032E1C62E49E003134E0 /* ShippingAddressViewController.swift in Sources */,
@@ -993,6 +1039,7 @@
 				842FA3441C54129E0052E0E6 /* XmlNewsPostParser.swift in Sources */,
 				847562951C764F3D0088A9C7 /* TransactionViewCell.swift in Sources */,
 				843366E71C52B04A001E917E /* XmlBrandItemParser.swift in Sources */,
+				8434B2431CC2F625001A9C94 /* TransactionDetailViewCell.swift in Sources */,
 				8435CAE91C87A5A7008514E6 /* Reachability.swift in Sources */,
 				841474671C61414E00C262FA /* OrderController.swift in Sources */,
 				847562931C7649160088A9C7 /* UserTransactionTableViewController.swift in Sources */,
@@ -1001,6 +1048,7 @@
 				844464DE1C8D7A4800AFD9D5 /* BaseNotification.swift in Sources */,
 				84319FF31CA7448D006A4340 /* OrderCoupon.swift in Sources */,
 				84C84BAC1C65EA1400B14E70 /* Country.swift in Sources */,
+				84D8890F1CC6DBF900F34F5A /* BaseViewController.swift in Sources */,
 				84CCEE3D1CAAFEF80079E989 /* RxLensesViewCell.swift in Sources */,
 				849A68761C60DF0100C8B7F9 /* UserController.swift in Sources */,
 				8483AC721C853BA9001854E4 /* SuportViewController.swift in Sources */,
@@ -1025,6 +1073,7 @@
 				842F678B1C8BB5E900DCC842 /* ActivityIndicatorCell.swift in Sources */,
 				849CCA2B1C45C4C500B04589 /* BrandTableViewController.swift in Sources */,
 				849CCA271C45B3B900B04589 /* BrandViewCell.swift in Sources */,
+				84E410271CBF010A00C60C32 /* SpecField.swift in Sources */,
 				84313D391C521FC80060B52D /* String-Extras.swift in Sources */,
 				84DFDEE91C6430110032D746 /* ProductItemViewCell.swift in Sources */,
 				8433CCB11CB771A400F0C417 /* TextMessageViewCell.swift in Sources */,
@@ -1037,8 +1086,10 @@
 				840A688D1C45F69D0072FC42 /* ItemsBrandTableViewController.swift in Sources */,
 				843525781C4E3A750072B16B /* XmlPriceParser.swift in Sources */,
 				84317A121C8C2FAC009BFB7A /* UserApnToken.swift in Sources */,
+				849F85C41CBF2BE2005888AB /* XmlSpecFieldParser.swift in Sources */,
 				8436681D1CB709AF004D4DA1 /* StaticPageViewController.swift in Sources */,
 				8407E9EF1CA8030E00B28AA5 /* CouponViewCell.swift in Sources */,
+				8441555C1CCAA53500B7C46B /* Banner.swift in Sources */,
 				84BF46A91C710387003ABA67 /* PayPal.swift in Sources */,
 				8431CE011C669C080042B41A /* XmlUserAdddressParser.swift in Sources */,
 				840C24C61C60124D0048B006 /* ExButton.swift in Sources */,
@@ -1050,6 +1101,7 @@
 				842F02F51C788532005BD1E3 /* ShippingService.swift in Sources */,
 				844CD6961C8C9E3F004CCBFC /* DBNotifications.swift in Sources */,
 				842F02F71C78865E005BD1E3 /* XmlShippingServiceParser.swift in Sources */,
+				844775241CC2763C007EAEA3 /* XmlFloatValueParser.swift in Sources */,
 				84E663281C64F1CB00785A80 /* OrderTotalViewCell.swift in Sources */,
 				842FACA31C6E42D200B5DFB3 /* UserAccountViewController.swift in Sources */,
 				842F678D1C8BCC2F00DCC842 /* ProductInfoViewController.swift in Sources */,

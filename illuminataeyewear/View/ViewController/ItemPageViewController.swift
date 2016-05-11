@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemPageViewController: UIViewController,UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class ItemPageViewController: BaseViewController,UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     @IBOutlet weak var content: UIView!
     var parentBrandItem: BrandItem?
@@ -44,8 +44,8 @@ class ItemPageViewController: UIViewController,UIPageViewControllerDataSource, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let info: UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"ic_info_outline_18p"), style: .Plain, target:self, action:"productInfo:")
-        let wish: UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"wish_black_button"), style: .Plain, target:self, action:"addToWishList:")
+        let info: UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"ic_info_outline_18p"), style: .Plain, target:self, action:#selector(ItemPageViewController.productInfo(_:)))
+        let wish: UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"wish_black_button"), style: .Plain, target:self, action:#selector(ItemPageViewController.addToWishList(_:)))
         self.navigationItem.setRightBarButtonItems([wish,info], animated: true)
         if self.brandItems.count > 0 && self.parentBrandItem != nil{
             self.title = parentBrandItem?.getProductCodeName()
@@ -98,7 +98,7 @@ class ItemPageViewController: UIViewController,UIPageViewControllerDataSource, U
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         var index = (viewController as! ItemPageContentViewController).pageIndex!
-        index++
+        index += 1
         if(index >= self.brandItems.count){
             return nil
         }
@@ -110,7 +110,7 @@ class ItemPageViewController: UIViewController,UIPageViewControllerDataSource, U
         if(index <= 0){
             return nil
         }
-        index--
+        index -= 1
         return self.viewControllerAtIndex(index)
     }
     

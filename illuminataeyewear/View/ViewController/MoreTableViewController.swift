@@ -8,12 +8,12 @@
 
 import UIKit
 
-class MoreTableViewController: UITableViewController {
+class MoreTableViewController: BaseTableViewController {
 
     let cellIdentifier = "MoreViewCell"
     
-    var items = ["MY ACOOUNT","MY TRANSACTIONS","CONTACT US","ABOUT US", "SHIPPING POLICY","RETURN POLICY","PRIVACY POLICY","HOURS OF OPERATION"]
-    var icons = ["person_black_18p","receipt_black_18p","chat_black_18p","info_black_18p","local_shipping_black_18","shop_two_black_18p","lock_outline_18p","access_time_black_18p"]
+    var items = ["MY ACCOUNT","MY TRANSACTIONS","CONTACT US","ABOUT US", "SHIPPING POLICY","RETURN POLICY","PRIVACY POLICY","HOURS OF OPERATION", "PROMOTIONS"]
+    var icons = ["person_black_18p","receipt_black_18p","chat_black_18p","info_black_18p","local_shipping_black_18","shop_two_black_18p","lock_outline_18p","access_time_black_18p","card_giftcard_18p"]
     
     let MY_ACOOUNT = 0
     let MY_TRANSACTIONS = 1
@@ -23,6 +23,7 @@ class MoreTableViewController: UITableViewController {
     let RETURN_POLICY = 5
     let HOURS_OPERATION = 7
     let PRIVACY_POLICY = 6
+    let COUPON_PROMOTION = 8
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +65,11 @@ class MoreTableViewController: UITableViewController {
             self.navigationController?.pushViewController(contactViewController, animated: true)
             
         } else if indexPath.row == ABOUT_US {
-            let aboutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AboutViewController") as! AboutViewController
-            self.navigationController?.pushViewController(aboutViewController, animated: true)
+            //let aboutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AboutViewController") as! AboutViewController
+            //self.navigationController?.pushViewController(aboutViewController, animated: true)
+            let staticPageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("StaticPageViewController") as! StaticPageViewController
+            staticPageViewController.staticPageID = 5
+            self.navigationController?.pushViewController(staticPageViewController, animated: true)
         
         } else if indexPath.row == SHIPPING_POLICY {
             let staticPageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("StaticPageViewController") as! StaticPageViewController
@@ -82,6 +86,10 @@ class MoreTableViewController: UITableViewController {
         } else if indexPath.row == PRIVACY_POLICY {
             let staticPageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("StaticPageViewController") as! StaticPageViewController
             staticPageViewController.staticPageID = 15
+            self.navigationController?.pushViewController(staticPageViewController, animated: true)
+        } else if indexPath.row == COUPON_PROMOTION {
+            let staticPageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("StaticPageViewController") as! StaticPageViewController
+            staticPageViewController.staticPageID = 11
             self.navigationController?.pushViewController(staticPageViewController, animated: true)
         }
     }

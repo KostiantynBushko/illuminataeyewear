@@ -19,6 +19,7 @@ class LiveCartController {
     private var shippingServiceList = [ShippingService]()
     private var deliveryZone = [DeliveryZone]()
     private var deliveryZoneCountry = [DeliveryZoneCountry]()
+    private var banners = [Banner]()
     
     class func sharedInstance() -> LiveCartController {
         if _instance == nil {
@@ -31,10 +32,16 @@ class LiveCartController {
     private func initController () {
         
         // Initialize live cart controller
+        Banner().GetBanners({(banners, message, error) in
+            if error == nil {
+                self.banners = banners
+            }
+        })
+        
         Country.GetCountryList({(countryList) in
             self.countryList = countryList
         })
-        ShippingService().GetShippingServices({(shippingServiceList) in
+        ShippingService().GetShippingServices({(shippingServiceList, message, error) in
             self.shippingServiceList = shippingServiceList
         })
         DeliveryZone().GetDeliveryZone({(deliveryZoneList) in
@@ -43,6 +50,19 @@ class LiveCartController {
         DeliveryZoneCountry().GetDeliveryZoneCountry({(deliveryZoneCountryList) in
             self.deliveryZoneCountry = deliveryZoneCountryList
         })
+    }
+    
+    func getBanners(update: Bool, completeHandler:(Array<Banner>) -> Void) {
+        if update {
+            completeHandler(self.banners)
+        } else {
+            Banner().GetBanners({(banners, message, error) in
+                if error == nil {
+                    self.banners = banners
+                    completeHandler(self.banners)
+                }
+            })
+        }
     }
     
     func getCountries() -> Array<Country> {
@@ -74,7 +94,7 @@ class LiveCartController {
         return self.shippingServiceList
     }
     
-    func getShipmentServiceByDeliveryZoneID(ID: Int64) -> Array<ShippingService> {
+    /*func getShipmentServiceByDeliveryZoneID(ID: Int64) -> Array<ShippingService> {
         var serviceList = [ShippingService]()
         if self.shippingServiceList.count == 0 {
             return serviceList
@@ -85,6 +105,50 @@ class LiveCartController {
             }
         }
         return serviceList
+    }*/
+    
+    func getShipmentServiceByDeliveryZoneID(ID: Int64, completeHandler: (Array<ShippingService>) -> Void) {
+        var serviceList = [ShippingService]()
+        if self.shippingServiceList.count == 0 {
+            ShippingService().GetShippingServices({(shippingServiceList, message, error) in
+                if error == nil {
+                    self.shippingServiceList = shippingServiceList
+                    for service in self.shippingServiceList {
+                        if service.deliveryZoneID == ID {
+                            serviceList.append(service)
+                        }
+                    }
+                }
+                completeHandler(serviceList)
+            })
+        } else {
+            for service in self.shippingServiceList {
+                if service.deliveryZoneID == ID {
+                    serviceList.append(service)
+                }
+            }
+            completeHandler(serviceList)
+        }
+    }
+    
+    func getShippingServiceByID(ID: Int64, completeHandler:(ShippingService?) -> Void) {
+        if self.shippingServiceList.count > 0 {
+            for service in self.shippingServiceList {
+                if service.ID == ID {
+                    completeHandler(service)
+                    return
+                }
+            }
+            ShippingService().GetShippingServiceByID(ID, completeHandler: {(shippingServices, message, error) in
+                if error == nil {
+                    if shippingServices.count > 0 {
+                        self.shippingServiceList.append(shippingServices[0])
+                        completeHandler(shippingServices[0])
+                        return
+                    }
+                }
+            })
+        }
     }
     
     func getDeliveryZone() -> Array<DeliveryZone> {

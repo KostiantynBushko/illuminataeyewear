@@ -19,7 +19,7 @@ class DBUserTable {
         var user: User?
         
         for row in result {
-            print(String(row["id"]!) + ":" + String(row["email"]!) + ":" + String(row["userID"]))
+            //print(String(row["id"]!) + ":" + String(row["email"]!) + ":" + String(row["userID"]))
             user = User()
             user?.ID = Int64(String(row["userID"]!))!
             user?.defaultBillingAddressID = Int64(String(row["defaultBillingAddressID"]!))!

@@ -37,7 +37,6 @@ class Shipment {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            
             //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
             //print("Shipment : " + String(dataString))
             
@@ -64,8 +63,8 @@ class Shipment {
                 return
             }
             
-            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            //print("Shipment : " + String(dataString))
+            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            print("Shipment : " + String(dataString))
             completeHandler()
 
         })

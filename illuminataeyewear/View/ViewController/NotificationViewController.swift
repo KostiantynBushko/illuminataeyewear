@@ -8,14 +8,14 @@
 
 import UIKit
 
-class NotificationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NotificationViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
     var notifications = [SimpleNotification]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Close", style: .Plain, target: self, action: "close:"), animated: true)
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(NotificationViewController.close(_:))), animated: true)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -27,7 +27,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         if(notifications.count > 0) {
             self.navigationItem.rightBarButtonItem = editButtonItem()
         }
-        print("Notification count : " + String(notifications.count))
+        //print("Notification count : " + String(notifications.count))
     }
     
     override func didReceiveMemoryWarning() {

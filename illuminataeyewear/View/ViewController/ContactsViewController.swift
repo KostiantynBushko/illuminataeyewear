@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class ContactsViewController: UIViewController, MFMailComposeViewControllerDelegate, UITextViewDelegate {
+class ContactsViewController: BaseViewController, MFMailComposeViewControllerDelegate, UITextViewDelegate {
     
     @IBOutlet weak var emailMessage: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -30,7 +30,7 @@ class ContactsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     // MARK: UITextViewDelegate
     func textViewDidBeginEditing(textView: UITextView) {
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "hideKeyboard:"), animated: false)
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(ContactsViewController.hideKeyboard(_:))), animated: false)
         let scrollPoint : CGPoint = CGPointMake(0, self.emailMessage.frame.origin.y - 20)
         self.scrollView.setContentOffset(scrollPoint, animated: true)
     }

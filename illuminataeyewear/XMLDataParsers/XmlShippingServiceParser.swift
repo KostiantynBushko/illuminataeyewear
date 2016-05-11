@@ -16,15 +16,18 @@ class XmlShippingServiceParser: NSObject, NSXMLParserDelegate {
     var element = NSString()
     var xmlParser: NSXMLParser?
     
+    private var error: NSError?
+    private var message: String?
+    
     var servicesList = [ShippingService]()
     var currentService = ShippingService()
     
     var _name = String()
     var _description = String()
     
-    var handler: ((Array<ShippingService>) -> Void)?
+    var handler: ((Array<ShippingService>, String?, NSError?) -> Void)?
     
-    func Parse(data: NSData, completeHandler: (Array<ShippingService>) -> Void) {
+    func Parse(data: NSData, completeHandler: (Array<ShippingService>, String?, NSError?) -> Void) {
         handler = completeHandler
         xmlParser = NSXMLParser(data: data)
         xmlParser?.delegate = self
@@ -55,6 +58,15 @@ class XmlShippingServiceParser: NSObject, NSXMLParserDelegate {
             currentService.deliveryTimeMinDays = Int32(string)!
         } else if element.isEqualToString("deliveryTimeMaxDays") {
             currentService.deliveryTimeMaxDays = Int32(string)!
+        } else if element.isEqualToString("error") {
+            let userInfo: [NSObject : AnyObject] =
+                [
+                    NSLocalizedDescriptionKey :  NSLocalizedString("error", value: string, comment: ""),
+                    NSLocalizedFailureReasonErrorKey : NSLocalizedString("error", value: string, comment: "")
+            ]
+            self.error = NSError(domain: "illuminataeyewear.com", code: 401, userInfo: userInfo)
+        } else if element.isEqualToString("message") {
+            self.message = string
         }
     }
     
@@ -68,7 +80,7 @@ class XmlShippingServiceParser: NSObject, NSXMLParserDelegate {
             currentService = ShippingService()
         } else if (elementName as NSString).isEqualToString(XmlShippingServiceParser.TAG_RESPONSE) {
             if handler != nil {
-                handler!(servicesList)
+                handler!(servicesList, message, error)
             }
         }
     }

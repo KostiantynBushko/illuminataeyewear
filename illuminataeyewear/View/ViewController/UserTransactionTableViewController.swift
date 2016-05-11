@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserTransactionTableViewController: UITableViewController {
+class UserTransactionTableViewController: BaseTableViewController {
     
     var orders = [Order]()
     
@@ -42,7 +42,10 @@ class UserTransactionTableViewController: UITableViewController {
         let order = orders[indexPath.row]
         cell.order_id.text = order.invoiceNumber
         cell.recipient.text = String(order.User_firstName) + " " + String(order.User_lastName)
-        cell.total.text = String(order.totalAmount)
+        var total: String = order.getCurrency()
+        total.appendContentsOf(" ")
+        total.appendContentsOf(String(format: "%.2f", order.capturedAmount))
+        cell.total.text = total
         
         if order.isCancelled {
             cell.status.textColor = UIColor.redColor()

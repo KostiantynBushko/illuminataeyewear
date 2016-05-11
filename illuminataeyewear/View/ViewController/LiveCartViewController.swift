@@ -8,32 +8,32 @@
 
 import UIKit
 
-class LiveCartViewController: UIViewController {
+class LiveCartViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        sleep(5)
+        //super.viewDidAppear(animated)
+        sleep(2)
         if Reachability.isConnectedToNetwork() == true {
             UserController.sharedInstance().getUserFromCurrentSession()
             LiveCartController.sharedInstance().startSession()
+            SessionController.sharedInstance().GetSpecField(nil, reload: true)
         } else {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidBecomeActive(_:)), name: UIApplicationDidBecomeActiveNotification, object: nil)
             let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
     }
     
-    func applicationDidBecomeActive(notification: NSNotification?) {
+    override func applicationDidBecomeActive(notification: NSNotification?) {
+        super.applicationDidBecomeActive(notification)
         if Reachability.isConnectedToNetwork() == true {
             UserController.sharedInstance().getUserFromCurrentSession()
             LiveCartController.sharedInstance().startSession()
-        } else {
-            let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            SessionController.sharedInstance().GetSpecField(nil, reload: true)
         }
     }
 }

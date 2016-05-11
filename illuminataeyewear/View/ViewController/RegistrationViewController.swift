@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegistrationViewController: UIViewController, BusyAlertDelegate {
+class RegistrationViewController: BaseViewController, BusyAlertDelegate {
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var firstName: UITextField!
@@ -24,19 +24,24 @@ class RegistrationViewController: UIViewController, BusyAlertDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-     
-        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if enableCloseButton {
-            self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Close", style: .Plain, target: self, action: "close:"), animated: true)
+            self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(RegistrationViewController.close(_:))), animated: true)
         }
         busyAlertController = BusyAlert(title: "", message: "", button: "OK", presentingViewController: self)
         busyAlertController?.delegate = self
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BrandItemViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BrandItemViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
+    }
+    
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -114,7 +119,6 @@ class RegistrationViewController: UIViewController, BusyAlertDelegate {
     }
     
     func didCancelBusyAlert() {
-        print("Cancell")
         if successRegistered {
             successRegistered = false
             UserController.sharedInstance().UserLogin(email.text!, password: self.pass_one.text!, completeHandler: {(user, error) in
@@ -130,7 +134,7 @@ class RegistrationViewController: UIViewController, BusyAlertDelegate {
                                     
                                     let token = DBApnToken.GetToken()
                                     if token != nil {
-                                        print(" User success login save token : " + token!)
+                                        //print(" User success login save token : " + token!)
                                         UserApnToken.SaveUserApnToken((user?.ID)!, token: token!, completeHandler: {() in})
                                     }
                                     self.successLogin = true
@@ -154,13 +158,13 @@ class RegistrationViewController: UIViewController, BusyAlertDelegate {
                 let product = SessionController.sharedInstance().GetProduct()
                 let productOptionChoice = SessionController.sharedInstance().GetOption()
                 let optionsText = SessionController.sharedInstance().GetOptionText()
-                print("ALL SELECTED OPTIONS : " + String(optionsText))
+                //print("ALL SELECTED OPTIONS : " + String(optionsText))
                 if product != nil {
                     OrderController.sharedInstance().getCurrentOrder()?.addProductToCart(product!, completeHandler: {(orderedItem, message, error) in
                         
                         if productOptionChoice != nil {
                             for optionChoice in productOptionChoice! {
-                                print("OPTION TEXT : " + String(optionsText[optionChoice.1.ID]))
+                                //print("OPTION TEXT : " + String(optionsText[optionChoice.1.ID]))
                                 OrderedItemOption().SetOrderedItemOption(orderedItem[0].ID, productOptionChoice: optionChoice.1.ID, optionText: optionsText[optionChoice.1.ID], completeHandler: {(options, message, error) in
                                 })
                             }

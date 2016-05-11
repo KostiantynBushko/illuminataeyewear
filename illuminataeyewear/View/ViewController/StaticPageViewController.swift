@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StaticPageViewController: UIViewController, UIWebViewDelegate {
+class StaticPageViewController: BaseViewController, UIWebViewDelegate {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var viewContainer: UIView!
@@ -34,7 +34,7 @@ class StaticPageViewController: UIViewController, UIWebViewDelegate {
             })
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

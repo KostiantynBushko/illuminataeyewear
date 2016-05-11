@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "illuminataeyewear/View/ViewController/RegistrationViewController.swift"
-            timestampString = "482010668.707039"
+            filePath = "illuminataeyewear/View/ViewController/HomeTableViewController.swift"
+            timestampString = "483047420.160908"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "didCancelBusyAlert()"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "illuminataeyewear/View/ViewController/RegistrationViewController.swift"
-            timestampString = "482013937.201334"
+            filePath = "illuminataeyewear/View/ViewCell/ImageCarouselCall.swift"
+            timestampString = "483049147.634785"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "didCancelBusyAlert()"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "Update()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,94 +41,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "illuminataeyewear/View/ViewController/RegistrationViewController.swift"
-            timestampString = "482014611.554503"
+            filePath = "illuminataeyewear/View/ViewCell/ImageCarouselCall.swift"
+            timestampString = "483048213.417383"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "didCancelBusyAlert()"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "Update()"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "illuminataeyewear/View/ViewController/BrandItemViewController.swift"
-            timestampString = "482011976.914869"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "388"
-            endingLineNumber = "388"
-            landmarkName = "addToCart(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "illuminataeyewear/View/ViewController/BrandItemViewController.swift"
-            timestampString = "482049461.051423"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
-            landmarkName = "addToCart(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "illuminataeyewear/View/ViewController/RegistrationViewController.swift"
-            timestampString = "482015007.359703"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "didCancelBusyAlert()"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "illuminataeyewear.RegistrationViewController.(didCancelBusyAlert (illuminataeyewear.RegistrationViewController) -&gt; () -&gt; ()).(closure #2).(closure #1)"
-                  moduleName = "illuminataeyewear"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Admin/XCodeProject/illuminataeyewear/illuminataeyewear/View/ViewController/RegistrationViewController.swift"
-                  timestampString = "482015007.361234"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169"
-                  offsetFromSymbolStart = "2210">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "illuminataeyewear.RegistrationViewController.(didCancelBusyAlert (illuminataeyewear.RegistrationViewController) -&gt; () -&gt; ()).(closure #2).(closure #1).(closure #2)"
-                  moduleName = "illuminataeyewear"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Admin/XCodeProject/illuminataeyewear/illuminataeyewear/View/ViewController/RegistrationViewController.swift"
-                  timestampString = "482015007.361393"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "170"
-                  endingLineNumber = "170"
-                  offsetFromSymbolStart = "33">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

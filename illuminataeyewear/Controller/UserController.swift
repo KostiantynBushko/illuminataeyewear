@@ -41,6 +41,7 @@ class UserController {
             if user != nil {
                 DBUserTable.SaveUser(user!)
                 self.setUser(user!)
+                // Check user shipping and billing address
             }
             completeHandler(user: user, error: error)
         })

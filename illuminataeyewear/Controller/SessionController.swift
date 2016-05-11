@@ -14,6 +14,9 @@ class SessionController {
     private var selectedOption: [Int64:ProductOptionChoice]?
     private var optionText = [Int64:String]()
     
+    private var specFields = [Int64: SpecField]()
+    
+    
     private static var _instance: SessionController?
     private var sessionStatus = false;
     
@@ -53,5 +56,25 @@ class SessionController {
         let optionText = self.optionText
         self.optionText = [Int64:String]()
         return optionText
+    }
+    
+    func GetSpecField(handler:((Dictionary<Int64, SpecField>) -> Void)?, reload: Bool) {
+        if self.specFields.count == 0 || reload {
+            SpecField().GetSpecFieldList(nil, completeHandler: {(specFields, message, error) in
+                if error == nil {
+                    for field in specFields {
+                        self.specFields[field.ID] = field
+                    }
+                }
+                print("SpecFields count : " + String(self.specFields.count))
+                if handler != nil {
+                    handler!(self.specFields)
+                }
+            })
+        } else {
+            if handler != nil {
+                handler!(self.specFields)
+            }
+        }
     }
 }

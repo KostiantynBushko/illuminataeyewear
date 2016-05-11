@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, BusyAlertDelegate {
+class ShippingAddressViewController: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, BusyAlertDelegate {
     
     @IBOutlet weak var billingSwitch: UISwitch!
     // Shipping address
@@ -109,8 +109,8 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
         initStateForCurrentShippingCountry((currentShippingCountry.getCountryID()))
         initStateForCurrentBillingCountry((currentBillingCountry.getCountryID()))
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ShippingAddressViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ShippingAddressViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
         
     
         // Fill shipping and billing address field's
@@ -358,6 +358,7 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
     }
     
     @IBAction func nextButtonAction(sender: AnyObject) {
+        UIApplication.sharedApplication().sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, forEvent:nil)
         if billingSwitch.on {
             if chekcShippingAddressField() {
                 busyAlertController!.display()
@@ -383,7 +384,6 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
                     })
                 })
             }else {
-                print("Warning")
                 let alert = UIAlertView(title: "Warning", message: "Please complete all shipping and billing address fileds.", delegate: nil, cancelButtonTitle: "Cancel")
                 alert.show()
             }
@@ -395,7 +395,7 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
         toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("donePicker:"))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ShippingAddressViewController.donePicker(_:)))
         doneButton.tag = tag
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.setItems([spaceButton, doneButton], animated: false)
@@ -511,6 +511,7 @@ class ShippingAddressViewController: UIViewController, UIPickerViewDelegate, UIP
     }
     
     @IBAction func cencelAction(sender: AnyObject) {
+        UIApplication.sharedApplication().sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, forEvent:nil)
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     func didCancelBusyAlert() {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate, BusyAlertDelegate {
+class BrandItemViewController: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate, BusyAlertDelegate {
 
     private var HEIGHT_BETWEN_OPTIONS: CGFloat = 15
     private var START_ELEMENT_X: CGFloat = 10
@@ -38,9 +38,6 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     override func viewDidLoad() {
         super.viewDidLoad()
         viewContainer.autoresizesSubviews = true
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         
         self.price.text = OrderController.sharedInstance().getCurrentOrderCurrency() + " 0.00"
         if brandItem != nil {
@@ -75,6 +72,13 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BrandItemViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BrandItemViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     private func createView() {
@@ -101,7 +105,7 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 swButton.frame = CGRectMake(self.view.frame.width - swButton.frame.width - START_ELEMENT_X, y, 0, 0)
                 swButton.tag = tag
                 swButton.setOn(false, animated: false)
-                swButton.addTarget(self, action: "setTermsService:", forControlEvents: UIControlEvents.ValueChanged)
+                swButton.addTarget(self, action: #selector(BrandItemViewController.setTermsService(_:)), forControlEvents: UIControlEvents.ValueChanged)
                 
                 //self.addConstarain(swButton, view: lastView, marginTop: 10.0)
                 swButton.translatesAutoresizingMaskIntoConstraints = false
@@ -115,8 +119,39 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                     y += 5
                 }
                 
-            } else if item.type == 1 || item.type == 2 {
+            } else if item.type == 1 {
                 
+                var optionLabel = item.name + ": "
+                optionLabel += (item.isRequired) ? "*" : ""
+                y += addNameView(x,y: y, name: optionLabel)
+                lastView = self.getLastViewFrame()!
+                y += 5
+                let textField = TextFieldRightArrow(frame: CGRectMake(x, y, self.view.frame.width - (x * 2), 30))
+                textField.borderStyle = UITextBorderStyle.RoundedRect
+                textField.tag = tag
+                textField.inputAccessoryView = toolBarButtonDone(tag)
+                textField.delegate = self
+                self.viewContainer.addSubview(textField)
+                
+                self.addConstarain(textField, view: lastView, marginTop: 10.0)
+                
+                y += textField.frame.height
+                
+                let pickerView = UIPickerView()
+                pickerView.tag = tag
+                pickerView.delegate = self
+                pickerView.dataSource = self
+                pickerView.showsSelectionIndicator = true
+                textField.inputView = pickerView
+                
+                self.textFields[tag] = textField
+                
+                if !item.description.isEmpty {
+                    y += addDescriptionView(x, y: y, description: item.description)
+                    y += 5
+                }
+                
+            } else if item.type == 2 {
                 var optionLabel = item.name + ": "
                 optionLabel += (item.isRequired) ? "*" : ""
                 y += addNameView(x,y: y, name: optionLabel)
@@ -133,24 +168,14 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 
                 y += textField.frame.height
                 
-                if item.type == 1 {
-                    let pickerView = UIPickerView()
-                    pickerView.tag = tag
-                    pickerView.delegate = self
-                    pickerView.dataSource = self
-                    pickerView.showsSelectionIndicator = true
-                    textField.inputView = pickerView
-                }
-                
                 self.textFields[tag] = textField
                 
                 if !item.description.isEmpty {
                     y += addDescriptionView(x, y: y, description: item.description)
                     y += 5
                 }
-                
-                
-            } else if item.type == 4 {
+            
+            }else if item.type == 4 {
                 lastView = self.getLastViewFrame()!
                 let dynamicLabel: UILabel = UILabel()
                 dynamicLabel.frame = CGRectMake(x, y, self.view.frame.width - (x * 2), 30)
@@ -175,7 +200,7 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         buyButton.tintColor = UIColor.whiteColor()
         buyButton.setImage(UIImage(named: "cart_white_24p"), forState: .Normal)
         buyButton.frame.size.height = 80
-        buyButton.addTarget(self, action: "addToCart:", forControlEvents: .TouchUpInside)
+        buyButton.addTarget(self, action: #selector(BrandItemViewController.addToCart(_:)), forControlEvents: .TouchUpInside)
         self.viewContainer.addSubview(buyButton)
         
         self.addConstarain(buyButton, view: lastView, marginTop: 20.0)
@@ -232,7 +257,7 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
         toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("donePicker:"))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BrandItemViewController.donePicker(_:)))
         doneButton.tag = tag
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.setItems([spaceButton, doneButton], animated: false)
@@ -259,10 +284,10 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        print("TextField end editing : " + textField.text!)
+        //print("TextField end editing : " + textField.text!)
         if self.productOptions[textField.tag].type == 2 {
             var choiceOptions = self.optionChoiceDictionary[self.productOptions[textField.tag].ID]
-            print(choiceOptions?.count)
+            //print(choiceOptions?.count)
             self.selectedOption[self.productOptions[textField.tag].ID] = choiceOptions![0]
             self.optionTexts[choiceOptions![0].ID] = textField.text
         }
@@ -342,7 +367,7 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func didCancelBusyAlert() {
-        print("Cancel busy alert")
+        //print("Cancel busy alert")
     }
     
     private func addConstarain(myView: UIView, view: UIView, marginTop: CGFloat) {
@@ -355,10 +380,10 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     var countUpdateOptions: Int = 0
     func addToCart(sender: AnyObject) {
-        print("Add to cart")
+        //print("Add to cart")
         let countSelectedOption = self.selectedOption.count
         let countOption = self.productOptions.count
-        print("selected: " + String(countSelectedOption) + " options: " + String(countOption))
+        //print("selected: " + String(countSelectedOption) + " options: " + String(countOption))
         
         for field in self.textFields {
             if field.1.text!.isEmpty && self.productOptions[field.1.tag].isRequired{
@@ -393,7 +418,7 @@ class BrandItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             SessionController.sharedInstance().SetOption(self.selectedOption)
             var optionsText = [Int64:String]()
             for item in self.selectedOption {
-                print(item.1)
+                //print(item.1)
                 for option in self.productOptions {
                     if option.ID == item.0 {
                         //print("Selected Option type = " + String(option.type) + " " + String(self.optionTexts[item.1.ID]))

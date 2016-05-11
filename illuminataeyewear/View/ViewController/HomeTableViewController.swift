@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import Kanna
 
-class HomeTableViewController: UITableViewController {
+class HomeTableViewController: /*UITableViewController*/ BaseTableViewController {
     
     var newsPostItems = [NewsPost]()
     var simpleNewsPostItems = [SimpleNewsPost]()
@@ -26,8 +26,51 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        self.tableView.sectionIndexColor = UIColor(red: 200.0/255.0, green: 103.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.backgroundColor = UIColor.whiteColor()
+        self.refreshControl?.tintColor = UIColor.grayColor()
+        self.refreshControl?.addTarget(self, action: #selector(HomeTableViewController.updateNews(_:)), forControlEvents: .ValueChanged)
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: UIImage(named: "mail_outline_black_24p"), style: .Plain, target: self, action: #selector(HomeTableViewController.notification(_:))), animated: true)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        isRunning = true
+        self.updateNews(nil)
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if let remoteNotification = appDelegate.options?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
+            appDelegate.application(UIApplication.sharedApplication(), didReceiveRemoteNotification: remoteNotification as [NSObject : AnyObject])
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        isRunning = false
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func applicationDidBecomeActive(notification: NSNotification?) {
+        super.applicationDidBecomeActive(notification)
+        if Reachability.isConnectedToNetwork() == true {
+            updateNews(nil)
+        }
+    }
+    
+    func updateNews(sender: AnyObject?) {
         NewsPost().getNewsPost({(newsPostItems) in
-            self.newsPostItems = newsPostItems
+            self.refreshControl?.endRefreshing()
+            if newsPostItems.count > 0  {
+                self.newsPostItems = newsPostItems
+                self.simpleNewsPostItems.removeAll()
+            } else {
+                return
+            }
             for news in self.newsPostItems {
                 if let doc = Kanna.HTML(html: news.text.htmlDecoded(), encoding: NSUTF8StringEncoding) {
                     let simpleNewsPost = SimpleNewsPost()
@@ -61,26 +104,11 @@ class HomeTableViewController: UITableViewController {
                     })
                 }
             })
+            
+            LiveCartController.sharedInstance().getBanners(true, completeHandler: {(banner) in
+                self.RefreshTable()
+            })
         })
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if let remoteNotification = appDelegate.options?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
-            appDelegate.application(UIApplication.sharedApplication(), didReceiveRemoteNotification: remoteNotification as [NSObject : AnyObject])
-        }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        isRunning = true
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: UIImage(named: "mail_outline_black_24p"), style: .Plain, target: self, action: "notification:"), animated: true)
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        isRunning = false
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     func notification(sender: AnyObject) {
@@ -107,6 +135,7 @@ class HomeTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("ImageCarouselCall", forIndexPath: indexPath) as! ImageCarouselCall
+            cell.Update()
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! NewsPostViewCell
@@ -197,6 +226,7 @@ class HomeTableViewController: UITableViewController {
             productInfoViewController.brandItem = self.featureProducts[indexPath.row]
         }
     }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "NewsDetails") {

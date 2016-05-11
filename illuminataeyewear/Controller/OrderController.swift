@@ -99,7 +99,7 @@ class OrderController {
     
     func getCurrentOrderCurrency() -> String {
         if orders.count > 0 {
-            return orders[0].currencyID
+            return orders[0].getCurrency()
         }
         return OrderController.DEFAULT_CURRENCY
     }

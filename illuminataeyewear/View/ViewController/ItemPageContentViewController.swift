@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemPageContentViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, BusyAlertDelegate {
+class ItemPageContentViewController: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource, BusyAlertDelegate {
 
     
     @IBOutlet var viewContainer: UIView!
@@ -36,11 +36,8 @@ class ItemPageContentViewController: UIViewController, UIPickerViewDelegate, UIP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         
-        
-        name.text = brandItem?.getProductCodeName()
+        name.text = brandItem?.getName()
         price.text = OrderController.sharedInstance().getCurrentOrderCurrency() + " " + (brandItem?.getPrice().definePrices)!
         
         let url:NSURL =  NSURL(string: Constant.URL_IMAGE + brandItem!.defaultImageName)!
@@ -85,9 +82,9 @@ class ItemPageContentViewController: UIViewController, UIPickerViewDelegate, UIP
             if error == nil {
                 self.productOptions = productOptionList
                 for option in self.productOptions {
-                    print("ProductOption : " + String(option.ID))
+                    //print("ProductOption : " + String(option.ID))
                     ProductOptionChoice().GetProductOptionChoice(option.ID, completeHandler: {(optionChoiceList, message, error) in
-                        print("ProductOptionChoice : " + String(option.ID))
+                        //print("ProductOptionChoice : " + String(option.ID))
                         if error == nil {
                             self.optionChoiceDictionary[option.ID] = optionChoiceList
                             dispatch_async(dispatch_get_main_queue()) {
@@ -99,6 +96,17 @@ class ItemPageContentViewController: UIViewController, UIPickerViewDelegate, UIP
             }
         })
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ItemPageContentViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ItemPageContentViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     @IBAction func addProductToCart(sender: AnyObject) {
@@ -126,7 +134,7 @@ class ItemPageContentViewController: UIViewController, UIPickerViewDelegate, UIP
                 optionLabel += (option.isRequired) ? "*" : ""
                 addNameView(0, y: 0, name: optionLabel)
                 let lastView = self.getLastViewFrame()!
-                let textField = UITextField(frame: CGRectMake(0, 0, 0,0))
+                let textField = TextFieldRightArrow(frame: CGRectMake(0, 0, 0,0))
                 textField.borderStyle = UITextBorderStyle.RoundedRect
                 textField.tag = tag
                 textField.inputAccessoryView = toolBarButtonDone(tag)
@@ -189,7 +197,7 @@ class ItemPageContentViewController: UIViewController, UIPickerViewDelegate, UIP
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
         toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("donePicker:"))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ItemPageContentViewController.donePicker(_:)))
         doneButton.tag = tag
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.setItems([spaceButton, doneButton], animated: false)

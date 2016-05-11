@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ShopingCartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, BusyAlertDelegate {
+class ShopingCartViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, BusyAlertDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var label: UILabel!
     
     @IBOutlet weak var checkoutButton: UIBarButtonItem!
     @IBOutlet weak var emptyCart: UIScrollView!
@@ -42,13 +43,39 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
             self.coupons = coupons
             //self.RefreshTable()
         })
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+    
+        self.navigationItem.leftBarButtonItem = editButtonItem()
+    }
+    
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        isRunning = false
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    override func applicationDidBecomeActive(notification: NSNotification?) {
+        super.applicationDidBecomeActive(notification)
+        self.updateCart()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ShopingCartViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ShopingCartViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
+        
+        self.updateCart()
+        /*if Reachability.isConnectedToNetwork() == false {
+            self.label.text = "No internet connection!"
+            tableView.hidden = true
+            emptyCart.hidden = false
+            checkoutButton.enabled = false
+            activityIndicator.stopAnimating()
+            return
+        } else {
+            self.label.text = "Your shopping cart currently is empty, please go to the catalog to start shopping"
+        }
         
         if !UserController.sharedInstance().isAnonimous() {
             let order = OrderController.sharedInstance().getCurrentOrder()
@@ -61,6 +88,7 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
                 checkoutButton.enabled = false
                 activityIndicator.stopAnimating()
                 LiveCartController.TabBarUpdateBadgeValue(self.tabBarController!);
+                self.navigationItem.leftBarButtonItem?.enabled = false
                 
             } else if Order.GetOrderedProductCount((order?.productItems)!) > Order.GetOrderedProductCount(orderProductItems) || self.needUpdateOrder {
                 self.needUpdateOrder = false
@@ -68,6 +96,7 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
                 tableView.hidden = true
                 emptyCart.hidden = true
                 activityIndicator.startAnimating()
+                self.navigationItem.leftBarButtonItem?.enabled = false
                 
                 orderProductItems = [OrderProductItem]()
                 brandItems = [Int64:Array<BrandItem>]()
@@ -87,6 +116,7 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
                                         self.checkoutButton.enabled = true
                                         self.activityIndicator.stopAnimating()
                                         self.activityIndicator.hidden = true
+                                        self.navigationItem.leftBarButtonItem?.enabled = true
                                     }
                                     self.RefreshTable()
                                 }
@@ -101,24 +131,101 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.hidden = true
                 self.RefreshTable()
+                self.navigationItem.leftBarButtonItem?.enabled = true
             }
-            
-            self.navigationItem.leftBarButtonItem = editButtonItem()
+            //self.navigationItem.leftBarButtonItem = editButtonItem()
         } else {
             self.emptyCart.hidden = false
             self.tableView.hidden = true
             self.checkoutButton.enabled = false
-        }
+            self.navigationItem.rightBarButtonItem?.enabled = false
+            self.navigationItem.leftBarButtonItem?.enabled = false
+        }*/
     }
     
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(false)
-        isRunning = false
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func updateCart() {
+        if Reachability.isConnectedToNetwork() == false {
+            self.label.text = "No internet connection!"
+            tableView.hidden = true
+            emptyCart.hidden = false
+            checkoutButton.enabled = false
+            activityIndicator.stopAnimating()
+            self.navigationItem.leftBarButtonItem?.enabled = false
+            return
+        } else {
+            self.label.text = "Your shopping cart currently is empty, please go to the catalog to start shopping"
+        }
+        
+        if !UserController.sharedInstance().isAnonimous() {
+            let order = OrderController.sharedInstance().getCurrentOrder()
+            if order?.productItems.count == 0 {
+                orderProductItems = [OrderProductItem]()
+                brandItems = [Int64:Array<BrandItem>]()
+                
+                tableView.hidden = true
+                emptyCart.hidden = false
+                checkoutButton.enabled = false
+                activityIndicator.stopAnimating()
+                LiveCartController.TabBarUpdateBadgeValue(self.tabBarController!);
+                self.navigationItem.leftBarButtonItem?.enabled = false
+                
+            } else if Order.GetOrderedProductCount((order?.productItems)!) > Order.GetOrderedProductCount(orderProductItems) || self.needUpdateOrder {
+                self.needUpdateOrder = false
+                checkoutButton.enabled = false
+                tableView.hidden = true
+                emptyCart.hidden = true
+                activityIndicator.startAnimating()
+                self.navigationItem.leftBarButtonItem?.enabled = false
+                
+                orderProductItems = [OrderProductItem]()
+                brandItems = [Int64:Array<BrandItem>]()
+                
+                if order?.productItems.count > 0 {
+                    LiveCartController.TabBarUpdateBadgeValue(self.tabBarController!)
+                    orderProductItems = (order?.productItems)!
+                    
+                    for itemProduct in (order?.productItems)! {
+                        BrandItem().getBrandItemByID(itemProduct.productID, completeHandler: {(items) in
+                            let id = itemProduct.ID
+                            items[0].fullInitProduct({(item) in
+                                self.brandItems[id] = [item]
+                                self.activityIndicator.stopAnimating()
+                                if self.brandItems.count == self.orderProductItems.count {
+                                    dispatch_async(dispatch_get_main_queue()) {
+                                        self.checkoutButton.enabled = true
+                                        self.activityIndicator.stopAnimating()
+                                        self.activityIndicator.hidden = true
+                                        self.navigationItem.leftBarButtonItem?.enabled = true
+                                    }
+                                    self.RefreshTable()
+                                }
+                                //self.RefreshTable()
+                            })
+                        })
+                    }
+                }
+            } else if order?.productItems.count == orderProductItems.count {
+                orderProductItems = (order?.productItems)!
+                self.checkoutButton.enabled = true
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.hidden = true
+                self.RefreshTable()
+                self.navigationItem.leftBarButtonItem?.enabled = true
+            }
+            //self.navigationItem.leftBarButtonItem = editButtonItem()
+        } else {
+            self.emptyCart.hidden = false
+            self.tableView.hidden = true
+            self.checkoutButton.enabled = false
+            self.navigationItem.rightBarButtonItem?.enabled = false
+            self.navigationItem.leftBarButtonItem?.enabled = false
+        }
+    
     }
     
     func keyboardWillShow(notification: NSNotification) {
@@ -162,15 +269,15 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
             let price = orderProductItems[indexPath.row].GetPrice() //Float(brandItem.getPrice().definePrices)
             
             cell.name.text = brandItem.getName()
-            cell.price.text = String(orderProductItems[indexPath.row].count) + String(" x ") + String(orderProductItems[indexPath.row].GetPrice())/*brandItem.getPrice().definePrices*/
+            cell.price.text = String(orderProductItems[indexPath.row].count) + String(" x ") + String(format: "%.2f", orderProductItems[indexPath.row].GetPrice())/*brandItem.getPrice().definePrices*/
             cell.photo.image = brandItem.getImage()
             //cell.quantity.text = String(orderProductItems[indexPath.row].count)
             cell.property.text = brandItem.getProductVariation().getName()
-            cell.cost.text = OrderController.sharedInstance().getCurrentOrderCurrency() + " " + String(Float64(orderProductItem.count) * price)
+            cell.cost.text = OrderController.sharedInstance().getCurrentOrderCurrency() + " " + String(format: "%.2f", (Float64(orderProductItem.count) * price))
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCellWithIdentifier("AddCouponViewCell", forIndexPath: indexPath) as! AddCouponViewCell
-            cell.addCouponButton.addTarget(self, action: "addCoupon:", forControlEvents: UIControlEvents.TouchUpInside)
+            cell.addCouponButton.addTarget(self, action: #selector(ShopingCartViewController.addCoupon(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             cell.textField.delegate = self
             return cell
         } else if indexPath.section == 3 {
@@ -183,6 +290,7 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     override func setEditing(editing: Bool, animated: Bool) {
+        UIApplication.sharedApplication().sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, forEvent:nil)
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
     }
@@ -196,16 +304,28 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
+            
             let orderID = OrderController.sharedInstance().getCurrentOrder()?.ID
             Order.deleteItemFormCart(self.orderProductItems[indexPath.row].ID, orderID: orderID!, completeHandler: {() in
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.brandItems.removeValueForKey(self.orderProductItems[indexPath.row].ID)    //.removeAtIndex(indexPath.row)
+                    self.orderProductItems.removeAtIndex(indexPath.row)
+                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                }
+                
                 OrderController.sharedInstance().UpdateUserOrder((UserController.sharedInstance().getUser()?.ID)!, completeHandler: {(success) in
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.brandItems.removeValueForKey(self.orderProductItems[indexPath.row].ID)    //.removeAtIndex(indexPath.row)
+                        //self.brandItems.removeValueForKey(self.orderProductItems[indexPath.row].ID)    //.removeAtIndex(indexPath.row)
                         self.orderProductItems = (OrderController.sharedInstance().getCurrentOrder()?.productItems)!
                         if self.orderProductItems.count == 0 {
                             self.checkoutButton.enabled = false
+                            self.tableView.hidden = true
+                            self.emptyCart.hidden = false
+                            self.tableView.setEditing(false, animated: true)
+                            self.setEditing(false, animated: true)
+                            self.navigationItem.leftBarButtonItem?.enabled = false
                         }
-                        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                        //self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                         LiveCartController.TabBarUpdateBadgeValue(self.tabBarController!)
                     }
                 })
@@ -239,9 +359,10 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        UIApplication.sharedApplication().sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, forEvent:nil)
         if indexPath.section == 1 {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            if self.brandItems[self.orderProductItems[indexPath.row].ID]![0].categoryID == 267 {
+            /*if self.brandItems[self.orderProductItems[indexPath.row].ID]![0].categoryID == 267 {
                 let productOptionNavigationController = storyBoard.instantiateViewControllerWithIdentifier("ProductOptionNavigationController") as! UINavigationController
                 self.presentViewController(productOptionNavigationController, animated: true, completion: nil)
                 let productOptionViewController = productOptionNavigationController.viewControllers.first as! ProductOptionViewController
@@ -257,11 +378,21 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
                 self.presentViewController(navigationController, animated: true, completion: nil)
                 let productInfoViewController = navigationController.viewControllers.first as! ProductInfoViewController
                 productInfoViewController.brandItem = self.brandItems[self.orderProductItems[indexPath.row].ID]![0]
+            }*/
+            let productOptionNavigationController = storyBoard.instantiateViewControllerWithIdentifier("ProductOptionNavigationController") as! UINavigationController
+            self.presentViewController(productOptionNavigationController, animated: true, completion: nil)
+            let productOptionViewController = productOptionNavigationController.viewControllers.first as! ProductOptionViewController
+            productOptionViewController.brandItem = self.brandItems[self.orderProductItems[indexPath.row].ID]![0]
+            productOptionViewController.orderProductItem = self.orderProductItems[indexPath.row]
+            productOptionViewController.closeHandler = {(needUpdate)in
+                print("Order should be update " + String(needUpdate))
+                self.needUpdateOrder = needUpdate
             }
         }
     }
     
     @IBAction func checkoutAction(sender: AnyObject) {
+        UIApplication.sharedApplication().sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, forEvent:nil)
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let addressNavigationController = storyboard.instantiateViewControllerWithIdentifier("AddressNavigationController") as! UINavigationController
         self.presentViewController(addressNavigationController, animated: true, completion: nil)
@@ -279,12 +410,16 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         self.couponCode = textField.text!
+        textField.resignFirstResponder()
         return false
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         self.couponCode.appendContentsOf(string)
         return true
+    }
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.text = ""
     }
     
     func addCoupon(target: AnyObject) {
@@ -294,6 +429,7 @@ class ShopingCartViewController: UIViewController, UITableViewDataSource, UITabl
         self.busyAlertController?.display()
         
         OrderCoupon.AddCoupon((OrderController.sharedInstance().getCurrentOrder()?.ID)!, couponCode: couponCode, completeHandler: {(coupons, message, error) in
+            
             if error != nil {
                 self.busyAlertController?.message = (error?.localizedDescription)!
             } else if message != nil {

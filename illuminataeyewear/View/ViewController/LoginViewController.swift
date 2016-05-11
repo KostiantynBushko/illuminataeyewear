@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController : UIViewController {
+class LoginViewController : UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -19,10 +19,18 @@ class LoginViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-        
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Close", style: .Plain, target: self, action: "close:"), animated: true)
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(LoginViewController.close(_:))), animated: true)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,20 +54,16 @@ class LoginViewController : UIViewController {
         
     }
     
-    var isShowKeyboard = false
+    
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            if isShowKeyboard == false {
-                scrollView.frame.size.height -= keyboardSize.height
-                isShowKeyboard = true
-            }
+            scrollView.frame.size.height -= keyboardSize.height
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             scrollView.frame.size.height += keyboardSize.height
-            isShowKeyboard = false
         }
     }
     
@@ -72,7 +76,23 @@ class LoginViewController : UIViewController {
     @IBAction func Login(sender: UIButton) {
         UserController.sharedInstance().UserLogin(email.text!, password: password.text!, completeHandler: {(user, error   ) in
             if user != nil {
-                dispatch_async(dispatch_get_main_queue()) {
+                OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        LiveCartController.TabBarUpdateBadgeValue((appDelegate.window?.rootViewController as! UITabBarController))
+                        
+                        if self.successLogin != nil {
+                            self.successLogin!()
+                        }
+                        let token = DBApnToken.GetToken()
+                        if token != nil {
+                            //print(" User success login save token : " + token!)
+                            UserApnToken.SaveUserApnToken((user?.ID)!, token: token!, completeHandler: {() in})
+                        }
+                    }
+                })
+                /*dispatch_async(dispatch_get_main_queue()) {
                     //LiveCartController.startSession();
                     if user != nil {
                         OrderController.sharedInstance().UpdateUserOrder(UserController.sharedInstance().getUser()!.ID, completeHandler: {(successInit) in
@@ -92,7 +112,7 @@ class LoginViewController : UIViewController {
                             }
                         })
                     }
-                }
+                }*/
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.showWarnimgMessage("Incorrect user name or password")

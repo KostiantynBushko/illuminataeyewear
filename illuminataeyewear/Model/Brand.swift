@@ -85,7 +85,7 @@ class Brand {
             let data, let response, let error) in
             
             guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
-                print("error ")
+                //print("error ")
                 return
             }
             //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()

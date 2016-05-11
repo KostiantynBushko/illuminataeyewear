@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SerchViewController: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+class SerchViewController: BaseTableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
     
     var categoryID = Int64(-1)
     
@@ -37,7 +37,7 @@ class SerchViewController: UITableViewController, UISearchControllerDelegate, UI
         
         self.tableView.tableHeaderView = searchController.searchBar
         
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancel:"), animated: true)
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(SerchViewController.cancel(_:))), animated: true)
         isRunning = true
     }
     

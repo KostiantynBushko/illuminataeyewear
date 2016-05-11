@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsDetailsViewController: UIViewController, UIWebViewDelegate {
+class NewsDetailsViewController: BaseViewController, UIWebViewDelegate {
     
     
     var frameHtml = String()

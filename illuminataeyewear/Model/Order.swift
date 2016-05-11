@@ -13,7 +13,7 @@ class Order {
     var userID = Int64()
     var shippingAddressID = Int64()
     var billingAddressID = Int64()
-    var currencyID = String()
+    private var currencyID = String()
     var eavObjectID = Int64()
     var invoiceNumber = String()
     var checkoutStep = Int()
@@ -84,7 +84,7 @@ class Order {
                 return
             }
             //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            //print(dataString)
+            //print("GetOrderByID : " + dataString)
             XmlOrderParser().ParseOrder(data!, completeHandler: {(ordersList) in
                 if ordersList != nil && ordersList?.count > 0 {
                     ordersList![0].InitUserAddress()
@@ -127,14 +127,50 @@ class Order {
             guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
                 return
             }
-            let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            print("AddProductToCart : " + String(dataString))
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("AddProductToCart : " + String(dataString))
             XmlOrderedItemParser().Parse(data!, completeHandler: {(orderedItem, message, error) in
                 completeHandler(orderedItem, message, error)
             })
         }
         task.resume()
     }
+    
+    func GetTaxAmount(ID: Int64, completeHandler: (Float32, String?, NSError?) -> Void) {
+        let paramString = "xml=<order><get_tax><ID>" + String(ID) + "</ID></get_tax></order>"
+        let url = NSURL(string: Constant.URL_BASE_API)!
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(request){ (let data, let response, let error) in
+            guard let _:NSData = data, let _:NSURLResponse = response where error == nil else {
+                return
+            }
+            //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
+            //print("Order " + String(ID) + " taxAmoun : " + String(dataString))
+            XmlFloatValueParser().Parse(data!, completeHandler: {(value, message, error) in
+                completeHandler(value, message, error)
+            })
+            
+        }
+        task.resume()
+    }
+    
+    func getCurrency(unmodified: Bool = false) -> String {
+        if (self.currencyID as NSString).isEqualToString("CAD") && unmodified == false {
+            return self.currencyID + String(" $")
+        }
+        return self.currencyID
+    }
+    
+    func setCurrency(currencyID: String) {
+        self.currencyID = currencyID
+    }
+    
     
     static func deleteItemFormCart(itemID: Int64, orderID: Int64, completeHandler: () -> Void) {
         let paramString = "xml=<ordered_item><delete_item><ID>"
@@ -205,7 +241,7 @@ class Order {
                 return
             }
             //let dataString = (NSString(data: data!, encoding: NSUTF8StringEncoding) as! String).htmlDecoded()
-            //print(dataString)
+            //print("CreateNewOrder : " + dataString)
             XmlOrderParser().ParseOrder(data!, completeHandler: {(ordersList) in
                 completeHandler(ordersList: ordersList)
                 if ordersList != nil && ordersList?.count > 0 {
@@ -243,9 +279,9 @@ class OrderProductItem {
     
     var orderedItemOptionsList = [OrderedItemOption]()
     
-    func GetPrice() -> Float64 {
+    func GetPrice(calculateOptionsPrice: Bool = true) -> Float64 {
         var price: Float64 = (Float64)(self.price)
-        if self.orderedItemOptionsList.count > 0 {
+        if self.orderedItemOptionsList.count > 0 && calculateOptionsPrice == true {
             for item in self.orderedItemOptionsList {
                 price += item.priceDiff
             }
@@ -265,17 +301,6 @@ class OrderProductItem {
             }
         })
     }
-    
-    /*<ID>1878</ID>
-    <productID>15856</productID>
-    <customerOrderID>1687</customerOrderID>
-    <shipmentID/><parentID/>
-    <price>198</price>
-    <count>1</count>
-    <reservedProductCount/>
-    <dateAdded>2016-04-05 08:40:43</dateAdded>
-    <isSavedForLater/>
-    <name/>*/
 }
 
 

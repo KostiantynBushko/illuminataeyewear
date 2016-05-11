@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cke-We-q7M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cke-We-q7M">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -369,10 +369,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ya8-6C-EaF">
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ya8-6C-EaF">
                                                     <rect key="frame" x="150" y="20" width="20" height="20"/>
                                                 </activityIndicatorView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ya8-6C-EaF" firstAttribute="centerX" secondItem="oEe-DR-6M9" secondAttribute="centerX" id="mWq-nW-88K"/>
+                                                <constraint firstItem="ya8-6C-EaF" firstAttribute="centerY" secondItem="oEe-DR-6M9" secondAttribute="centerY" id="zeL-BO-vo6"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="indicator" destination="ya8-6C-EaF" id="UNr-uh-bUj"/>
@@ -412,7 +416,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1X7-WO-m8d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="352" y="1360"/>
+            <point key="canvasLocation" x="352" y="1434"/>
         </scene>
         <!--Product-->
         <scene sceneID="mcB-bO-TXV">
@@ -431,7 +435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9SD-dv-N5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="289" y="2748"/>
+            <point key="canvasLocation" x="221" y="2748"/>
         </scene>
         <!--Detail-->
         <scene sceneID="J09-T0-esM">
@@ -623,7 +627,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.96854495060000001" green="0.82617420519999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.96862745098039216" green="0.82745098039215681" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -853,7 +857,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctJ-l6-PCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="619" y="2748"/>
+            <point key="canvasLocation" x="587" y="2748"/>
         </scene>
         <!--Search-->
         <scene sceneID="5Ul-0i-z8J">
@@ -1050,7 +1054,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l5J-T8-Pup" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4707" y="1342"/>
+            <point key="canvasLocation" x="2296" y="2748"/>
         </scene>
         <!--Item Page Content View Controller-->
         <scene sceneID="q7V-CY-FSE">
@@ -1128,10 +1132,11 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                 </constraints>
                             </scrollView>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM8-Mm-Oax" customClass="RoundRectButton" customModule="illuminataeyewear" customModuleProvider="target">
-                                <rect key="frame" x="60" y="543" width="200" height="25"/>
+                                <rect key="frame" x="28" y="536" width="264" height="32"/>
                                 <color key="backgroundColor" red="0.0" green="0.81780697599999996" blue="0.2211022956" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="hzF-HE-6x7"/>
+                                    <constraint firstAttribute="width" constant="264" id="hzF-HE-6x7"/>
+                                    <constraint firstAttribute="height" constant="32" id="uBh-rA-ZsQ"/>
                                 </constraints>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title=" Add to Cart" image="cart_black_button">
@@ -1144,13 +1149,12 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="KM8-Mm-Oax" firstAttribute="top" secondItem="C7t-SA-DRc" secondAttribute="bottom" constant="1" id="8rB-CM-DaM"/>
                             <constraint firstAttribute="trailing" secondItem="C7t-SA-DRc" secondAttribute="trailing" id="BbB-B0-BW7"/>
-                            <constraint firstItem="KM8-Mm-Oax" firstAttribute="top" secondItem="C7t-SA-DRc" secondAttribute="bottom" constant="8" symbolic="YES" id="KWe-wi-ilG"/>
                             <constraint firstItem="KM8-Mm-Oax" firstAttribute="centerX" secondItem="C7t-SA-DRc" secondAttribute="centerX" id="NBZ-M5-4vo"/>
                             <constraint firstItem="C7t-SA-DRc" firstAttribute="top" secondItem="Jr9-9S-o3p" secondAttribute="bottom" constant="8" id="S8Y-cP-dKJ"/>
                             <constraint firstItem="C7t-SA-DRc" firstAttribute="leading" secondItem="asV-Ds-cS2" secondAttribute="leading" id="SIh-B9-3ct"/>
-                            <constraint firstItem="KM8-Mm-Oax" firstAttribute="bottom" secondItem="aaJ-F6-6zm" secondAttribute="top" id="e4H-Hb-UzL"/>
-                            <constraint firstAttribute="bottom" secondItem="C7t-SA-DRc" secondAttribute="bottom" constant="33" id="swc-eD-DdM"/>
+                            <constraint firstItem="KM8-Mm-Oax" firstAttribute="bottom" secondItem="aaJ-F6-6zm" secondAttribute="top" id="kx6-bj-86A"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -1168,7 +1172,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
             </objects>
             <point key="canvasLocation" x="956" y="2748"/>
         </scene>
-        <!--Wish-->
+        <!--Wish List-->
         <scene sceneID="7hi-X7-kFK">
             <objects>
                 <viewController storyboardIdentifier="WishListTableViewController" id="kon-fY-Bpb" customClass="WishListTableViewController" customModule="illuminataeyewear" customModuleProvider="target" sceneMemberID="viewController">
@@ -1272,7 +1276,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                             <constraint firstAttribute="trailing" secondItem="VyJ-Ne-qJO" secondAttribute="trailing" id="bZG-Jb-0YU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Wish" id="cbY-ZA-V6I"/>
+                    <navigationItem key="navigationItem" title="Wish List" id="cbY-ZA-V6I"/>
                     <connections>
                         <outlet property="tableView" destination="VyJ-Ne-qJO" id="kt1-KI-Rjm"/>
                     </connections>
@@ -1526,7 +1530,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qxx-IE-PqO">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="440"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your shopping cart currently is empty, please go to the catalog to start shopping" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ko-Tn-PPT">
                                                 <rect key="frame" x="20" y="201" width="280" height="59"/>
@@ -1542,15 +1546,15 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                         <constraints>
                                             <constraint firstItem="5Ko-Tn-PPT" firstAttribute="leading" secondItem="Qxx-IE-PqO" secondAttribute="leading" constant="20" id="6QO-SW-3AA"/>
                                             <constraint firstItem="5Ko-Tn-PPT" firstAttribute="centerX" secondItem="Qxx-IE-PqO" secondAttribute="centerX" id="9p4-GC-Rxh"/>
-                                            <constraint firstItem="5Ko-Tn-PPT" firstAttribute="centerY" secondItem="Qxx-IE-PqO" secondAttribute="centerY" constant="10" id="Bnb-5D-bav"/>
-                                            <constraint firstAttribute="height" constant="440" id="tCI-fx-lLA"/>
+                                            <constraint firstItem="5Ko-Tn-PPT" firstAttribute="centerY" secondItem="Qxx-IE-PqO" secondAttribute="centerY" constant="3" id="Bnb-5D-bav"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Qxx-IE-PqO" firstAttribute="centerY" secondItem="7wg-RQ-l96" secondAttribute="centerY" id="0Kl-XZ-OCz"/>
                                     <constraint firstItem="Qxx-IE-PqO" firstAttribute="leading" secondItem="7wg-RQ-l96" secondAttribute="leading" id="hrX-qU-aeP"/>
                                     <constraint firstItem="Qxx-IE-PqO" firstAttribute="centerX" secondItem="7wg-RQ-l96" secondAttribute="centerX" id="pcL-Mm-dxw"/>
-                                    <constraint firstAttribute="bottom" secondItem="Qxx-IE-PqO" secondAttribute="bottom" constant="20" symbolic="YES" id="phw-bc-tAi"/>
+                                    <constraint firstAttribute="bottom" secondItem="Qxx-IE-PqO" secondAttribute="bottom" id="phw-bc-tAi"/>
                                     <constraint firstItem="Qxx-IE-PqO" firstAttribute="top" secondItem="7wg-RQ-l96" secondAttribute="top" id="xLW-9x-wLh"/>
                                     <constraint firstAttribute="trailing" secondItem="Qxx-IE-PqO" secondAttribute="trailing" id="xlf-oT-JTK"/>
                                 </constraints>
@@ -1566,16 +1570,27 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ew-X1-4ck">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Ew-X1-4ck">
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="3FP-42-dTL"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Rx Lenses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOK-F6-7UU">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Rx Lenses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOK-F6-7UU">
                                                     <rect key="frame" x="98" y="34" width="181" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.7830432665" green="0.40241849489999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2Ew-X1-4ck" firstAttribute="centerY" secondItem="KOK-F6-7UU" secondAttribute="centerY" id="68t-Uq-Rca"/>
+                                                <constraint firstItem="2Ew-X1-4ck" firstAttribute="top" secondItem="FbF-n0-ByV" secondAttribute="top" id="97j-TM-nyo"/>
+                                                <constraint firstItem="KOK-F6-7UU" firstAttribute="trailing" secondItem="FbF-n0-ByV" secondAttribute="trailingMargin" id="HgG-1x-06e"/>
+                                                <constraint firstItem="KOK-F6-7UU" firstAttribute="leading" secondItem="2Ew-X1-4ck" secondAttribute="trailing" constant="8" symbolic="YES" id="irJ-6E-fwM"/>
+                                                <constraint firstItem="2Ew-X1-4ck" firstAttribute="centerY" secondItem="FbF-n0-ByV" secondAttribute="centerY" id="lta-De-D0R"/>
+                                                <constraint firstItem="2Ew-X1-4ck" firstAttribute="leading" secondItem="FbF-n0-ByV" secondAttribute="leading" id="mes-bc-Otb"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="OrderViewCell" rowHeight="91" id="BFr-tf-cMn" customClass="OrderViewCell" customModule="illuminataeyewear" customModuleProvider="target">
@@ -1729,13 +1744,19 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7L-W4-xKv">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7L-W4-xKv">
                                                     <rect key="frame" x="8" y="4" width="304" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.7830432665" green="0.40241849489999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="V7L-W4-xKv" firstAttribute="top" secondItem="6EB-7X-l8T" secondAttribute="topMargin" constant="-4" id="8e0-IV-e6u"/>
+                                                <constraint firstItem="V7L-W4-xKv" firstAttribute="trailing" secondItem="6EB-7X-l8T" secondAttribute="trailingMargin" id="AOx-cJ-lUD"/>
+                                                <constraint firstItem="V7L-W4-xKv" firstAttribute="leading" secondItem="6EB-7X-l8T" secondAttribute="leadingMargin" id="Lg4-XG-Slq"/>
+                                                <constraint firstItem="V7L-W4-xKv" firstAttribute="centerY" secondItem="6EB-7X-l8T" secondAttribute="centerY" id="XsR-Vn-IoY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="label" destination="V7L-W4-xKv" id="2dA-tg-Pk0"/>
@@ -1771,6 +1792,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                         <outlet property="activityIndicator" destination="b04-35-tiG" id="38j-Gz-i9d"/>
                         <outlet property="checkoutButton" destination="E0m-Gr-i4D" id="8xm-eh-VuI"/>
                         <outlet property="emptyCart" destination="7wg-RQ-l96" id="9Lo-Fj-2hn"/>
+                        <outlet property="label" destination="5Ko-Tn-PPT" id="EQ5-tj-lws"/>
                         <outlet property="tableView" destination="GTo-vX-Vtb" id="jCe-F8-j13"/>
                     </connections>
                 </viewController>
@@ -1882,7 +1904,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                                     <outlet property="delegate" destination="dqD-J8-Ocr" id="My6-g3-Asi"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SxC-FW-a1Z">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SxC-FW-a1Z" customClass="TextFieldRightArrow" customModule="illuminataeyewear" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="402" width="304" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -1899,7 +1921,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                                 <color key="textColor" red="0.74236505679999998" green="0.74236505679999998" blue="0.74236505679999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jeU-2W-nGI">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jeU-2W-nGI" customClass="TextFieldRightArrow" customModule="illuminataeyewear" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="455" width="304" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2057,7 +2079,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                                 <color key="textColor" red="0.74236505679999998" green="0.74236505679999998" blue="0.74236505679999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o3u-zF-tHE">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o3u-zF-tHE" customClass="TextFieldRightArrow" customModule="illuminataeyewear" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="988" width="304" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2071,7 +2093,7 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                                 <color key="textColor" red="0.74236505679999998" green="0.74236505679999998" blue="0.74236505679999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SJJ-Gw-QmM">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SJJ-Gw-QmM" customClass="TextFieldRightArrow" customModule="illuminataeyewear" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="1041" width="304" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2280,12 +2302,12 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nLi-JH-Z8X">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nLi-JH-Z8X" customClass="TextFieldRightArrow" customModule="illuminataeyewear" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="37" width="304" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htv-qz-Tag">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htv-qz-Tag">
                                                 <rect key="frame" x="8" y="75" width="304" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.7830432665" green="0.40241849489999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3486,6 +3508,83 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                                             <outlet property="subtotal" destination="rKr-c9-wvZ" id="1O0-mp-Hch"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionDetailViewCell" rowHeight="148" id="oCB-rU-AWh" customClass="TransactionDetailViewCell" customModule="illuminataeyewear" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="164" width="320" height="148"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oCB-rU-AWh" id="wOY-hD-wMV">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="147"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipping:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1f-2U-zpY">
+                                                    <rect key="frame" x="8" y="8" width="304" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="riX-0N-8eV"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.57413983589999995" green="0.57413983589999995" blue="0.57413983589999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hht-EJ-fVe">
+                                                    <rect key="frame" x="8" y="25" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOL-71-zmD">
+                                                    <rect key="frame" x="8" y="99" width="304" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="TAl-je-QHu"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.57413983589999995" green="0.57413983589999995" blue="0.57413983589999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taxes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvu-RC-Gv4">
+                                                    <rect key="frame" x="8" y="52" width="304" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.57413983589999995" green="0.57413983589999995" blue="0.57413983589999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ca0-yl-CRy">
+                                                    <rect key="frame" x="8" y="70" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoU-fM-Xhi">
+                                                    <rect key="frame" x="8" y="116" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Pvu-RC-Gv4" firstAttribute="top" secondItem="hht-EJ-fVe" secondAttribute="bottom" constant="6" id="4et-nt-mej"/>
+                                                <constraint firstItem="j1f-2U-zpY" firstAttribute="trailing" secondItem="wOY-hD-wMV" secondAttribute="trailingMargin" id="9a2-Ik-gDN"/>
+                                                <constraint firstItem="j1f-2U-zpY" firstAttribute="top" secondItem="wOY-hD-wMV" secondAttribute="topMargin" id="A3p-CL-IwW"/>
+                                                <constraint firstItem="rOL-71-zmD" firstAttribute="trailing" secondItem="MoU-fM-Xhi" secondAttribute="trailing" id="CIt-kz-AMO"/>
+                                                <constraint firstItem="Pvu-RC-Gv4" firstAttribute="trailing" secondItem="ca0-yl-CRy" secondAttribute="trailing" id="FEo-2X-Ofk"/>
+                                                <constraint firstItem="hht-EJ-fVe" firstAttribute="top" secondItem="j1f-2U-zpY" secondAttribute="bottom" constant="2" id="Gd7-L7-qKL"/>
+                                                <constraint firstItem="j1f-2U-zpY" firstAttribute="leading" secondItem="wOY-hD-wMV" secondAttribute="leadingMargin" id="PaF-Lt-7bU"/>
+                                                <constraint firstItem="j1f-2U-zpY" firstAttribute="trailing" secondItem="hht-EJ-fVe" secondAttribute="trailing" id="aGb-gU-V6V"/>
+                                                <constraint firstItem="ca0-yl-CRy" firstAttribute="trailing" secondItem="rOL-71-zmD" secondAttribute="trailing" id="b6U-G7-E9l"/>
+                                                <constraint firstItem="j1f-2U-zpY" firstAttribute="leading" secondItem="hht-EJ-fVe" secondAttribute="leading" id="bEO-jV-Ze0"/>
+                                                <constraint firstItem="MoU-fM-Xhi" firstAttribute="top" secondItem="rOL-71-zmD" secondAttribute="bottom" constant="2" id="fbs-BJ-bPF"/>
+                                                <constraint firstItem="ca0-yl-CRy" firstAttribute="top" secondItem="Pvu-RC-Gv4" secondAttribute="bottom" constant="2" id="gbS-ij-P22"/>
+                                                <constraint firstItem="rOL-71-zmD" firstAttribute="leading" secondItem="MoU-fM-Xhi" secondAttribute="leading" id="hLe-fD-QRQ"/>
+                                                <constraint firstItem="Pvu-RC-Gv4" firstAttribute="leading" secondItem="ca0-yl-CRy" secondAttribute="leading" id="mZV-pk-s0H"/>
+                                                <constraint firstItem="rOL-71-zmD" firstAttribute="top" secondItem="ca0-yl-CRy" secondAttribute="bottom" constant="8" symbolic="YES" id="pXr-Ln-3zC"/>
+                                                <constraint firstItem="hht-EJ-fVe" firstAttribute="leading" secondItem="Pvu-RC-Gv4" secondAttribute="leading" id="raW-Tx-L91"/>
+                                                <constraint firstItem="hht-EJ-fVe" firstAttribute="trailing" secondItem="Pvu-RC-Gv4" secondAttribute="trailing" id="vVu-rg-QZ7"/>
+                                                <constraint firstItem="ca0-yl-CRy" firstAttribute="leading" secondItem="rOL-71-zmD" secondAttribute="leading" id="yXP-2X-5BC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="orderTotal" destination="MoU-fM-Xhi" id="nkT-Mo-yyH"/>
+                                            <outlet property="shippingService" destination="hht-EJ-fVe" id="4is-5b-lNg"/>
+                                            <outlet property="taxes" destination="ca0-yl-CRy" id="Nqa-YV-20W"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -3516,14 +3615,14 @@ BLACK TURQUOISE: Bertelli B-829 (3)</string>
                         <viewControllerLayoutGuide type="bottom" id="c2D-aO-jpM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UXL-KF-e3V">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nwi-eP-9JE">
-                                <rect key="frame" x="0.0" y="20" width="320" height="1180"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gap-Cb-BVG">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1856"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1224"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about" translatesAutoresizingMaskIntoConstraints="NO" id="iZh-JG-Aw2">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="198"/>
@@ -3587,15 +3686,13 @@ If you have any questions, please visit us in store or call.</string>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="1200"/>
                     <connections>
                         <outlet property="mapKit" destination="hAU-TD-imm" id="GGM-60-03p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXz-DX-sd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2689" y="-398"/>
+            <point key="canvasLocation" x="2693" y="-714"/>
         </scene>
         <!--User Account View Controller-->
         <scene sceneID="Sey-7t-f42">
@@ -3730,13 +3827,13 @@ If you have any questions, please visit us in store or call.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f4M-LZ-jqN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1213" y="3"/>
+            <point key="canvasLocation" x="1201" y="3"/>
         </scene>
-        <!--Wish-->
+        <!--Wish List-->
         <scene sceneID="0eS-kY-fgi">
             <objects>
                 <navigationController storyboardIdentifier="WishListNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="7Mi-bF-d5K" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Wish" image="wish_list" id="7jx-SV-IEm"/>
+                    <tabBarItem key="tabBarItem" title="Wish List" image="wish_list" id="7jx-SV-IEm"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QdK-jc-wwo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -4010,7 +4107,7 @@ If you have any questions, please visit us in store or call.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sSW-ZO-sVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4302" y="1342"/>
+            <point key="canvasLocation" x="1891" y="2748"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LQn-vc-Jzf">

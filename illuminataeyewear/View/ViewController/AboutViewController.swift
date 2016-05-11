@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class AboutViewController: UIViewController {
+class AboutViewController: BaseViewController {
     
     @IBOutlet var mapKit: MKMapView!
     

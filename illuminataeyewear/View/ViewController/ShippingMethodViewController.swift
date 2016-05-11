@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
+class ShippingMethodViewController: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var shippingMethod: UITextField!
     
@@ -20,21 +20,23 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
     var deliveryZoneDict = [String:DeliveryZone]()
     var selectedShippingMethod: ShippingService?
     var products = [BrandItem]()
+    
     private var orderProductItems = [Int64:OrderProductItem]()
+    private var shippingRate = Float32()
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "nextAction:"), animated: true)
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(ShippingMethodViewController.nextAction(_:))), animated: true)
         self.navigationItem.rightBarButtonItem?.enabled = false
-        self.title = "Method"
+        self.title = "Shipping Method"
         
         shippingMethod.inputView = shippingMethodPicker
         shippingMethod.inputAccessoryView = toolBarButtonDone(0)
         shippingMethodPicker.delegate = self
         
-        print(OrderController.sharedInstance().getCurrentOrder()?.ShippingAddress_countryID)
-        
+    
         // Obtain delivery zone
         let countryCoded = OrderController.sharedInstance().getCurrentOrder()?.ShippingAddress_countryID
         let countryName = OrderController.sharedInstance().getCurrentOrder()?.ShippingAddress_countryName
@@ -64,13 +66,17 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
         
         
         for key in deliveryZoneDict {
-            let serviceList = LiveCartController.sharedInstance().getShipmentServiceByDeliveryZoneID(key.1.ID)
-            for service in serviceList {
-                self.shippingService.append(service)
-            }
-            selectedShippingMethod = shippingService[0];
-            shippingMethod.text = selectedShippingMethod?.name
-            donePicker(nil)
+            //let serviceList = LiveCartController.sharedInstance().getShipmentServiceByDeliveryZoneID(key.1.ID)
+            LiveCartController.sharedInstance().getShipmentServiceByDeliveryZoneID(key.1.ID, completeHandler: {(serviceList) in
+                dispatch_async(dispatch_get_main_queue()) {
+                    for service in serviceList {
+                        self.shippingService.append(service)
+                    }
+                    self.selectedShippingMethod = self.shippingService[0];
+                    self.shippingMethod.text = self.selectedShippingMethod?.name
+                    self.donePicker(nil)
+                }
+            })
         }
         
         let order = OrderController.sharedInstance().getCurrentOrder()
@@ -99,6 +105,8 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
         let checkoutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CheckoutViewController") as! CheckoutViewController
         checkoutViewController.products = self.products
         checkoutViewController.orderProductItems = self.orderProductItems
+        checkoutViewController.shippingRate = self.shippingRate
+        
         self.navigationController?.pushViewController(checkoutViewController, animated: true)
     }
     
@@ -118,31 +126,34 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedShippingMethod = shippingService[row];
         shippingMethod.text = selectedShippingMethod?.name
-        self.navigationItem.rightBarButtonItem?.enabled = true
+        self.navigationItem.rightBarButtonItem?.enabled = false
         pickerView.resignFirstResponder()
     }
     
     
     func donePicker(sender: UIBarButtonItem?) {
         if selectedShippingMethod != nil {
-            Shipment().SetShipmentService((OrderController.sharedInstance().getCurrentOrder()?.ID)!, shippingMethodID: (selectedShippingMethod?.ID)!, completeHandler: {() in
+            /*Shipment().SetShipmentService((OrderController.sharedInstance().getCurrentOrder()?.ID)!, shippingMethodID: (selectedShippingMethod?.ID)!, completeHandler: {() in
                 OrderController.sharedInstance().setShippingService(self.selectedShippingMethod!)
                 self.calculateShippingRate({(rate) in
                     dispatch_async(dispatch_get_main_queue()) {
                         self.navigationItem.rightBarButtonItem?.enabled = true
                         //print("RATE : " + String(rate))
-                        self.shippingPriceLabel.text = "Price: " + OrderController.sharedInstance().getCurrentOrderCurrency() + " " + String(rate)
+                        self.shippingPriceLabel.text = "Price: " + OrderController.sharedInstance().getCurrentOrderCurrency() + " " + String(format: "%.2f", rate)
+                        self.navigationItem.rightBarButtonItem?.enabled = true
+                        self.shippingRate = (Float32)(rate)
                     }
                 })
-                /*dispatch_async(dispatch_get_main_queue()) {
-                    self.calculateShippingRate({(rate) in
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.navigationItem.rightBarButtonItem?.enabled = true
-                            print("RATE : " + String(rate))
-                            self.shippingPriceLabel.text = String(rate)
-                        }
-                    })
-                }*/
+            })*/
+            OrderController.sharedInstance().setShippingService(self.selectedShippingMethod!)
+            self.calculateShippingRate({(rate) in
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.navigationItem.rightBarButtonItem?.enabled = true
+                    //print("RATE : " + String(rate))
+                    self.shippingPriceLabel.text = "Price: " + OrderController.sharedInstance().getCurrentOrderCurrency() + " " + String(format: "%.2f", rate)
+                    self.navigationItem.rightBarButtonItem?.enabled = true
+                    self.shippingRate = (Float32)(rate)
+                }
             })
         } else {
             self.navigationItem.rightBarButtonItem?.enabled = false
@@ -155,7 +166,7 @@ class ShippingMethodViewController: UIViewController,UIPickerViewDelegate, UIPic
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
         toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("donePicker:"))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ShippingMethodViewController.donePicker(_:)))
         doneButton.tag = tag
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.setItems([spaceButton, doneButton], animated: false)

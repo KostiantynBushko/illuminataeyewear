@@ -14,7 +14,7 @@ enum SortType: Int {
     case None, New, AZ, ZA, Price
 }
 
-class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSXMLParserDelegate {
+class ItemsBrandTableViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, NSXMLParserDelegate {
     
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tableView: UITableView!
@@ -86,6 +86,11 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        //self.getProduct()
+    }
+    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(false)
         isRunning = false
@@ -134,7 +139,7 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BrandItemViewCell
             let brandItem = brandItems[indexPath.row]
-            cell.name.text = brandItem.getProductCodeName()
+            cell.name.text = brandItem.getName()
             cell.number.text = String(indexPath.row)
             cell.price.text = OrderController.sharedInstance().getCurrentOrderCurrency() + " " + brandItem.getPrice().definePrices
             cell.brandItem = brandItem
@@ -204,14 +209,15 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BrandItemViewCell
-            addProductToCart(cell.BuyNowButton)
+            //let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BrandItemViewCell
+            //addProductToCart(cell.BuyNowButton)
+            self.addToCart(indexPath.row)
         }
     }
     
     @IBAction func addProductToCart(sender: AnyObject) {
         let index = (sender as! ExButton).id
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        /*dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             BrandItem.getBrandItemByParentNode(self.brandItems[index].ID, completeHandler: {(brandItems) in
                 if brandItems.count == 0 {
                     dispatch_async(dispatch_get_main_queue()) {
@@ -234,8 +240,10 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
                     })
                 }
             })
-        }
+        }*/
+        self.addToCart(index)
     }
+
     
     @IBAction func SerchProduct(sender: AnyObject) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -245,6 +253,32 @@ class ItemsBrandTableViewController: UIViewController, UITableViewDataSource, UI
         searchViewController.categoryID = (self.brand?.ID)!
     }
     
+    private func addToCart(index: Int) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            BrandItem.getBrandItemByParentNode(self.brandItems[index].ID, completeHandler: {(brandItems) in
+                if brandItems.count == 0 {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        let brandItemViewController = self.storyboard?.instantiateViewControllerWithIdentifier("BrandItemViewController") as? BrandItemViewController
+                        brandItemViewController?.brandItem = self.brandItems[index]
+                        self.navigationController?.pushViewController(brandItemViewController!, animated: true)
+                    }
+                } else {
+                    for item in brandItems {
+                        item.parentBrandItem = self.brandItems[index]
+                        //self.brandItems.append(item)
+                    }
+                    dispatch_async(dispatch_get_main_queue(), {
+                        //let index = (sender as! ExButton).id
+                        let itemPageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ItemPageViewController") as? ItemPageViewController
+                        self.navigationController?.pushViewController(itemPageViewController!, animated: true)
+                        itemPageViewController!.brandItems = brandItems
+                        itemPageViewController!.parentBrandItem = self.brandItems[index]
+                        return
+                    })
+                }
+            })
+        }
+    }
 
     func getProduct() {
         if self.end {
